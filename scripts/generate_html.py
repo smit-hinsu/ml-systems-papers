@@ -162,16 +162,24 @@ def main():
                tag_type="technique", tag_slug=slug, tag=technique,
                tag_papers=index["by_technique"].get(slug, []), **ctx)
 
+    def sorted_by_count(registry, paper_index):
+        return dict(sorted(registry.items(),
+                           key=lambda kv: len(paper_index.get(kv[0], [])),
+                           reverse=True))
+
     print("Generating category listing pages...")
     render(env, "listing.html.jinja2", out / "insights" / "index.html",
            category_type="insight", category_label="Insight",
-           items=insights, paper_index=index["by_insight"], **ctx)
+           items=sorted_by_count(insights, index["by_insight"]),
+           paper_index=index["by_insight"], **ctx)
     render(env, "listing.html.jinja2", out / "domains" / "index.html",
            category_type="domain", category_label="Domain",
-           items=domains, paper_index=index["by_domain"], **ctx)
+           items=sorted_by_count(domains, index["by_domain"]),
+           paper_index=index["by_domain"], **ctx)
     render(env, "listing.html.jinja2", out / "techniques" / "index.html",
            category_type="technique", category_label="Technique",
-           items=techniques, paper_index=index["by_technique"], **ctx)
+           items=sorted_by_count(techniques, index["by_technique"]),
+           paper_index=index["by_technique"], **ctx)
 
     print("Generating search page...")
     search_index = build_search_index(papers, insights, domains, techniques, venues)
