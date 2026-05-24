@@ -1,0 +1,100 @@
+{% extends "base.html.jinja2" %}
+{% set root_path = "../" %}
+
+{% block title %}{{ tag.label }} · {{ site.name }}{% endblock %}
+{% block description %}{{ tag.description or ("Papers tagged: " + tag.label) }}{% endblock %}
+
+{% block content %}
+<div class="breadcrumb">
+  <a href="{{ root_path }}index.html">All Papers</a>
+  <span>›</span>
+  <a href="{{ root_path }}{{ tag_type }}s/">
+    {{ tag_type | capitalize }}s
+  </a>
+  <span>›</span>
+  {{ tag.label }}
+</div>
+
+<div class="tag-header">
+  <h1>
+    <span class="tag tag-{{ tag_type }}" style="font-size: .8rem; vertical-align: middle; margin-right: .4rem;">
+      {{ tag_type }}
+    </span>
+    {{ tag.label }}
+    <span class="count-badge">{{ tag_papers | length }} paper{% if tag_papers | length != 1 %}s{% endif %}</span>
+  </h1>
+  {% if tag.description %}
+    <p class="tag-description">{{ tag.description }}</p>
+  {% endif %}
+  {% if tag.category %}
+    <div style="font-size: .8rem; color: var(--text3); margin-top: .35rem;">Category: {{ tag.category }}</div>
+  {% endif %}
+</div>
+
+{% if tag_papers %}
+  <div class="paper-grid">
+  {% for paper in tag_papers | sort(attribute='title') %}
+    <div class="card">
+      <div class="card-title"><a href="{{ root_path }}papers/{{ paper.slug }}.html">{{ paper.title }}</a></div>
+      <div class="card-meta">
+        {{ paper.authors[:3] | join(", ") }}{% if paper.authors | length > 3 %} et al.{% endif %}
+        {% if paper.organizations %}· {{ paper.organizations | join(", ") }}{% endif %}
+      </div>
+      {% if paper.problem %}
+        <div class="card-problem">{{ paper.problem }}</div>
+      {% endif %}
+      {% if paper.key_results %}
+        <div class="card-results"><strong>↗</strong> {{ paper.key_results }}</div>
+      {% endif %}
+      <div class="tags">
+        {% for d in paper.domain or [] %}
+          <a href="{{ root_path }}domains/{{ d }}.html" class="tag tag-domain">{{ domains[d].label if d in domains else d }}</a>
+        {% endfor %}
+        {% for i in paper.insights or [] %}
+          {% if i != tag_slug %}
+            <a href="{{ root_path }}insights/{{ i }}.html" class="insight-item-sm">{{ insights[i].label if i in insights else i }}</a>
+          {% endif %}
+        {% endfor %}
+        {% if paper.presentation_type == "oral" %}
+          <span class="tag tag-oral">Oral</span>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+{% else %}
+  <p style="color: var(--text2); font-style: italic;">No papers indexed for this {{ tag_type }} yet.</p>
+{% endif %}
+
+<!-- Cross-links to other tags of same type -->
+{% if tag_type == "insight" %}
+  {% set other_tags = insights %}
+{% elif tag_type == "domain" %}
+  {% set other_tags = domains %}
+{% else %}
+  {% set other_tags = techniques %}
+{% endif %}
+
+<div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+  <h3 style="font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: .75rem;">
+    Other {{ tag_type }}s
+  </h3>
+  {% if tag_type == "insight" %}
+    <div class="insights-list">
+      {% for slug, t in other_tags.items() %}
+        {% if slug != tag_slug %}
+          <a href="{{ slug }}.html" class="insight-item-sm">{{ t.label }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="tags">
+      {% for slug, t in other_tags.items() %}
+        {% if slug != tag_slug %}
+          <a href="{{ slug }}.html" class="tag tag-{{ tag_type }}">{{ t.label }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

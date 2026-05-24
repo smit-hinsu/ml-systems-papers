@@ -1,0 +1,118 @@
+{% extends "base.html.jinja2" %}
+{% set root_path = "" %}
+
+{% block title %}{{ site.name }}{% endblock %}
+
+{% block content %}
+<div class="hero">
+  <h1>{{ site.name }}</h1>
+  <p style="color: var(--text2);">{{ site.tagline }}</p>
+  <p style="margin-top: .5rem; color: var(--text2);">
+    Curated paper summaries with structured annotations: insights, domains, techniques, and key results.
+    Contribute by adding papers or enriching existing ones.
+  </p>
+  <div class="stats">
+    <div class="stat"><span class="num">{{ all_papers | length }}</span>indexed papers</div>
+    <div class="stat"><span class="num">{{ index.by_insight | length }}</span>cross-cutting insights</div>
+    <div class="stat"><span class="num">{{ domains | length }}</span>domains</div>
+    <div class="stat"><span class="num">{{ index.by_technique | length }}</span>technique tags</div>
+  </div>
+</div>
+
+<!-- Key Insights — featured section -->
+{% set active_insights = [] %}
+{% for slug, ins in insights.items() %}
+  {% if index.by_insight.get(slug) %}{% set _ = active_insights.append((slug, ins)) %}{% endif %}
+{% endfor %}
+
+{% if active_insights %}
+<section style="margin-bottom: 2.5rem;">
+  <h2 style="font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: 1rem;">
+    Key Insights
+    <span style="font-size: .8rem; font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: .5rem; color: var(--text3);">— cross-cutting findings across papers</span>
+  </h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: .75rem;">
+    {% for slug, ins in active_insights %}
+      {% set paper_list = index.by_insight[slug] %}
+      <a href="insights/{{ slug }}.html" class="insight-item" style="display: block; margin-bottom: 0;">
+        {{ ins.label }}
+        <span class="insight-desc">
+          {{ ins.description | truncate(100) }}
+          · <strong>{{ paper_list | length }} paper{% if paper_list | length != 1 %}s{% endif %}</strong>
+          · <em>{{ ins.category }}</em>
+        </span>
+      </a>
+    {% endfor %}
+  </div>
+  <div style="margin-top: .75rem;">
+    <a href="insights/index.html" style="font-size: .8rem; color: var(--text2);">All insights →</a>
+  </div>
+</section>
+{% endif %}
+
+<!-- Browse by domains -->
+<div style="margin-bottom: 2rem;">
+  <h2 style="font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: .75rem;">Domains</h2>
+  <div class="tags">
+    {% for slug, d in domains.items() %}
+      <a href="domains/{{ slug }}.html" class="tag tag-domain">
+        {{ d.label }}
+        {% if index.by_domain.get(slug) %}
+          <span style="margin-left:.3rem; opacity:.7;">({{ index.by_domain[slug] | length }})</span>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Papers grid -->
+<h2 style="font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); margin-bottom: 1rem;">All Papers</h2>
+
+<div class="paper-grid">
+{% for paper in all_papers | sort(attribute='title') %}
+  <div class="card">
+    <div class="card-title"><a href="papers/{{ paper.slug }}.html">{{ paper.title }}</a></div>
+    <div class="card-meta">
+      {{ paper.authors[:3] | join(", ") }}{% if paper.authors | length > 3 %} et al.{% endif %}
+      {% if paper.organizations %}· {{ paper.organizations | join(", ") }}{% endif %}
+      {% if paper.venue and paper.venue in venues %}
+        · <span style="color:var(--text3);">{{ venues[paper.venue].short }}</span>
+      {% endif %}
+    </div>
+    {% if paper.problem %}
+      <div class="card-problem">{{ paper.problem }}</div>
+    {% endif %}
+    {% if paper.key_results %}
+      <div class="card-results"><strong>↗</strong> {{ paper.key_results }}</div>
+    {% endif %}
+
+    <!-- Insights shown as readable items, not truncated badges -->
+    {% if paper.insights %}
+      <div class="insights-list" style="margin-bottom: .6rem;">
+        {% for i in paper.insights %}
+          <a href="insights/{{ i }}.html" class="insight-item-sm">
+            {{ insights[i].label if i in insights else i }}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Domains and techniques as compact badges -->
+    <div class="tags">
+      {% for d in paper.domain or [] %}
+        <a href="domains/{{ d }}.html" class="tag tag-domain">{{ domains[d].label if d in domains else d }}</a>
+      {% endfor %}
+      {% for t in paper.techniques or [] %}
+        <a href="techniques/{{ t }}.html" class="tag tag-technique">{{ techniques[t].label if t in techniques else t }}</a>
+      {% endfor %}
+      {% if paper.award %}
+        <span class="tag tag-award">★ {{ paper.award }}</span>
+      {% endif %}
+      {% if paper.presentation_type == "oral" %}
+        <span class="tag tag-oral">Oral</span>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

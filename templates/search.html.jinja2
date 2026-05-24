@@ -1,0 +1,107 @@
+{% extends "base.html.jinja2" %}
+{% set root_path = "" %}
+
+{% block title %}Search · {{ site.name }}{% endblock %}
+
+{% block content %}
+<div style="max-width: 680px; margin: 0 auto;">
+  <h1 style="font-size: 1.4rem; margin-bottom: 1.25rem;">Search papers</h1>
+
+  <div style="position: relative; margin-bottom: 1.5rem;">
+    <input
+      id="q"
+      type="search"
+      placeholder="Title, author, technique, insight keyword…"
+      autofocus
+      style="width:100%; padding:.75rem 1rem .75rem 2.5rem; font-size:1rem;
+             border:1.5px solid var(--border); border-radius:var(--radius);
+             background:#fff; color:var(--text); outline:none;"
+      oninput="search(this.value)"
+    >
+    <svg style="position:absolute;left:.75rem;top:50%;transform:translateY(-50%);
+                width:1rem;height:1rem;color:var(--text3);pointer-events:none;"
+         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+    </svg>
+  </div>
+
+  <div id="results" style="font-size:.85rem; color:var(--text3); font-style:italic;">
+    Type to search {{ all_papers | length }} papers.
+  </div>
+</div>
+
+<script>
+/* Search index embedded at build time — works with file:// and HTTP */
+const PAPERS = {{ search_index | tojson }};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script>
+const fuse = new Fuse(PAPERS, {
+  keys: [
+    { name: "title",          weight: 3 },
+    { name: "problem",        weight: 2 },
+    { name: "insight_labels", weight: 2 },
+    { name: "key_results",    weight: 1.5 },
+    { name: "authors",        weight: 1 },
+    { name: "organizations",  weight: 0.8 },
+    { name: "domain_labels",  weight: 0.8 },
+    { name: "technique_labels", weight: 0.8 },
+  ],
+  threshold: 0.35,
+  includeScore: true,
+  minMatchCharLength: 2,
+});
+
+function tag(cls, text) {
+  return `<span class="tag tag-${cls}" style="vertical-align:middle">${text}</span>`;
+}
+
+function card(p) {
+  const authors = p.authors.slice(0, 3).join(", ") + (p.authors.length > 3 ? " et al." : "");
+  const orgs    = p.organizations.length ? ` · ${p.organizations.join(", ")}` : "";
+  const venue   = p.venue_short ? ` · <span style="color:var(--text3)">${p.venue_short}</span>` : "";
+
+  const domainTags  = p.domain_labels.map(l => tag("domain", l)).join(" ");
+  const insights    = p.insight_labels.map(l =>
+    `<a href="${p.root}insights/${p.insight_slugs[p.insight_labels.indexOf(l)]}.html" class="insight-item-sm">${l}</a>`
+  ).join("");
+
+  return `
+    <div class="card" style="margin-bottom:1rem;">
+      <div class="card-title"><a href="${p.url}">${p.title}</a></div>
+      <div class="card-meta">${authors}${orgs}${venue}</div>
+      ${p.problem ? `<div class="card-problem">${p.problem}</div>` : ""}
+      ${p.key_results ? `<div class="card-results"><strong>↗</strong> ${p.key_results}</div>` : ""}
+      ${insights ? `<div class="insights-list" style="margin:.4rem 0;">${insights}</div>` : ""}
+      <div class="tags">${domainTags}</div>
+    </div>`;
+}
+
+function search(q) {
+  const el = document.getElementById("results");
+  q = q.trim();
+
+  // Update URL without reloading (shareable search links)
+  const url = q ? `?q=${encodeURIComponent(q)}` : location.pathname;
+  history.replaceState({}, "", url);
+
+  if (!q) {
+    el.innerHTML = `<p style="color:var(--text3);font-style:italic;">Type to search ${PAPERS.length} papers.</p>`;
+    return;
+  }
+  const results = fuse.search(q);
+  if (!results.length) {
+    el.innerHTML = `<p style="color:var(--text2);font-style:italic;">No papers found for "<strong>${q}</strong>". Try a keyword from the title or an insight phrase.</p>`;
+    return;
+  }
+  el.innerHTML = `<p style="color:var(--text3);font-size:.8rem;margin-bottom:1rem;">${results.length} result${results.length !== 1 ? "s" : ""}</p>`
+    + results.map(r => card(r.item)).join("");
+}
+
+// Handle shareable ?q= links
+const params = new URLSearchParams(location.search);
+const initial = params.get("q") || "";
+if (initial) { document.getElementById("q").value = initial; search(initial); }
+</script>
+{% endblock %}

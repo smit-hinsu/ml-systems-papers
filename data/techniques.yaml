@@ -1,0 +1,77 @@
+# Canonical technique tag registry.
+# Techniques are concrete algorithmic or systems methods used in papers.
+
+# --- Distributed Systems ---
+tensor-parallelism:
+  label: "Tensor Parallelism"
+  category: distributed
+
+pipeline-parallelism:
+  label: "Pipeline Parallelism"
+  category: distributed
+
+fsdp-zero:
+  label: "FSDP / ZeRO"
+  category: distributed
+  description: "Fully Sharded Data Parallel (ZeRO-style) for memory-efficient training"
+
+communication-overlap:
+  label: "Compute-Communication Overlap"
+  category: distributed
+
+all-reduce:
+  label: "AllReduce"
+  category: distributed
+
+# --- Memory ---
+kv-cache:
+  label: "KV Cache"
+  category: memory
+
+prefix-caching:
+  label: "Prefix Caching / RadixAttention"
+  category: memory
+
+quantization:
+  label: "Quantization"
+  category: memory
+
+cpu-offload:
+  label: "CPU Offload"
+  category: memory
+
+# --- Efficiency ---
+kernel-fusion:
+  label: "Kernel Fusion"
+  category: efficiency
+
+speculative-decoding:
+  label: "Speculative Decoding"
+  category: efficiency
+
+sparse-attention:
+  label: "Sparse Attention"
+  category: efficiency
+
+continuous-batching:
+  label: "Continuous Batching"
+  category: efficiency
+
+# --- Architecture ---
+moe:
+  label: "Mixture-of-Experts (MoE)"
+  category: architecture
+
+# --- Serving ---
+streaming:
+  label: "Token Streaming"
+  category: serving
+
+# --- Automation ---
+llm-code-generation:
+  label: "LLM-based Code / Kernel Generation"
+  category: automation
+
+autotuning:
+  label: "Autotuning"
+  category: automation

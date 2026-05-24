@@ -1,0 +1,30 @@
+# Canonical domain registry.
+# These are the user's taxonomy of ML systems domains, distinct from MLSys official categories.
+
+llm-serving:
+  label: "LLM Serving"
+  description: "Inference and serving systems for large language models"
+
+llm-training:
+  label: "LLM Training"
+  description: "Training systems and infrastructure for large language models"
+
+rl-training:
+  label: "RL Training"
+  description: "Reinforcement learning training infrastructure"
+
+recs-models:
+  label: "Recommendation Models"
+  description: "Large-scale recommendation, embedding, and ranking models"
+
+agentic-inference:
+  label: "Agentic Inference"
+  description: "Multi-agent LLM systems, tool use, and agentic workloads"
+
+ml-compilers:
+  label: "ML Compilers & Kernels"
+  description: "Compilers, kernel optimization, and automated code generation for ML"
+
+fleet-efficiency:
+  label: "Fleet Efficiency"
+  description: "Cluster-level efficiency, resource utilization, and job scheduling at scale"

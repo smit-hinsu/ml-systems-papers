@@ -1,0 +1,70 @@
+# Canonical insight registry.
+# Each insight is a cross-cutting finding that appears across multiple papers.
+# Papers reference insight slugs in their frontmatter.
+# insight-slug:
+#   label: Human-readable label
+#   category: efficiency | memory | distributed | tooling | architecture | serving
+#   description: 1-2 sentence explanation of the insight
+
+cpu-memory-tradeoff:
+  label: "Trade non-bottleneck / non-critical-path CPU for memory savings"
+  category: memory
+  description: >
+    Operations that are not on the GPU critical path can be offloaded to CPU to
+    free GPU HBM. The latency cost is hidden if the CPU work overlaps with GPU compute.
+
+fusion-reduces-bandwidth:
+  label: "Kernel fusion reduces memory-bandwidth overhead"
+  category: efficiency
+  description: >
+    Fusing adjacent operations (e.g., AllReduce + RMSNorm, attention + softmax)
+    avoids round-trips to HBM between kernels, substantially improving effective
+    compute utilization.
+
+attention-sparsity:
+  label: "Most attention weights are near zero and can be zeroed out"
+  category: efficiency
+  description: >
+    In practice, the majority of attention weights after softmax are close to zero.
+    These can be pruned or zeroed without meaningful accuracy loss, enabling sparse
+    attention with lower memory and compute cost.
+
+kernel-verifiability:
+  label: "Kernel performance is a verifiable, benchmarkable problem"
+  category: tooling
+  description: >
+    Unlike model accuracy, kernel throughput is deterministic and measurable.
+    This makes kernel optimization amenable to automated search, LLM-driven code
+    generation, and public leaderboards.
+
+communication-compute-overlap:
+  label: "Compute-communication overlap is key to distributed efficiency"
+  category: distributed
+  description: >
+    Overlapping collective communication (AllReduce, AllGather) with compute kernels
+    is the primary lever for hiding communication latency in tensor-parallel and
+    pipeline-parallel inference and training.
+
+prefix-reuse:
+  label: "Shared prefixes across agent calls can be cached and reused"
+  category: serving
+  description: >
+    In multi-agent workloads, different agents frequently share prompt prefixes.
+    Radix-tree-based prefix caches avoid redundant prefill computation across turns
+    and across agents.
+
+straggler-bubbles:
+  label: "Straggler and scheduling bubbles dominate large-scale training waste"
+  category: distributed
+  description: >
+    At large GPU/TPU cluster scale, load imbalance and scheduling overhead
+    (bubbles in pipeline stages, straggler nodes) can waste a significant fraction
+    of available compute.
+
+llm-driven-optimization:
+  label: "LLMs can automate search over compiler / optimization strategies"
+  category: tooling
+  description: >
+    LLM agents with code-execution feedback loops can explore the space of
+    compiler passes and kernel implementations more effectively than hand-crafted
+    heuristics, especially with exploit-heavy strategies paired with error-fixing agents.

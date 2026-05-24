@@ -1,0 +1,50 @@
+{% extends "base.html.jinja2" %}
+{% set root_path = "../" %}
+
+{% block title %}{{ category_label }}s · {{ site.name }}{% endblock %}
+
+{% block content %}
+<div class="breadcrumb">
+  <a href="{{ root_path }}index.html">All Papers</a>
+  <span>›</span>
+  {{ category_label }}s
+</div>
+
+<h1 style="font-size: 1.4rem; margin-bottom: 1.5rem;">
+  {{ category_label }}s
+  <span class="count-badge">{{ items | length }}</span>
+</h1>
+
+<div style="display: {% if category_type == 'insight' %}flex; flex-direction: column{% else %}grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)){% endif %}; gap: .75rem;">
+{% for slug, item in items.items() %}
+  {% set paper_list = paper_index.get(slug, []) %}
+  {% if category_type == "insight" %}
+    <a href="{{ slug }}.html" class="insight-item" style="margin-bottom: 0; display: block;">
+      {{ item.label }}
+      <span class="insight-desc">
+        {{ item.description | truncate(130) if item.description else "" }}
+        {% if paper_list %}
+          · <strong>{{ paper_list | length }} paper{% if paper_list | length != 1 %}s{% endif %}</strong>
+        {% else %}
+          · <em>no papers yet</em>
+        {% endif %}
+        {% if item.category %}· {{ item.category }}{% endif %}
+      </span>
+    </a>
+  {% else %}
+  <a href="{{ slug }}.html" class="card" style="text-decoration: none; color: inherit;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; margin-bottom: .4rem;">
+      <span class="tag tag-{{ category_type }}">{{ item.label }}</span>
+      <span class="count-badge" style="flex-shrink: 0;">{{ paper_list | length }}</span>
+    </div>
+    {% if item.description %}
+      <p style="font-size: .8rem; color: var(--text2); margin-top: .35rem;">{{ item.description | truncate(120) }}</p>
+    {% endif %}
+    {% if item.category %}
+      <div style="font-size: .75rem; color: var(--text3); margin-top: .25rem;">{{ item.category }}</div>
+    {% endif %}
+  </a>
+  {% endif %}
+{% endfor %}
+</div>
+{% endblock %}

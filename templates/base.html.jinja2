@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ site.name }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ site.tagline }}{% endblock %}">
+  <style>
+    /* ---- Reset & base ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fafaf8;
+      --bg2: #f0ede8;
+      --border: #e2ddd8;
+      --text: #1c1917;
+      --text2: #57534e;
+      --text3: #a8a29e;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --tag-domain: #1d4ed8;
+      --tag-domain-bg: #eff6ff;
+      --tag-tech: #166534;
+      --tag-tech-bg: #f0fdf4;
+      --tag-insight: #6b21a8;
+      --tag-insight-bg: #faf5ff;
+      --tag-industry: #c2410c;
+      --tag-industry-bg: #fff7ed;
+      --tag-research: #0e7490;
+      --tag-research-bg: #ecfeff;
+      --award: #b45309;
+      --award-bg: #fffbeb;
+      --radius: 6px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    }
+    html { font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace; font-size: .875em; background: var(--bg2); padding: .1em .3em; border-radius: 3px; }
+    h1, h2, h3, h4 { line-height: 1.3; font-weight: 600; }
+
+    /* ---- Layout ---- */
+    .site-header {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: .75rem 0;
+      border-bottom: 3px solid var(--accent);
+    }
+    .site-header .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .site-header .brand { font-size: 1.1rem; font-weight: 700; color: #f8fafc; }
+    .site-header .brand span { color: #60a5fa; }
+    .site-header nav { display: flex; gap: 1.25rem; font-size: .875rem; }
+    .site-header nav a { color: #cbd5e1; }
+    .site-header nav a:hover { color: #f8fafc; text-decoration: none; }
+
+    .page { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    .breadcrumb { font-size: .8rem; color: var(--text3); margin-bottom: 1.5rem; }
+    .breadcrumb a { color: var(--text2); }
+    .breadcrumb span { margin: 0 .35rem; }
+
+    /* ---- Tags / Badges (short labels: domains, techniques) ---- */
+    .tag {
+      display: inline-flex; align-items: center;
+      font-size: .7rem; font-weight: 600; letter-spacing: .02em; text-transform: uppercase;
+      padding: .2em .55em; border-radius: 999px;
+      white-space: nowrap; text-decoration: none;
+    }
+    .tag:hover { opacity: .85; text-decoration: none; }
+    .tag-domain    { background: var(--tag-domain-bg); color: var(--tag-domain); }
+    .tag-technique { background: var(--tag-tech-bg);   color: var(--tag-tech); }
+    .tag-industry  { background: var(--tag-industry-bg); color: var(--tag-industry); }
+    .tag-research  { background: var(--tag-research-bg); color: var(--tag-research); }
+    .tag-oral      { background: #fef9c3; color: #854d0e; }
+    .tag-award     { background: var(--award-bg); color: var(--award); }
+    .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+    /* ---- Insight items (full-sentence labels — never truncated) ---- */
+    .insight-item {
+      display: block;
+      font-size: .85rem; font-weight: 500; line-height: 1.4;
+      color: var(--tag-insight);
+      padding: .35rem .65rem .35rem .75rem;
+      border-left: 3px solid var(--tag-insight);
+      background: var(--tag-insight-bg);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      text-decoration: none;
+      margin-bottom: .4rem;
+    }
+    .insight-item:hover { background: #f3e8ff; text-decoration: none; }
+    .insight-item .insight-desc {
+      display: block; font-size: .775rem; font-weight: 400;
+      color: #7e22ce; opacity: .75; margin-top: .2rem; line-height: 1.35;
+    }
+    /* Compact variant (no description, used in cards) */
+    .insight-item-sm {
+      display: inline-flex; align-items: baseline; gap: .35rem;
+      font-size: .8rem; font-weight: 500; color: var(--tag-insight);
+      padding: .25rem .55rem .25rem .6rem;
+      border-left: 2px solid var(--tag-insight);
+      background: var(--tag-insight-bg);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      text-decoration: none; margin-bottom: .3rem; line-height: 1.35;
+    }
+    .insight-item-sm:hover { background: #f3e8ff; text-decoration: none; }
+    .insights-list { display: flex; flex-direction: column; }
+
+    /* ---- Cards ---- */
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+      transition: box-shadow .15s;
+    }
+    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+    .card-title { font-size: 1rem; font-weight: 600; margin-bottom: .35rem; }
+    .card-title a { color: var(--text); }
+    .card-title a:hover { color: var(--accent); text-decoration: none; }
+    .card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .6rem; }
+    .card-problem { font-size: .875rem; color: var(--text2); margin-bottom: .75rem; font-style: italic; }
+    .card-results { font-size: .875rem; margin-bottom: .75rem; }
+    .card-results strong { color: var(--text); }
+
+    /* ---- Paper grid ---- */
+    .paper-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.25rem; }
+
+    /* ---- Filter bar ---- */
+    .filter-bar { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    .filter-bar label { font-size: .8rem; font-weight: 600; color: var(--text2); margin-right: .25rem; }
+    .filter-group { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+    /* ---- Paper page ---- */
+    .paper-layout { display: grid; grid-template-columns: 1fr 280px; gap: 2.5rem; align-items: start; }
+    @media (max-width: 800px) { .paper-layout { grid-template-columns: 1fr; } }
+    .paper-body h2 { font-size: 1.1rem; margin-top: 1.75rem; margin-bottom: .5rem; padding-bottom: .25rem; border-bottom: 1px solid var(--border); }
+    .paper-body h3 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: .35rem; }
+    .paper-body p  { margin-bottom: .85rem; }
+    .paper-body ul, .paper-body ol { margin: .5rem 0 .85rem 1.5rem; }
+    .paper-body li { margin-bottom: .3rem; }
+    .paper-body blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; color: var(--text2); margin: 1rem 0; font-style: italic; }
+
+    .sidebar { position: sticky; top: 1.5rem; }
+    .sidebar-section { margin-bottom: 1.5rem; }
+    .sidebar-section h3 { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); font-weight: 700; margin-bottom: .6rem; }
+    .meta-row { font-size: .825rem; display: flex; gap: .5rem; margin-bottom: .4rem; flex-wrap: wrap; }
+    .meta-row .label { color: var(--text3); min-width: 80px; flex-shrink: 0; }
+    .meta-row .value { color: var(--text); font-weight: 500; }
+
+    .link-list { list-style: none; }
+    .link-list li { margin-bottom: .3rem; font-size: .85rem; }
+    .link-list a::before { content: "→ "; }
+
+    .result-box {
+      background: var(--bg2);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: .65rem .85rem;
+      font-size: .875rem;
+      margin-bottom: 1rem;
+    }
+    .result-box strong { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text3); margin-bottom: .25rem; }
+
+    /* ---- Index hero ---- */
+    .hero { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .hero h1 { font-size: 1.75rem; margin-bottom: .35rem; }
+    .hero p { color: var(--text2); max-width: 600px; }
+    .stats { display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+    .stat { font-size: .875rem; }
+    .stat .num { font-size: 1.5rem; font-weight: 700; color: var(--accent); display: block; }
+
+    /* ---- Tag index page ---- */
+    .tag-header { margin-bottom: 2rem; }
+    .tag-header h1 { font-size: 1.5rem; margin-bottom: .5rem; }
+    .tag-description { color: var(--text2); max-width: 640px; margin-bottom: 1rem; }
+    .count-badge { display: inline-block; background: var(--bg2); border-radius: 999px; padding: .15em .6em; font-size: .8rem; font-weight: 600; color: var(--text2); vertical-align: middle; margin-left: .4rem; }
+
+    /* ---- Section nav ---- */
+    .section-nav { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .section-nav-group h3 { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text3); font-weight: 700; margin-bottom: .5rem; }
+
+    /* ---- Footer ---- */
+    .site-footer { margin-top: 4rem; padding: 1.5rem; border-top: 1px solid var(--border); font-size: .8rem; color: var(--text3); text-align: center; }
+    .site-footer a { color: var(--text2); }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <div class="brand"><span>ML</span> Systems Papers</div>
+      <nav>
+        <a href="{{ root_path }}index.html">All Papers</a>
+        <a href="{{ root_path }}search.html">Search</a>
+        <a href="{{ root_path }}insights/index.html">Insights</a>
+        <a href="{{ root_path }}domains/index.html">Domains</a>
+        <a href="https://github.com/{{ site.github }}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" style="color:#93c5fd;">+ Add paper</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    {{ site.name }} ·
+    <a href="https://github.com/{{ site.github }}">GitHub</a> ·
+    <a href="{{ root_path }}search.html">Search</a> ·
+    <a href="https://github.com/{{ site.github }}/blob/main/CONTRIBUTING.md">Contribute a paper</a>
+  </footer>
+  {% block analytics %}{% endblock %}
+  {% if site.analytics_html %}{{ site.analytics_html | safe }}{% endif %}
+</body>
+</html>

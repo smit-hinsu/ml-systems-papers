@@ -1,0 +1,19 @@
+name: "ML Systems Papers"
+tagline: "Curated paper index for ML infrastructure: LLM serving & training, agentic inference, recommendation models, compilers, and fleet efficiency"
+github: "smit-hinsu/ml-systems-papers"
+description: >
+  A community-maintained, semi-structured index of papers at the intersection of
+  machine learning and systems. Papers from MLSys, OSDI, SOSP, ASPLOS, NeurIPS
+  systems track, and beyond — organized by insight, domain, and technique rather
+  than by conference or date.
+
+# TODO(analytics): Paste your analytics provider's snippet here.
+# Recommended privacy-respecting options:
+#   - Plausible (https://plausible.io) — GDPR-friendly, no cookies
+#   - GoatCounter (https://www.goatcounter.com) — open-source, self-hostable
+#   - Fathom (https://usefathom.com) — cookieless
+#   - Umami (https://umami.is) — self-hosted, open-source
+# Example for Plausible:
+#   analytics_html: '<script defer data-domain="mlsys26.hinsu.org" src="https://plausible.io/js/plausible.js"></script>'
+# Leave blank to disable.
+analytics_html: ""

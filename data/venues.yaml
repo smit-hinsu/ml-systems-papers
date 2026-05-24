@@ -1,0 +1,58 @@
+# Venue registry. Add new conferences/workshops as papers from them are indexed.
+# venue-slug:
+#   name: Full conference name
+#   short: Short citation-style name
+#   year: int
+#   url: Homepage or virtual site
+#   type: conference | workshop | arxiv | journal
+
+mlsys-2026:
+  name: "Conference on Machine Learning and Systems 2026"
+  short: "MLSys'26"
+  year: 2026
+  url: "https://mlsys.org/virtual/2026"
+  dates: "May 19–21, 2026"
+  location: "Santa Clara, CA, USA"
+  type: conference
+
+mlsys-2025:
+  name: "Conference on Machine Learning and Systems 2025"
+  short: "MLSys'25"
+  year: 2025
+  url: "https://mlsys.org/virtual/2025"
+  type: conference
+
+osdi-2024:
+  name: "USENIX Symposium on Operating Systems Design and Implementation 2024"
+  short: "OSDI'24"
+  year: 2024
+  url: "https://www.usenix.org/conference/osdi24"
+  type: conference
+
+sosp-2024:
+  name: "ACM Symposium on Operating Systems Principles 2024"
+  short: "SOSP'24"
+  year: 2024
+  url: "https://sigops.org/s/conferences/sosp/2024/"
+  type: conference
+
+asplos-2025:
+  name: "ACM International Conference on Architectural Support for Programming Languages and Operating Systems 2025"
+  short: "ASPLOS'25"
+  year: 2025
+  url: "https://www.asplos-conference.org/asplos2025/"
+  type: conference
+
+neurips-2024:
+  name: "Neural Information Processing Systems 2024"
+  short: "NeurIPS'24"
+  year: 2024
+  url: "https://neurips.cc/virtual/2024"
+  type: conference
+
+arxiv:
+  name: "arXiv preprint"
+  short: "arXiv"
+  year: null
+  url: "https://arxiv.org"
+  type: arxiv
