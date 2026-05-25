@@ -16,8 +16,8 @@ authors:
 - Luis Ceze
 - Tianqi Chen
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-05-24'
 code_url: ''
 date: '2026-05-20'
 domain:
@@ -26,7 +26,7 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-insights:
+observations:
 - kernel-verifiability
 key_results: Standardized kernel schema + public leaderboard + dynamic substitution
   into SGLang and vLLM production systems
@@ -45,7 +45,7 @@ reading_status: read
 research_or_industry: research
 slides_url: ''
 slug: flashinfer-bench
-techniques:
+topics:
 - kernel-fusion
 - autotuning
 title: 'FlashInfer-Bench: Building the Virtuous Cycle for AI-driven LLM Systems'

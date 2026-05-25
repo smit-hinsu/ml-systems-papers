@@ -43,27 +43,27 @@
       {% endif %}
 
       <!-- Insights: full labels with descriptions, before the compact tags -->
-      {% if paper.insights %}
-      <div class="insights-list" style="margin-bottom: .85rem;">
-        {% for i in paper.insights %}
-          {% set ins = insights.get(i) %}
-          <a href="{{ root_path }}insights/{{ i }}.html" class="insight-item">
+      {% if paper.observations %}
+      <div class="observations-list" style="margin-bottom: .85rem;">
+        {% for i in paper.observations %}
+          {% set ins = observations.get(i) %}
+          <a href="{{ root_path }}index.html?observation={{ i }}" class="observation-item">
             {{ ins.label if ins else i }}
             {% if ins and ins.description %}
-              <span class="insight-desc">{{ ins.description | truncate(120) }}</span>
+              <span class="observation-desc">{{ ins.description | truncate(120) }}</span>
             {% endif %}
           </a>
         {% endfor %}
       </div>
       {% endif %}
 
-      <!-- Compact tags: domains, techniques, metadata -->
+      <!-- Compact tags: domains, topics, metadata -->
       <div class="tags">
         {% for d in paper.domain or [] %}
-          <a href="{{ root_path }}domains/{{ d }}.html" class="tag tag-domain">{{ domains[d].label if d in domains else d }}</a>
+          <a href="{{ root_path }}index.html?domain={{ d }}" class="tag tag-domain">{{ domains[d].label if d in domains else d }}</a>
         {% endfor %}
-        {% for t in paper.techniques or [] %}
-          <a href="{{ root_path }}techniques/{{ t }}.html" class="tag tag-technique">{{ techniques[t].label if t in techniques else t }}</a>
+        {% for t in paper.topics or [] %}
+          <a href="{{ root_path }}index.html?topic={{ t }}" class="tag tag-topic">{{ topics[t].label if t in topics else t }}</a>
         {% endfor %}
         {% if paper.research_or_industry %}
           <span class="tag tag-{{ paper.research_or_industry }}">{{ paper.research_or_industry | capitalize }}</span>
@@ -82,11 +82,9 @@
     <div class="sidebar-section">
       <h3>Links</h3>
       <ul class="link-list">
-        {% if paper.openreview_url %}
-          <li><a href="{{ paper.openreview_url.replace('/forum?id=', '/pdf?id=') }}" target="_blank" rel="noopener">Paper (PDF)</a></li>
-        {% endif %}
-        {% if paper.arxiv_url %}
-          <li><a href="{{ paper.arxiv_url }}" target="_blank" rel="noopener">Preprint (arXiv)</a></li>
+        {% set paper_url = paper.arxiv_url or paper.openreview_url.replace('/forum?id=', '/pdf?id=') if paper.openreview_url else "" %}
+        {% if paper_url %}
+          <li><a href="{{ paper_url }}" target="_blank" rel="noopener">Paper</a></li>
         {% endif %}
         {% if paper.slides_url %}
           <li><a href="{{ paper.slides_url }}" target="_blank" rel="noopener">Slides</a></li>
@@ -132,16 +130,6 @@
       {% if paper.citations is not none %}
       <div class="meta-row"><span class="label">Citations</span><span class="value">{{ paper.citations }}{% if paper.citations_updated %} <span style="color:var(--text3);font-size:.75rem;">({{ paper.citations_updated }})</span>{% endif %}</span></div>
       {% endif %}
-    </div>
-
-    <div class="sidebar-section">
-      <h3>Reading</h3>
-      <div class="meta-row">
-        <span class="label">Status</span>
-        <span class="value" style="text-transform: capitalize;">{{ paper.reading_status or "—" }}</span>
-      </div>
-      <div class="meta-row"><span class="label">By</span><span class="value">{{ paper.indexed_by or "—" }}</span></div>
-      <div class="meta-row"><span class="label">Indexed</span><span class="value">{{ paper.indexed_date or "—" }}</span></div>
     </div>
 
     {% set related = [] %}

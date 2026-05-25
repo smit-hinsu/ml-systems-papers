@@ -40,49 +40,49 @@ def load_papers():
     return papers
 
 
-def build_index(papers, insights, domains, techniques, venues):
+def build_index(papers, observations, domains, topics, venues):
     """Build cross-reference maps."""
-    by_insight = defaultdict(list)
+    by_observation = defaultdict(list)
     by_domain = defaultdict(list)
-    by_technique = defaultdict(list)
+    by_topic = defaultdict(list)
     by_status = defaultdict(list)
 
     for paper in papers:
-        for slug in paper.get("insights") or []:
-            by_insight[slug].append(paper)
+        for slug in paper.get("observations") or []:
+            by_observation[slug].append(paper)
         for slug in paper.get("domain") or []:
             by_domain[slug].append(paper)
-        for slug in paper.get("techniques") or []:
-            by_technique[slug].append(paper)
+        for slug in paper.get("topics") or []:
+            by_topic[slug].append(paper)
         status = paper.get("reading_status") or "unread"
         by_status[status].append(paper)
 
     return {
-        "by_insight": dict(by_insight),
+        "by_observation": dict(by_observation),
         "by_domain": dict(by_domain),
-        "by_technique": dict(by_technique),
+        "by_topic": dict(by_topic),
         "by_status": dict(by_status),
     }
 
 
-def build_search_index(papers, insights, domains, techniques, venues):
-    """Build the search index embedded in search.html."""
+def build_search_index(papers, observations, domains, topics, venues):
+    """Build the search index embedded at build time."""
     records = []
     for p in papers:
         v = venues.get(p.get("venue") or "", {})
         records.append({
             "slug": p["slug"],
             "url": f"papers/{p['slug']}.html",
-            "root": "",  # search.html is at site root
             "title": p.get("title") or "",
             "authors": p.get("authors") or [],
             "organizations": p.get("organizations") or [],
             "problem": p.get("problem") or "",
             "key_results": p.get("key_results") or "",
             "domain_labels": [domains[d]["label"] for d in (p.get("domain") or []) if d in domains],
-            "technique_labels": [techniques[t]["label"] for t in (p.get("techniques") or []) if t in techniques],
-            "insight_slugs": [i for i in (p.get("insights") or []) if i in insights],
-            "insight_labels": [insights[i]["label"] for i in (p.get("insights") or []) if i in insights],
+            "topic_labels": [topics[t]["label"] for t in (p.get("topics") or []) if t in topics],
+            "hardware": p.get("hardware") or [],
+            "observation_slugs": [o for o in (p.get("observations") or []) if o in observations],
+            "observation_labels": [observations[o]["label"] for o in (p.get("observations") or []) if o in observations],
             "venue": p.get("venue") or "",
             "venue_short": v.get("short") or "",
         })
@@ -119,18 +119,23 @@ def main():
     # Load data
     site = load_registry("site.yaml")
     venues = load_registry("venues.yaml")
-    insights = load_registry("insights.yaml")
+    observations = load_registry("observations.yaml")
     domains = load_registry("domains.yaml")
-    techniques = load_registry("techniques.yaml")
+    topics = load_registry("topics.yaml")
     papers = load_papers()
-    index = build_index(papers, insights, domains, techniques, venues)
+    index = build_index(papers, observations, domains, topics, venues)
+
+    def sorted_by_count(registry, paper_index):
+        return dict(sorted(registry.items(),
+                           key=lambda kv: len(paper_index.get(kv[0], [])),
+                           reverse=True))
 
     ctx = dict(
         site=site,
         venues=venues,
-        insights=insights,
-        domains=domains,
-        techniques=techniques,
+        observations=sorted_by_count(observations, index["by_observation"]),
+        domains=sorted_by_count(domains, index["by_domain"]),
+        topics=sorted_by_count(topics, index["by_topic"]),
         all_papers=papers,
         index=index,
     )
@@ -141,53 +146,25 @@ def main():
                out / "papers" / f"{paper['slug']}.html",
                paper=paper, **ctx)
 
-    print("Generating insight pages...")
-    for slug, insight in insights.items():
-        render(env, "tag.html.jinja2",
-               out / "insights" / f"{slug}.html",
-               tag_type="insight", tag_slug=slug, tag=insight,
-               tag_papers=index["by_insight"].get(slug, []), **ctx)
-
-    print("Generating domain pages...")
-    for slug, domain in domains.items():
-        render(env, "tag.html.jinja2",
-               out / "domains" / f"{slug}.html",
-               tag_type="domain", tag_slug=slug, tag=domain,
-               tag_papers=index["by_domain"].get(slug, []), **ctx)
-
-    print("Generating technique pages...")
-    for slug, technique in techniques.items():
-        render(env, "tag.html.jinja2",
-               out / "techniques" / f"{slug}.html",
-               tag_type="technique", tag_slug=slug, tag=technique,
-               tag_papers=index["by_technique"].get(slug, []), **ctx)
-
-    def sorted_by_count(registry, paper_index):
-        return dict(sorted(registry.items(),
-                           key=lambda kv: len(paper_index.get(kv[0], [])),
-                           reverse=True))
-
     print("Generating category listing pages...")
-    render(env, "listing.html.jinja2", out / "insights" / "index.html",
-           category_type="insight", category_label="Insight",
-           items=sorted_by_count(insights, index["by_insight"]),
-           paper_index=index["by_insight"], **ctx)
+    render(env, "listing.html.jinja2", out / "observations" / "index.html",
+           category_type="observation", category_label="Observation",
+           items=ctx["observations"], paper_index=index["by_observation"], **ctx)
     render(env, "listing.html.jinja2", out / "domains" / "index.html",
            category_type="domain", category_label="Domain",
-           items=sorted_by_count(domains, index["by_domain"]),
-           paper_index=index["by_domain"], **ctx)
-    render(env, "listing.html.jinja2", out / "techniques" / "index.html",
-           category_type="technique", category_label="Technique",
-           items=sorted_by_count(techniques, index["by_technique"]),
-           paper_index=index["by_technique"], **ctx)
+           items=ctx["domains"], paper_index=index["by_domain"], **ctx)
+    render(env, "listing.html.jinja2", out / "topics" / "index.html",
+           category_type="topic", category_label="Technique",
+           items=ctx["topics"], paper_index=index["by_topic"], **ctx)
 
     print("Generating search page...")
-    search_index = build_search_index(papers, insights, domains, techniques, venues)
+    search_index = build_search_index(papers, observations, domains, topics, venues)
     render(env, "search.html.jinja2", out / "search.html",
            search_index=search_index, **ctx)
 
     print("Generating index...")
-    render(env, "index.html.jinja2", out / "index.html", **ctx)
+    render(env, "index.html.jinja2", out / "index.html",
+           search_index=search_index, **ctx)
 
     # Copy static assets if present
     static_src = ROOT / "static"

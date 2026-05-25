@@ -1,13 +1,13 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: https://arxiv.org/abs/2505.11329
 authors:
 - Raja Gond
 - Nipun Kwatra
 - Ramachandran Ramjee
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-05-24'
 code_url: https://github.com/microsoft/tokenweave
 date: '2026-05-19'
 domain:
@@ -15,7 +15,7 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-insights:
+observations:
 - fusion-reduces-bandwidth
 - communication-compute-overlap
 key_results: Up to 1.28× latency speedup, up to 1.19× higher throughput via fused
@@ -34,7 +34,7 @@ reading_status: read
 research_or_industry: research
 slides_url: ''
 slug: tokenweave
-techniques:
+topics:
 - tensor-parallelism
 - kernel-fusion
 - communication-overlap

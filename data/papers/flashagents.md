@@ -20,7 +20,7 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-insights:
+observations:
 - prefix-reuse
 - communication-compute-overlap
 key_results: Up to 40% end-to-end latency reduction; 3.5× speedup in controlled two-agent
@@ -29,7 +29,7 @@ mlsys_official_category: Research Papers
 mlsys_url: https://mlsys.org/virtual/2026/oral/3760
 models_evaluated: []
 openreview_url: https://openreview.net/forum?id=m14PPUfgEc
-organizations: []
+organizations: [Chinese Academy of Sciences]
 presentation_type: oral
 problem: In multi-agent LLM pipelines, downstream agents must wait for upstream agents
   to finish before starting their prefill, causing serial latency stacking.
@@ -38,7 +38,7 @@ reading_status: read
 research_or_industry: research
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3760_dJT5ZOY.pdf
 slug: flashagents
-techniques:
+topics:
 - prefix-caching
 - streaming
 - kv-cache

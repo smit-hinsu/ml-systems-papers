@@ -11,7 +11,7 @@
     <input
       id="q"
       type="search"
-      placeholder="Title, author, technique, insight keyword…"
+      placeholder="Title, author, topic, observation keyword…"
       autofocus
       style="width:100%; padding:.75rem 1rem .75rem 2.5rem; font-size:1rem;
              border:1.5px solid var(--border); border-radius:var(--radius);
@@ -41,12 +41,12 @@ const fuse = new Fuse(PAPERS, {
   keys: [
     { name: "title",          weight: 3 },
     { name: "problem",        weight: 2 },
-    { name: "insight_labels", weight: 2 },
+    { name: "observation_labels", weight: 2 },
     { name: "key_results",    weight: 1.5 },
     { name: "authors",        weight: 1 },
     { name: "organizations",  weight: 0.8 },
     { name: "domain_labels",  weight: 0.8 },
-    { name: "technique_labels", weight: 0.8 },
+    { name: "topic_labels", weight: 0.8 },
   ],
   threshold: 0.35,
   includeScore: true,
@@ -63,8 +63,8 @@ function card(p) {
   const venue   = p.venue_short ? ` · <span style="color:var(--text3)">${p.venue_short}</span>` : "";
 
   const domainTags  = p.domain_labels.map(l => tag("domain", l)).join(" ");
-  const insights    = p.insight_labels.map(l =>
-    `<a href="${p.root}insights/${p.insight_slugs[p.insight_labels.indexOf(l)]}.html" class="insight-item-sm">${l}</a>`
+  const observations    = p.observation_labels.map(l =>
+    `<a href="${p.root}observations/${p.observation_slugs[p.observation_labels.indexOf(l)]}.html" class="observation-item-sm">${l}</a>`
   ).join("");
 
   return `
@@ -73,7 +73,7 @@ function card(p) {
       <div class="card-meta">${authors}${orgs}${venue}</div>
       ${p.problem ? `<div class="card-problem">${p.problem}</div>` : ""}
       ${p.key_results ? `<div class="card-results"><strong>↗</strong> ${p.key_results}</div>` : ""}
-      ${insights ? `<div class="insights-list" style="margin:.4rem 0;">${insights}</div>` : ""}
+      ${observations ? `<div class="observations-list" style="margin:.4rem 0;">${observations}</div>` : ""}
       <div class="tags">${domainTags}</div>
     </div>`;
 }
@@ -92,7 +92,7 @@ function search(q) {
   }
   const results = fuse.search(q);
   if (!results.length) {
-    el.innerHTML = `<p style="color:var(--text2);font-style:italic;">No papers found for "<strong>${q}</strong>". Try a keyword from the title or an insight phrase.</p>`;
+    el.innerHTML = `<p style="color:var(--text2);font-style:italic;">No papers found for "<strong>${q}</strong>". Try a keyword from the title or an observation phrase.</p>`;
     return;
   }
   el.innerHTML = `<p style="color:var(--text3);font-size:.8rem;margin-bottom:1rem;">${results.length} result${results.length !== 1 ? "s" : ""}</p>`

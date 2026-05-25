@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2502.06982'
 authors:
 - Arissa Wongpanich
 - Tayo Oguntebi
@@ -12,8 +12,8 @@ authors:
 - Naveen Kumar
 - Vijay Janapa Reddi
 award: ''
-citations: null
-citations_updated: ''
+citations: 8
+citations_updated: '2026-05-24'
 code_url: ''
 date: '2026-05-21'
 domain:
@@ -22,7 +22,7 @@ hardware:
 - TPU
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-insights:
+observations:
 - straggler-bubbles
 key_results: ML Productivity Goodput (MPG) decomposes fleet efficiency into scheduling,
   runtime, and program components; identifies actionable optimization opportunities
@@ -41,7 +41,7 @@ reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3734_ahO01yG.pdf
 slug: ml-fleet-tpu-goodput
-techniques: []
+topics: []
 title: 'Machine Learning Fleet Efficiency: Improving TPU Systems at Scale with ML
   Productivity Goodput'
 ---

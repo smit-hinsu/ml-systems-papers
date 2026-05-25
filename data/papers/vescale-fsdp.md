@@ -15,8 +15,8 @@ authors:
 - Yanghua Peng
 - Xin Liu
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-05-24'
 code_url: ''
 date: '2026-05-21'
 domain:
@@ -24,7 +24,7 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-insights: []
+observations: []
 key_results: Flexible FSDP with block-wise quantization support; significant memory
   efficiency and performance improvements at scale
 mlsys_official_category: Research Papers
@@ -41,7 +41,7 @@ reading_status: read
 research_or_industry: research
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3860.pdf
 slug: vescale-fsdp
-techniques:
+topics:
 - fsdp-zero
 - quantization
 - communication-overlap

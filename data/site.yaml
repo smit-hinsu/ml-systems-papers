@@ -4,7 +4,7 @@ github: "smit-hinsu/ml-systems-papers"
 description: >
   A community-maintained, semi-structured index of papers at the intersection of
   machine learning and systems. Papers from MLSys, OSDI, SOSP, ASPLOS, NeurIPS
-  systems track, and beyond — organized by insight, domain, and technique rather
+  systems track, and beyond — organized by observation, domain, and topic rather
   than by conference or date.
 
 # TODO(analytics): Paste your analytics provider's snippet here.

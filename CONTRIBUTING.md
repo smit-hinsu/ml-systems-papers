@@ -1,6 +1,6 @@
 # Contributing to MLSys 26 Paper Index
 
-This project is a community-maintained, semi-structured index of papers from [MLSys 2026](https://mlsys.org/virtual/2026). The goal is to make papers discoverable by insight, domain, and technique — not just by title.
+This project is a community-maintained, semi-structured index of papers from [MLSys 2026](https://mlsys.org/virtual/2026). The goal is to make papers discoverable by observation, domain, and topic — not just by title.
 
 ## Ways to contribute
 
@@ -8,7 +8,7 @@ This project is a community-maintained, semi-structured index of papers from [ML
 - **Enrich an existing paper** — fill in missing fields (arxiv URL, organizations, citations, hardware)
 - **Add your personal notes** — contribute to the `## Personal Notes` section
 - **Improve summaries** — better problem statement, key results, or method description
-- **Add new insights/domains/techniques** — extend the registries if existing tags don't fit
+- **Add new observations/domains/topics** — extend the registries if existing tags don't fit
 
 ## Workflow
 
@@ -44,12 +44,12 @@ A paper file is mergeable when it has:
 
 Optional but appreciated:
 - `key_results` with specific numbers
-- `insights` cross-references
+- `observations` cross-references
 - `arxiv_url` and/or `code_url`
 
 ## Registries
 
-Before adding new slugs, check `data/insights.yaml`, `data/domains.yaml`, and `data/techniques.yaml`. Add a new entry to the registry *before* referencing it in a paper file. Registry entries require `label` and `description`.
+Before adding new slugs, check `data/observations.yaml`, `data/domains.yaml`, and `data/topics.yaml`. Add a new entry to the registry *before* referencing it in a paper file. Registry entries require `label` and `description`.
 
 ## Non-indexed papers
 

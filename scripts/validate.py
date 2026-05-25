@@ -28,9 +28,9 @@ def load_venues():
 
 
 def main():
-    insights = load_registry("insights.yaml")
+    observations = load_registry("observations.yaml")
     domains = load_registry("domains.yaml")
-    techniques = load_registry("techniques.yaml")
+    topics = load_registry("topics.yaml")
     venues = load_venues()
 
     errors = []
@@ -66,15 +66,15 @@ def main():
             errors.append(f"{name}: invalid research_or_industry '{p['research_or_industry']}'")
 
         # Registry cross-references
-        for slug in p.get("insights") or []:
-            if slug not in insights:
-                errors.append(f"{name}: unknown insight slug '{slug}'")
+        for slug in p.get("observations") or []:
+            if slug not in observations:
+                errors.append(f"{name}: unknown observation slug '{slug}'")
         for slug in p.get("domain") or []:
             if slug not in domains:
                 errors.append(f"{name}: unknown domain slug '{slug}'")
-        for slug in p.get("techniques") or []:
-            if slug not in techniques:
-                errors.append(f"{name}: unknown technique slug '{slug}'")
+        for slug in p.get("topics") or []:
+            if slug not in topics:
+                errors.append(f"{name}: unknown topic slug '{slug}'")
         if p.get("venue") and p["venue"] not in venues:
             errors.append(f"{name}: unknown venue slug '{p['venue']}'")
 

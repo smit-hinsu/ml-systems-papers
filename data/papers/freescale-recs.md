@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: https://arxiv.org/abs/2604.24073
 authors:
 - Chenhao Feng
 - Haoli Zhang
@@ -24,8 +24,8 @@ authors:
 - Qunshu Zhang
 - Shen Li
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-05-24'
 code_url: ''
 date: '2026-05-21'
 domain:
@@ -34,7 +34,7 @@ hardware:
 - H100
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-insights:
+observations:
 - straggler-bubbles
 - communication-compute-overlap
 key_results: Up to 90.3% reduction in computational bubbles on 256 H100 GPUs
@@ -52,7 +52,7 @@ reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3821_gs6415h.pdf
 slug: freescale-recs
-techniques:
+topics:
 - communication-overlap
 title: 'FreeScale: Distributed Training for Sequence Recommendation Models with Minimal
   Scaling Cost'

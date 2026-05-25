@@ -1,14 +1,14 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: https://arxiv.org/abs/2511.16964
 authors:
 - Kirill Nagaitsev
 - Luka Grbcic
 - Samuel Williams
 - Costin Iancu
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-05-24'
 code_url: https://github.com/pike-project/pike
 date: '2026-05-19'
 domain:
@@ -17,7 +17,7 @@ hardware:
 - H100
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-insights:
+observations:
 - kernel-verifiability
 - llm-driven-optimization
 key_results: 2.88× speedup over PyTorch Eager; 1.85× over torch.compile on H100
@@ -25,7 +25,8 @@ mlsys_official_category: ''
 mlsys_url: https://mlsys.org/virtual/2026/oral/3823
 models_evaluated: []
 openreview_url: https://openreview.net/forum?id=MJxhiX3sSd
-organizations: []
+organizations:
+- Lawrence Berkeley National Laboratory
 presentation_type: oral
 problem: Automate PyTorch inference optimization by framing it as a multi-agent LLM
   task with code execution feedback.
@@ -34,7 +35,7 @@ reading_status: read
 research_or_industry: research
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3823.pdf
 slug: pike-pytorch-llm-agents
-techniques:
+topics:
 - llm-code-generation
 title: Optimizing PyTorch Inference with LLM-Based Multi-Agent Systems
 ---

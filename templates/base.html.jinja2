@@ -19,10 +19,10 @@
       --accent-light: #dbeafe;
       --tag-domain: #1d4ed8;
       --tag-domain-bg: #eff6ff;
-      --tag-tech: #166534;
-      --tag-tech-bg: #f0fdf4;
-      --tag-insight: #6b21a8;
-      --tag-insight-bg: #faf5ff;
+      --tag-topic: #166534;
+      --tag-topic-bg: #f0fdf4;
+      --tag-observation: #6b21a8;
+      --tag-observation-bg: #faf5ff;
       --tag-industry: #c2410c;
       --tag-industry-bg: #fff7ed;
       --tag-research: #0e7490;
@@ -72,7 +72,7 @@
     .breadcrumb a { color: var(--text2); }
     .breadcrumb span { margin: 0 .35rem; }
 
-    /* ---- Tags / Badges (short labels: domains, techniques) ---- */
+    /* ---- Tags / Badges (short labels: domains, topics) ---- */
     .tag {
       display: inline-flex; align-items: center;
       font-size: .7rem; font-weight: 600; letter-spacing: .02em; text-transform: uppercase;
@@ -81,42 +81,43 @@
     }
     .tag:hover { opacity: .85; text-decoration: none; }
     .tag-domain    { background: var(--tag-domain-bg); color: var(--tag-domain); }
-    .tag-technique { background: var(--tag-tech-bg);   color: var(--tag-tech); }
+    .tag-topic { background: var(--tag-topic-bg);  color: var(--tag-topic); }
     .tag-industry  { background: var(--tag-industry-bg); color: var(--tag-industry); }
     .tag-research  { background: var(--tag-research-bg); color: var(--tag-research); }
     .tag-oral      { background: #fef9c3; color: #854d0e; }
+    .tag-org       { background: #f1f5f9; color: #475569; font-weight: 500; }
     .tag-award     { background: var(--award-bg); color: var(--award); }
     .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
 
     /* ---- Insight items (full-sentence labels — never truncated) ---- */
-    .insight-item {
+    .observation-item {
       display: block;
       font-size: .85rem; font-weight: 500; line-height: 1.4;
-      color: var(--tag-insight);
+      color: var(--tag-observation);
       padding: .35rem .65rem .35rem .75rem;
-      border-left: 3px solid var(--tag-insight);
-      background: var(--tag-insight-bg);
+      border-left: 3px solid var(--tag-observation);
+      background: var(--tag-observation-bg);
       border-radius: 0 var(--radius) var(--radius) 0;
       text-decoration: none;
       margin-bottom: .4rem;
     }
-    .insight-item:hover { background: #f3e8ff; text-decoration: none; }
-    .insight-item .insight-desc {
+    .observation-item:hover { background: #f3e8ff; text-decoration: none; }
+    .observation-item .observation-desc {
       display: block; font-size: .775rem; font-weight: 400;
       color: #7e22ce; opacity: .75; margin-top: .2rem; line-height: 1.35;
     }
     /* Compact variant (no description, used in cards) */
-    .insight-item-sm {
+    .observation-item-sm {
       display: inline-flex; align-items: baseline; gap: .35rem;
-      font-size: .8rem; font-weight: 500; color: var(--tag-insight);
+      font-size: .8rem; font-weight: 500; color: var(--tag-observation);
       padding: .25rem .55rem .25rem .6rem;
-      border-left: 2px solid var(--tag-insight);
-      background: var(--tag-insight-bg);
+      border-left: 2px solid var(--tag-observation);
+      background: var(--tag-observation-bg);
       border-radius: 0 var(--radius) var(--radius) 0;
       text-decoration: none; margin-bottom: .3rem; line-height: 1.35;
     }
-    .insight-item-sm:hover { background: #f3e8ff; text-decoration: none; }
-    .insights-list { display: flex; flex-direction: column; }
+    .observation-item-sm:hover { background: #f3e8ff; text-decoration: none; }
+    .observations-list { display: flex; flex-direction: column; }
 
     /* ---- Cards ---- */
     .card {
@@ -202,11 +203,10 @@
 <body>
   <header class="site-header">
     <div class="inner">
-      <div class="brand"><span>ML</span> Systems Papers</div>
+      <a href="{{ root_path }}index.html" class="brand" style="text-decoration:none;"><span>ML</span> Systems Papers</a>
       <nav>
         <a href="{{ root_path }}index.html">All Papers</a>
-        <a href="{{ root_path }}search.html">Search</a>
-        <a href="{{ root_path }}insights/index.html">Insights</a>
+        <a href="{{ root_path }}observations/index.html">Observations</a>
         <a href="{{ root_path }}domains/index.html">Domains</a>
         <a href="https://github.com/{{ site.github }}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" style="color:#93c5fd;">+ Add paper</a>
       </nav>
@@ -218,7 +218,6 @@
   <footer class="site-footer">
     {{ site.name }} ·
     <a href="https://github.com/{{ site.github }}">GitHub</a> ·
-    <a href="{{ root_path }}search.html">Search</a> ·
     <a href="https://github.com/{{ site.github }}/blob/main/CONTRIBUTING.md">Contribute a paper</a>
   </footer>
   {% block analytics %}{% endblock %}

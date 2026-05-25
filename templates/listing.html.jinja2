@@ -15,13 +15,13 @@
   <span class="count-badge">{{ items | length }}</span>
 </h1>
 
-<div style="display: {% if category_type == 'insight' %}flex; flex-direction: column{% else %}grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)){% endif %}; gap: .75rem;">
+<div style="display: {% if category_type == 'observation' %}flex; flex-direction: column{% else %}grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)){% endif %}; gap: .75rem;">
 {% for slug, item in items.items() %}
   {% set paper_list = paper_index.get(slug, []) %}
-  {% if category_type == "insight" %}
-    <a href="{{ slug }}.html" class="insight-item" style="margin-bottom: 0; display: block;">
+  {% if category_type == "observation" %}
+    <a href="{{ root_path }}index.html?observation={{ slug }}" class="observation-item" style="margin-bottom: 0; display: block;">
       {{ item.label }}
-      <span class="insight-desc">
+      <span class="observation-desc">
         {{ item.description | truncate(130) if item.description else "" }}
         {% if paper_list %}
           · <strong>{{ paper_list | length }} paper{% if paper_list | length != 1 %}s{% endif %}</strong>
@@ -32,7 +32,7 @@
       </span>
     </a>
   {% else %}
-  <a href="{{ slug }}.html" class="card" style="text-decoration: none; color: inherit;">
+  <a href="{{ root_path }}index.html?{{ category_type }}={{ slug }}" class="card" style="text-decoration: none; color: inherit;">
     <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; margin-bottom: .4rem;">
       <span class="tag tag-{{ category_type }}">{{ item.label }}</span>
       <span class="count-badge" style="flex-shrink: 0;">{{ paper_list | length }}</span>

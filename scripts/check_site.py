@@ -6,10 +6,10 @@ Checks:
   - Broken internal links (all relative href/src resolve to existing files)
   - Every page has a <title>, <h1>, and nav
   - No Jinja2 leakage ({{ ... }} visible in output)
-  - No truncation artifacts ("...") inside insight labels
+  - No truncation artifacts ("...") inside observation labels
   - Paper pages have required sections (Links section or at least mlsys_url)
-  - Insight listing: every insight with papers has correct count displayed
-  - Cross-reference integrity: every paper linked from an insight page exists
+  - Insight listing: every observation with papers has correct count displayed
+  - Cross-reference integrity: every paper linked from an observation page exists
 
 Usage:
     python scripts/check_site.py
@@ -82,8 +82,11 @@ def check_internal_links(path: Path, page: PageAnalyzer, errors: list, warnings:
     for href in page.links:
         if not href or href.startswith("#") or href.startswith("http"):
             continue
-        # Resolve relative to the page's directory
-        target = (path.parent / href).resolve()
+        # Strip query string and fragment before checking file existence
+        file_part = href.split("?")[0].split("#")[0]
+        if not file_part:
+            continue
+        target = (path.parent / file_part).resolve()
         if not target.exists():
             errors.append(f"{path.relative_to(SITE)}: broken link → {href}")
 
@@ -108,17 +111,17 @@ def check_jinja_leakage(path: Path, page: PageAnalyzer, errors: list, warnings: 
         errors.append(f"{path.relative_to(SITE)}: Jinja2 block leaked into output")
 
 
-def check_insight_truncation(path: Path, page: PageAnalyzer, errors: list, warnings: list):
+def check_observation_truncation(path: Path, page: PageAnalyzer, errors: list, warnings: list):
     """
     Insight labels should never be truncated.
-    The .insight-desc description may be truncated (intentional) but the label itself must not be.
+    The .observation-desc description may be truncated (intentional) but the label itself must not be.
     """
     text = path.read_text(encoding="utf-8")
     pattern = re.compile(
-        r'class="insight-item[^"]*"[^>]*>(.*?)</a>',
+        r'class="observation-item[^"]*"[^>]*>(.*?)</a>',
         re.DOTALL,
     )
-    desc_pattern = re.compile(r'<span[^>]*class="insight-desc"[^>]*>.*?</span>', re.DOTALL)
+    desc_pattern = re.compile(r'<span[^>]*class="observation-desc"[^>]*>.*?</span>', re.DOTALL)
     for m in pattern.finditer(text):
         # Remove the description span — truncation there is intentional
         label_html = desc_pattern.sub("", m.group(1))
@@ -126,7 +129,7 @@ def check_insight_truncation(path: Path, page: PageAnalyzer, errors: list, warni
         label = re.sub(r"\s+", " ", label).strip()
         if label.endswith("...") or re.search(r'\w\.\.\.(?!\s)', label):
             errors.append(
-                f"{path.relative_to(SITE)}: truncated insight label: {label[:80]!r}"
+                f"{path.relative_to(SITE)}: truncated observation label: {label[:80]!r}"
             )
 
 
@@ -158,7 +161,7 @@ CHECKS = [
     check_internal_links,
     check_structure,
     check_jinja_leakage,
-    check_insight_truncation,
+    check_observation_truncation,
     check_none_values,
     check_paper_page,
 ]

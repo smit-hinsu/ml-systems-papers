@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: https://arxiv.org/abs/2601.05296
 authors:
 - Jiyuan Zhang
 - Yining Liu
@@ -12,8 +12,8 @@ authors:
 - Min Ni
 - Shen Li
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-05-24'
 code_url: ''
 date: '2026-05-21'
 domain:
@@ -22,7 +22,7 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-insights:
+observations:
 - cpu-memory-tradeoff
 - fusion-reduces-bandwidth
 key_results: Over 4× speedup and over 50% memory savings compared to existing MoE
@@ -41,7 +41,7 @@ reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3826_TlhaaTE.pdf
 slug: moeblaze
-techniques:
+topics:
 - moe
 - kernel-fusion
 - cpu-offload

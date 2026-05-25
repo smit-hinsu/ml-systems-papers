@@ -34,8 +34,8 @@ date: ""
 
 # User taxonomy
 domain: []  # see data/domains.yaml for valid slugs
-techniques: []  # see data/techniques.yaml for valid slugs
-insights: []  # see data/insights.yaml for valid slugs
+topics: []  # see data/topics.yaml for valid slugs
+observations: []  # see data/observations.yaml for valid slugs
 
 # Evaluation
 hardware: []

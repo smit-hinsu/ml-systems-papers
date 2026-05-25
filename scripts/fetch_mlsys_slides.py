@@ -84,8 +84,8 @@ date: "{year}-05"
 
 # User taxonomy
 domain: []
-techniques: []
-insights: []
+topics: []
+observations: []
 
 # Evaluation
 hardware: []
