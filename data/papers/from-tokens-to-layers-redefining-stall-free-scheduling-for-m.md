@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: https://arxiv.org/abs/2510.08055
 authors:
 - Gunjun Lee
 - Jiwon Kim
@@ -14,21 +14,37 @@ code_url: ''
 date: 2026-05
 domain:
 - llm-serving
-hardware: []
-indexed_by: ''
+hardware:
+- NVIDIA H100
+indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: ''
-models_evaluated: []
+key_results: Up to 70% TTFT reduction and 41% end-to-end latency improvement on Qwen3-30B-A3B
+  and GPT-OSS-20B MoE models on H100; 22% per-token energy reduction.
+models_evaluated:
+- Qwen3-30B-A3B
+- GPT-OSS-20B
 principles:
-- communication-compute-overlap
+- reduce-data-movement
+- overlap-independent-work
+observations:
+  reduce-data-movement: Token-level chunked prefill forces expert weight reloads for
+    each chunk of the same request, increasing MoE off-chip memory traffic by up to
+    39% on long-context workloads; layer-group scheduling ensures each weight is loaded
+    exactly once per request.
+  overlap-independent-work: Layered prefill assigns one layer group per iteration
+    to handle both decode and prefill work while other groups execute decode-only,
+    interleaving prefill and decode across the model depth rather than serializing
+    them.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=yyDbI3HXco
 organizations: []
 presentation_type: oral
-problem: ''
+problem: Chunked prefill in MoE serving triggers redundant expert weight reloads per
+  token-chunk, increasing memory traffic by up to 39% and inflating both TTFT and
+  energy consumption.
 project_url: ''
 reading_status: want-to-read
-research_or_industry: ''
+research_or_industry: research
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3732_cXYJO0z.pdf
 slug: from-tokens-to-layers-redefining-stall-free-scheduling-for-m
 status: draft
@@ -37,18 +53,25 @@ title: 'From Tokens to Layers: Redefining Stall-Free Scheduling for MoE Serving 
 topics:
 - moe
 - continuous-batching
+- kernel-fusion
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3732
 ---
 
-<!-- DRAFT: fill in summary before publishing. See docs/summarizing.md -->
+## Key Contributions
 
-## Summary
+- **Layered prefill scheduling**: Partitions the transformer into G = max(1, ⌈L/512⌉) contiguous layer groups (where L is input length); per iteration, exactly one designated group processes both decode and new prefill work while all others run decode-only, ensuring each token traverses every expert weight exactly once.
+- **Elimination of redundant MoE weight loads**: Because each request processes all tokens in a layer group together before moving to the next, expert weights are loaded once per layer group per request — removing the per-chunk reload overhead that chunked prefill incurs on MoE models, reducing memory traffic by 39% on long-context (arXiv) and 12% on shorter-context (ShareGPT) workloads.
+- **Maintained stall-free decode**: The one-group-per-iteration interleaving rule guarantees prefill completes in exactly G iterations without preempting in-progress decode; TBT compliance is preserved at the same level as chunked prefill while TTFT is dramatically reduced.
+- Evaluated on two H100 GPUs with Qwen3-30B-A3B (128 experts, top-8) and GPT-OSS-20B (32 experts, top-4), achieving a 14–45% increase in SLO-attained request rate.
 
-Abstract
-                        
-                        
-                            
-                                
-                                    
-                                        Large Language Model (LLM) inference in production must meet stringent service-level objectives for both time-to-first-token (TTFT) and time-between-token (TBT) while maximizing throughput under fixed compute, memory, and interconnect budgets. Modern serving systems adopt stall-free scheduling techniques such as chunked prefill, which splits long prompt processing along the token dimension and interleaves prefill with ongoing decode iterations. While effective at stabilizing TBT, chunked prefill incurs substantial overhead in Mixture-of-Experts (MoE) models: redundant expert weight loads increase memory traffic by up to \textbf{39\%} and inflate energy consumption.
+## Trade-offs
+
+- Layered prefill's benefit scales with prompt length and MoE expert count; on shorter-context workloads like ShareGPT, memory traffic reduction drops to 12%, limiting TTFT and latency gains.
+- Layer-group formation requires knowing the input length upfront to compute G; dynamically arriving requests with varying lengths may make group boundaries suboptimal across a mixed batch.
+
+## Nuances
+
+- Evaluation is on a 2-GPU setup; behavior at larger tensor-parallelism degrees (8+ GPUs per node) where all-to-all communication dominates over memory bandwidth may shift the bottleneck and reduce layered prefill's advantage.
+- The per-token energy reduction (up to 22%) is measured on the evaluated models; models with denser MoE routing (higher top-k) or larger expert sizes would see proportionally different savings.
+- The approach is specific to MoE models; for dense transformer models without expert routing, layered prefill provides no benefit over standard chunked prefill.

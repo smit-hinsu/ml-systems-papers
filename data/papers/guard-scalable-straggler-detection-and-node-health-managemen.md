@@ -25,21 +25,35 @@ code_url: ''
 date: 2026-05
 domain:
 - fleet-efficiency
+- observability
 hardware: []
-indexed_by: ''
+indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: ''
+key_results: Up to 1.7× FLOPs utilization improvement and training step variance
+  reduced from 20% to 1% on large-scale multi-month foundation model pretraining runs
+  with tens of thousands of GPUs.
 models_evaluated: []
 principles:
-- straggler-bubbles
+- balance-utilization
+- avoid-redundant-work
+observations:
+  balance-utilization: Step-time variance of 20% in large training runs means the
+    fastest nodes in each iteration wait for the slowest; detecting and remediating
+    fail-slow nodes before they enter the critical synchronization path eliminates
+    these bubbles and recovers utilization.
+  avoid-redundant-work: Offline node sweeping qualifies nodes before they join production
+    jobs, preventing straggler-induced checkpoint rollbacks that waste compute already
+    spent on the aborted run segment.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=JFEwQ821MS
 organizations: []
 presentation_type: oral
-problem: ''
+problem: Fail-slow behaviors in large GPU training clusters silently degrade throughput
+  and inflate step-time variance; functional correctness tests like NCCL burn-in miss
+  performance regressions that accumulate over multi-month runs.
 project_url: ''
 reading_status: want-to-read
-research_or_industry: ''
+research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3831_b41kyKe.pdf
 slug: guard-scalable-straggler-detection-and-node-health-managemen
 status: draft
@@ -50,14 +64,20 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3831
 ---
 
-<!-- DRAFT: fill in summary before publishing. See docs/summarizing.md -->
+## Key Contributions
 
-## Summary
+- **Online performance monitoring**: Lightweight per-step telemetry collected during active training to continuously track step-time distributions across nodes; detects acute failures and gradual degradation in real time without requiring a separate diagnostic pass.
+- **Offline node-sweep mechanism**: Systematically runs performance qualification workloads on candidate nodes before they join production training jobs; filters out nodes exhibiting fail-slow behavior that functional tests (NCCL, GPU burn-in) miss because they never fail outright.
+- **Two-tier detection architecture**: Combining online monitoring (catches failures during a run) with offline sweeping (catches pre-existing degradation at onboarding) covers both acute and long-running failure modes, raising mean time to failure and reducing debugging overhead.
+- Deployed on production foundation model pretraining at scale (tens of thousands of GPUs, multi-month runs); reduced training step variance from 20% to 1% and improved mean FLOPs utilization by up to 1.7×.
 
-Abstract
-                        
-                        
-                            
-                                
-                                    
-                                        Training frontier-scale foundation models involves coordinating tens of thousands of GPUs over multi-month runs, where even minor performance degradations can accumulate into substantial efficiency losses. Existing health-check mechanisms, such as NCCL tests or GPU burn-in, primarily focus on functional correctness and often fail to detect fail-slow behaviors that silently degrade system performance. In this paper, we present Guard, a scalable system for detecting stragglers and ensuring node health in large-scale training clusters.
+## Trade-offs
+
+- Offline node sweeping adds pre-job qualification overhead; for short training runs the qualification time may not be amortized by the utilization gains during the job.
+- The online monitoring overhead is described as lightweight but collecting per-step telemetry at tens-of-thousands-of-GPU scale still adds some coordination cost.
+
+## Nuances
+
+- Specific hardware and cluster topology are not disclosed; the fail-slow signature profiles and detection thresholds may need recalibration for different GPU generations or interconnect types.
+- The 1.7× FLOPs utilization improvement is an upper bound (best case); average improvement and the distribution across job types are not detailed in the abstract.
+- GUARD detects stragglers but remediation (eviction, replacement, rebalancing) is outside the paper's main scope; the operational pipeline for acting on detections is not fully specified.

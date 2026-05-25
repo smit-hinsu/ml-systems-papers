@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: https://arxiv.org/abs/2510.27656
 authors:
 - Nandor Licker
 - Kevin Hu
@@ -14,39 +14,65 @@ date: 2026-05
 domain:
 - llm-serving
 - llm-training
-hardware: []
-indexed_by: ''
+hardware:
+- NVIDIA H100
+- NVIDIA H200
+- NVIDIA ConnectX-7
+- AWS EFA
+indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: ''
+key_results: 400 Gbps peak on both ConnectX-7 and AWS EFA; RL weight updates for
+  trillion-parameter models in 1.3 s; MoE decode latency matching DeepEP on ConnectX-7
+  with first viable EFA implementation.
 models_evaluated: []
 principles:
-- communication-compute-overlap
+- overlap-independent-work
+- reduce-data-movement
+observations:
+  overlap-independent-work: KvCache transfers for disaggregated inference are issued
+    layer-by-layer so RDMA operations are pipelined with computation on the GPU, hiding
+    transfer latency behind prefill processing.
+  reduce-data-movement: Paging write operations at 64 KiB granularity achieves 364–370
+    Gbps on both ConnectX-7 and EFA, nearly saturating available network bandwidth
+    and minimizing round-trips compared to message-passing collectives.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=SjVa05wEiY
-organizations: []
+organizations:
+- Perplexity AI
 presentation_type: oral
-problem: ''
+problem: LLM system patterns like disaggregated inference, MoE routing, and async
+  RL fine-tuning need flexible RDMA point-to-point communication, but existing libraries
+  are NIC-specific and non-portable across hardware providers.
 project_url: ''
 reading_status: want-to-read
-research_or_industry: ''
+research_or_industry: industry
 slides_url: ''
 slug: fabric-lib-rdma-point-to-point-communication-for-llm-systems
 status: draft
 title: 'fabric-lib: RDMA Point-to-Point Communication for LLM Systems'
 topics:
 - all-reduce
+- communication-overlap
+- kv-cache
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3807
 ---
 
-<!-- DRAFT: fill in summary before publishing. See docs/summarizing.md -->
+## Key Contributions
 
-## Summary
+- **TransferEngine abstraction**: A portable RDMA library exposing a uniform API over NVIDIA ConnectX-7 and AWS EFA, transparently managing multiple NICs per GPU (required on EFA instances with 2–4 × 100 Gbps NICs) without application-level NIC awareness.
+- **WriteImm + ImmCounter primitives**: One-sided remote-memory writes with a 32-bit immediate value combined with an order-agnostic completion counter; enables reliable completion notification without requiring ordered message delivery, accommodating the differing guarantees of ConnectX and EFA transports.
+- **Three production deployments**: (1) Layer-by-layer KvCache transfer for disaggregated inference with dynamic scaling; (2) pipelined asynchronous RL weight distribution completing trillion-parameter updates in 1.3 seconds; (3) dual-path MoE dispatch/combine routing tokens via RDMA inter-node and NVLink intra-node.
+- Achieves 400 Gbps peak on both ConnectX-7 and EFA with 64 KiB paged writes (364–370 Gbps respectively), matching hardware-specific implementations while preserving portability.
 
-Abstract
-                        
-                        
-                            
-                                
-                                    
-                                        Emerging Large Language Model (LLM) system patterns, such as disaggregated inference, Mixture-of-Experts (MoE) routing, and asynchronous reinforcement fine-tuning, require flexible point-to-point communication beyond simple collectives. Existing implementations are locked to specific Network Interface Controllers (NICs), hindering integration into inference engines and portability across hardware providers. We present fabric-lib, which bridges the functionality of common NICs to expose a uniform interface.
+## Trade-offs
+
+- Host-proxy path (needed when GPU-initiated RDMA is unavailable, e.g., on AWS) adds ~15 µs latency per EP64 operation compared to the IBGDA GPU-initiated path available on ConnectX-7.
+- Prefill throughput lags ConnectX-7-optimized implementations (DeepEP) due to reduced per-rank buffering; the portability abstraction trades some peak performance for hardware-agnosticism.
+- All peers must use identical NIC configurations per GPU; heterogeneous clusters mixing NIC types per node are not supported.
+
+## Nuances
+
+- GPU-initiated communication (IBGDA) is not available on AWS cloud instances as of publication; EFA operations go through the host proxy, adding CPU involvement in the critical path for latency-sensitive decode operations.
+- The 1.3-second RL update claim is for weight distribution only; the end-to-end training step time including forward/backward passes is not characterized.
+- MoE dispatch/combine performance matches DeepEP on ConnectX-7 but the comparison is at equivalent EP size; at higher expert-parallelism degrees the overhead of the abstraction layer may widen.
