@@ -20,28 +20,42 @@ date: '2026-05-21'
 domain:
 - recs-models
 - llm-training
-hardware: []
+hardware:
+- H100
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Over 4× speedup and over 50% memory savings compared to existing MoE
-  training frameworks; deployed in Meta recommendation production
+key_results: Up to 6.2× speedup and 4× activation memory reduction vs. MegaBlocks
+  baseline on H100; SwiGLU MoE gets 2×–6.2× speedup, SiLU gets 1.4×–3.7×
 models_evaluated: []
-principles:
-- cpu-memory-tradeoff
-- fusion-reduces-bandwidth
+observations:
+  avoid-redundant-work: Activation checkpointing recomputes SiLU during the backward
+    pass instead of storing intermediates, trading cheap recomputation for large HBM
+    savings without changing training semantics
+  exploit-memory-hierarchy: SwiGLU fusion combines dual first-layer projections and
+    activation epilogue into a single kernel, eliminating intermediate global memory
+    writes and keeping activations in registers/shared memory
+  reduce-data-movement: Conventional MoE routing materializes ~94GB token permutation
+    buffers in HBM; four compact index structures (expert_token_indices, expert_token_offsets,
+    token_expert_indices, token_index_map) replace these with lightweight index-only
+    tensors
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=L8qKfWWkry
 organizations:
 - Meta
 presentation_type: oral
-problem: 'Mixture-of-Experts models face a memory wall during training: expert weights
-  and activation buffers exceed GPU HBM capacity as model scale increases.'
+principles:
+- reduce-data-movement
+- exploit-memory-hierarchy
+- avoid-redundant-work
+problem: MoE training activates only a top-k subset of experts per token but must
+  store all expert weights and routing buffers in HBM, creating a memory wall that
+  limits batch size and sequence length.
 project_url: ''
-status: draft
 reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3826_TlhaaTE.pdf
 slug: moeblaze
+status: draft
 title: 'MoEBlaze: Breaking the Memory Wall for Efficient MoE Training on Modern GPUs'
 topics:
 - moe
@@ -50,33 +64,22 @@ topics:
 venue_url: https://mlsys.org/virtual/2026/oral/3826
 ---
 
-## Summary
-
-MoE (Mixture-of-Experts) models use conditional computation — only a subset of experts are activated per token — making them parameter-efficient at inference but memory-intensive at training because all expert weights must reside in memory (for gradients). MoEBlaze breaks this memory wall through an end-to-end redesign of token dispatch and MoE training:
-
-- **Optimized token dispatch data structures**: Reduces overhead from routing tokens to experts, which involves complex scatter/gather patterns
-- **Specialized fused kernels**: Fuse expert computation with routing and communication steps to reduce memory pressure
-- **CPU offload for inactive experts**: Non-activated expert weights are offloaded to CPU memory, with prefetching to hide latency
-
-The combination achieves over 4× speedup and 50%+ memory savings, with production deployment in Meta's recommendation systems.
 
 ## Key Contributions
 
-- End-to-end MoE training system targeting the memory wall
-- Optimized token dispatch data structures for expert routing
-- Fused kernels for expert compute + routing
-- CPU offload for inactive experts with latency hiding
-- Production deployment at Meta
+- **Four compact token dispatch index structures**: expert_token_indices, expert_token_offsets, token_expert_indices, and token_index_map replace conventional large materialized routing buffers, eliminating ~94GB of intermediate tensor allocations during expert dispatch
+- **SwiGLU fused kernel**: combines both first-layer projections and the activation epilogue into a single CUDA kernel, removing intermediate HBM writes for the dominant operation in SwiGLU-based MoE experts
+- **On-the-fly gathering**: expert GEMM accesses original unpermuted activations directly via index lists rather than requiring an explicit token permutation pass, removing a full HBM round-trip
+- **SiLU activation checkpointing**: recomputes cheap SiLU activations during the backward pass rather than storing them, yielding up to 3.6× activation memory savings for SiLU-based MoE
+- System evaluated on seven representative MoE configurations spanning dimensions 512–2048, 4–16 experts, top-k 1–4, achieving 6.2× peak speedup over MegaBlocks on H100
 
-## Method
+## Trade-offs
 
-The token dispatch phase uses compact, cache-friendly data structures to batch tokens headed to the same expert. Fused kernels combine the expert linear layers with the routing scatter/gather. For memory savings, experts not in the current batch's top-k are speculatively offloaded to CPU pinned memory, with background prefetch based on predicted routing.
+- Activation checkpointing increases backward-pass compute; benefit is largest when memory is the bottleneck, but recomputation cost becomes visible at high batch sizes where HBM is not saturated
+- On-the-fly gathering trades spatial locality for memory savings; token accesses are non-sequential and may cause cache pressure on hardware with limited L2/SRAM
 
-## Limitations
+## Nuances
 
-- CPU offload latency hiding depends on routing predictability
-- Results may be specific to recommendation model MoE topology (sparse, many small experts) vs. LLM MoE (fewer, larger experts)
-
-## Personal Notes
-
-<!-- Add your own observations, questions, and connections to other work here -->
+- Experiments measure a single MoE layer, not end-to-end training throughput; pipeline and communication overheads in multi-node training are not characterized
+- The paper originates from Meta's Thinking Machines Lab but does not explicitly state production deployment; the "over 4× speedup, over 50% memory savings" claim in the abstract combines best-case numbers from different configurations
+- Results are specific to recommendation-model MoE topology (many small experts, moderate sequence lengths); LLM-scale MoE with fewer, larger experts may exhibit different bottlenecks
