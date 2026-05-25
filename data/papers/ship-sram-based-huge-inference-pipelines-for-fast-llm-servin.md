@@ -72,6 +72,7 @@ title: 'SHIP: SRAM-Based Huge Inference Pipelines for Fast LLM Serving'
 topics:
 - kv-cache
 - pipeline-parallelism
+- continuous-batching
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3834
 ---

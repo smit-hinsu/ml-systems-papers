@@ -48,7 +48,7 @@ citations_updated: ''
 code_url: ''
 domain:
 - ml-compilers
-- fleet-efficiency
+- llm-training
 hardware:
 - Google TPU (fleet)
 indexed_by: smithinsu

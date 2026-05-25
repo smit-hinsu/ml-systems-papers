@@ -20,8 +20,8 @@ citations: 0
 citations_updated: '2026-05-24'
 code_url: ''
 domain:
-- llm-serving
 - ml-kernels
+- agentic-inference
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
@@ -35,6 +35,9 @@ observations:
   avoid-redundant-work: Dynamic kernel substitution via apply() lets a winning kernel
     immediately replace the default in SGLang/vLLM without rewriting application code
     or re-running benchmarks
+  reduce-data-movement: Winning LLM-generated kernels are consistently fused attention
+    or GEMM variants; the benchmark reveals that reducing HBM round-trips via fusion
+    is the dominant lever agents converge on.
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=IyryZno8Hh
 organizations:
@@ -44,6 +47,7 @@ presentation_type: oral
 principles:
 - ai-solves-verifiable
 - avoid-redundant-work
+- reduce-data-movement
 problem: AI-generated kernels lack a benchmark against production workloads and a
   mechanism to inject them into live systems, breaking the generation-deployment loop.
 project_url: ''
@@ -56,6 +60,7 @@ title: 'FlashInfer-Bench: Building the Virtuous Cycle for AI-driven LLM Systems'
 topics:
 - autotuning
 - llm-code-generation
+- kernel-fusion
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3832
 ---

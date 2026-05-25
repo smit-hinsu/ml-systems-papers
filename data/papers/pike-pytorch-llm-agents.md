@@ -13,6 +13,7 @@ citations_updated: '2026-05-24'
 code_url: https://github.com/pike-project/pike
 domain:
 - ml-kernels
+- agentic-inference
 hardware:
 - H100
 indexed_by: smithinsu

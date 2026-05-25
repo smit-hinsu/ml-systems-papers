@@ -28,7 +28,7 @@ principles:
 - overlap-independent-work
 - avoid-redundant-work
 observations:
-  overlap-independent-work: "The downstream GPU is completely idle during upstream decode; streaming each upstream token to Agent B starts its prefill immediately rather than waiting for the full response"
+  overlap-independent-work: "Incremental prefill pipelined with upstream decode cuts end-to-end latency up to 40%; the breakeven is when upstream decode time exceeds the per-token prefill overhead on the downstream."
   avoid-redundant-work: "Agentic workloads share system prompt prefixes, but the radix cache fills only after a call completes — concurrent calls within the same turn don't benefit by default"
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=m14PPUfgEc

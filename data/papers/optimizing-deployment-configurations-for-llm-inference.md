@@ -26,8 +26,9 @@ observations:
   avoid-redundant-work: Configuration simulation before deployment avoids expensive
     empirical search on production hardware by modeling throughput and latency SLO
     compliance for millions of candidate configurations offline.
-  balance-utilization: Optimal parallelism differs per hardware; the tensor/pipeline/expert/context/data
-    parallelism space is too large for manual tuning to reliably find the Pareto frontier.
+  balance-utilization: Simulation over millions of (TP/PP/EP/CP) configs identifies
+    Pareto splits; manual configs commonly leave one dimension memory-saturated while
+    another dimension idles.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=gEbKQeIdxB
 organizations:

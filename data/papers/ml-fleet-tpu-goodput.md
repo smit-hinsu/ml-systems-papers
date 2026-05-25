@@ -27,9 +27,9 @@ key_results: MPG decomposes fleet waste into scheduling, runtime, and program la
   comm-compute overlap achieves 1.38× throughput at 72% FLOPS on 1024 TPUs.
 models_evaluated: []
 observations:
-  balance-utilization: MPG reveals that runtime goodput gaps (crashes, restarts, checkpointing
-    overhead) rather than scheduling or hardware utilization are the dominant efficiency
-    bottleneck in Google's production TPU fleet
+  balance-utilization: Scheduling goodput (>95% in Google's fleet) proves work allocation
+    is balanced; unequal utilization at the program and runtime layers — not job scheduling
+    — is where compute actually goes to waste.
   overlap-independent-work: Comm-compute overlap in production 500B-param training
     reached 72% FLOPS utilization on 1024 TPUs, a 1.38× improvement, validating that
     this technique is the highest-leverage program goodput lever

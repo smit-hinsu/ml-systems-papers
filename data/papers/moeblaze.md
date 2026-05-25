@@ -27,9 +27,9 @@ key_results: Up to 6.2× speedup and 4× activation memory reduction vs. MegaBlo
   baseline on H100; SwiGLU MoE gets 2×–6.2× speedup, SiLU gets 1.4×–3.7×
 models_evaluated: []
 observations:
-  avoid-redundant-work: Activation checkpointing recomputes SiLU during the backward
-    pass instead of storing intermediates, trading cheap recomputation for large HBM
-    savings without changing training semantics
+  exploit-sparsity: Top-k routing activates only 1–4 of the 4–16 experts per token;
+    compact index structures exploit this sparsity to skip materializing unused routing
+    buffers entirely, cutting ~94GB HBM use.
   exploit-memory-hierarchy: SwiGLU fusion combines dual first-layer projections and
     activation epilogue into a single kernel, eliminating intermediate global memory
     writes and keeping activations in registers/shared memory
@@ -44,7 +44,7 @@ presentation_type: oral
 principles:
 - reduce-data-movement
 - exploit-memory-hierarchy
-- avoid-redundant-work
+- exploit-sparsity
 problem: MoE training stores all expert weights and routing buffers in HBM even though
   only top-k experts fire per token, creating a memory wall that limits batch size.
 project_url: ''

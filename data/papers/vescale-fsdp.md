@@ -27,15 +27,15 @@ key_results: 5%–66% higher throughput and 16%–30% lower memory vs. existing 
   scales to tens of thousands of GPUs with zero-copy communications via RaggedShard
 models_evaluated: []
 observations:
-  avoid-redundant-work: Structure-aware planning algorithm fuses AllGather and ReduceScatter
-    operations at block granularity rather than per-parameter, reducing collective
-    invocation overhead across large sharded models
+  overlap-independent-work: AllGather and ReduceScatter are overlapped with forward/backward
+    compute via structure-aware scheduling, hiding collective latency behind local
+    computation at each FSDP unit boundary.
   balance-utilization: RaggedShard accommodates varying shard sizes arising from block-wise
     quantization or non-uniform layer dimensions, preventing the padding waste that
     fixed-stride sharding incurs
-  reduce-data-movement: veScale-FSDP eliminates the extra memcpy flat-parameter FSDP
-    requires to contiguously arrange parameters before AllGather; zero-copy collectives
-    reduce HBM round-trips per training step.
+  reduce-data-movement: veScale-FSDP eliminates the extra memcpy PyTorch FSDP needs
+    for contiguous parameter layout before AllGather; structure-aware planning further
+    reduces calls by fusing collectives at block granularity.
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=3Lj8R0F48P
 organizations:
@@ -43,7 +43,7 @@ organizations:
 presentation_type: oral
 principles:
 - reduce-data-movement
-- avoid-redundant-work
+- overlap-independent-work
 - balance-utilization
 problem: FSDP requires flat parameter sharding, making it incompatible with block-wise
   quantization, Shampoo/Muon optimizers, and per-module parallelism strategies.

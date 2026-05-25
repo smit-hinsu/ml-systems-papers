@@ -26,6 +26,9 @@ models_evaluated:
 - DeepSeek-R1-671B
 - Kimi-K2-1000B
 observations:
+  exploit-sparsity: Per-layer MoE load skew follows a heavy-tail distribution; CRAFT
+    skips replication for the majority of low-skew layers, targeting only the sparse
+    tail where imbalance exceeds replication cost.
   balance-utilization: MoE load is skewed per-layer — one expert can get 10× average
     load while others are balanced; uniform replication wastes HBM on low-skew layers
     that gain nothing from it.
@@ -39,6 +42,7 @@ organizations:
 - Amazon
 presentation_type: oral
 principles:
+- exploit-sparsity
 - balance-utilization
 - exploit-memory-hierarchy
 problem: Expert parallelism creates token-level load imbalance; uniform replication

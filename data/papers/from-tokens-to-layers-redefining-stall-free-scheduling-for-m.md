@@ -29,6 +29,9 @@ observations:
   reduce-data-movement: Token-level chunked prefill forces expert weight reloads per
     chunk, inflating MoE off-chip traffic by up to 39%; layer-group scheduling loads
     each weight exactly once per request.
+  exploit-memory-hierarchy: Layer-group scheduling keeps each expert's weights resident
+    for the full layer group, loading each weight exactly once per request vs. once
+    per chunk with token-level scheduling (39% more traffic).
 official_category: ''
 openreview_url: https://openreview.net/forum?id=yyDbI3HXco
 organizations: []
@@ -36,6 +39,7 @@ presentation_type: oral
 principles:
 - reduce-data-movement
 - overlap-independent-work
+- exploit-memory-hierarchy
 problem: Chunked prefill in MoE serving forces redundant expert weight reloads per
   chunk, inflating memory traffic by up to 39% and increasing TTFT.
 project_url: ''

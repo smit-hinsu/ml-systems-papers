@@ -12,7 +12,7 @@ citations_updated: ''
 code_url: ''
 domain:
 - llm-serving
-- llm-training
+- rl-training
 hardware:
 - NVIDIA H100
 - NVIDIA H200
@@ -48,7 +48,7 @@ slug: fabric-lib-rdma-point-to-point-communication-for-llm-systems
 status: draft
 title: 'fabric-lib: RDMA Point-to-Point Communication for LLM Systems'
 topics:
-- all-reduce
+- moe
 - communication-overlap
 - kv-cache
 venue: mlsys-2026
