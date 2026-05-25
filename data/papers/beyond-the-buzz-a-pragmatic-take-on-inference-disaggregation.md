@@ -25,7 +25,6 @@ award: ''
 citations: null
 citations_updated: ''
 code_url: ''
-date: 2026-05
 domain:
 - llm-serving
 hardware:
@@ -42,9 +41,9 @@ observations:
   balance-utilization: The optimal context-to-generation GPU ratio varies significantly
     with model size and traffic pattern; static ratios leave either prefill or decode
     GPUs underutilized without elastic scaling.
-  overlap-independent-work: Prefill and decode have fundamentally different optimal
-    batch sizes; running them on separate GPU pools lets each phase be sized and batched
-    independently, eliminating head-of-line blocking.
+  overlap-independent-work: Phase specialization improves Pareto only when prefill
+    dominates; for generation-heavy traffic, KV-transfer and scheduling overhead of
+    disaggregation exceeds the gain from independent batching.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=NqC5tcBsa0
 organizations:
@@ -77,6 +76,13 @@ venue_url: https://mlsys.org/virtual/2026/oral/3819
 - **Elastic scaling**: Dynamic adjustment of the context-to-generation GPU ratio as traffic patterns shift; necessary because the optimal ratio varies substantially with model size and request mix.
 - **Chunked Pipeline Parallelism (CPP)**: Splits context (prefill) processing into pipeline-parallel chunks on Blackwell GPUs, enabling long-context requests within first-token latency budgets without requiring wide tensor parallelism.
 - Deployed within NVIDIA Dynamo; the study yields actionable deployment guidance — disaggregation excels for prefill-heavy, larger-model workloads and adds overhead for decode-dominated traffic.
+
+## Findings
+
+- Disaggregation improves the TTFT/throughput Pareto frontier for prefill-heavy workloads (large models, long contexts) but adds net overhead for generation-heavy or short-context traffic, where co-located prefill-decode outperforms.
+- The optimal prefill-to-decode GPU ratio varies significantly with model size and request mix; static ratios reliably strand capacity on one side.
+- Chunked Pipeline Parallelism (CPP) on Blackwell (B200) enables long-context prefill within TTFT budgets without widening tensor parallelism, and is the key enabler for Llama-405B and DeepSeek-R1 disaggregation wins.
+- Evaluation across hundreds of thousands of design points shows no single disaggregation configuration dominates universally; workload characterization must precede deployment.
 
 ## Trade-offs
 

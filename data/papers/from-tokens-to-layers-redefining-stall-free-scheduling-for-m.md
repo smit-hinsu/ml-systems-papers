@@ -11,7 +11,6 @@ award: ''
 citations: null
 citations_updated: ''
 code_url: ''
-date: 2026-05
 domain:
 - llm-serving
 hardware:

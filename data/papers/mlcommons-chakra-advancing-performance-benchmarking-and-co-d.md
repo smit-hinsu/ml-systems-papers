@@ -14,8 +14,8 @@ hardware:
 - NVIDIA H200
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Chakra ET adopted across MLCommons simulators and profilers; enables
-  workload replay and hardware co-design without proprietary production traces.
+key_results: Chakra ET adopted across 3+ MLCommons simulators and multiple hardware
+  vendors; enables workload replay and co-design without proprietary production traces.
 models_evaluated:
 - Mixtral-8x22B
 - Mixtral-8x7B

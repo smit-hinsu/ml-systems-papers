@@ -19,15 +19,14 @@ award: ''
 citations: 0
 citations_updated: '2026-05-24'
 code_url: ''
-date: '2026-05-20'
 domain:
 - llm-serving
 - ml-kernels
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: FlashInfer Trace + leaderboard + apply() injection into SGLang/vLLM;
-  LLM agents benchmarked across attention, GEMM, and activation kernels.
+key_results: FlashInfer Trace schema + leaderboard + apply() injection into SGLang/vLLM;
+  multiple LLM agents evaluated across 3 kernel classes (attention, GEMM, activation).
 models_evaluated: []
 observations:
   ai-solves-verifiable: Kernel performance is objectively measurable via latency on
@@ -55,8 +54,8 @@ slug: flashinfer-bench
 status: draft
 title: 'FlashInfer-Bench: Building the Virtuous Cycle for AI-driven LLM Systems'
 topics:
-- kernel-fusion
 - autotuning
+- llm-code-generation
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3832
 ---

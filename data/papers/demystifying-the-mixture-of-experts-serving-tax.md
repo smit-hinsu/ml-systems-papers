@@ -10,7 +10,6 @@ award: ''
 citations: null
 citations_updated: ''
 code_url: ''
-date: 2026-05
 domain:
 - llm-serving
 hardware: []
@@ -58,6 +57,14 @@ venue_url: https://mlsys.org/virtual/2026/oral/3764
 - **Balls-bins-buckets framework**: An analytical model for reasoning about MoE load distributions, routing skewness, and the effect of architectural variants (fine-grained experts, data-parallel attention) on serving overhead; provides a common vocabulary for comparing MoE serving systems.
 - **Phase-specific tax characterization**: Demonstrates that prefill and decode phases incur fundamentally different taxes — load imbalance that hurts prefill can improve decode by reducing active experts — guiding phase-aware optimization strategies.
 - **Mitigation catalog**: Surveys and evaluates existing techniques (expert replication, load-aware routing, fine-grained experts) and proposes new ones, with explicit trade-off analysis for each.
+
+## Findings
+
+- MoE models run 2–3× slower than FLOP-equivalent dense models at serving time; this gap persists across parallelism strategies and is not eliminated by any single optimization.
+- Expert weight loading is the dominant overhead in MoE serving; all-to-all communication and load imbalance are secondary but become the binding constraint as weight loading improves.
+- Prefill and decode incur fundamentally different taxes: load imbalance hurts prefill (uneven expert activation per token delays batch completion) but paradoxically reduces decode cost (fewer unique experts activated per step means less weight loading per batch).
+- Fine-grained expert architectures shift the bottleneck from weight loading to all-to-all volume without eliminating either; the 2–3× tax is redistributed, not removed.
+- No existing mitigation (expert replication, load-aware routing, fine-grained experts) closes the full 2–3× gap; targeted combinations are needed per phase and parallelism configuration.
 
 ## Trade-offs
 

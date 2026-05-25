@@ -28,7 +28,6 @@ award: ''
 citations: 0
 citations_updated: '2026-05-24'
 code_url: ''
-date: '2026-05-21'
 domain:
 - recs-models
 hardware:

@@ -11,7 +11,6 @@ award: ''
 citations: 0
 citations_updated: '2026-05-24'
 code_url: https://github.com/pike-project/pike
-date: '2026-05-19'
 domain:
 - ml-kernels
 hardware:

@@ -283,6 +283,22 @@ Examples:
 - "Only linear A→B pipelines evaluated; DAG topologies would require protocol changes"
 - "Benchmarks use synthetic workloads; real request distributions may shift the speedup"
 
+### `## Findings` — Optional, renders on site
+For measurement, characterization, or survey papers: a bullet-point enumeration of the
+concrete findings. Use this when the paper's primary contribution is data and analysis
+rather than a new system or algorithm.
+
+Each bullet should be a specific quantitative or qualitative finding — something the
+authors measured or characterized, not a claim about their system's performance.
+
+Examples:
+- "Scheduling goodput exceeds 95% in Google's TPU fleet; runtime overhead (crashes,
+  restarts, checkpointing) is the dominant inefficiency, not hardware utilization"
+- "Disaggregation improves TTFT/throughput only for prefill-heavy workloads;
+  generation-heavy traffic sees no benefit and higher overhead"
+
+Omit for systems/algorithmic papers where `## Key Contributions` already captures results.
+
 ### Discussion files — internal only, never rendered
 Per-paper Q&A lives in `data/discussions/<slug>.md`. These are questions you ask about the
 paper during or after reading, with answers stored for future reference.

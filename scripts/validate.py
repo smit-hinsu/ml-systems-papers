@@ -7,6 +7,7 @@ Severity model:
 Exit code 1 only when at least one error exists.
 """
 
+import re
 import sys
 from pathlib import Path
 
@@ -41,14 +42,53 @@ CHAR_LIMITS = {
 }
 
 
+VAGUE_RESULTS_WORDS = [
+    "significant", "outperforms baselines", "various", "several", "state-of-the-art",
+]
+
+FORBIDDEN_PROBLEM_PREFIXES = [
+    "Large language models",
+    "Recent advances",
+    "Modern",
+    "Existing approaches",
+    "The proliferation",
+]
+
+# Stopwords for Jaccard similarity (observation vs principle description)
+STOPWORDS = {
+    "a", "an", "the", "is", "are", "can", "be", "to", "of", "in", "it", "that",
+    "which", "by", "for", "with", "this", "these", "their", "when", "as", "and",
+    "or", "not", "on", "at", "from", "has",
+}
+
+MoE_SERVING_DOMAINS = {"recs-models", "llm-serving", "llm-training", "rl-training"}
+
+
 def load_registry(name):
     with open(DATA / name) as f:
         return set(yaml.safe_load(f).keys())
 
 
+def load_registry_full(name):
+    with open(DATA / name) as f:
+        return yaml.safe_load(f)
+
+
 def load_venues():
     with open(DATA / "venues.yaml") as f:
         return set(yaml.safe_load(f).keys())
+
+
+def tokenize(text):
+    """Lowercase, strip punctuation, remove stopwords."""
+    words = re.findall(r"[a-z]+", text.lower())
+    return {w for w in words if w not in STOPWORDS}
+
+
+def jaccard(set_a, set_b):
+    if not set_a or not set_b:
+        return 0.0
+    return len(set_a & set_b) / len(set_a | set_b)
 
 
 def record(bucket, msg):
@@ -67,6 +107,7 @@ def check_len(value, limit, label, name, is_published, errors, warnings):
 
 def main():
     principles = load_registry("principles.yaml")
+    principles_full = load_registry_full("principles.yaml")
     domains = load_registry("domains.yaml")
     topics = load_registry("topics.yaml")
     venues = load_venues()
@@ -75,9 +116,13 @@ def main():
     warnings = []
     paper_slugs = set()
 
+    # Cross-paper data: {principle_slug: [(paper_name, obs_text), ...]}
+    principle_obs_map: dict = {}
+
     for path in sorted((DATA / "papers").glob("*.md")):
         post = frontmatter.load(path)
         p = dict(post.metadata)
+        body = post.content
         name = path.name
         is_published = p.get("status") == "published"
         bucket = errors if is_published else warnings
@@ -145,6 +190,93 @@ def main():
         for item in p.get("agentic_models") or []:
             check_len(item, CHAR_LIMITS["agentic_models_item"],
                       "agentic_models item", name, is_published, errors, warnings)
+
+        # ── Body structure checks ─────────────────────────────────────────────
+        if re.search(r'^##\s+Problem\s*$', body, re.MULTILINE):
+            warnings.append(f"{name}: body contains '## Problem' heading (old format)")
+        if re.search(r'^##\s+Results\s*$', body, re.MULTILINE):
+            warnings.append(f"{name}: body contains '## Results' heading (old format)")
+        if "<!-- DRAFT" in body:
+            warnings.append(f"{name}: body contains '<!-- DRAFT' scaffold placeholder")
+        # Unfilled angle-bracket placeholders (e.g. "<2–3 sentences", "<named algorithm")
+        # Exclude legitimate numeric comparisons like <1%, <7µs
+        if re.search(r'<[a-zA-Z][^>]{2,}>', body):
+            warnings.append(f"{name}: body may contain unfilled placeholder (< ... >)")
+        # Key Contributions section required
+        has_key_contributions = bool(re.search(r'^##\s+Key Contributions', body, re.MULTILINE))
+        if not has_key_contributions:
+            record(bucket, f"{name}: body is missing '## Key Contributions' section")
+
+        # ── Content heuristics ────────────────────────────────────────────────
+        key_results = p.get("key_results") or ""
+        for vague in VAGUE_RESULTS_WORDS:
+            if vague.lower() in key_results.lower():
+                warnings.append(
+                    f"{name}: key_results contains vague language: {vague!r}"
+                )
+        if key_results and not re.search(r'\d', key_results):
+            warnings.append(f"{name}: key_results has no digit (missing concrete numbers)")
+
+        problem = p.get("problem") or ""
+        for prefix in FORBIDDEN_PROBLEM_PREFIXES:
+            if problem.startswith(prefix):
+                warnings.append(
+                    f"{name}: problem starts with forbidden prefix: {prefix!r}"
+                )
+
+        # Observation vs. principle description similarity
+        for obs_slug, obs_text in (p.get("observations") or {}).items():
+            if not obs_text or obs_slug not in principles_full:
+                continue
+            principle_desc = principles_full[obs_slug].get("description") or ""
+            obs_tokens = tokenize(str(obs_text))
+            desc_tokens = tokenize(str(principle_desc))
+            sim = jaccard(obs_tokens, desc_tokens)
+            if sim > 0.5:
+                warnings.append(
+                    f"{name}: observations[{obs_slug}] may be restating the principle "
+                    f"(word overlap {sim:.0%})"
+                )
+
+        # Accumulate observations for cross-paper checks
+        for obs_slug, obs_text in (p.get("observations") or {}).items():
+            if obs_slug not in principle_obs_map:
+                principle_obs_map[obs_slug] = []
+            principle_obs_map[obs_slug].append((name, str(obs_text or "").strip()))
+
+        # ── Cross-paper consistency ────────────────────────────────────────────
+        paper_topics = set(p.get("topics") or [])
+        paper_domains = set(p.get("domain") or [])
+
+        if "moe" in paper_topics and not paper_domains & MoE_SERVING_DOMAINS:
+            warnings.append(
+                f"{name}: has topic 'moe' but no serving/training domain "
+                f"({', '.join(sorted(MoE_SERVING_DOMAINS))})"
+            )
+
+        paper_principles = set(p.get("principles") or [])
+        if "kernel-fusion" in paper_topics and "reduce-data-movement" not in paper_principles:
+            warnings.append(
+                f"{name}: has topic 'kernel-fusion' but principle 'reduce-data-movement' "
+                f"is not listed — review whether data movement reduction applies"
+            )
+
+    # Cross-paper: duplicate observation text for same principle
+    for obs_slug, entries in principle_obs_map.items():
+        # Group by text
+        text_to_papers: dict = {}
+        for paper_name, text in entries:
+            if not text:
+                continue
+            if text not in text_to_papers:
+                text_to_papers[text] = []
+            text_to_papers[text].append(paper_name)
+        for text, papers_with_text in text_to_papers.items():
+            if len(papers_with_text) > 1:
+                warnings.append(
+                    f"Cross-paper: identical observations[{obs_slug}] text in "
+                    f"{', '.join(papers_with_text)} — possible copy-paste"
+                )
 
     if warnings:
         print(f"WARNINGS ({len(warnings)}):")

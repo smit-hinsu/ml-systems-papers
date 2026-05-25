@@ -46,7 +46,6 @@ award: ''
 citations: null
 citations_updated: ''
 code_url: ''
-date: 2026-05
 domain:
 - ml-compilers
 - fleet-efficiency
@@ -54,8 +53,8 @@ hardware:
 - Google TPU (fleet)
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: CATWILD generates tuned XLA configs for a large fraction of Google's
-  TPU training fleet, achieving significant chip savings after 5 years in production.
+key_results: CATWILD covers a large fraction of Google's TPU training fleet; specific
+  chip-savings % not disclosed, but 5+ years in production at datacenter scale.
 models_evaluated: []
 observations:
   ai-solves-verifiable: XLA compilation quality is directly measurable via execution

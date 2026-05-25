@@ -46,20 +46,18 @@ These are the core observations that motivated the design — what the authors n
 - ❌ "efficient memory management improves performance"
 - ✅ "KV cache fragmentation accounts for 30–40% of wasted GPU memory in production serving, because vLLM pre-allocates contiguous blocks per request"
 
-### `## Problem`
-2–3 sentences expanding on the frontmatter `problem` field. Why does this matter at scale?
-What breaks in practice? Each sentence should add new information — not restate the
-frontmatter or preview the results.
-
 ### `## Key Contributions`
 3–5 bullets. Each = a concrete artifact (named algorithm, data structure, protocol) with
-a one-line mechanism. Never repeat a result here; never repeat the problem statement.
+a one-line mechanism. The problem context and key numbers are implicit here — don't add
+separate Problem or Results sections. Include hardware + model + metric + baseline inline
+on the bullet that is the primary result.
 If you find yourself copying a sentence from another section, cut it — it belongs in one
 place only.
 
-### `## Results`
-2–5 bullets. Format: metric + number + hardware + model + baseline. If any of these are
-unknown, say so explicitly rather than omitting them.
+### `## Findings`
+*Only for measurement, characterization, or survey papers.* Bullet-point list of concrete
+findings — what was measured or characterized, not what the system achieves. Each bullet
+should be specific and quantitative where possible.
 
 ### `## Trade-offs`
 Short bullets on what the approach gives up. Omit if the paper makes no meaningful
@@ -79,17 +77,15 @@ failure — it makes entries longer without adding information.
 
 | Section | Its one job | What does NOT belong here |
 |---|---|---|
-| `## Problem` | Why this matters in practice | Results, mechanism, related work |
-| `## Key Contributions` | Name the artifacts + mechanism | Results, restatement of problem |
-| `## Results` | Numbers with hardware/model/baseline | Mechanism explanation, speculation |
+| `## Key Contributions` | Name the artifacts + mechanism (+ implicit problem + key numbers) | Generic claims, separate results section |
+| `## Findings` | Concrete measured/characterized facts (measurement papers only) | System design, trade-off discussion |
 | `## Trade-offs` | What is given up | Limitations that aren't trade-offs |
 | `## Nuances` | What bites practitioners | Already-stated trade-offs |
 
 **Common failure modes:**
-- ## Key Contributions lists "40% speedup" — that's a result, not a contribution
-- ## Problem ends with "which motivates our approach" — cut the last clause
+- ## Key Contributions omits the key number — bake it into the contribution bullet inline
 - ## Key Contributions last bullet summarizes all previous bullets — cut it
-- ## Results mentions how a mechanism works — belongs in ## Key Contributions
+- ## Findings describes what the system does instead of what was measured — wrong section
 
 ## Anti-patterns to avoid
 

@@ -52,6 +52,15 @@ generality. Omit if the paper doesn't make meaningful trade-offs.
 break the approach, and limitations — things a practitioner would only discover by reading
 carefully or attempting an implementation. Omit if nothing notable.
 
+### ## Findings
+*Only for measurement, characterization, or survey papers.* Bullet-point list of the
+concrete findings — what was measured or characterized, not what the system achieves.
+Each bullet should be a specific quantitative or qualitative fact. Omit this section
+entirely for algorithmic or systems-design papers.
+
+- ❌ "the system improves throughput for prefill-heavy workloads" (system claim)
+- ✅ "disaggregation improves TTFT/throughput for prefill-heavy workloads but adds net overhead for generation-heavy traffic, where co-location outperforms" (measurement finding)
+
 **Conciseness rules across all sections:**
 - Each section has one job. Don't repeat across sections.
 - If a sentence appears in two places, it belongs in one: the more specific section.
@@ -86,14 +95,13 @@ than picking the closest wrong thing.
 - `fleet-efficiency` — cluster efficiency, utilization, job scheduling at scale
 
 **principles** — pick all that genuinely apply. These are general optimization principles that the paper uses or validates. Pick slugs from `data/principles.yaml`:
-- `cpu-memory-tradeoff` — non-critical-path CPU work can be offloaded to free GPU HBM; latency cost is hidden if it overlaps with GPU compute
-- `fusion-reduces-bandwidth` — fusing adjacent operations avoids HBM round-trips between kernels, improving effective compute utilization
-- `attention-sparsity` — most attention weights after softmax are near zero and can be pruned or zeroed without meaningful accuracy loss
-- `kernel-verifiability` — kernel throughput is deterministic and measurable, making kernel optimization amenable to automated search and LLM-driven generation
-- `communication-compute-overlap` — overlapping collective communication with compute kernels is the primary lever for hiding communication latency
-- `prefix-reuse` — shared prompt prefixes can be detected and cached to avoid redundant computation
-- `straggler-bubbles` — at large GPU/TPU scale, load imbalance and pipeline scheduling overhead can waste a significant fraction of available compute
-- `llm-driven-optimization` — LLM agents with code-execution feedback can explore optimization spaces more effectively than hand-crafted heuristics
+- `avoid-redundant-work` — results for repeated inputs can be cached so they are computed only once (e.g., KV cache prefix reuse)
+- `overlap-independent-work` — two operations that don't depend on each other can run concurrently, hiding the latency of the slower one (e.g., comm-compute overlap)
+- `exploit-sparsity` — when inputs or intermediates are sparse or near-zero, the corresponding computation can be skipped (e.g., MoE top-k routing, sparse attention)
+- `reduce-data-movement` — moving data between compute and memory is often more expensive than the computation itself; fusing/tiling reduces round-trips
+- `exploit-memory-hierarchy` — keep frequently accessed data in the fastest memory tier; evict cold data to slower, larger tiers (e.g., KV cache tiering, register-level fusion)
+- `balance-utilization` — when parallel workers have unequal work, faster workers idle waiting for the slowest; eliminating imbalance is often the dominant lever at scale
+- `ai-solves-verifiable` — when an objective is deterministic and benchmarkable, AI agents can explore the solution space more effectively than hand-crafted heuristics
 
 **observations** — for each principle slug you picked, write one sentence (**max 200 chars**) as `observations.<slug>` capturing what the authors *specifically observed* in this paper's context. This is NOT a restatement of the principle — it is the paper-specific insight: what they noticed that made the principle applicable, or what the measurement revealed.
 
@@ -179,6 +187,12 @@ indexed_date: ""
 - <named artifact + one-line mechanism; include problem context and key numbers inline>
 - <concrete artifact>
 - <concrete artifact>
+
+## Findings
+
+(omit this section for systems/algorithmic papers; include only for measurement/characterization/survey papers)
+- <specific quantitative or qualitative finding>
+- <another finding>
 
 ## Trade-offs
 

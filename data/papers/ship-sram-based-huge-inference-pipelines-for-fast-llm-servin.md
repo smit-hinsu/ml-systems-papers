@@ -32,15 +32,14 @@ award: ''
 citations: null
 citations_updated: ''
 code_url: ''
-date: 2026-05
 domain:
 - llm-serving
 hardware:
 - GroqChip
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: First production SRAM-based LLM inference serving hundreds of billions
-  of tokens/day on thousands of GroqChips with synchronous interconnect.
+key_results: Production SRAM-based LLM inference on thousands of GroqChips serving
+  100B+ tokens/day; no HBM bandwidth bottleneck vs. GPU-based decode pipelines.
 models_evaluated: []
 observations:
   exploit-memory-hierarchy: SRAM bandwidth is orders of magnitude higher than HBM;

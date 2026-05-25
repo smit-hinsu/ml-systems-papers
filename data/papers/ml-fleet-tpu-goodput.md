@@ -16,7 +16,6 @@ award: ''
 citations: 8
 citations_updated: '2026-05-24'
 code_url: ''
-date: '2026-05-21'
 domain:
 - fleet-efficiency
 - observability
@@ -65,6 +64,14 @@ venue_url: https://mlsys.org/virtual/2026/oral/3734
 - **Production fleet analysis**: applied MPG to Google's TPU fleet across thousands of accelerators; scheduling goodput already exceeds 95%, making runtime and program goodput the actionable levers
 - **Communication-compute overlap deployment**: validated that overlapping collectives with compute achieves 1.38× throughput improvement and 72% FLOPS utilization on 1024 TPUs training a 500B-parameter language model
 - **Compiler optimization accounting**: framework for attributing MPG changes to XLA algebraic simplifications across the top 150 fleet workloads, enabling cost-benefit analysis of compiler passes
+
+## Findings
+
+- Scheduling goodput in Google's TPU fleet exceeds 95%, meaning resource availability is near-optimal and not the limiting factor; runtime and program efficiency are the actionable levers.
+- Runtime goodput losses — job crashes, checkpoint/restart overhead, and stall recovery — account for more fleet waste than scheduling or hardware utilization gaps combined.
+- Serving workloads show consistently lower runtime goodput than training workloads; the gap is observed fleet-wide but its specific failure modes are not fully characterized.
+- Comm-compute overlap for a 500B-parameter model on 1024 TPUs achieves 72% FLOPS utilization, a 1.38× throughput improvement — the largest single program goodput gain measured in the fleet study.
+- XLA algebraic simplifications across the top 150 fleet workloads produce measurable program goodput improvements that the MPG framework can attribute per compiler pass, enabling cost-benefit analysis of optimization decisions.
 
 ## Trade-offs
 

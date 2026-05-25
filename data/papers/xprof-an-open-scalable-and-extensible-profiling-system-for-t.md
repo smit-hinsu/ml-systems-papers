@@ -22,7 +22,6 @@ award: ''
 citations: null
 citations_updated: ''
 code_url: https://github.com/openxla/xprof
-date: 2026-05
 domain:
 - observability
 - fleet-efficiency
