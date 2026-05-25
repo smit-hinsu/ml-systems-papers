@@ -1,7 +1,47 @@
 ---
 agentic_models: []
 arxiv_url: ''
-authors: []
+authors:
+- Ignacio Cano
+- Yu Wang
+- Mike Burrows
+- Ziqiang Feng
+- Matheus Camargo
+- Chao Wang
+- David Liu
+- Tengyu Sun
+- Alexander Wertheim
+- Arissa Wongpanich
+- Christof Angermueller
+- Hyojun Kim
+- Wenqi Cao
+- Aleksey Orekhov
+- Amit Sabne
+- Emma Sevastian
+- Mehrdad Khani
+- Karthik Murthy
+- Berkin Ilbeyi
+- Subhankar Shah
+- Ryan Lefever
+- Arjun Khare
+- Ankit Sinha
+- Peter Ma
+- Matt Bierbaum
+- Jeremiah Wilke
+- Emily Donahue
+- Sami Abu-El-Haija
+- Nikhil Sarda
+- Vineetha Govindaraj
+- Shobha Vasudevan
+- Kirill Gugaev
+- Idan Nachman
+- Jie Sun
+- Jose Baiocchi Paredes
+- Samrat Ghosh
+- Domagoj Babic
+- Zongwei Zhou
+- Naveen Kumar
+- Phitchaya Phothilimthana
 award: ''
 citations: null
 citations_updated: ''
@@ -9,39 +49,60 @@ code_url: ''
 date: 2026-05
 domain:
 - ml-compilers
-hardware: []
-indexed_by: ''
+- fleet-efficiency
+hardware:
+- Google TPU (fleet)
+indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: ''
+key_results: CATWILD generates tuned XLA configs for a large fraction of Google's
+  TPU training fleet, achieving significant chip savings after 5 years in production.
 models_evaluated: []
 principles:
-- kernel-verifiability
+- ai-solves-verifiable
+- avoid-redundant-work
+observations:
+  ai-solves-verifiable: Compiler autotuning has a verifiable objective — execution
+    time on real hardware — making it tractable for automated search; human experts
+    cannot manually explore the combinatorially large space of XLA tiling, fusion,
+    and layout parameters.
+  avoid-redundant-work: CATWILD caches tuned configurations so identical or structurally
+    similar computation graphs reuse prior search results, avoiding redundant tuning
+    runs across jobs sharing the same model architecture.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=hB3nov3gIP
-organizations: []
+organizations:
+- Google
 presentation_type: oral
-problem: ''
+problem: XLA compiler heuristics leave significant performance on the table for diverse
+  TPU workloads; manually tuning the combinatorial space of tiling, fusion, and layout
+  parameters is infeasible at fleet scale.
 project_url: ''
 reading_status: want-to-read
-research_or_industry: ''
+research_or_industry: industry
 slides_url: ''
 slug: catwild-compiler-autotuning-for-tpu-workloads-in-the-wild
 status: draft
-title: 'CATWILD: Compiler Autotuning for TPU workloads in the Wild'
+title: 'CATWILD: Compiler Autotuning for TPU Workloads in the Wild'
 topics:
 - autotuning
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3774
 ---
 
-<!-- DRAFT: fill in summary before publishing. See docs/summarizing.md -->
+## Key Contributions
 
-## Summary
+- **CATWILD system**: First ML compiler autotuning system deployed at datacenter scale, automatically searching over XLA compiler parameters (tiling factors, fusion strategies, memory layout) for diverse TPU training workloads without requiring human expert intervention.
+- **Fleet-scale tuning pipeline**: Orchestrates measurement jobs across Google's TPU fleet to evaluate candidate configurations, building a growing corpus of tuned configurations that cover a large fraction of production training jobs.
+- **Workload-aware configuration reuse**: Identifies structurally equivalent or similar computation graphs to reuse previously tuned configurations, amortizing search cost across jobs sharing the same model architecture.
+- Five years of production operational experience documented, including lessons on handling workload diversity, TPU generation changes, and configuration staleness.
 
-Abstract
-                        
-                        
-                            
-                                
-                                    
-                                        Compilers play a fundamental role at achieving peak performance for machine learning (ML) workloads. However, given the diverse nature of workloads and accelerators, compilers’ heuristics and analytical cost models can result in sub-optimal performance, and thus waste precious datacenter resources. Furthermore, the multitude of tunable parameters and their complex interplay often make it impossible for human experts to manually find optimal configurations.
+## Trade-offs
+
+- Autotuning requires executing candidate configurations on real hardware, incurring non-trivial tuning overhead before a job begins benefiting; short-lived jobs may not amortize the search cost.
+- Configuration quality is bounded by the search budget; jobs with unusual computation patterns outside the tuned distribution may see smaller gains.
+
+## Nuances
+
+- Specific chip-savings percentages are not disclosed in the paper, making it hard to independently assess magnitude versus the XLA graph-level autotuner baseline (which achieved 10–20% speedup in earlier Google work).
+- The system covers training workloads; inference-time compilation (where latency sensitivity is higher and job durations are shorter) is not characterized.
+- Configuration staleness as models evolve between training runs requires periodic re-tuning; the triggering policy and its overhead are part of the operational complexity not fully described in the abstract.
