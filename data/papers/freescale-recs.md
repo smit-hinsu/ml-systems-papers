@@ -57,9 +57,9 @@ principles:
 - balance-utilization
 - overlap-independent-work
 - reduce-data-movement
-problem: Large-scale recommendation model training on GPU clusters wastes compute
-  through stragglers from variable-length sequences, blocking embedding communication,
-  and SM contention during overlap.
+problem: Recommendation model training wastes compute through stragglers from variable-length
+  sequences, serialized embedding communication, and SM contention when overlapping
+  collectives with compute.
 project_url: ''
 reading_status: read
 research_or_industry: industry
@@ -71,6 +71,7 @@ title: 'FreeScale: Distributed Training for Sequence Recommendation Models with 
 topics:
 - communication-overlap
 - all-reduce
+venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3821
 ---
 

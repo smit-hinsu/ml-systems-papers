@@ -35,9 +35,8 @@ observations:
     activation epilogue into a single kernel, eliminating intermediate global memory
     writes and keeping activations in registers/shared memory
   reduce-data-movement: Conventional MoE routing materializes ~94GB token permutation
-    buffers in HBM; four compact index structures (expert_token_indices, expert_token_offsets,
-    token_expert_indices, token_index_map) replace these with lightweight index-only
-    tensors
+    buffers in HBM; four compact index structures replace these buffers with index-only
+    tensors, eliminating most permutation-related HBM traffic.
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=L8qKfWWkry
 organizations:
@@ -47,9 +46,9 @@ principles:
 - reduce-data-movement
 - exploit-memory-hierarchy
 - avoid-redundant-work
-problem: MoE training activates only a top-k subset of experts per token but must
-  store all expert weights and routing buffers in HBM, creating a memory wall that
-  limits batch size and sequence length.
+problem: MoE training must store all expert weights and large token-permutation routing
+  buffers in HBM even though only top-k experts fire per token, creating a memory
+  wall that limits batch size.
 project_url: ''
 reading_status: read
 research_or_industry: industry
@@ -61,6 +60,7 @@ topics:
 - moe
 - kernel-fusion
 - cpu-offload
+venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3826
 ---
 

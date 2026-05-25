@@ -30,17 +30,16 @@ hardware:
 - TPU
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: XProf monitors thousands of chips with <1% overhead via continuous profiling
-  snapshots; <7µs per packet; adopted by third-party accelerator vendors; instrumental
-  in MLPerf-winning submissions at Google
+key_results: XProf profiles thousands of chips at <1% overhead with <7µs snapshots;
+  adopted by third-party vendors; used in MLPerf-winning Google submissions.
 models_evaluated: []
 observations:
   ai-solves-verifiable: LLO Bundle Visualization exposes exact clock-cycle execution
-    times for MXU pipeline stages, providing ground-truth feedback for compiler and
-    kernel optimization that previously required manual hardware analysis
-  balance-utilization: Utilization Viewer converts raw MXU bus activity counters (e.g.,
-    7.3% average utilization) into actionable compute-bound vs. memory-bound diagnoses,
-    making load imbalance visible without requiring hardware expertise
+    times per MXU pipeline stage, providing verifiable ground-truth feedback for compiler
+    and kernel optimization without manual hardware analysis.
+  balance-utilization: Utilization Viewer converts raw MXU bus activity counters into
+    compute-bound vs. memory-bound diagnoses (e.g., 7.3% utilization), making load
+    imbalance visible without hardware expertise.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=KqRLAdGK6C
 organizations:
@@ -49,9 +48,9 @@ presentation_type: oral
 principles:
 - balance-utilization
 - ai-solves-verifiable
-problem: Optimizing large ML models across thousands of TPUs and GPUs requires deep
-  systems expertise; existing profilers provide raw metrics but not actionable suggestions
-  or full-stack host+device visibility.
+problem: Optimizing large ML models across thousands of TPUs requires deep hardware
+  expertise; existing profilers expose raw metrics but not actionable suggestions
+  or host+device full-stack visibility.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
@@ -65,7 +64,6 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3827
 ---
-
 
 ## Key Contributions
 

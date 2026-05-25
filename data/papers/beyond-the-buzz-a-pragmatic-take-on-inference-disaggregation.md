@@ -32,30 +32,29 @@ hardware:
 - NVIDIA Blackwell (B200)
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Disaggregation on Blackwell with CPP yields Pareto-optimal TTFT/throughput
-  for prefill-heavy workloads on Llama-405B and DeepSeek-R1; generation-heavy traffic
-  gains little.
+key_results: Disaggregation + CPP on Blackwell achieves Pareto-optimal TTFT/throughput
+  on Llama-405B and DeepSeek-R1; generation-heavy traffic sees no benefit.
 models_evaluated:
 - Llama-3.1-70B
 - Llama-3.1-405B
 - DeepSeek-R1
-principles:
-- overlap-independent-work
-- balance-utilization
 observations:
-  overlap-independent-work: Prefill and decode have fundamentally different optimal
-    batch sizes; running them on separate GPU pools lets each phase be sized and batched
-    independently, eliminating head-of-line blocking.
   balance-utilization: The optimal context-to-generation GPU ratio varies significantly
     with model size and traffic pattern; static ratios leave either prefill or decode
     GPUs underutilized without elastic scaling.
+  overlap-independent-work: Prefill and decode have fundamentally different optimal
+    batch sizes; running them on separate GPU pools lets each phase be sized and batched
+    independently, eliminating head-of-line blocking.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=NqC5tcBsa0
 organizations:
 - NVIDIA
 presentation_type: oral
+principles:
+- overlap-independent-work
+- balance-utilization
 problem: In monolithic LLM serving, long prefill requests block decode batches causing
-  head-of-line latency spikes, but disaggregation's benefits are highly workload-dependent.
+  head-of-line latency spikes, but disaggregation gains vary widely by workload.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry

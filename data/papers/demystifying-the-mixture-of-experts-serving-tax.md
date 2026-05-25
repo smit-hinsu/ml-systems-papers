@@ -16,17 +16,13 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: MoE models perform 2–3× worse than FLOP-equivalent dense models; the
-  tax differs fundamentally between prefill and decode phases and across parallelism
-  strategies.
+key_results: MoE runs 2–3× slower than FLOP-equivalent dense; the tax differs fundamentally
+  across prefill/decode phases and parallelism strategies.
 models_evaluated: []
-principles:
-- balance-utilization
-- reduce-data-movement
 observations:
-  balance-utilization: Load imbalance that degrades prefill efficiency can paradoxically
-    improve decode throughput by reducing the number of active experts per step; the
-    tax is not uniform and phase-specific mitigation is required.
+  balance-utilization: Load imbalance hurts prefill but paradoxically improves decode
+    by reducing active experts per step; the MoE tax is phase-specific and cannot
+    be addressed with a single uniform mitigation.
   reduce-data-movement: Expert weight loads dominate MoE serving overhead; strategies
     that reduce expert memory traffic (replication, caching, fine-grained routing)
     directly shrink the serving gap to dense models.
@@ -36,9 +32,12 @@ organizations:
 - University of Washington
 - Meta
 presentation_type: oral
-problem: MoE models incur 2–3× serving overhead versus FLOP-equivalent dense models,
-  but the sources of this tax are poorly understood and vary across inference phases
-  and parallelism strategies.
+principles:
+- balance-utilization
+- reduce-data-movement
+problem: MoE models incur 2–3× serving overhead vs. FLOP-equivalent dense models,
+  but the overhead sources differ by inference phase and parallelism strategy, blocking
+  targeted optimization.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

@@ -1,29 +1,50 @@
 ---
 agentic_models: []
 arxiv_url: ''
-authors: []
+authors:
+- Sungmin Cho
+- Jaewon Lee
+- Chunqiang Tang
 award: ''
 citations: null
 citations_updated: ''
 code_url: ''
-date: 2026-05
 domain:
 - llm-serving
-hardware: []
-indexed_by: ''
+- fleet-efficiency
+hardware:
+- H100
+- H200
+- MI300X
+indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: ''
-models_evaluated: []
-principles:
-- llm-driven-optimization
+key_results: Exhaustive search over millions of configs for Llama on H100/H200/MI300X
+  identifies throughput-maximizing parallelism under production SLOs at Meta.
+models_evaluated:
+- Llama (family)
+observations:
+  avoid-redundant-work: Configuration simulation before deployment avoids expensive
+    empirical search on production hardware by modeling throughput and latency SLO
+    compliance for millions of candidate configurations offline.
+  balance-utilization: Parallelism strategy that maximizes throughput for one hardware
+    type is rarely optimal on another; the design space of tensor, pipeline, expert,
+    context, and data parallelism combinations is large enough that manual expert
+    tuning cannot reliably find the Pareto frontier.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=gEbKQeIdxB
-organizations: []
+organizations:
+- Meta
 presentation_type: oral
-problem: ''
+principles:
+- balance-utilization
+- avoid-redundant-work
+problem: Deploying Llama models for inference at Meta scale requires navigating a
+  combinatorially large space of hardware options, parallelism strategies, and runtime
+  choices; no systematic framework exists to identify throughput-maximizing configurations
+  under strict latency SLOs.
 project_url: ''
 reading_status: want-to-read
-research_or_industry: ''
+research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3780.pdf
 slug: optimizing-deployment-configurations-for-llm-inference
 status: draft
@@ -32,18 +53,25 @@ topics:
 - tensor-parallelism
 - pipeline-parallelism
 - autotuning
+- continuous-batching
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3780
 ---
 
-<!-- DRAFT: fill in summary before publishing. See docs/summarizing.md -->
+## Key Contributions
 
-## Summary
+- **Configuration search framework**: systematically analyzes millions of deployment configurations spanning hardware type, tensor/pipeline/expert/context/data parallelism degrees, and runtime policies (continuous batching vs. prefill-decode disaggregation) to identify throughput-maximizing deployments under latency SLOs for Llama models at Meta scale
+- **Workload-driven SLO modeling**: characterizes how request mix (prompt length distribution, concurrency, output length) interacts with parallelism strategy to determine the feasible configuration space; reveals that optimal configurations vary substantially across workload shapes
+- **Cross-hardware portability analysis**: evaluates how configuration decisions transfer across H100, H200, and MI300X; documents hardware-specific performance cliffs where a configuration shift yields disproportionate gains or degradations
+- Production deployment insights from serving nearly one billion monthly active users, providing ground truth for which configuration choices matter most at scale
 
-Abstract
-                        
-                        
-                            
-                                
-                                    
-                                        Meta's Large Language Models (LLMs)---the Llama model family---serve nearly one billion monthly active users. Deploying these models for inference involves navigating a complex design space that spans diverse hardware options (e.g., H100, H200, MI300X), multiple parallelism strategies (tensor, pipeline, expert, context, and data parallelism), and nuanced runtime choices (e.g., continuous batching versus prefill-decode disaggregation)---all while leveraging workload-specific characteristics and meeting stringent service level objectives (SLOs). This paper presents insights we gained from developing and applying a systematic approach to analyze millions of deployment configurations and identify those that maximize throughput while meeting latency SLOs.
+## Trade-offs
+
+- The search framework is cost-effective only at Meta's deployment scale; smaller organizations serving fewer models and workload shapes may not amortize the engineering overhead of building and maintaining such a system
+- Offline configuration simulation relies on performance models that may not capture all runtime effects (e.g., cache misses, host–device transfer contention); selected configurations may require empirical validation before production cutover
+
+## Nuances
+
+- Specific throughput numbers and hardware comparison data are not disclosed in the available abstract; the paper likely presents relative improvements and Pareto curves rather than absolute figures
+- Authors are not listed in the available abstract; this appears to be a Meta systems paper with contributions from a larger team
+- The focus is on Llama models; generalization to MoE models (e.g., Llama-MoE variants) or other architectures may require re-running the search with additional parallelism dimensions

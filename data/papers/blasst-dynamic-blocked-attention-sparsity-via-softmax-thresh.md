@@ -53,15 +53,15 @@ observations:
     benchmarks, most attention blocks contribute negligibly to output after softmax
     normalization and can be skipped without accuracy loss.
   reduce-data-movement: Skipping negligible attention blocks eliminates value-block
-    HBM loads and the subsequent attention-value matrix multiply, making sparsity
-    savings proportional to memory bandwidth freed rather than compute alone.
+    HBM loads and the attention-value matmul; at 74% sparsity, bandwidth freed
+    dominates the speedup more than compute reduction.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=6INSBXTQ4x
 organizations: []
 presentation_type: oral
-problem: Long-context LLM inference is bottlenecked by full attention over all tokens;
-  existing sparse methods require training, pre-computation, or per-head profiling
-  that prevents drop-in deployment.
+problem: Long-context LLM inference requires full attention over all tokens; existing
+  sparse methods need training, pre-computation, or per-head profiling, blocking
+  drop-in deployment.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

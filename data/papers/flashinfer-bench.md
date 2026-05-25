@@ -26,9 +26,8 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: FlashInfer Trace schema + curated benchmark dataset + public leaderboard
-  + apply() substitution into SGLang/vLLM; evaluates LLM agents across diverse kernel
-  tasks
+key_results: FlashInfer Trace + leaderboard + apply() injection into SGLang/vLLM;
+  LLM agents benchmarked across attention, GEMM, and activation kernels.
 models_evaluated: []
 observations:
   ai-solves-verifiable: Kernel performance is objectively measurable via latency on
@@ -46,9 +45,9 @@ presentation_type: oral
 principles:
 - ai-solves-verifiable
 - avoid-redundant-work
-problem: AI-generated GPU kernels cannot easily be benchmarked against production
-  workloads or swapped into live inference systems, breaking the feedback loop from
-  generation to deployment.
+problem: AI-generated GPU kernels lack a shared benchmark against production workloads
+  and a mechanism to swap them into live inference systems, breaking the generation-to-deployment
+  feedback loop.
 project_url: ''
 reading_status: read
 research_or_industry: research
@@ -59,9 +58,9 @@ title: 'FlashInfer-Bench: Building the Virtuous Cycle for AI-driven LLM Systems'
 topics:
 - kernel-fusion
 - autotuning
+venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3832
 ---
-
 
 ## Key Contributions
 

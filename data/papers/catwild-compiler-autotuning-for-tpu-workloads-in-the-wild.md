@@ -61,10 +61,9 @@ principles:
 - ai-solves-verifiable
 - avoid-redundant-work
 observations:
-  ai-solves-verifiable: Compiler autotuning has a verifiable objective — execution
-    time on real hardware — making it tractable for automated search; human experts
-    cannot manually explore the combinatorially large space of XLA tiling, fusion,
-    and layout parameters.
+  ai-solves-verifiable: XLA compilation quality is directly measurable via execution
+    time on real hardware, making automated search tractable where human experts
+    cannot cover the combinatorial tiling/fusion/layout space.
   avoid-redundant-work: CATWILD caches tuned configurations so identical or structurally
     similar computation graphs reuse prior search results, avoiding redundant tuning
     runs across jobs sharing the same model architecture.
@@ -73,9 +72,9 @@ openreview_url: https://openreview.net/forum?id=hB3nov3gIP
 organizations:
 - Google
 presentation_type: oral
-problem: XLA compiler heuristics leave significant performance on the table for diverse
-  TPU workloads; manually tuning the combinatorial space of tiling, fusion, and layout
-  parameters is infeasible at fleet scale.
+problem: XLA compiler heuristics leave performance on the table; manually tuning tiling,
+  fusion, and layout parameters for diverse TPU workloads is infeasible at fleet
+  scale.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry

@@ -39,9 +39,8 @@ hardware:
 - GroqChip
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: First production-scale SRAM-based LLM inference deployment serving hundreds
-  of billions of tokens daily; synchronous low-diameter interconnect scales across
-  thousands of GroqChips
+key_results: First production SRAM-based LLM inference serving hundreds of billions
+  of tokens/day on thousands of GroqChips with synchronous interconnect.
 models_evaluated: []
 observations:
   exploit-memory-hierarchy: SRAM bandwidth is orders of magnitude higher than HBM;
@@ -62,9 +61,8 @@ principles:
 - exploit-memory-hierarchy
 - reduce-data-movement
 - overlap-independent-work
-problem: GPU-based LLM serving is bottlenecked by HBM memory bandwidth during decode;
-  each token generation requires loading full model weights from HBM despite tiny
-  compute per step.
+problem: GPU-based LLM decode is bottlenecked by HBM bandwidth; each token requires
+  loading model weights from HBM despite minimal compute, leaving FLOPS severely underutilized.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
@@ -78,7 +76,6 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3834
 ---
-
 
 ## Key Contributions
 

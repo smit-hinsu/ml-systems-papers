@@ -24,9 +24,8 @@ hardware:
 - TPU
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: MPG metric decomposes fleet waste into scheduling (>95% optimal), runtime,
-  and program components; comm-compute overlap yields 1.38× throughput and 72% FLOPS
-  on 1024 TPUs for 500B-param model
+key_results: MPG decomposes fleet waste into scheduling, runtime, and program layers;
+  comm-compute overlap achieves 1.38× throughput at 72% FLOPS on 1024 TPUs.
 models_evaluated: []
 observations:
   balance-utilization: MPG reveals that runtime goodput gaps (crashes, restarts, checkpointing
@@ -43,8 +42,8 @@ presentation_type: oral
 principles:
 - balance-utilization
 - overlap-independent-work
-problem: Traditional hardware utilization metrics like MFU cannot identify whether
-  TPU fleet inefficiency comes from scheduling, runtime failures, or program inefficiency,
+problem: MFU and similar hardware utilization metrics cannot distinguish whether TPU
+  fleet inefficiency comes from scheduling, runtime failures, or program inefficiency,
   making improvements non-actionable.
 project_url: ''
 reading_status: read
@@ -57,9 +56,9 @@ title: 'Machine Learning Fleet Efficiency: Improving TPU Systems at Scale with M
 topics:
 - communication-overlap
 - pipeline-parallelism
+venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3734
 ---
-
 
 ## Key Contributions
 

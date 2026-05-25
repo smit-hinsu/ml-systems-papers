@@ -25,13 +25,12 @@ models_evaluated:
 - Llama-3
 - Mamba-2
 observations:
-  ai-solves-verifiable: 'LLM agents outperform torch.compile by 1.85× when allowed
-    to iterate on solutions: kernel correctness and latency are objectively verifiable,
-    enabling an exploit-heavy strategy to converge on hardware-specific optima'
-  reduce-data-movement: 'Agents discovered three dominant optimization patterns: FP16
-    precision with fused flash attention, full-model fusion into monolithic kernels
-    eliminating intermediate HBM writes, and operation reordering to shrink inputs
-    before heavy compute'
+  ai-solves-verifiable: Kernel correctness and latency are objectively measurable,
+    enabling an exploit-heavy agent strategy that converges on H100-specific optima
+    and beats torch.compile by 1.85× without hand-crafted heuristics.
+  reduce-data-movement: Agents self-discovered FP16 + fused flash attention, monolithic
+    kernel fusion eliminating HBM round-trips between ops, and operation reordering
+    to shrink tensor sizes before heavy compute.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=MJxhiX3sSd
 organizations:
@@ -40,8 +39,8 @@ presentation_type: oral
 principles:
 - ai-solves-verifiable
 - reduce-data-movement
-problem: Manually writing optimized CUDA/Triton kernels for PyTorch inference requires
-  deep hardware expertise; no systematic framework exists for AI agents to generate,
+problem: Writing optimized CUDA/Triton kernels for PyTorch inference requires deep
+  hardware expertise; no systematic framework exists for AI agents to generate,
   test, and iteratively improve them.
 project_url: ''
 reading_status: read
@@ -54,6 +53,7 @@ topics:
 - llm-code-generation
 - autotuning
 - kernel-fusion
+venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3823
 ---
 

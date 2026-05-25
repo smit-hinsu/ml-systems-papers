@@ -17,8 +17,8 @@ hardware:
 - B200
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Up to 1.28× latency and 1.19× throughput on 8×H100/8×B200 DGX for Llama-3.3-70B,
-  Qwen2.5-72B, Mixtral-8x22B using only 2–8 SMs via fused AllReduce-RMSNorm kernel
+key_results: 1.28× latency and 1.19× throughput on 8×H100/B200 DGX for Llama-3.3-70B,
+  Qwen2.5-72B, Mixtral-8x22B via fused AllReduce-RMSNorm using 2–8 SMs.
 models_evaluated:
 - Llama-3.3-70B
 - Qwen2.5-72B
@@ -56,7 +56,6 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3744
 ---
-
 
 ## Key Contributions
 

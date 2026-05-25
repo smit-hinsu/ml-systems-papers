@@ -30,10 +30,9 @@ principles:
 - balance-utilization
 - exploit-memory-hierarchy
 observations:
-  balance-utilization: MoE expert load is highly skewed per-layer — some layers have
-    a single expert receiving 10× average load while others are balanced; uniform
-    replication across all layers wastes GPU memory on low-skew layers that gain nothing
-    from extra replicas.
+  balance-utilization: MoE expert load is skewed per-layer — some layers have one
+    expert receiving 10× average load while others are balanced; uniform replication
+    wastes HBM on low-skew layers that gain nothing from extra replicas.
   exploit-memory-hierarchy: Reducing total replicas via fine-grained allocation frees
     GPU HBM for a larger KV cache, which improves decode throughput enough to offset
     the slightly lower expert load balance.
@@ -43,9 +42,9 @@ organizations:
 - University of Toronto
 - Amazon
 presentation_type: oral
-problem: Expert parallelism for MoE inference creates token-level load imbalance,
-  but uniform expert replication over-replicates balanced layers, wasting GPU memory
-  that could hold KV cache.
+problem: Expert parallelism for MoE inference creates token-level load imbalance;
+  uniform expert replication over-replicates balanced layers, wasting GPU HBM
+  that could hold more KV cache.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

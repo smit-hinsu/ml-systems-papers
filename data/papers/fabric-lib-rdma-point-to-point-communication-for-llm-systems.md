@@ -21,13 +21,9 @@ hardware:
 - AWS EFA
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: 400 Gbps peak on both ConnectX-7 and AWS EFA; RL weight updates for
-  trillion-parameter models in 1.3 s; MoE decode latency matching DeepEP on ConnectX-7
-  with first viable EFA implementation.
+key_results: 400 Gbps peak on ConnectX-7 and AWS EFA; RL weight updates for trillion-parameter
+  models in 1.3 s; MoE decode latency matches DeepEP on ConnectX-7.
 models_evaluated: []
-principles:
-- overlap-independent-work
-- reduce-data-movement
 observations:
   overlap-independent-work: KvCache transfers for disaggregated inference are issued
     layer-by-layer so RDMA operations are pipelined with computation on the GPU, hiding
@@ -40,6 +36,9 @@ openreview_url: https://openreview.net/forum?id=SjVa05wEiY
 organizations:
 - Perplexity AI
 presentation_type: oral
+principles:
+- overlap-independent-work
+- reduce-data-movement
 problem: LLM system patterns like disaggregated inference, MoE routing, and async
   RL fine-tuning need flexible RDMA point-to-point communication, but existing libraries
   are NIC-specific and non-portable across hardware providers.
