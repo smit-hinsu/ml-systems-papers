@@ -25,8 +25,8 @@ key_results: 4.71×–5.91× more tokens per second vs. autoregressive baseline 
 models_evaluated: []
 observations:
   balance-utilization: Hybrid structured masks allow diffusion drafting and AR output
-    to share one forward pass, maintaining high GPU utilization vs. separate
-    draft-and-verify model calls.
+    to share one forward pass, maintaining high GPU utilization vs. separate draft-and-verify
+    model calls.
   overlap-independent-work: Diffusion drafting generates multiple tokens in parallel
     within a single forward pass using structured attention masks, filling GPU compute
     that is idle during sequential AR token generation
@@ -41,9 +41,8 @@ presentation_type: oral
 principles:
 - overlap-independent-work
 - balance-utilization
-problem: Speculative decoding requires a separate weak draft model and serializes
-  token generation; diffusion models parallelize well but degrade quality vs.
-  autoregressive baselines.
+problem: Speculative decoding serializes generation and needs a draft model; diffusion
+  models parallelize token generation but degrade quality vs. AR baselines.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -57,7 +56,6 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3751
 ---
-
 
 ## Key Contributions
 

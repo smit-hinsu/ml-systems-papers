@@ -35,9 +35,8 @@ presentation_type: oral
 principles:
 - balance-utilization
 - reduce-data-movement
-problem: MoE models incur 2–3× serving overhead vs. FLOP-equivalent dense models,
-  but the overhead sources differ by inference phase and parallelism strategy, blocking
-  targeted optimization.
+problem: MoE incurs 2–3× serving overhead vs. FLOP-equivalent dense, but sources differ
+  by phase and parallelism strategy, blocking targeted optimization.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

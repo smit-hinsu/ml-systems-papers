@@ -36,10 +36,9 @@ observations:
   avoid-redundant-work: Offline node sweeping qualifies nodes before they join production
     jobs, preventing straggler-induced checkpoint rollbacks that waste compute already
     spent on the aborted run segment.
-  balance-utilization: Step-time variance of 20% in large training runs means the
-    fastest nodes in each iteration wait for the slowest; detecting and remediating
-    fail-slow nodes before they enter the critical synchronization path eliminates
-    these bubbles and recovers utilization.
+  balance-utilization: Step-time variance of 20% means fast nodes wait for the slowest
+    each iteration; remediating fail-slow nodes before the sync barrier eliminates
+    these stall bubbles.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=JFEwQ821MS
 organizations: []
@@ -47,9 +46,8 @@ presentation_type: oral
 principles:
 - balance-utilization
 - avoid-redundant-work
-problem: Fail-slow behaviors in large GPU training clusters silently degrade throughput
-  and inflate step-time variance; functional correctness tests like NCCL burn-in miss
-  performance regressions that accumulate over multi-month runs.
+problem: Fail-slow GPU behaviors silently inflate step-time variance; burn-in tests
+  miss performance regressions that accumulate over multi-month training runs.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry

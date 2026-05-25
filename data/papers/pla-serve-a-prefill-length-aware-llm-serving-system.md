@@ -23,33 +23,30 @@ hardware:
 - NVIDIA H200
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: 30%+ TTFT reduction vs. vanilla SGLang under PD disaggregation; 35% throughput
-  improvement for prefill instances and 28% fewer SLO violations on Qwen2.5-32B on
-  H200.
+key_results: 30%+ TTFT reduction vs. SGLang under PD disaggregation; 35% throughput
+  gain and 28% fewer SLO violations on Qwen2.5-32B on H200.
 models_evaluated:
 - Qwen2.5-7B
 - Qwen2.5-14B
 - Qwen2.5-32B
-principles:
-- balance-utilization
-- avoid-redundant-work
 observations:
-  balance-utilization: Mixing compute-bound long-prefill and memory-bound short-prefill
-    requests in the same batch leaves GPU compute idle after short requests finish;
-    separating them into dedicated queues keeps each batch's computation homogeneous
-    and GPU utilization high.
-  avoid-redundant-work: CUDA Graph pre-captured execution plans for power-of-two
-    length-bucket short prefills eliminate kernel launch overhead and JIT compilation
-    for repeated short-prefill shapes, reusing compiled graphs across requests.
+  avoid-redundant-work: CUDA Graph plans for power-of-two length-bucket short prefills
+    reuse compiled graphs across requests, eliminating kernel launch overhead and
+    JIT compilation per request.
+  balance-utilization: Mixing compute-bound long and memory-bound short prefills in
+    one batch leaves GPU idle after short requests finish; dedicated queues keep each
+    batch's computation homogeneous.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=dzjCkSEDyG
 organizations:
 - Carnegie Mellon University
 - University of Illinois Urbana-Champaign
 presentation_type: oral
-problem: Unified prefill scheduling batches short and long prompts together, causing
-  the compute-bound long requests to delay the memory-bound short ones and inflating
-  TTFT for the majority of real-world requests.
+principles:
+- balance-utilization
+- avoid-redundant-work
+problem: Batching short and long prompts together causes long requests to delay short
+  ones, inflating TTFT for the majority of real-world workloads.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

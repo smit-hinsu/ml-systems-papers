@@ -45,9 +45,8 @@ presentation_type: oral
 principles:
 - ai-solves-verifiable
 - avoid-redundant-work
-problem: AI-generated GPU kernels lack a shared benchmark against production workloads
-  and a mechanism to swap them into live inference systems, breaking the generation-to-deployment
-  feedback loop.
+problem: AI-generated kernels lack a benchmark against production workloads and a
+  mechanism to inject them into live systems, breaking the generation-deployment loop.
 project_url: ''
 reading_status: read
 research_or_industry: research

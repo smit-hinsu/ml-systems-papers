@@ -27,9 +27,9 @@ observations:
   overlap-independent-work: Wave-aware token splitting partitions batches so communication
     and compute waves align, preventing the wave quantization penalty that defeats
     naive decomposition strategies at small batch sizes
-  reduce-data-movement: Performing RMSNorm after ReduceScatter (on 1/N of the tensor)
-    rather than after full AllReduce halves HBM reads; combining with Multimem eliminates
-    an intermediate HBM write, achieving 1.34×–1.39× single-layer speedup
+  reduce-data-movement: RMSNorm after ReduceScatter (on 1/N of tensor) halves HBM
+    reads; combining with Multimem eliminates an intermediate HBM write, achieving
+    1.34×–1.39× single-layer speedup.
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=rh2Ylffkq6
 organizations:
@@ -38,9 +38,8 @@ presentation_type: oral
 principles:
 - reduce-data-movement
 - overlap-independent-work
-problem: In tensor-parallel LLM inference, AllReduce sits on the critical path between
-  every transformer layer; existing overlap techniques cause SM contention and fail
-  at small batch sizes.
+problem: AllReduce sits on the critical path between every tensor-parallel transformer
+  layer; existing overlap techniques cause SM contention at small batch sizes.
 project_url: ''
 reading_status: read
 research_or_industry: research

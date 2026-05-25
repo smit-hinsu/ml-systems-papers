@@ -34,9 +34,9 @@ observations:
   exploit-memory-hierarchy: SwiGLU fusion combines dual first-layer projections and
     activation epilogue into a single kernel, eliminating intermediate global memory
     writes and keeping activations in registers/shared memory
-  reduce-data-movement: Conventional MoE routing materializes ~94GB token permutation
-    buffers in HBM; four compact index structures replace these buffers with index-only
-    tensors, eliminating most permutation-related HBM traffic.
+  reduce-data-movement: Conventional MoE routing materializes ~94GB permutation buffers
+    in HBM; four compact index structures replace these with index-only tensors, eliminating
+    most permutation traffic.
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=L8qKfWWkry
 organizations:
@@ -46,9 +46,8 @@ principles:
 - reduce-data-movement
 - exploit-memory-hierarchy
 - avoid-redundant-work
-problem: MoE training must store all expert weights and large token-permutation routing
-  buffers in HBM even though only top-k experts fire per token, creating a memory
-  wall that limits batch size.
+problem: MoE training stores all expert weights and routing buffers in HBM even though
+  only top-k experts fire per token, creating a memory wall that limits batch size.
 project_url: ''
 reading_status: read
 research_or_industry: industry
@@ -63,7 +62,6 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3826
 ---
-
 
 ## Key Contributions
 

@@ -26,10 +26,8 @@ observations:
   avoid-redundant-work: Configuration simulation before deployment avoids expensive
     empirical search on production hardware by modeling throughput and latency SLO
     compliance for millions of candidate configurations offline.
-  balance-utilization: Parallelism strategy that maximizes throughput for one hardware
-    type is rarely optimal on another; the design space of tensor, pipeline, expert,
-    context, and data parallelism combinations is large enough that manual expert
-    tuning cannot reliably find the Pareto frontier.
+  balance-utilization: Optimal parallelism differs per hardware; the tensor/pipeline/expert/context/data
+    parallelism space is too large for manual tuning to reliably find the Pareto frontier.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=gEbKQeIdxB
 organizations:
@@ -38,10 +36,8 @@ presentation_type: oral
 principles:
 - balance-utilization
 - avoid-redundant-work
-problem: Deploying Llama models for inference at Meta scale requires navigating a
-  combinatorially large space of hardware options, parallelism strategies, and runtime
-  choices; no systematic framework exists to identify throughput-maximizing configurations
-  under strict latency SLOs.
+problem: No framework exists to navigate hardware, parallelism, and runtime choices
+  to find throughput-maximizing configs under strict latency SLOs at scale.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry

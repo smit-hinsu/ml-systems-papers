@@ -23,25 +23,22 @@ key_results: Up to 70% TTFT reduction and 41% end-to-end latency improvement on 
 models_evaluated:
 - Qwen3-30B-A3B
 - GPT-OSS-20B
-principles:
-- reduce-data-movement
-- overlap-independent-work
 observations:
-  reduce-data-movement: Token-level chunked prefill forces expert weight reloads for
-    each chunk of the same request, increasing MoE off-chip memory traffic by up to
-    39% on long-context workloads; layer-group scheduling ensures each weight is loaded
-    exactly once per request.
   overlap-independent-work: Layered prefill assigns one layer group per iteration
-    to handle both decode and prefill work while other groups execute decode-only,
-    interleaving prefill and decode across the model depth rather than serializing
-    them.
+    for both decode and prefill, interleaving across model depth rather than serializing;
+    prefill latency hides behind decode.
+  reduce-data-movement: Token-level chunked prefill forces expert weight reloads per
+    chunk, inflating MoE off-chip traffic by up to 39%; layer-group scheduling loads
+    each weight exactly once per request.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=yyDbI3HXco
 organizations: []
 presentation_type: oral
-problem: Chunked prefill in MoE serving triggers redundant expert weight reloads per
-  token-chunk, increasing memory traffic by up to 39% and inflating both TTFT and
-  energy consumption.
+principles:
+- reduce-data-movement
+- overlap-independent-work
+problem: Chunked prefill in MoE serving forces redundant expert weight reloads per
+  chunk, inflating memory traffic by up to 39% and increasing TTFT.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

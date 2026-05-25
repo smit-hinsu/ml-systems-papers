@@ -28,9 +28,9 @@ observations:
   overlap-independent-work: KvCache transfers for disaggregated inference are issued
     layer-by-layer so RDMA operations are pipelined with computation on the GPU, hiding
     transfer latency behind prefill processing.
-  reduce-data-movement: Paging write operations at 64 KiB granularity achieves 364–370
-    Gbps on both ConnectX-7 and EFA, nearly saturating available network bandwidth
-    and minimizing round-trips compared to message-passing collectives.
+  reduce-data-movement: Paging writes at 64 KiB granularity achieves 364–396 Gbps;
+    coarser writes waste bandwidth on padding while finer granularity increases doorbell
+    overhead.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=SjVa05wEiY
 organizations:
@@ -39,9 +39,8 @@ presentation_type: oral
 principles:
 - overlap-independent-work
 - reduce-data-movement
-problem: LLM system patterns like disaggregated inference, MoE routing, and async
-  RL fine-tuning need flexible RDMA point-to-point communication, but existing libraries
-  are NIC-specific and non-portable across hardware providers.
+problem: Disaggregated inference, MoE routing, and async RL fine-tuning need flexible
+  RDMA point-to-point, but existing libraries are NIC-specific and non-portable.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry

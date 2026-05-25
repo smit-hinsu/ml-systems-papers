@@ -57,13 +57,10 @@ indexed_date: '2026-05-24'
 key_results: CATWILD generates tuned XLA configs for a large fraction of Google's
   TPU training fleet, achieving significant chip savings after 5 years in production.
 models_evaluated: []
-principles:
-- ai-solves-verifiable
-- avoid-redundant-work
 observations:
   ai-solves-verifiable: XLA compilation quality is directly measurable via execution
-    time on real hardware, making automated search tractable where human experts
-    cannot cover the combinatorial tiling/fusion/layout space.
+    time on real hardware, making automated search tractable where human experts cannot
+    cover the combinatorial tiling/fusion/layout space.
   avoid-redundant-work: CATWILD caches tuned configurations so identical or structurally
     similar computation graphs reuse prior search results, avoiding redundant tuning
     runs across jobs sharing the same model architecture.
@@ -72,9 +69,11 @@ openreview_url: https://openreview.net/forum?id=hB3nov3gIP
 organizations:
 - Google
 presentation_type: oral
-problem: XLA compiler heuristics leave performance on the table; manually tuning tiling,
-  fusion, and layout parameters for diverse TPU workloads is infeasible at fleet
-  scale.
+principles:
+- ai-solves-verifiable
+- avoid-redundant-work
+problem: XLA heuristics leave performance on the table; manually tuning tiling, fusion,
+  and layout for diverse TPU workloads is infeasible at fleet scale.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry

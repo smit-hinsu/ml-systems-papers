@@ -45,9 +45,8 @@ principles:
 - reduce-data-movement
 - avoid-redundant-work
 - balance-utilization
-problem: Existing FSDP implementations require flat parameter sharding, which is incompatible
-  with block-wise quantization, Shampoo/Muon optimizers, and per-module parallelism
-  strategies.
+problem: FSDP requires flat parameter sharding, making it incompatible with block-wise
+  quantization, Shampoo/Muon optimizers, and per-module parallelism strategies.
 project_url: ''
 reading_status: read
 research_or_industry: research
@@ -62,7 +61,6 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3860
 ---
-
 
 ## Key Contributions
 

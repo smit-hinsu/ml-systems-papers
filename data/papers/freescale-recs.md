@@ -57,9 +57,8 @@ principles:
 - balance-utilization
 - overlap-independent-work
 - reduce-data-movement
-problem: Recommendation model training wastes compute through stragglers from variable-length
-  sequences, serialized embedding communication, and SM contention when overlapping
-  collectives with compute.
+problem: Recommendation training wastes compute via variable-sequence stragglers,
+  serialized embedding communication, and SM contention during collective overlap.
 project_url: ''
 reading_status: read
 research_or_industry: industry
@@ -74,7 +73,6 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3821
 ---
-
 
 ## Key Contributions
 

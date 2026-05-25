@@ -34,9 +34,9 @@ key_results: XProf profiles thousands of chips at <1% overhead with <7µs snapsh
   adopted by third-party vendors; used in MLPerf-winning Google submissions.
 models_evaluated: []
 observations:
-  ai-solves-verifiable: LLO Bundle Visualization exposes exact clock-cycle execution
-    times per MXU pipeline stage, providing verifiable ground-truth feedback for compiler
-    and kernel optimization without manual hardware analysis.
+  ai-solves-verifiable: LLO Bundle Visualization exposes clock-cycle execution times
+    per MXU pipeline stage — verifiable ground-truth feedback for compiler optimization
+    without manual hardware analysis.
   balance-utilization: Utilization Viewer converts raw MXU bus activity counters into
     compute-bound vs. memory-bound diagnoses (e.g., 7.3% utilization), making load
     imbalance visible without hardware expertise.
@@ -48,9 +48,8 @@ presentation_type: oral
 principles:
 - balance-utilization
 - ai-solves-verifiable
-problem: Optimizing large ML models across thousands of TPUs requires deep hardware
-  expertise; existing profilers expose raw metrics but not actionable suggestions
-  or host+device full-stack visibility.
+problem: Optimizing ML across thousands of TPUs requires deep hardware expertise;
+  profilers surface raw metrics but not actionable full-stack optimization guidance.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry

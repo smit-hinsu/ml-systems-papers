@@ -26,13 +26,10 @@ key_results: 1.14× average (up to 1.2×) goodput over EPLB baseline on DeepSeek
 models_evaluated:
 - DeepSeek-R1-671B
 - Kimi-K2-1000B
-principles:
-- balance-utilization
-- exploit-memory-hierarchy
 observations:
-  balance-utilization: MoE expert load is skewed per-layer — some layers have one
-    expert receiving 10× average load while others are balanced; uniform replication
-    wastes HBM on low-skew layers that gain nothing from extra replicas.
+  balance-utilization: MoE load is skewed per-layer — one expert can get 10× average
+    load while others are balanced; uniform replication wastes HBM on low-skew layers
+    that gain nothing from it.
   exploit-memory-hierarchy: Reducing total replicas via fine-grained allocation frees
     GPU HBM for a larger KV cache, which improves decode throughput enough to offset
     the slightly lower expert load balance.
@@ -42,9 +39,11 @@ organizations:
 - University of Toronto
 - Amazon
 presentation_type: oral
-problem: Expert parallelism for MoE inference creates token-level load imbalance;
-  uniform expert replication over-replicates balanced layers, wasting GPU HBM
-  that could hold more KV cache.
+principles:
+- balance-utilization
+- exploit-memory-hierarchy
+problem: Expert parallelism creates token-level load imbalance; uniform replication
+  over-replicates balanced MoE layers, wasting HBM that could serve more KV cache.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

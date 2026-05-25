@@ -61,8 +61,8 @@ principles:
 - exploit-memory-hierarchy
 - reduce-data-movement
 - overlap-independent-work
-problem: GPU-based LLM decode is bottlenecked by HBM bandwidth; each token requires
-  loading model weights from HBM despite minimal compute, leaving FLOPS severely underutilized.
+problem: GPU decode is HBM-bandwidth-bound; loading model weights each token leaves
+  FLOPS severely underutilized and caps tokens-per-second per chip.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry

@@ -45,23 +45,22 @@ models_evaluated:
 - Qwen3-8B
 - Qwen3-30B
 - DeepSeek-R1
-principles:
-- exploit-sparsity
-- reduce-data-movement
 observations:
   exploit-sparsity: At 74% average sparsity across Llama-3.1 and Qwen3 long-context
     benchmarks, most attention blocks contribute negligibly to output after softmax
     normalization and can be skipped without accuracy loss.
   reduce-data-movement: Skipping negligible attention blocks eliminates value-block
-    HBM loads and the attention-value matmul; at 74% sparsity, bandwidth freed
-    dominates the speedup more than compute reduction.
+    HBM loads and the attention-value matmul; at 74% sparsity, bandwidth freed dominates
+    the speedup more than compute reduction.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=6INSBXTQ4x
 organizations: []
 presentation_type: oral
-problem: Long-context LLM inference requires full attention over all tokens; existing
-  sparse methods need training, pre-computation, or per-head profiling, blocking
-  drop-in deployment.
+principles:
+- exploit-sparsity
+- reduce-data-movement
+problem: Dense softmax is O(n²) and prohibitively slow beyond 32K tokens; sparse alternatives
+  require training or profiling — blocking drop-in deployment.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

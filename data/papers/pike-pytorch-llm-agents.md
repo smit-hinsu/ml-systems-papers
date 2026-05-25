@@ -26,8 +26,8 @@ models_evaluated:
 - Mamba-2
 observations:
   ai-solves-verifiable: Kernel correctness and latency are objectively measurable,
-    enabling an exploit-heavy agent strategy that converges on H100-specific optima
-    and beats torch.compile by 1.85× without hand-crafted heuristics.
+    enabling an exploit-heavy strategy that beats torch.compile by 1.85× on H100 without
+    hand-crafted heuristics.
   reduce-data-movement: Agents self-discovered FP16 + fused flash attention, monolithic
     kernel fusion eliminating HBM round-trips between ops, and operation reordering
     to shrink tensor sizes before heavy compute.
@@ -39,9 +39,8 @@ presentation_type: oral
 principles:
 - ai-solves-verifiable
 - reduce-data-movement
-problem: Writing optimized CUDA/Triton kernels for PyTorch inference requires deep
-  hardware expertise; no systematic framework exists for AI agents to generate,
-  test, and iteratively improve them.
+problem: Writing optimized CUDA/Triton kernels requires deep hardware expertise; no
+  framework exists for AI agents to iteratively generate, test, and improve them.
 project_url: ''
 reading_status: read
 research_or_industry: research
@@ -56,7 +55,6 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3823
 ---
-
 
 ## Key Contributions
 

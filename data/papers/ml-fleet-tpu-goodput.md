@@ -42,9 +42,8 @@ presentation_type: oral
 principles:
 - balance-utilization
 - overlap-independent-work
-problem: MFU and similar hardware utilization metrics cannot distinguish whether TPU
-  fleet inefficiency comes from scheduling, runtime failures, or program inefficiency,
-  making improvements non-actionable.
+problem: MFU cannot separate whether TPU fleet inefficiency comes from scheduling,
+  runtime failures, or program inefficiency, making optimization non-actionable.
 project_url: ''
 reading_status: read
 research_or_industry: industry

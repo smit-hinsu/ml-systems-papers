@@ -20,12 +20,12 @@ models_evaluated:
 - Mixtral-8x22B
 - Mixtral-8x7B
 observations:
-  ai-solves-verifiable: Chakra Execution Traces provide a deterministic, replay-capable
-    workload representation, making distributed ML simulation tractable for automated
-    architecture search and hardware co-design without needing real cluster access.
-  avoid-redundant-work: Once a workload is captured as a Chakra ET, it can be replayed
-    across different simulated hardware configurations without re-running the original
-    training job, amortizing measurement cost across the design space.
+  ai-solves-verifiable: Chakra ETs are deterministic replay-capable traces; this makes
+    distributed ML simulation tractable for automated hardware co-design without real
+    cluster access.
+  avoid-redundant-work: A captured Chakra ET replays across simulated hardware configurations
+    without re-running the original training job, amortizing measurement cost across
+    the design space.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=s2WcSv2Hzt
 organizations:
@@ -39,10 +39,8 @@ presentation_type: oral
 principles:
 - ai-solves-verifiable
 - avoid-redundant-work
-problem: Benchmarking and co-designing distributed ML systems requires running actual
-  workloads on specialized hardware that is unavailable or expensive; without a portable
-  workload representation, optimizations cannot be evaluated offline or shared across
-  organizations.
+problem: Without a portable workload format, ML co-design requires specialized hardware
+  unavailable to most; optimizations can't be evaluated offline or shared.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: mixed
