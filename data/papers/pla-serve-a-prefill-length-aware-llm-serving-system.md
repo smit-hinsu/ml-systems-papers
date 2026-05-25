@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: https://arxiv.org/abs/2601.11589
 authors:
 - Jianshu She
 - Zonghang Li
@@ -16,34 +16,40 @@ award: ''
 citations: null
 citations_updated: ''
 code_url: ''
+date: 2026-05
 domain:
 - llm-serving
-hardware: []
+hardware:
+- NVIDIA H200
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: PLA-Serve reduces TTFT latency by adaptively disaggregating requests
-  by prompt-length group; specific latency numbers require reading the full paper.
-models_evaluated: []
+key_results: 30%+ TTFT reduction vs. vanilla SGLang under PD disaggregation; 35% throughput
+  improvement for prefill instances and 28% fewer SLO violations on Qwen2.5-32B on
+  H200.
+models_evaluated:
+- Qwen2.5-7B
+- Qwen2.5-14B
+- Qwen2.5-32B
+principles:
+- balance-utilization
+- avoid-redundant-work
 observations:
-  balance-utilization: Mixing short and long prompts in the same prefill batch creates
-    GPU utilization imbalance — short prompts finish early and leave compute idle while
-    the batch waits for the longest prompt; disaggregating by length group keeps per-batch
-    work homogeneous.
-  avoid-redundant-work: Prefix caching is more effective when requests with shared
-    prefixes are routed to the same instance; length-aware routing increases the probability
-    that matched-length requests share cached prefixes, improving hit rates.
+  balance-utilization: Mixing compute-bound long-prefill and memory-bound short-prefill
+    requests in the same batch leaves GPU compute idle after short requests finish;
+    separating them into dedicated queues keeps each batch's computation homogeneous
+    and GPU utilization high.
+  avoid-redundant-work: CUDA Graph pre-captured execution plans for power-of-two
+    length-bucket short prefills eliminate kernel launch overhead and JIT compilation
+    for repeated short-prefill shapes, reusing compiled graphs across requests.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=dzjCkSEDyG
 organizations:
 - Carnegie Mellon University
 - University of Illinois Urbana-Champaign
 presentation_type: oral
-principles:
-- balance-utilization
-- avoid-redundant-work
-problem: Unified prefill scheduling in LLM serving ignores prompt-length heterogeneity
-  — batching short and long prompts together causes head-of-line blocking and GPU
-  underutilization, inflating TTFT for short requests.
+problem: Unified prefill scheduling batches short and long prompts together, causing
+  the compute-bound long requests to delay the memory-bound short ones and inflating
+  TTFT for the majority of real-world requests.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -61,17 +67,19 @@ venue_url: https://mlsys.org/virtual/2026/oral/3787
 
 ## Key Contributions
 
-- **Length-Aware Prefill Serving (LAPS)**: classifies incoming requests into prompt-length groups and routes each group to dedicated prefill workers, ensuring that each prefill batch contains requests with similar lengths — eliminating the head-of-line blocking that mixed-length batching causes
-- **Adaptive scheduling strategy**: dynamically adjusts length-group boundaries and worker allocation in response to workload shifts, preventing resource starvation when request length distributions change over time
-- **Prefix-cache-aware routing**: routes requests to workers that have cached prefixes from the same length group, increasing prefix-cache hit rates by exploiting the correlation between request length and shared system prompt structure
+- **Dual-queue length disaggregation**: Separate request queues for long-prefill (compute-bound) and short-prefill (memory-bound) requests with either temporal disaggregation (alternating on a single prefill instance) or spatial disaggregation (dedicated instances per length class), eliminating contention between the two bottleneck types.
+- **Adaptive Wait-Depth (AWD) scheduler**: Dynamically adjusts batch waiting windows and target batch depths based on observed fill time and actual batch sizes, balancing per-request TTFT against throughput without requiring manual SLO threshold configuration.
+- **CUDA Graph-based clustering for short prefills**: Pre-captures fixed execution graphs keyed by power-of-two prompt-length × batch-size buckets, reducing kernel launch overhead and enabling 7.3–8.3% time savings on short-prefill distillation workloads by reusing compiled graphs.
+- **Instance-pressure controller**: Lightweight feedback controller that dynamically shifts workload type across multi-GPU instances based on real-time per-instance queue pressure, enabling 28% SLO violation reduction in multi-instance deployments versus standard load balancing.
 
 ## Trade-offs
 
-- Disaggregating by length group increases the number of distinct prefill worker pools, raising system complexity and potentially stranding capacity in low-traffic length groups
-- Length-based routing may conflict with prefix-cache locality: a request could belong to a length group whose worker does not hold the most relevant cached prefix
+- CUDA Graph initialization adds 8–12 seconds of startup overhead per graph and 228–277 MB of GPU memory per model; only amortized if the same length-bucket combination recurs frequently.
+- CUDA Graph reuse is limited to short-prefill requests; long-prefill requests remain dynamically dispatched, so mixed long/short traffic reduces graph reuse frequency.
+- Spatial disaggregation (dedicated prefill instances per length class) increases GPU pool fragmentation; low-traffic length classes strand capacity.
 
 ## Nuances
 
-- Specific latency improvement numbers and hardware configurations are not available from the abstract alone; the effectiveness of length disaggregation depends heavily on the prompt-length distribution of the target workload
-- The adaptive boundary adjustment mechanism's overhead and convergence behavior under rapidly shifting workloads are not characterized in the available abstract
-- The paper assumes a request router with knowledge of prompt length at admission time; workloads where prompt length is unknown until parsing (e.g., multi-turn conversations with accumulated context) require length estimation
+- Evaluations use Qwen2.5 models (7B–32B) on H200; the benefit of length disaggregation depends on the prompt-length distribution of the target workload — workloads with unimodal length distributions gain less than those with bimodal long/short separation.
+- The dual-queue boundary between "long" and "short" is a threshold that must be calibrated per model and serving configuration; a suboptimal split reduces gains without clear failure indication.
+- Multi-turn conversation workloads accumulate context over turns, shifting requests from short to long class during a session; the system's handling of dynamic length class transitions is not fully characterized.
