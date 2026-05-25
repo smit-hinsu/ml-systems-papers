@@ -6,6 +6,7 @@ import re
 import shutil
 from collections import defaultdict
 from pathlib import Path
+from urllib.parse import quote_plus
 
 import frontmatter
 import markdown
@@ -40,16 +41,16 @@ def load_papers():
     return papers
 
 
-def build_index(papers, observations, domains, topics, venues):
+def build_index(papers, principles, domains, topics, venues):
     """Build cross-reference maps."""
-    by_observation = defaultdict(list)
+    by_principle = defaultdict(list)
     by_domain = defaultdict(list)
     by_topic = defaultdict(list)
     by_status = defaultdict(list)
 
     for paper in papers:
-        for slug in paper.get("observations") or []:
-            by_observation[slug].append(paper)
+        for slug in paper.get("principles") or []:
+            by_principle[slug].append(paper)
         for slug in paper.get("domain") or []:
             by_domain[slug].append(paper)
         for slug in paper.get("topics") or []:
@@ -58,14 +59,14 @@ def build_index(papers, observations, domains, topics, venues):
         by_status[status].append(paper)
 
     return {
-        "by_observation": dict(by_observation),
+        "by_principle": dict(by_principle),
         "by_domain": dict(by_domain),
         "by_topic": dict(by_topic),
         "by_status": dict(by_status),
     }
 
 
-def build_search_index(papers, observations, domains, topics, venues):
+def build_search_index(papers, principles, domains, topics, venues):
     """Build the search index embedded at build time."""
     records = []
     for p in papers:
@@ -81,8 +82,8 @@ def build_search_index(papers, observations, domains, topics, venues):
             "domain_labels": [domains[d]["label"] for d in (p.get("domain") or []) if d in domains],
             "topic_labels": [topics[t]["label"] for t in (p.get("topics") or []) if t in topics],
             "hardware": p.get("hardware") or [],
-            "observation_slugs": [o for o in (p.get("observations") or []) if o in observations],
-            "observation_labels": [observations[o]["label"] for o in (p.get("observations") or []) if o in observations],
+            "principle_slugs": [o for o in (p.get("principles") or []) if o in principles],
+            "principle_labels": [principles[o]["label"] for o in (p.get("principles") or []) if o in principles],
             "venue": p.get("venue") or "",
             "venue_short": v.get("short") or "",
         })
@@ -100,6 +101,8 @@ def main():
     parser = argparse.ArgumentParser(description="Generate ML Systems Papers static site")
     parser.add_argument("--output", default=str(SITE), help="Output directory")
     parser.add_argument("--clean", action="store_true", help="Remove output dir first")
+    parser.add_argument("--dev", action="store_true",
+                        help="Include draft papers (marked visually); off by default")
     args = parser.parse_args()
 
     out = Path(args.output)
@@ -113,17 +116,22 @@ def main():
         trim_blocks=True,
         lstrip_blocks=True,
     )
-    # Allow tojson in templates (for search index)
+    env.filters["urlencode"] = quote_plus
     env.policies["json.dumps_kwargs"] = {"ensure_ascii": False}
 
     # Load data
     site = load_registry("site.yaml")
     venues = load_registry("venues.yaml")
-    observations = load_registry("observations.yaml")
+    principles = load_registry("principles.yaml")
     domains = load_registry("domains.yaml")
     topics = load_registry("topics.yaml")
-    papers = load_papers()
-    index = build_index(papers, observations, domains, topics, venues)
+    all_loaded = load_papers()
+    papers = all_loaded if args.dev else [p for p in all_loaded if p.get("status") != "draft"]
+    if not args.dev:
+        draft_count = len(all_loaded) - len(papers)
+        if draft_count:
+            print(f"Skipping {draft_count} draft paper(s). Use --dev to include them.")
+    index = build_index(papers, principles, domains, topics, venues)
 
     def sorted_by_count(registry, paper_index):
         return dict(sorted(registry.items(),
@@ -133,11 +141,12 @@ def main():
     ctx = dict(
         site=site,
         venues=venues,
-        observations=sorted_by_count(observations, index["by_observation"]),
+        principles=sorted_by_count(principles, index["by_principle"]),
         domains=sorted_by_count(domains, index["by_domain"]),
         topics=sorted_by_count(topics, index["by_topic"]),
         all_papers=papers,
         index=index,
+        dev_mode=args.dev,
     )
 
     print("Generating paper pages...")
@@ -147,9 +156,9 @@ def main():
                paper=paper, **ctx)
 
     print("Generating category listing pages...")
-    render(env, "listing.html.jinja2", out / "observations" / "index.html",
-           category_type="observation", category_label="Observation",
-           items=ctx["observations"], paper_index=index["by_observation"], **ctx)
+    render(env, "listing.html.jinja2", out / "principles" / "index.html",
+           category_type="principle", category_label="Principle",
+           items=ctx["principles"], paper_index=index["by_principle"], **ctx)
     render(env, "listing.html.jinja2", out / "domains" / "index.html",
            category_type="domain", category_label="Domain",
            items=ctx["domains"], paper_index=index["by_domain"], **ctx)
@@ -158,7 +167,7 @@ def main():
            items=ctx["topics"], paper_index=index["by_topic"], **ctx)
 
     print("Generating search page...")
-    search_index = build_search_index(papers, observations, domains, topics, venues)
+    search_index = build_search_index(papers, principles, domains, topics, venues)
     render(env, "search.html.jinja2", out / "search.html",
            search_index=search_index, **ctx)
 

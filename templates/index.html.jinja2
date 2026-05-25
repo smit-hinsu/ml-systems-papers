@@ -45,35 +45,34 @@
   <div class="card paper-card"
        data-slug="{{ paper.slug }}"
        data-domains="{{ (paper.domain or []) | join(' ') }}"
-       data-observations="{{ (paper.observations or []) | join(' ') }}"
+       data-principles="{{ (paper.principles or []) | join(' ') }}"
        data-topics="{{ (paper.topics or []) | join(' ') }}"
        data-organizations="{{ (paper.organizations or []) | join('|') }}">
     <div class="card-title"><a href="papers/{{ paper.slug }}.html">{{ paper.title }}</a></div>
-    <div class="card-meta" style="display:flex; flex-wrap:wrap; align-items:center; gap:.35rem;">
+    {% set orgs = paper.organizations or [] %}
+    {% set orgs_init_hidden = [orgs | length - 2, 0] | max %}
+    <div class="card-meta" style="display:flex; flex-wrap:nowrap; align-items:center; gap:.35rem; overflow:hidden; min-width:0;">
       {% if paper.authors %}
-        <span>{{ paper.authors[0].split()[-1] }}{% if paper.authors | length > 1 %} et al.{% endif %}</span>
+        <span class="meta-authors" style="white-space:nowrap; flex-shrink:1; min-width:0; overflow:hidden; text-overflow:ellipsis;">{% for a in paper.authors %}{% if not loop.first %}<span class="meta-author-sep">, </span>{% endif %}<span class="meta-author">{{ a.split()[-1] }}</span>{% endfor %}<span class="meta-etal" style="display:none;"> et al.</span></span>
       {% endif %}
-      {% for org in (paper.organizations or [])[:2] %}
-        <a href="#" class="tag tag-org" data-filter-type="organization" data-filter-value="{{ org }}">{{ org }}</a>
+      {% for org in orgs[:2] %}
+        <a href="#" class="tag tag-org meta-org" style="flex-shrink:0; white-space:nowrap;" data-filter-type="organization" data-filter-value="{{ org }}">{{ org }}</a>
       {% endfor %}
-      {% if (paper.organizations or []) | length > 2 %}
-        <span style="font-size:.75rem; color:var(--text3);">etc.</span>
-      {% endif %}
+      <span class="meta-org-more" style="font-size:.75rem; color:var(--text3); flex-shrink:0; white-space:nowrap;{% if orgs_init_hidden == 0 %} display:none;{% endif %}">{% if orgs_init_hidden > 0 %}+{{ orgs_init_hidden }} more{% endif %}</span>
       {% if paper.venue and paper.venue in venues %}
-        <span style="color:var(--text3);">{{ venues[paper.venue].short }}</span>
+        <span style="color:var(--text3); flex-shrink:0; white-space:nowrap;">{{ venues[paper.venue].short }}</span>
       {% endif %}
     </div>
-    {% if paper.problem %}
-      <div class="card-problem">{{ paper.problem }}</div>
-    {% endif %}
     {% if paper.key_results %}
       <div class="card-results"><strong>↗</strong> {{ paper.key_results }}</div>
     {% endif %}
-    {% if paper.observations %}
+    {% if paper.principles %}
       <div class="observations-list" style="margin-bottom:.6rem;">
-        {% for i in paper.observations %}
-          <a href="#" class="observation-item-sm" data-filter-type="observation" data-filter-value="{{ i }}">
-            {{ observations[i].label if i in observations else i }}
+        {% for i in paper.principles[:2] %}
+          {% set obs = (paper.observations or {}).get(i) %}
+          <a href="#" class="observation-item" data-filter-type="principle" data-filter-value="{{ i }}">
+            {{ principles[i].label if i in principles else i }}
+            {% if obs %}<span class="observation-desc">{{ obs }}</span>{% endif %}
           </a>
         {% endfor %}
       </div>
@@ -86,6 +85,7 @@
         <a href="#" class="tag tag-topic" data-filter-type="topic" data-filter-value="{{ t }}">{{ topics[t].label if t in topics else t }}</a>
       {% endfor %}
       {% if paper.award %}<span class="tag tag-award">★ {{ paper.award }}</span>{% endif %}
+      {% if dev_mode and paper.status == 'draft' %}<span class="tag tag-draft">draft</span>{% endif %}
     </div>
   </div>
 {% endfor %}
@@ -94,7 +94,7 @@
 <script>
 const LABELS = {
   domain:       { {% for slug, d in domains.items() %}"{{ slug }}": "{{ d.label }}", {% endfor %} },
-  observation:  { {% for slug, ins in observations.items() %}"{{ slug }}": {{ ins.label | tojson }}, {% endfor %} },
+  principle:    { {% for slug, p in principles.items() %}"{{ slug }}": {{ p.label | tojson }}, {% endfor %} },
   topic:        { {% for slug, t in topics.items() %}"{{ slug }}": "{{ t.label }}", {% endfor %} },
   organization: { {% for paper in all_papers %}{% for org in paper.organizations or [] %}"{{ org }}": "{{ org }}", {% endfor %}{% endfor %} },
 };
@@ -143,7 +143,7 @@ const fuse = new Fuse(PAPERS, {
   keys: [
     { name: "title",            weight: 3 },
     { name: "problem",          weight: 2 },
-    { name: "observation_labels",   weight: 2 },
+    { name: "principle_labels",      weight: 2 },
     { name: "key_results",      weight: 1.5 },
     { name: "authors",          weight: 1 },
     { name: "organizations",    weight: 0.8 },
@@ -194,10 +194,53 @@ const params = new URLSearchParams(location.search);
 const q = params.get('q');
 if (q) { document.getElementById('search-input').value = q; onSearch(q); }
 else {
-  for (const type of ['domain', 'observation', 'topic', 'organization']) {
+  for (const type of ['domain', 'principle', 'topic', 'organization']) {
     const val = params.get(type);
     if (val) { applyFilter(type, val); break; }
   }
 }
+
+// ── dynamic meta-row fitting ───────────────────────────────────────────────────
+const PAPER_MAP = Object.fromEntries(PAPERS.map(p => [p.slug, p]));
+
+function fitMetaRow(card) {
+  const meta = card.querySelector('.card-meta');
+  if (!meta || meta.scrollWidth <= meta.clientWidth) return;
+
+  const paper = PAPER_MAP[card.dataset.slug];
+  if (!paper) return;
+
+  const orgEls = [...meta.querySelectorAll('.meta-org')];
+  const orgMoreEl = meta.querySelector('.meta-org-more');
+  const authorEls = [...meta.querySelectorAll('.meta-author')];
+  const sepEls = [...meta.querySelectorAll('.meta-author-sep')]; // sepEls[i] precedes authorEls[i+1]
+  const etAlEl = meta.querySelector('.meta-etal');
+  const totalOrgs = paper.organizations.length;
+  let shownOrgs = orgEls.length;
+
+  // Trim org chips right-to-left, incrementing "+N more"
+  while (meta.scrollWidth > meta.clientWidth && shownOrgs > 0) {
+    shownOrgs--;
+    orgEls[shownOrgs].style.display = 'none';
+    if (orgMoreEl) {
+      orgMoreEl.style.display = '';
+      orgMoreEl.textContent = `+${totalOrgs - shownOrgs} more`;
+    }
+  }
+
+  // Trim authors right-to-left (keep at least 1), showing "et al." when any hidden
+  let shownAuthors = authorEls.length;
+  while (meta.scrollWidth > meta.clientWidth && shownAuthors > 1) {
+    const idx = shownAuthors - 1;
+    shownAuthors--;
+    authorEls[idx].style.display = 'none';
+    if (sepEls[idx - 1]) sepEls[idx - 1].style.display = 'none'; // sep immediately before this author
+    if (etAlEl) etAlEl.style.display = '';
+  }
+}
+
+requestAnimationFrame(() => {
+  document.querySelectorAll('.paper-card').forEach(fitMetaRow);
+});
 </script>
 {% endblock %}

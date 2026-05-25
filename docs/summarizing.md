@@ -46,16 +46,50 @@ These are the core observations that motivated the design — what the authors n
 - ❌ "efficient memory management improves performance"
 - ✅ "KV cache fragmentation accounts for 30–40% of wasted GPU memory in production serving, because vLLM pre-allocates contiguous blocks per request"
 
-### `## Summary` section
-3–6 paragraphs. Cover:
-1. What problem and why it matters (with concrete scale or cost numbers if available)
-2. The key observation(s) that motivated the approach
-3. How the system actually works — name every component, data structure, and algorithm
-4. What was evaluated, on what hardware, against what baselines
-5. Limitations or when this approach doesn't apply
+### `## Problem`
+2–3 sentences expanding on the frontmatter `problem` field. Why does this matter at scale?
+What breaks in practice? Each sentence should add new information — not restate the
+frontmatter or preview the results.
 
 ### `## Key Contributions`
-3–5 bullet points. Each should be a concrete artifact: a new algorithm, a data structure, a measurement, a system. Not "we show that X is possible."
+3–5 bullets. Each = a concrete artifact (named algorithm, data structure, protocol) with
+a one-line mechanism. Never repeat a result here; never repeat the problem statement.
+If you find yourself copying a sentence from another section, cut it — it belongs in one
+place only.
+
+### `## Results`
+2–5 bullets. Format: metric + number + hardware + model + baseline. If any of these are
+unknown, say so explicitly rather than omitting them.
+
+### `## Trade-offs`
+Short bullets on what the approach gives up. Omit if the paper makes no meaningful
+trade-offs.
+
+### `## Nuances`
+Gotchas, subtle assumptions, conditions that break the approach, and limitations.
+Practitioners-only content — no academic hedging.
+
+## Conciseness: one section, one job
+
+Each section has exactly one job. Repetition across sections is the most common quality
+failure — it makes entries longer without adding information.
+
+**The test:** If you can delete a sentence from one section because it already appears
+(or is implied) in another, cut it. Every sentence should be unique to its section.
+
+| Section | Its one job | What does NOT belong here |
+|---|---|---|
+| `## Problem` | Why this matters in practice | Results, mechanism, related work |
+| `## Key Contributions` | Name the artifacts + mechanism | Results, restatement of problem |
+| `## Results` | Numbers with hardware/model/baseline | Mechanism explanation, speculation |
+| `## Trade-offs` | What is given up | Limitations that aren't trade-offs |
+| `## Nuances` | What bites practitioners | Already-stated trade-offs |
+
+**Common failure modes:**
+- ## Key Contributions lists "40% speedup" — that's a result, not a contribution
+- ## Problem ends with "which motivates our approach" — cut the last clause
+- ## Key Contributions last bullet summarizes all previous bullets — cut it
+- ## Results mentions how a mechanism works — belongs in ## Key Contributions
 
 ## Anti-patterns to avoid
 
@@ -66,6 +100,30 @@ These are the core observations that motivated the design — what the authors n
 | "scales to large models" | "tested on Llama-3-70B and Mixtral 8×22B, single-node 8×H100" |
 | "significantly reduces memory" | "reduces peak KV cache memory by 3.2× via 4-bit quantization of keys and 8-bit of values" |
 | "inspired by prior work" | "extends PagedAttention (vLLM) with copy-on-write semantics for beam search" |
+
+### Never open with what everyone already knows
+
+Cut every sentence that states an obvious industry fact as if it were news. The reader is a systems engineer — they know LLMs are large, that inference is expensive, and that training is hard.
+
+**Cut without replacement:**
+- "The proliferation of large language models (LLMs) demands inference systems with both low latency and high efficiency at scale."
+- "Training frontier-scale foundation models involves coordinating thousands of GPUs."
+- "Large language models have become increasingly important in recent years."
+- "Efficient inference is critical for production deployment of LLMs."
+- Any sentence whose second half would be "...which motivates our work."
+
+**Instead, open the summary with the specific gap or observation:**
+- ❌ "LLMs require fast inference. GPU HBM is a bottleneck. We propose SHIP..."
+- ✅ "HBM bandwidth during decode is the binding constraint for KV cache access at large batch sizes. SHIP replaces HBM with on-chip SRAM for the KV cache by..."
+
+The abstract scraped from the conference site is a starting point for finding the key claim — not text to paraphrase or include verbatim. Discard the setup sentences; keep only the specific claim.
+
+### Don't copy-paste the abstract
+
+The abstract is written for a different audience (reviewers) and a different format (200 words with formal framing). A summary for this index should:
+- Use active voice and concrete nouns
+- Skip the related-work framing
+- Lead with the system name and what it does, not with the problem statement
 
 ## Prompt iteration log
 

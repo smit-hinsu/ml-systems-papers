@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2025-11
 arxiv_url: https://arxiv.org/abs/2511.16964
 authors:
 - Kirill Nagaitsev
@@ -12,18 +13,17 @@ citations_updated: '2026-05-24'
 code_url: https://github.com/pike-project/pike
 date: '2026-05-19'
 domain:
-- ml-compilers
+- ml-kernels
 hardware:
 - H100
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-observations:
+key_results: 2.88× speedup over PyTorch Eager; 1.85× over torch.compile on H100
+models_evaluated: []
+principles:
 - kernel-verifiability
 - llm-driven-optimization
-key_results: 2.88× speedup over PyTorch Eager; 1.85× over torch.compile on H100
-mlsys_official_category: ''
-mlsys_url: https://mlsys.org/virtual/2026/oral/3823
-models_evaluated: []
+official_category: ''
 openreview_url: https://openreview.net/forum?id=MJxhiX3sSd
 organizations:
 - Lawrence Berkeley National Laboratory
@@ -31,13 +31,15 @@ presentation_type: oral
 problem: Automate PyTorch inference optimization by framing it as a multi-agent LLM
   task with code execution feedback.
 project_url: ''
+status: draft
 reading_status: read
 research_or_industry: research
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3823.pdf
 slug: pike-pytorch-llm-agents
+title: Optimizing PyTorch Inference with LLM-Based Multi-Agent Systems
 topics:
 - llm-code-generation
-title: Optimizing PyTorch Inference with LLM-Based Multi-Agent Systems
+venue_url: https://mlsys.org/virtual/2026/oral/3823
 ---
 
 ## Summary
@@ -55,12 +57,6 @@ The system operates by having LLM agents propose transformations to a PyTorch mo
 ## Method
 
 Agents are given the PyTorch model source and a performance feedback signal (latency on target hardware). They generate modified versions using transformations like `torch.compile`, operator fusion, and quantization. An error-fixing agent catches exceptions and regenerates valid code. The framework is hardware-aware — it benchmarks on the actual target (H100).
-
-## Results
-
-- 2.88× speedup over PyTorch Eager
-- 1.85× over `torch.compile` baseline
-- Hardware: H100 GPU
 
 ## Limitations
 

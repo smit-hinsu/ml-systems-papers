@@ -1,0 +1,62 @@
+# Principles registry.
+# Each principle is a general, cross-cutting idea that recurs across multiple papers.
+# Principles are generic (not ML-systems-specific); the ML-specific context lives in
+# each paper's `observations:` dict.
+#
+# slug:
+#   label: Short, memorable principle statement
+#   category: efficiency | memory | distributed | tooling
+#   description: 1-2 sentences. Generic — does not mention specific ML systems or papers.
+
+avoid-redundant-work:
+  label: "Avoid redundant computation with caching"
+  category: efficiency
+  description: >
+    Results for repeated inputs can be cached so they are computed only once.
+    The savings are proportional to reuse frequency and the cost of recomputation.
+
+overlap-independent-work:
+  label: "Overlap independent work to hide latency"
+  category: efficiency
+  description: >
+    Two operations that do not depend on each other can run concurrently,
+    hiding the latency of the slower one behind the faster one.
+
+exploit-sparsity:
+  label: "Skip provably unnecessary work by exploiting sparsity"
+  category: efficiency
+  description: >
+    When inputs or intermediate values are sparse or near-zero, the corresponding
+    computation can be skipped without affecting correctness or meaningful accuracy.
+
+reduce-data-movement:
+  label: "Data movement often dominates computation cost; minimize it"
+  category: memory
+  description: >
+    Moving data between compute and memory — or between memory tiers — is often
+    more expensive than the computation itself. Fusing operations and tiling reduces
+    the number of memory round-trips.
+
+exploit-memory-hierarchy:
+  label: "Keep hot data in the fastest available memory tier"
+  category: memory
+  description: >
+    Memory systems have a hierarchy of tiers with orders-of-magnitude differences
+    in bandwidth and latency. Performance depends on keeping frequently accessed
+    data in the fastest tier and evicting cold data to slower, larger tiers.
+
+balance-utilization:
+  label: "Work imbalance creates idle compute"
+  category: distributed
+  description: >
+    When parallel workers have unequal amounts of work, the faster workers idle
+    waiting for the slowest. Eliminating this imbalance is often the dominant
+    performance lever at large scale.
+
+ai-solves-verifiable:
+  label: "AI can search and optimize problems with measurable objectives"
+  category: tooling
+  description: >
+    When an objective is deterministic and benchmarkable, AI agents can explore
+    the solution space more effectively than hand-crafted heuristics, using
+    code execution to evaluate and rank candidates.

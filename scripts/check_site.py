@@ -112,24 +112,18 @@ def check_jinja_leakage(path: Path, page: PageAnalyzer, errors: list, warnings: 
 
 
 def check_observation_truncation(path: Path, page: PageAnalyzer, errors: list, warnings: list):
-    """
-    Insight labels should never be truncated.
-    The .observation-desc description may be truncated (intentional) but the label itself must not be.
-    """
+    """Observation labels and descriptions must never be truncated."""
     text = path.read_text(encoding="utf-8")
     pattern = re.compile(
         r'class="observation-item[^"]*"[^>]*>(.*?)</a>',
         re.DOTALL,
     )
-    desc_pattern = re.compile(r'<span[^>]*class="observation-desc"[^>]*>.*?</span>', re.DOTALL)
     for m in pattern.finditer(text):
-        # Remove the description span — truncation there is intentional
-        label_html = desc_pattern.sub("", m.group(1))
-        label = re.sub(r"<[^>]+>", " ", label_html)
-        label = re.sub(r"\s+", " ", label).strip()
-        if label.endswith("...") or re.search(r'\w\.\.\.(?!\s)', label):
+        content = re.sub(r"<[^>]+>", " ", m.group(1))
+        content = re.sub(r"\s+", " ", content).strip()
+        if content.endswith("...") or re.search(r'\w\.\.\.(?!\s)', content):
             errors.append(
-                f"{path.relative_to(SITE)}: truncated observation label: {label[:80]!r}"
+                f"{path.relative_to(SITE)}: truncated observation content: {content[:80]!r}"
             )
 
 
@@ -155,6 +149,57 @@ def check_paper_page(path: Path, page: PageAnalyzer, errors: list, warnings: lis
         warnings.append(f"{path.relative_to(SITE)}: no external links (missing mlsys_url?)")
 
 
+def check_todo_markers(path: Path, page: PageAnalyzer, errors: list, warnings: list):
+    """Published paper pages must not contain visible TODO placeholders."""
+    if path.parent.name != "papers":
+        return
+    raw = path.read_text(encoding="utf-8")
+    # Skip draft pages (they carry a visible 'draft' badge in dev builds)
+    if 'tag-draft' in raw:
+        return
+    # Look for TODO as visible text (not inside HTML comments or attributes)
+    stripped = re.sub(r'<!--.*?-->', '', raw, flags=re.DOTALL)
+    stripped = re.sub(r'<[^>]+>', ' ', stripped)
+    if re.search(r'\bTODO\b', stripped):
+        errors.append(f"{path.relative_to(SITE)}: visible 'TODO' in published paper body")
+
+
+def check_long_unbroken_lines(path: Path, page: PageAnalyzer, errors: list, warnings: list):
+    """Warn about text nodes with very long unbroken strings — likely to overflow on screen."""
+    if path.parent.name not in ("papers",):
+        return
+    raw = path.read_text(encoding="utf-8")
+    # Extract text content from paper-body only
+    body_match = re.search(r'class="paper-body">(.*?)</article>', raw, re.DOTALL)
+    if not body_match:
+        return
+    body_text = re.sub(r'<[^>]+>', ' ', body_match.group(1))
+    # Find any whitespace-free run longer than 120 chars (URLs excluded)
+    for token in re.findall(r'\S{121,}', body_text):
+        if token.startswith(('http://', 'https://')):
+            continue
+        warnings.append(
+            f"{path.relative_to(SITE)}: long unbroken string in body ({len(token)} chars): {token[:60]!r}..."
+        )
+        break  # one warning per page is enough
+
+
+def check_author_overflow(path: Path, page: PageAnalyzer, errors: list, warnings: list):
+    """Warn if the author line on a paper page is extremely long (>300 chars rendered)."""
+    if path.parent.name != "papers":
+        return
+    raw = path.read_text(encoding="utf-8")
+    # Find the author div (first <div> after the <h1>)
+    m = re.search(r'<div[^>]*font-size: \.875rem[^>]*>(.*?)</div>', raw, re.DOTALL)
+    if not m:
+        return
+    author_text = re.sub(r'<[^>]+>', '', m.group(1)).strip()
+    if len(author_text) > 300:
+        warnings.append(
+            f"{path.relative_to(SITE)}: author line is {len(author_text)} chars — may overflow"
+        )
+
+
 # ── runner ─────────────────────────────────────────────────────────────────────
 
 CHECKS = [
@@ -164,6 +209,9 @@ CHECKS = [
     check_observation_truncation,
     check_none_values,
     check_paper_page,
+    check_todo_markers,
+    check_long_unbroken_lines,
+    check_author_overflow,
 ]
 
 

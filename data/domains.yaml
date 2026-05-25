@@ -22,8 +22,16 @@ agentic-inference:
   description: "Multi-agent LLM systems, tool use, and agentic workloads"
 
 ml-compilers:
-  label: "ML Compilers & Kernels"
-  description: "Compilers, kernel optimization, and automated code generation for ML"
+  label: "ML Compilers"
+  description: "Compiler toolchains, graph-level optimization, autotuning, and profiling (XLA, torch.compile, JAX)"
+
+ml-kernels:
+  label: "ML Kernels"
+  description: "Individual kernel optimization, CUDA/Triton kernel generation, and operator-level performance"
+
+observability:
+  label: "Observability"
+  description: "Profiling, tracing, debugging, and monitoring tools for ML systems"
 
 fleet-efficiency:
   label: "Fleet Efficiency"

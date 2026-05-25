@@ -19,23 +19,24 @@ authors: []
 organizations: []
 
 # Links
-mlsys_url: "{mlsys_url}"
+venue_url: "{venue_url}"
 openreview_url: ""  # https://openreview.net/forum?id=XXXXX
 arxiv_url: ""        # preprint, if posted separately
 slides_url: ""
 code_url: ""
 project_url: ""
 
-# MLSys metadata
-mlsys_official_category: ""
+# Venue metadata
+official_category: ""
 presentation_type: oral  # oral | poster | spotlight
 award: ""
-date: ""
+arxiv_date: ""  # auto-derived from arXiv ID (YYYY-MM)
 
 # User taxonomy
 domain: []  # see data/domains.yaml for valid slugs
 topics: []  # see data/topics.yaml for valid slugs
-observations: []  # see data/observations.yaml for valid slugs
+principles: []  # see data/principles.yaml for valid slugs
+observations: {}  # slug: "one sentence — what the authors specifically observed in this paper"
 
 # Evaluation
 hardware: []
@@ -52,34 +53,47 @@ problem: ""
 key_results: ""
 
 # Reading/indexing
+# Publishing
+status: draft  # draft | published — only published papers appear on the site by default
+
+# Reading/indexing
 reading_status: want-to-read  # want-to-read | reading | read | understood
 indexed_by: "{indexed_by}"
 indexed_date: "{indexed_date}"
 ---
 
-## Summary
+## Problem
 
-TODO
+<!-- 2–3 sentences expanding on the `problem` frontmatter field. Why does this matter
+     at scale? What breaks or costs too much today? -->
 
 ## Key Contributions
 
+<!-- 3–5 bullets. Each should be a concrete artifact (named algorithm, data structure,
+     protocol, measurement) with a brief mechanism. Not "we show X is possible." -->
+
 - TODO
-
-## Method
-
-TODO
 
 ## Results
 
-TODO
+<!-- Key numbers: metric + value + hardware + model + baseline. If hardware or baselines
+     are not specified in the paper, say so. -->
 
-## Limitations
+- TODO
 
-TODO
+## Trade-offs
 
-## Personal Notes
+<!-- What does the approach give up to achieve its gains?
+     E.g. "higher throughput at the cost of 2–3% accuracy degradation"
+          "reduces memory but increases kernel launch overhead at small batch sizes"
+     Leave empty if nothing notable. -->
 
-<!-- Add your own observations, questions, and connections to other work here -->
+## Nuances
+
+<!-- Implementation gotchas, subtle assumptions, conditions that break the approach,
+     and limitations — things a practitioner would only discover by reading carefully.
+     E.g. "requires contiguous KV blocks — incompatible with PagedAttention out of the box"
+     Leave empty if nothing notable. -->
 '''
 
 
@@ -109,7 +123,7 @@ def main():
     content = TEMPLATE.format(
         title=args.title,
         slug=slug,
-        mlsys_url=args.url,
+        venue_url=args.url,
         indexed_by=args.by,
         indexed_date=date.today().isoformat(),
     )

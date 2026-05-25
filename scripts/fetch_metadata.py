@@ -115,7 +115,6 @@ def update_paper(path, dry_run, cache, delay):
     ids = result.get("ids") or {}
     arxiv_id = ids.get("arxiv", "")
     if arxiv_id and not meta.get("arxiv_url"):
-        # OpenAlex returns full URL like https://arxiv.org/abs/2301.12345
         arxiv_url = arxiv_id if arxiv_id.startswith("http") else f"https://arxiv.org/abs/{arxiv_id}"
         changes["arxiv_url"] = arxiv_url
 
@@ -124,6 +123,17 @@ def update_paper(path, dry_run, cache, delay):
         oa_url = (result.get("open_access") or {}).get("oa_url", "")
         if oa_url and "arxiv.org" in oa_url:
             changes["arxiv_url"] = re.sub(r"/pdf/", "/abs/", oa_url).rstrip(".pdf")
+
+    # Derive arxiv_date from arXiv ID (format: YYMM.NNNNN → 20YY-MM)
+    arxiv_url_final = changes.get("arxiv_url") or meta.get("arxiv_url", "")
+    if arxiv_url_final and not meta.get("arxiv_date"):
+        m = re.search(r"arxiv\.org/abs/(\d{4})\.", arxiv_url_final)
+        if m:
+            yymm = m.group(1)
+            year = int(yymm[:2])
+            month = yymm[2:]
+            full_year = 2000 + year if year <= 30 else 1900 + year
+            changes["arxiv_date"] = f"{full_year}-{month}"
 
     if not changes:
         print("    no updates")

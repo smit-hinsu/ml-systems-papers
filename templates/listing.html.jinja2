@@ -15,14 +15,14 @@
   <span class="count-badge">{{ items | length }}</span>
 </h1>
 
-<div style="display: {% if category_type == 'observation' %}flex; flex-direction: column{% else %}grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)){% endif %}; gap: .75rem;">
+<div style="display: {% if category_type == 'principle' %}flex; flex-direction: column{% else %}grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)){% endif %}; gap: .75rem;">
 {% for slug, item in items.items() %}
   {% set paper_list = paper_index.get(slug, []) %}
-  {% if category_type == "observation" %}
-    <a href="{{ root_path }}index.html?observation={{ slug }}" class="observation-item" style="margin-bottom: 0; display: block;">
+  {% if category_type == "principle" %}
+    <a href="{{ root_path }}index.html?principle={{ slug }}" class="observation-item" style="margin-bottom: 0; display: block;">
       {{ item.label }}
       <span class="observation-desc">
-        {{ item.description | truncate(130) if item.description else "" }}
+        {{ item.description if item.description else "" }}
         {% if paper_list %}
           · <strong>{{ paper_list | length }} paper{% if paper_list | length != 1 %}s{% endif %}</strong>
         {% else %}

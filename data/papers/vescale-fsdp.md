@@ -24,12 +24,11 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-observations: []
 key_results: Flexible FSDP with block-wise quantization support; significant memory
   efficiency and performance improvements at scale
-mlsys_official_category: Research Papers
-mlsys_url: https://mlsys.org/virtual/2026/oral/3860
 models_evaluated: []
+principles: []
+official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=3Lj8R0F48P
 organizations:
 - ByteDance
@@ -37,15 +36,17 @@ presentation_type: oral
 problem: Existing FSDP (ZeRO) implementations lack flexibility for advanced training
   techniques like block-wise quantization and composable parallelism strategies.
 project_url: ''
+status: draft
 reading_status: read
 research_or_industry: research
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3860.pdf
 slug: vescale-fsdp
+title: 'veScale-FSDP: Flexible and High-Performance FSDP at Scale'
 topics:
 - fsdp-zero
 - quantization
 - communication-overlap
-title: 'veScale-FSDP: Flexible and High-Performance FSDP at Scale'
+venue_url: https://mlsys.org/virtual/2026/oral/3860
 ---
 
 ## Summary
@@ -68,12 +69,6 @@ veScale-FSDP, part of ByteDance's veScale framework, redesigns FSDP to be:
 ## Method
 
 The core change is decoupling parameter sharding from the flat-parameter assumption. veScale-FSDP maintains a sharding metadata graph that describes the desired sharding for each parameter group. The all-gather and reduce-scatter operations are scheduled according to this graph. Block-wise quantization is inserted as a transformation on the parameter shards before communication.
-
-## Results
-
-- Significant performance improvements over standard FSDP at scale
-- Memory efficiency gains from block-wise quantization integration
-- Demonstrated flexibility for advanced training configurations
 
 ## Limitations
 

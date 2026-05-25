@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2026-04
 arxiv_url: https://arxiv.org/abs/2604.24073
 authors:
 - Chenhao Feng
@@ -34,13 +35,12 @@ hardware:
 - H100
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-observations:
+key_results: Up to 90.3% reduction in computational bubbles on 256 H100 GPUs
+models_evaluated: []
+principles:
 - straggler-bubbles
 - communication-compute-overlap
-key_results: Up to 90.3% reduction in computational bubbles on 256 H100 GPUs
-mlsys_official_category: Research Papers
-mlsys_url: https://mlsys.org/virtual/2026/oral/3821
-models_evaluated: []
+official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=MY0BIdK4hn
 organizations:
 - Meta
@@ -48,14 +48,16 @@ presentation_type: oral
 problem: Large-scale training of sequence recommendation models wastes substantial
   compute due to stragglers, slow communication, and load imbalance.
 project_url: ''
+status: draft
 reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3821_gs6415h.pdf
 slug: freescale-recs
-topics:
-- communication-overlap
 title: 'FreeScale: Distributed Training for Sequence Recommendation Models with Minimal
   Scaling Cost'
+topics:
+- communication-overlap
+venue_url: https://mlsys.org/virtual/2026/oral/3821
 ---
 
 ## Summary
@@ -78,12 +80,6 @@ The combination of these reduces pipeline bubbles by up to 90.3% on 256 H100 GPU
 ## Method
 
 The load balancing pass analyzes input sequences at the batch level and reorders them across workers to equalize per-worker compute. The embedding overlap is implemented by pipelining embedding lookup (which requires AllGather of sharded tables) with the dense model forward pass. SM-Free communication uses GPU DMA engines or peer memory rather than streaming multiprocessors.
-
-## Results
-
-- Up to 90.3% reduction in computational bubbles
-- Tested on 256 H100 GPUs
-- Production deployment at Meta
 
 ## Limitations
 

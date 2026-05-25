@@ -20,12 +20,30 @@
         {% if paper.award %}
           <span class="tag tag-award" style="vertical-align: middle; margin-left: .5rem;">★ {{ paper.award }}</span>
         {% endif %}
+        {% if dev_mode and paper.status == 'draft' %}
+          <span class="tag tag-draft" style="vertical-align: middle; margin-left: .5rem;">draft</span>
+        {% endif %}
       </h1>
 
-      <div style="font-size: .875rem; color: var(--text2); margin-bottom: .75rem;">
-        {{ paper.authors | join(", ") }}
-        {% if paper.organizations %}
-          · <em>{{ paper.organizations | join(", ") }}</em>
+      <div style="font-size: .875rem; color: var(--text2); margin-bottom: .75rem;
+                  display: flex; flex-wrap: nowrap; align-items: center; gap: .3rem;
+                  overflow: hidden; min-width: 0;">
+        {% if paper.authors %}
+        <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; min-width: 0;">
+          {{ paper.authors[:2] | join(", ") }}{% if paper.authors | length > 2 %} et al.{% endif %}
+        </span>
+        {% endif %}
+        {% for org in (paper.organizations or [])[:2] %}
+          <a href="{{ root_path }}index.html?organization={{ org | urlencode }}"
+             class="tag tag-org" style="flex-shrink: 0; white-space: nowrap;">{{ org }}</a>
+        {% endfor %}
+        {% if (paper.organizations or []) | length > 2 %}
+          <span style="font-size:.75rem; color:var(--text3); flex-shrink: 0; white-space: nowrap;">
+            +{{ (paper.organizations | length) - 2 }} more
+          </span>
+        {% endif %}
+        {% if paper.arxiv_date %}
+          <span style="color:var(--text3); flex-shrink: 0; white-space: nowrap;">{{ paper.arxiv_date }}</span>
         {% endif %}
       </div>
 
@@ -36,21 +54,16 @@
       </div>
       {% endif %}
 
-      {% if paper.problem %}
-      <div style="font-size: .9rem; color: var(--text2); font-style: italic; border-left: 3px solid var(--border); padding-left: .85rem; margin-bottom: 1rem;">
-        {{ paper.problem }}
-      </div>
-      {% endif %}
-
-      <!-- Insights: full labels with descriptions, before the compact tags -->
-      {% if paper.observations %}
+      <!-- Principles: label + paper-specific observation (not generic description) -->
+      {% if paper.principles %}
       <div class="observations-list" style="margin-bottom: .85rem;">
-        {% for i in paper.observations %}
-          {% set ins = observations.get(i) %}
-          <a href="{{ root_path }}index.html?observation={{ i }}" class="observation-item">
-            {{ ins.label if ins else i }}
-            {% if ins and ins.description %}
-              <span class="observation-desc">{{ ins.description | truncate(120) }}</span>
+        {% for i in paper.principles %}
+          {% set p = principles.get(i) %}
+          {% set obs = (paper.observations or {}).get(i) %}
+          <a href="{{ root_path }}index.html?principle={{ i }}" class="observation-item">
+            {{ p.label if p else i }}
+            {% if obs %}
+              <span class="observation-desc">{{ obs }}</span>
             {% endif %}
           </a>
         {% endfor %}
@@ -65,9 +78,6 @@
         {% for t in paper.topics or [] %}
           <a href="{{ root_path }}index.html?topic={{ t }}" class="tag tag-topic">{{ topics[t].label if t in topics else t }}</a>
         {% endfor %}
-        {% if paper.research_or_industry %}
-          <span class="tag tag-{{ paper.research_or_industry }}">{{ paper.research_or_industry | capitalize }}</span>
-        {% endif %}
       </div>
     </div>
 
@@ -78,7 +88,7 @@
 
   <!-- Sidebar -->
   <aside class="sidebar card">
-    {% if paper.mlsys_url or paper.openreview_url or paper.arxiv_url or paper.code_url or paper.project_url or paper.slides_url %}
+    {% if paper.venue_url or paper.openreview_url or paper.arxiv_url or paper.code_url or paper.project_url or paper.slides_url %}
     <div class="sidebar-section">
       <h3>Links</h3>
       <ul class="link-list">
@@ -90,13 +100,14 @@
           <li><a href="{{ paper.slides_url }}" target="_blank" rel="noopener">Slides</a></li>
         {% endif %}
         {% if paper.code_url %}
-          <li><a href="{{ paper.code_url }}" target="_blank" rel="noopener">Code</a></li>
+          <li><a href="{{ paper.code_url }}" target="_blank" rel="noopener">{{ paper.code_label or "Code" }}</a></li>
         {% endif %}
         {% if paper.project_url %}
           <li><a href="{{ paper.project_url }}" target="_blank" rel="noopener">Project page</a></li>
         {% endif %}
-        {% if paper.mlsys_url %}
-          <li><a href="{{ paper.mlsys_url }}" target="_blank" rel="noopener">MLSys virtual (login req.)</a></li>
+        {% if paper.venue_url %}
+          {% set venue_short = venues[paper.venue].short if paper.venue and paper.venue in venues else "Conference site" %}
+          <li><a href="{{ paper.venue_url }}" target="_blank" rel="noopener">{{ venue_short }} (login req.)</a></li>
         {% endif %}
       </ul>
     </div>
@@ -107,16 +118,6 @@
       {% if paper.venue and paper.venue in venues %}
         {% set v = venues[paper.venue] %}
         <div class="meta-row"><span class="label">Venue</span><span class="value"><a href="{{ v.url }}" target="_blank" rel="noopener">{{ v.short }}</a></span></div>
-      {% endif %}
-      {% if paper.date %}
-      <div class="meta-row"><span class="label">Date</span><span class="value">{{ paper.date }}</span></div>
-      {% endif %}
-      {% if paper.presentation_type %}
-      {% set venue_short = venues[paper.venue].short if paper.venue and paper.venue in venues else "" %}
-      <div class="meta-row"><span class="label">Type</span><span class="value">{{ (venue_short + " " if venue_short else "") + (paper.presentation_type | capitalize) }}</span></div>
-      {% endif %}
-      {% if paper.mlsys_official_category %}
-      <div class="meta-row"><span class="label">Track</span><span class="value">{{ paper.mlsys_official_category }}</span></div>
       {% endif %}
       {% if paper.hardware %}
       <div class="meta-row"><span class="label">Hardware</span><span class="value">{{ paper.hardware | join(", ") }}</span></div>

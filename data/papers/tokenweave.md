@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2025-05
 arxiv_url: https://arxiv.org/abs/2505.11329
 authors:
 - Raja Gond
@@ -15,14 +16,13 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-observations:
-- fusion-reduces-bandwidth
-- communication-compute-overlap
 key_results: Up to 1.28× latency speedup, up to 1.19× higher throughput via fused
   AllReduce–RMSNorm kernel
-mlsys_official_category: Research Papers
-mlsys_url: https://mlsys.org/virtual/2026/oral/3744
 models_evaluated: []
+principles:
+- fusion-reduces-bandwidth
+- communication-compute-overlap
+official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=rh2Ylffkq6
 organizations:
 - Microsoft
@@ -30,16 +30,18 @@ presentation_type: oral
 problem: In tensor-parallel LLM inference, AllReduce communication between GPUs is
   on the critical path and cannot be hidden, limiting throughput.
 project_url: ''
+status: draft
 reading_status: read
 research_or_industry: research
 slides_url: ''
 slug: tokenweave
+title: 'TokenWeave: Efficient Compute-Communication Overlap for Distributed LLM Inference'
 topics:
 - tensor-parallelism
 - kernel-fusion
 - communication-overlap
 - all-reduce
-title: 'TokenWeave: Efficient Compute-Communication Overlap for Distributed LLM Inference'
+venue_url: https://mlsys.org/virtual/2026/oral/3744
 ---
 
 ## Summary
@@ -57,12 +59,6 @@ The key insight is that **the work immediately following AllReduce (RMSNorm) can
 ## Method
 
 The fused kernel proceeds as follows: as each GPU receives partial AllReduce results from its peers, it immediately begins the RMSNorm computation on the received portion. This hides part of the AllReduce latency behind useful computation. The kernel requires careful synchronization to ensure correctness while maximizing overlap.
-
-## Results
-
-- Up to 1.28× speedup in latency
-- Up to 1.19× higher throughput
-- Tested across various models and inference workloads
 
 ## Limitations
 

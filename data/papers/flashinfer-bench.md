@@ -22,17 +22,16 @@ code_url: ''
 date: '2026-05-20'
 domain:
 - llm-serving
-- ml-compilers
+- ml-kernels
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-observations:
-- kernel-verifiability
 key_results: Standardized kernel schema + public leaderboard + dynamic substitution
   into SGLang and vLLM production systems
-mlsys_official_category: Research Papers
-mlsys_url: https://mlsys.org/virtual/2026/oral/3832
 models_evaluated: []
+principles:
+- kernel-verifiability
+official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=IyryZno8Hh
 organizations:
 - University of Washington
@@ -41,14 +40,16 @@ presentation_type: oral
 problem: There is no standardized feedback loop connecting kernel generation, benchmarking,
   and production deployment for LLM inference kernels.
 project_url: ''
+status: draft
 reading_status: read
 research_or_industry: research
 slides_url: ''
 slug: flashinfer-bench
+title: 'FlashInfer-Bench: Building the Virtuous Cycle for AI-driven LLM Systems'
 topics:
 - kernel-fusion
 - autotuning
-title: 'FlashInfer-Bench: Building the Virtuous Cycle for AI-driven LLM Systems'
+venue_url: https://mlsys.org/virtual/2026/oral/3832
 ---
 
 ## Summary
@@ -71,11 +72,6 @@ The system introduces:
 ## Method
 
 The system defines a standard interface for kernels: inputs, outputs, and performance metrics. A kernel author writes a spec (FlashInfer Trace), submits it to the benchmark harness, gets a score, and can optionally push a winning kernel into production systems via the substitution API. AI-generated kernels can participate in the same pipeline.
-
-## Results
-
-- Framework demonstration with integration into SGLang and vLLM
-- Public leaderboard shows measurable quality signal for kernel generation models
 
 ## Limitations
 

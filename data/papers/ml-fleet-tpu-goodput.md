@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2502.06982'
+arxiv_date: 2025-02
+arxiv_url: https://arxiv.org/abs/2502.06982
 authors:
 - Arissa Wongpanich
 - Tayo Oguntebi
@@ -22,14 +23,13 @@ hardware:
 - TPU
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-observations:
-- straggler-bubbles
 key_results: ML Productivity Goodput (MPG) decomposes fleet efficiency into scheduling,
   runtime, and program components; identifies actionable optimization opportunities
   in Google's production TPU fleet
-mlsys_official_category: Research Papers
-mlsys_url: https://mlsys.org/virtual/2026/oral/3734
 models_evaluated: []
+principles:
+- straggler-bubbles
+official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=y31QSL9yMG
 organizations:
 - Google
@@ -37,13 +37,15 @@ presentation_type: oral
 problem: Measuring and improving ML fleet efficiency across a large heterogeneous
   TPU cluster lacks a principled unified metric.
 project_url: ''
+status: draft
 reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3734_ahO01yG.pdf
 slug: ml-fleet-tpu-goodput
-topics: []
 title: 'Machine Learning Fleet Efficiency: Improving TPU Systems at Scale with ML
   Productivity Goodput'
+topics: []
+venue_url: https://mlsys.org/virtual/2026/oral/3734
 ---
 
 ## Summary
@@ -65,12 +67,6 @@ This decomposition makes it actionable — each component points to a different 
 ## Method
 
 MPG is defined recursively: overall goodput = scheduling × runtime × program goodput. Data is collected from production job traces, hardware telemetry, and compiler profiles. The paper validates that improvements in each component measurably increase MPG.
-
-## Results
-
-- Framework applied to Google's production TPU fleet
-- Specific optimization opportunities quantified across scheduling, runtime, and program dimensions
-- Concrete improvements demonstrated
 
 ## Limitations
 

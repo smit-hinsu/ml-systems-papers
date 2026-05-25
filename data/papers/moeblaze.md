@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2026-01
 arxiv_url: https://arxiv.org/abs/2601.05296
 authors:
 - Jiyuan Zhang
@@ -22,14 +23,13 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-observations:
-- cpu-memory-tradeoff
-- fusion-reduces-bandwidth
 key_results: Over 4× speedup and over 50% memory savings compared to existing MoE
   training frameworks; deployed in Meta recommendation production
-mlsys_official_category: Research Papers
-mlsys_url: https://mlsys.org/virtual/2026/oral/3826
 models_evaluated: []
+principles:
+- cpu-memory-tradeoff
+- fusion-reduces-bandwidth
+official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=L8qKfWWkry
 organizations:
 - Meta
@@ -37,15 +37,17 @@ presentation_type: oral
 problem: 'Mixture-of-Experts models face a memory wall during training: expert weights
   and activation buffers exceed GPU HBM capacity as model scale increases.'
 project_url: ''
+status: draft
 reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3826_TlhaaTE.pdf
 slug: moeblaze
+title: 'MoEBlaze: Breaking the Memory Wall for Efficient MoE Training on Modern GPUs'
 topics:
 - moe
 - kernel-fusion
 - cpu-offload
-title: 'MoEBlaze: Breaking the Memory Wall for Efficient MoE Training on Modern GPUs'
+venue_url: https://mlsys.org/virtual/2026/oral/3826
 ---
 
 ## Summary
@@ -69,12 +71,6 @@ The combination achieves over 4× speedup and 50%+ memory savings, with producti
 ## Method
 
 The token dispatch phase uses compact, cache-friendly data structures to batch tokens headed to the same expert. Fused kernels combine the expert linear layers with the routing scatter/gather. For memory savings, experts not in the current batch's top-k are speculatively offloaded to CPU pinned memory, with background prefetch based on predicted routing.
-
-## Results
-
-- Over 4× speedup vs. existing MoE frameworks
-- Over 50% memory savings
-- Deployed in Meta recommendation production
 
 ## Limitations
 
