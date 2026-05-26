@@ -70,28 +70,17 @@
       {% for t in paper.topics or [] %}
         <a href="#" class="tag tag-topic" data-filter-type="topic" data-filter-value="{{ t }}">{{ topics[t].label if t in topics else t }}</a>
       {% endfor %}
+      {% for i in paper.principles or [] %}
+        <a href="#" class="tag tag-principle" data-filter-type="principle" data-filter-value="{{ i }}">{{ principles[i].label if i in principles else i }}</a>
+      {% endfor %}
       {% if paper.award %}<span class="tag tag-award">★ {{ paper.award }}</span>{% endif %}
       {% if dev_mode %}
         {% if paper.status == 'under-review' %}<span class="tag tag-review">reviewing</span>{% endif %}
         {% if paper.status == 'draft' %}<span class="tag tag-draft">draft</span>{% endif %}
       {% endif %}
     </div>
-    {% if paper.problem %}
-      <div class="card-summary">{{ paper.problem }}</div>
-    {% endif %}
     {% if paper.key_results %}
       <div class="card-results"><strong>↗</strong> {{ paper.key_results }}</div>
-    {% endif %}
-    {% if paper.principles %}
-      <div class="observations-list">
-        {% for i in paper.principles %}
-          {% set obs = (paper.observations or {}).get(i) %}
-          <div class="observation-item">
-            <a href="#" class="obs-label" data-filter-type="principle" data-filter-value="{{ i }}">{{ principles[i].label if i in principles else i }}</a>
-            {% if obs %}<span class="observation-desc">{{ obs }}</span>{% endif %}
-          </div>
-        {% endfor %}
-      </div>
     {% endif %}
   </div>
 {% endfor %}
