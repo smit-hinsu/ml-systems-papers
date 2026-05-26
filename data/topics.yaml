@@ -45,6 +45,11 @@ kernel-fusion:
   label: "Kernel Fusion"
   category: efficiency
 
+attention-kernels:
+  label: "Attention Kernels"
+  category: efficiency
+  description: "FlashAttention-style fused attention kernel optimization"
+
 speculative-decoding:
   label: "Speculative Decoding"
   category: efficiency
@@ -62,10 +67,54 @@ moe:
   label: "Mixture-of-Experts (MoE)"
   category: architecture
 
+expert-parallelism:
+  label: "Expert Parallelism"
+  category: architecture
+
 # --- Serving ---
 streaming:
   label: "Token Streaming"
   category: serving
+
+prefill-decode-disaggregation:
+  label: "Prefill-Decode Disaggregation"
+  category: serving
+
+scheduling:
+  label: "Request / Job Scheduling"
+  category: serving
+
+# --- Memory ---
+memory-management:
+  label: "Memory Management"
+  category: memory
+  description: "Block-level / virtual memory management for KV cache (PagedAttention-style)"
+
+# --- Hardware ---
+hardware:
+  label: "Hardware Design"
+  category: hardware
+  description: "Chip / accelerator design: NoC, custom silicon, TPU architecture"
+
+interconnect:
+  label: "Interconnect"
+  category: hardware
+  description: "High-speed network hardware: RDMA, fabric, collective-capable links"
+
+# --- Observability ---
+profiling:
+  label: "Profiling / Tracing"
+  category: observability
+
+benchmarking:
+  label: "Benchmarking"
+  category: observability
+
+# --- Storage ---
+storage:
+  label: "Storage"
+  category: storage
+  description: "Checkpoint systems, data loading pipelines, storage-compute interfaces for ML"
 
 # --- Automation ---
 llm-code-generation:

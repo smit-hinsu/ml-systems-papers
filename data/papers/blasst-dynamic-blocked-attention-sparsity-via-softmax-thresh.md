@@ -45,19 +45,22 @@ models_evaluated:
 - Qwen3-30B
 - DeepSeek-R1
 observations:
-  exploit-sparsity: At 74% average sparsity across Llama-3.1 and Qwen3 long-context
+  skip: At 74% average sparsity across Llama-3.1 and Qwen3 long-context
     benchmarks, most attention blocks contribute negligibly to output after softmax
     normalization and can be skipped without accuracy loss.
-  reduce-data-movement: Skipping negligible attention blocks eliminates value-block
+  fuse: Skipping negligible attention blocks eliminates value-block
     HBM loads and the attention-value matmul; at 74% sparsity, bandwidth freed dominates
     the speedup more than compute reduction.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=6INSBXTQ4x
-organizations: []
+organizations:
+- Rice University
+- UC Davis
+- NVIDIA
 presentation_type: oral
 principles:
-- exploit-sparsity
-- reduce-data-movement
+- skip
+- fuse
 problem: Dense softmax is O(n²) and prohibitively slow beyond 32K tokens; sparse alternatives
   require training or profiling — blocking drop-in deployment.
 project_url: ''

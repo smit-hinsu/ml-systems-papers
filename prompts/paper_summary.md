@@ -95,13 +95,21 @@ than picking the closest wrong thing.
 - `fleet-efficiency` — cluster efficiency, utilization, job scheduling at scale
 
 **principles** — pick all that genuinely apply. These are general optimization principles that the paper uses or validates. Pick slugs from `data/principles.yaml`:
-- `avoid-redundant-work` — results for repeated inputs can be cached so they are computed only once (e.g., KV cache prefix reuse)
-- `overlap-independent-work` — two operations that don't depend on each other can run concurrently, hiding the latency of the slower one (e.g., comm-compute overlap)
-- `exploit-sparsity` — when inputs or intermediates are sparse or near-zero, the corresponding computation can be skipped (e.g., MoE top-k routing, sparse attention)
-- `reduce-data-movement` — moving data between compute and memory is often more expensive than the computation itself; fusing/tiling reduces round-trips
-- `exploit-memory-hierarchy` — keep frequently accessed data in the fastest memory tier; evict cold data to slower, larger tiers (e.g., KV cache tiering, register-level fusion)
-- `balance-utilization` — when parallel workers have unequal work, faster workers idle waiting for the slowest; eliminating imbalance is often the dominant lever at scale
-- `ai-solves-verifiable` — when an objective is deterministic and benchmarkable, AI agents can explore the solution space more effectively than hand-crafted heuristics
+- `cache` — store results so repeated inputs are computed only once (e.g., KV cache prefix reuse)
+- `pipeline` — run independent operations concurrently to hide latency (e.g., comm-compute overlap)
+- `skip` — omit computation for inputs known to be irrelevant — sparse, zero, pruned, or outside attended region
+- `fuse` — fuse adjacent operations to reduce memory round-trips; moving data is often costlier than arithmetic
+- `tier` — keep frequently accessed data in the fastest memory tier; evict cold data to slower, larger tiers
+- `recompute` — trade compute for memory by recomputing values on demand rather than storing them
+- `quantize` — reduce numerical precision (FP32→INT8/FP8/etc.) to shrink footprint and speed arithmetic
+- `approximate` — replace exact computation with a cheaper approximation where quality degradation is bounded
+- `speculate` — guess the result of a sequential dependency early, verify later; pays off when hit rate is high
+- `batch` — group requests to amortize fixed per-call costs (kernel launch, data movement, allocation)
+- `balance` — equalize work across parallel workers to eliminate straggler-induced idle time
+- `specialize` — separate structurally divergent sub-tasks (prefill vs. decode, dense vs. sparse) for independent optimization
+- `elastic` — reclaim idle resources with secondary tasks that yield on demand
+- `search-ai` — use AI agents to explore configuration or code spaces where objectives are deterministic and benchmarkable
+- `portable` — use hardware-agnostic abstractions to preserve optionality across vendors and interconnects
 
 **observations** — for each principle slug you picked, write one sentence (**max 200 chars**) as `observations.<slug>` capturing what the authors *specifically observed* in this paper's context. This is NOT a restatement of the principle — it is the paper-specific insight: what they noticed that made the principle applicable, or what the measurement revealed.
 

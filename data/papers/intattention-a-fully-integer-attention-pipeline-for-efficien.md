@@ -1,0 +1,73 @@
+---
+agentic_models: []
+arxiv_url: ''
+arxiv_date: ''
+authors:
+- Wanli Zhong
+- Haibo Feng
+- Zirui Zhou
+- Hanyang Peng
+- Shiqi Yu
+award: ''
+citations: null
+citations_updated: ''
+code_url: 'https://github.com/WanliZhong/IntAttention'
+domain:
+- edge-inference
+hardware:
+- Armv8 CPUs
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: 3.7× speedup and 61% energy reduction vs. FP16 baseline; 2.0× speedup
+  vs. conventional INT8 attention pipeline on Armv8 CPUs
+models_evaluated:
+- Transformer language models
+- Vision transformers
+observations:
+  fuse: IntAttention eliminates the dequantize-softmax-requantize
+    datatype conversion detour that consumed up to 65% of attention latency, keeping
+    the entire attention path in integer domain and removing costly memory round-trips
+    for type conversion.
+  tier: A 32-entry integer lookup table for exponential approximation
+    fits entirely in L1 cache, eliminating repeated computation of floating-point
+    transcendentals and replacing them with integer table lookups at negligible memory
+    cost.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=CPCRITwAaP
+organizations:
+- Southern University of Science and Technology
+presentation_type: oral
+principles:
+- fuse
+- tier
+problem: INT8 attention on edge hardware still requires float softmax, causing a
+  dequantize-softmax-requantize detour that dominates up to 65% of attention latency.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: ''
+slug: intattention-a-fully-integer-attention-pipeline-for-efficien
+status: draft
+title: 'IntAttention: A Fully Integer Attention Pipeline for Efficient Edge Inference'
+topics:
+- attention-kernels
+- quantization
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3848
+---
+
+## Key Contributions
+
+- **IndexSoftmax operator**: A hardware-friendly integer-domain softmax replacement that uses sparsity-aware clipping, a 32-entry lookup table for exponential approximation, and direct integer normalization to eliminate all floating-point operations in the attention path.
+- **Fully integer attention pipeline**: IntAttention is a training-free drop-in replacement for the entire attention path (QK matmul, softmax, AV matmul) in INT8, removing the dequantize→softmax→requantize detour that dominated prior INT8 attention latency.
+- **Sparsity-aware clipping**: Identifies and clips near-zero attention scores before LUT lookup, reducing average LUT accesses and further cutting the indexing overhead.
+
+## Trade-offs
+
+- The 32-entry LUT introduces approximation error in the softmax computation; the paper reports strong overall fidelity but does not characterize worst-case accuracy on adversarial inputs.
+- IntAttention is validated on Armv8 CPUs; performance benefits on other edge ISAs (RISC-V, DSPs) are not evaluated and may differ due to varying LUT and integer pipeline characteristics.
+
+## Nuances
+
+- The 3.7× speedup is over FP16, not over conventional INT8 with float softmax; the 2.0× gain over conventional INT8 better reflects the incremental benefit of eliminating the softmax detour.
+- The system is training-free, meaning it can be applied post-hoc to any INT8-quantized Transformer model without fine-tuning.

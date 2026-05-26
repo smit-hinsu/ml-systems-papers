@@ -26,13 +26,13 @@ models_evaluated:
 - DeepSeek-R1-671B
 - Kimi-K2-1000B
 observations:
-  exploit-sparsity: Per-layer MoE load skew follows a heavy-tail distribution; CRAFT
+  skip: Per-layer MoE load skew follows a heavy-tail distribution; CRAFT
     skips replication for the majority of low-skew layers, targeting only the sparse
     tail where imbalance exceeds replication cost.
-  balance-utilization: MoE load is skewed per-layer — one expert can get 10× average
+  balance: MoE load is skewed per-layer — one expert can get 10× average
     load while others are balanced; uniform replication wastes HBM on low-skew layers
     that gain nothing from it.
-  exploit-memory-hierarchy: Reducing total replicas via fine-grained allocation frees
+  tier: Reducing total replicas via fine-grained allocation frees
     GPU HBM for a larger KV cache, which improves decode throughput enough to offset
     the slightly lower expert load balance.
 official_category: ''
@@ -42,9 +42,9 @@ organizations:
 - Amazon
 presentation_type: oral
 principles:
-- exploit-sparsity
-- balance-utilization
-- exploit-memory-hierarchy
+- skip
+- balance
+- tier
 problem: Expert parallelism creates token-level load imbalance; uniform replication
   over-replicates balanced MoE layers, wasting HBM that could serve more KV cache.
 project_url: ''

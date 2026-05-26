@@ -57,10 +57,10 @@ key_results: CATWILD covers a large fraction of Google's TPU training fleet; spe
   chip-savings % not disclosed, but 5+ years in production at datacenter scale.
 models_evaluated: []
 observations:
-  ai-solves-verifiable: XLA compilation quality is directly measurable via execution
+  search-ai: XLA compilation quality is directly measurable via execution
     time on real hardware, making automated search tractable where human experts cannot
     cover the combinatorial tiling/fusion/layout space.
-  avoid-redundant-work: CATWILD caches tuned configurations so identical or structurally
+  cache: CATWILD caches tuned configurations so identical or structurally
     similar computation graphs reuse prior search results, avoiding redundant tuning
     runs across jobs sharing the same model architecture.
 official_category: ''
@@ -69,8 +69,8 @@ organizations:
 - Google
 presentation_type: oral
 principles:
-- ai-solves-verifiable
-- avoid-redundant-work
+- search-ai
+- cache
 problem: XLA heuristics leave performance on the table; manually tuning tiling, fusion,
   and layout for diverse TPU workloads is infeasible at fleet scale.
 project_url: ''

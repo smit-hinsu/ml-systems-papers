@@ -27,13 +27,13 @@ key_results: Up to 6.2× speedup and 4× activation memory reduction vs. MegaBlo
   baseline on H100; SwiGLU MoE gets 2×–6.2× speedup, SiLU gets 1.4×–3.7×
 models_evaluated: []
 observations:
-  exploit-sparsity: Top-k routing activates only 1–4 of the 4–16 experts per token;
+  skip: Top-k routing activates only 1–4 of the 4–16 experts per token;
     compact index structures exploit this sparsity to skip materializing unused routing
     buffers entirely, cutting ~94GB HBM use.
-  exploit-memory-hierarchy: SwiGLU fusion combines dual first-layer projections and
+  tier: SwiGLU fusion combines dual first-layer projections and
     activation epilogue into a single kernel, eliminating intermediate global memory
     writes and keeping activations in registers/shared memory
-  reduce-data-movement: Conventional MoE routing materializes ~94GB permutation buffers
+  fuse: Conventional MoE routing materializes ~94GB permutation buffers
     in HBM; four compact index structures replace these with index-only tensors, eliminating
     most permutation traffic.
 official_category: Research Papers
@@ -42,9 +42,9 @@ organizations:
 - Meta
 presentation_type: oral
 principles:
-- reduce-data-movement
-- exploit-memory-hierarchy
-- exploit-sparsity
+- fuse
+- tier
+- skip
 problem: MoE training stores all expert weights and routing buffers in HBM even though
   only top-k experts fire per token, creating a memory wall that limits batch size.
 project_url: ''
@@ -52,7 +52,7 @@ reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3826_TlhaaTE.pdf
 slug: moeblaze
-status: draft
+status: under-review
 title: 'MoEBlaze: Breaking the Memory Wall for Efficient MoE Training on Modern GPUs'
 topics:
 - moe

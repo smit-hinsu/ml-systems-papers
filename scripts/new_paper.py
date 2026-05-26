@@ -52,7 +52,6 @@ research_or_industry: ""  # research | industry | mixed
 problem: ""
 key_results: ""
 
-# Reading/indexing
 # Publishing
 status: draft  # draft | published — only published papers appear on the site by default
 
@@ -74,10 +73,10 @@ indexed_date: "{indexed_date}"
 
 - TODO
 
-## Results
+## Findings
 
-<!-- Key numbers: metric + value + hardware + model + baseline. If hardware or baselines
-     are not specified in the paper, say so. -->
+<!-- Only for measurement / characterization papers.
+     If the paper is algorithmic or systems-design focused, omit this section. -->
 
 - TODO
 

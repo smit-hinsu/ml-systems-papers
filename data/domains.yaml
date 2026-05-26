@@ -36,3 +36,7 @@ observability:
 fleet-efficiency:
   label: "Fleet Efficiency"
   description: "Cluster-level efficiency, resource utilization, and job scheduling at scale"
+
+edge-inference:
+  label: "Edge Inference"
+  description: "On-device and edge inference: mobile, embedded, and resource-constrained deployment"

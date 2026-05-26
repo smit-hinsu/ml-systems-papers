@@ -29,13 +29,13 @@ key_results: FlashInfer Trace schema + leaderboard + apply() injection into SGLa
   multiple LLM agents evaluated across 3 kernel classes (attention, GEMM, activation).
 models_evaluated: []
 observations:
-  ai-solves-verifiable: Kernel performance is objectively measurable via latency on
+  search-ai: Kernel performance is objectively measurable via latency on
     real hardware, making it a tractable target for LLM agents competing on a public
     leaderboard
-  avoid-redundant-work: Dynamic kernel substitution via apply() lets a winning kernel
+  cache: Dynamic kernel substitution via apply() lets a winning kernel
     immediately replace the default in SGLang/vLLM without rewriting application code
     or re-running benchmarks
-  reduce-data-movement: Winning LLM-generated kernels are consistently fused attention
+  fuse: Winning LLM-generated kernels are consistently fused attention
     or GEMM variants; the benchmark reveals that reducing HBM round-trips via fusion
     is the dominant lever agents converge on.
 official_category: Research Papers
@@ -45,9 +45,9 @@ organizations:
 - Carnegie Mellon University
 presentation_type: oral
 principles:
-- ai-solves-verifiable
-- avoid-redundant-work
-- reduce-data-movement
+- search-ai
+- cache
+- fuse
 problem: AI-generated kernels lack a benchmark against production workloads and a
   mechanism to inject them into live systems, breaking the generation-deployment loop.
 project_url: ''

@@ -1,0 +1,67 @@
+---
+agentic_models: []
+arxiv_url: ''
+arxiv_date: ''
+authors:
+- Shuyi Lin
+- Anshuman Suri
+- Alina Oprea
+- Cheng Tan
+award: ''
+citations: null
+citations_updated: ''
+code_url: https://github.com/shuyilinn/BOA
+domain:
+- llm-serving
+hardware: []
+indexed_by: smithinsu
+indexed_date: '2026-05-25'
+key_results: BOA's two-phase search finds jailbreak responses with high-likelihood
+  more systematically than prior methods, enabling model certification under adversarial
+  conditions.
+models_evaluated: []
+observations:
+  skip: Depth-first priority search guided by fine-grained safety scores
+    focuses compute on promising low-probability paths, skipping unpromising branches
+    and reducing exponential search space.
+  search-ai: BOA frames jailbreak detection as a verifiable oracle problem
+    with a probability threshold, allowing AI-guided search to systematically solve
+    a measurable security objective.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=vr3Rrg6Xnm
+organizations:
+- Northeastern University
+presentation_type: oral
+principles:
+- skip
+- search-ai
+problem: No systematic method exists to determine whether an LLM can generate a jailbreak
+  response above a probability threshold, making security assessment unprincipled.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: ''
+slug: toward-principled-llm-safety-testing-solving-the-jailbreak-o
+status: draft
+title: 'Toward Principled LLM Safety Testing: Solving the Jailbreak Oracle Problem'
+topics: []
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3739
+---
+
+## Key Contributions
+
+- **Jailbreak oracle problem formalization**: defines the problem as: given a model, prompt, and decoding strategy, determine whether a jailbreak response can be generated with likelihood exceeding a specified threshold — enabling principled, reproducible security assessments.
+- **BOA (Breadth-first + depth-first search Oracle Approach)**: two-phase search system — (1) breadth-first sampling identifies easily accessible jailbreaks quickly, (2) depth-first priority search guided by fine-grained safety scores systematically explores low-probability but high-risk paths in the exponentially large response space.
+- **Model certification framework**: enables rigorous model certification by determining a lower bound on the probability that a model can be jailbroken under adversarial decoding, supporting standardized red-team comparisons and defense evaluations.
+- Code available at https://github.com/shuyilinn/BOA/tree/mlsys2026ae.
+
+## Trade-offs
+
+- The depth-first priority search is guided by a fine-grained safety scorer; if the scorer is miscalibrated, high-risk paths may be deprioritized, producing false certifications.
+- The exponential response space means BOA provides probabilistic rather than absolute guarantees; certification at very low probability thresholds requires extensive search budget.
+
+## Nuances
+
+- The oracle formalization assumes a fixed decoding strategy; jailbreak probability under adaptive or model-specific decoding (e.g., nucleus sampling with different temperatures) changes the oracle answer and may not be covered by a single evaluation.
+- "Model certification under extreme adversarial conditions" is a strong claim; the practical meaning of "certified" here is bounded by the computational search budget, not a formal proof.

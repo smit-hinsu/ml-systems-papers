@@ -4,59 +4,124 @@
 # each paper's `observations:` dict.
 #
 # slug:
-#   label: Short, memorable principle statement
+#   label: Short, memorable principle statement (action-verb format)
 #   category: efficiency | memory | distributed | tooling
 #   description: 1-2 sentences. Generic — does not mention specific ML systems or papers.
 
-avoid-redundant-work:
-  label: "Avoid redundant computation with caching"
+cache:
+  label: "Cache to avoid repeated computation"
   category: efficiency
   description: >
-    Results for repeated inputs can be cached so they are computed only once.
+    Results for repeated inputs can be stored so they are computed only once.
     The savings are proportional to reuse frequency and the cost of recomputation.
 
-overlap-independent-work:
-  label: "Overlap independent work to hide latency"
+pipeline:
+  label: "Pipeline independent work to hide latency"
   category: efficiency
   description: >
     Two operations that do not depend on each other can run concurrently,
     hiding the latency of the slower one behind the faster one.
 
-exploit-sparsity:
-  label: "Skip provably unnecessary work by exploiting sparsity"
+skip:
+  label: "Skip provably unnecessary work"
   category: efficiency
   description: >
-    When inputs or intermediate values are sparse or near-zero, the corresponding
-    computation can be skipped without affecting correctness or meaningful accuracy.
+    When inputs or intermediate values are known to be irrelevant — sparse, zero,
+    pruned, or outside an attended region — the corresponding computation can be
+    skipped without affecting correctness or meaningful accuracy.
 
-reduce-data-movement:
-  label: "Data movement often dominates computation cost; minimize it"
+fuse:
+  label: "Fuse operations to minimize memory bandwidth"
   category: memory
   description: >
     Moving data between compute and memory — or between memory tiers — is often
     more expensive than the computation itself. Fusing operations and tiling reduces
     the number of memory round-trips.
 
-exploit-memory-hierarchy:
-  label: "Keep hot data in the fastest available memory tier"
+tier:
+  label: "Keep hot data near compute"
   category: memory
   description: >
     Memory systems have a hierarchy of tiers with orders-of-magnitude differences
     in bandwidth and latency. Performance depends on keeping frequently accessed
     data in the fastest tier and evicting cold data to slower, larger tiers.
 
-balance-utilization:
-  label: "Work imbalance creates idle compute"
+recompute:
+  label: "Recompute to save storage"
+  category: memory
+  description: >
+    Some intermediate values are cheaper to recompute on demand than to store.
+    Trading compute for memory frees capacity for the working set that cannot
+    be reconstructed cheaply.
+
+quantize:
+  label: "Quantize to trade precision for efficiency"
+  category: efficiency
+  description: >
+    Reducing numerical precision from FP32 to lower-bit formats shrinks memory
+    footprint and accelerates arithmetic, at the cost of representational fidelity.
+    The acceptable precision loss is workload- and layer-dependent.
+
+approximate:
+  label: "Approximate to trade quality for efficiency"
+  category: efficiency
+  description: >
+    Exact computation can be replaced with a cheaper approximation when the quality
+    degradation is bounded or acceptable for the task. Unlike quantization, the
+    approximation may change model behavior rather than just numerical precision.
+
+speculate:
+  label: "Speculate to hide sequential latency"
+  category: efficiency
+  description: >
+    When the result of a sequential dependency cannot be known in advance, a guess
+    can be issued early and verified later. Correct speculations eliminate waiting;
+    incorrect ones require rollback, so speculation pays off when the hit rate is high.
+
+batch:
+  label: "Batch to amortize fixed overheads"
+  category: efficiency
+  description: >
+    Fixed per-call costs — kernel launch, memory allocation, data movement —
+    can be spread across many requests by grouping them. Larger batches improve
+    hardware utilization up to the point of memory or latency constraints.
+
+balance:
+  label: "Balance load to maximize utilization"
   category: distributed
   description: >
     When parallel workers have unequal amounts of work, the faster workers idle
     waiting for the slowest. Eliminating this imbalance is often the dominant
     performance lever at large scale.
 
-ai-solves-verifiable:
-  label: "AI can search and optimize problems with measurable objectives"
+specialize:
+  label: "Specialize divergent workloads for independent optimizations"
+  category: distributed
+  description: >
+    When a workload contains structurally different sub-tasks — prefill vs. decode,
+    dense vs. sparse, prompt vs. completion — separating them lets each be optimized
+    independently without compromising the other.
+
+elastic:
+  label: "Scale elastically to fill spare capacity"
+  category: distributed
+  description: >
+    Resources left idle by the primary workload can be reclaimed by secondary tasks
+    — speculative decoding, background prefetch, auxiliary training — as long as the
+    primary workload can reclaim them on demand.
+
+search-ai:
+  label: "Search with AI for verifiable problems"
   category: tooling
   description: >
     When an objective is deterministic and benchmarkable, AI agents can explore
     the solution space more effectively than hand-crafted heuristics, using
     code execution to evaluate and rank candidates.
+
+portable:
+  label: "Abstract hardware to preserve deployment optionality"
+  category: tooling
+  description: >
+    Coupling a system tightly to one hardware vendor or interconnect sacrifices
+    the ability to migrate to cheaper or faster alternatives. Hardware-agnostic
+    abstractions preserve flexibility at the cost of some per-platform optimization.

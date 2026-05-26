@@ -124,19 +124,38 @@ General optimization principles the paper applies or validates. These are reusab
 systems techniques — not paper-specific. Pick strictly: only include a principle if the
 paper explicitly builds on it or measures it.
 
-See `data/principles.yaml` for the full list with descriptions.
+| Slug | Label | Category |
+|---|---|---|
+| `cache` | Cache to avoid repeated computation | efficiency |
+| `pipeline` | Pipeline independent work to hide latency | efficiency |
+| `skip` | Skip provably unnecessary work | efficiency |
+| `quantize` | Quantize to trade precision for efficiency | efficiency |
+| `approximate` | Approximate to trade quality for efficiency | efficiency |
+| `speculate` | Speculate to hide sequential latency | efficiency |
+| `batch` | Batch to amortize fixed overheads | efficiency |
+| `fuse` | Fuse operations to minimize memory bandwidth | memory |
+| `tier` | Keep hot data near compute | memory |
+| `recompute` | Recompute to save storage | memory |
+| `balance` | Balance load to maximize utilization | distributed |
+| `specialize` | Specialize divergent workloads for independent optimizations | distributed |
+| `elastic` | Scale elastically to fill spare capacity | distributed |
+| `search-ai` | Search with AI for verifiable problems | tooling |
+| `portable` | Abstract hardware to preserve deployment optionality | tooling |
+
+**Slug stability**: slugs are short mechanism-words (`cache`, `pipeline`) stable across label
+rewording. To rename a label, edit only `data/principles.yaml` — no paper files need to change.
 
 ### `observations`
 **Type:** mapping of principle slug → one-sentence string — **Fill for each principle listed** — **max 200 chars per value**
 
 Paper-specific observations: what the authors specifically noticed or measured in this
 paper's context that made the principle applicable. This is NOT a restatement of the
-principle's generic description — it captures the concrete, paper-scoped insight.
+principle's generic description — it captures the concrete, paper-scoped observation.
 
 Shown on both the index card and paper page header. Keep it to one crisp sentence.
 
-- ❌ `avoid-redundant-work: "shared prefixes can be cached to avoid redundant prefill"` (just restates the principle)
-- ✅ `avoid-redundant-work: "agentic workloads share system prompt prefixes, but the radix cache fills only after a call completes — concurrent calls within the same turn don't benefit by default"` (168 chars)
+- ❌ `cache: "shared prefixes can be cached to avoid redundant prefill"` (just restates the principle)
+- ✅ `cache: "agentic workloads share system prompt prefixes, but the radix cache fills only after a call completes — concurrent calls within the same turn don't benefit by default"` (168 chars)
 
 ### `topics`
 **Type:** list of slugs from `data/topics.yaml` — **Required, pick all that apply**
@@ -264,7 +283,7 @@ Each section has exactly one job — do not repeat content across sections.
 protocol, or measurement — with a brief mechanism (one line). Not "we show X is possible."
 
 The problem context and key numbers should be **implicit** here — a reader should understand
-what was broken and what the result was without separate Problem or Results sections. Include
+what was broken and what the result was without separate Problem or Key Contributions sections. Include
 hardware + model + metric + baseline inline on the bullet that is the primary result.
 
 ### `## Trade-offs` — Optional, renders on site

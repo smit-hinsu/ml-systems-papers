@@ -1,0 +1,60 @@
+---
+slug: ghostserve-a-lightweight-checkpointing-system-in-the-shadow-
+title: "GhostServe: A Lightweight Checkpointing System in the Shadow for Fault-Tolerant LLM Serving"
+authors:
+- Shakya Jayakody
+- Youpeng Zhao
+- Chinmay Dhanraj Nehate
+- Jun Wang
+organizations:
+- University of Central Florida
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3736
+openreview_url: https://openreview.net/forum?id=xKjYiUgeOK
+arxiv_url: ''
+presentation_type: oral
+official_category: ''
+award: ''
+status: draft
+reading_status: want-to-read
+research_or_industry: research
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+citations: null
+citations_updated: ''
+code_url: ''
+project_url: ''
+slides_url: ''
+domain:
+- llm-serving
+hardware:
+- GPU cluster
+models_evaluated:
+- Long-context LLMs (agent-based)
+agentic_models: []
+topics:
+- kv-cache
+principles:
+- cache
+- tier
+observations:
+  cache: "Erasure-coded KV cache parity shards in host memory enable fast recovery without full KV recomputation after device failure."
+  tier: "Parity shards are stored in host memory instead of GPU memory, protecting the KV cache at minimal GPU memory cost."
+problem: "Long-running agentic LLM inference is vulnerable to device failures that force costly full KV cache recomputation, wasting time and compute."
+key_results: "GhostServe reduces checkpointing latency by 2.7x, recovery latency by 2.1x per batch, and median response latency by 1.2x vs existing fault-tolerant methods."
+---
+
+## Key Contributions
+
+- **Shadow checkpointing with erasure coding**: Applies erasure coding to the streaming KV cache to generate parity shards stored in host memory, enabling fast KV reconstruction after GPU failure without replication overhead.
+- **Seamless inference recovery**: On device failure, GhostServe reconstructs the lost KV cache from erasure-coded shards and resumes inference without full recomputation.
+
+## Trade-offs
+
+- Erasure coding adds CPU overhead for parity shard computation; this must be hidden in the critical path.
+- Host memory must be large enough to hold parity shards for all active long-context sequences, which can be substantial for million-token contexts.
+
+## Nuances
+
+- The 1.2x median response latency improvement is measured in the presence of failures; under failure-free operation the overhead is minimal.
+- GhostServe protects only the KV cache, not model weights; model weight failures require separate handling.

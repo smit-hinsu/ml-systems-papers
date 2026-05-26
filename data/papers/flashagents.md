@@ -25,11 +25,11 @@ key_results: Up to 40% end-to-end latency reduction on real multi-agent workflow
   3.5× speedup in controlled two-agent benchmarks on SGLang
 models_evaluated: []
 principles:
-- overlap-independent-work
-- avoid-redundant-work
+- pipeline
+- cache
 observations:
-  overlap-independent-work: "Incremental prefill pipelined with upstream decode cuts end-to-end latency up to 40%; the breakeven is when upstream decode time exceeds the per-token prefill overhead on the downstream."
-  avoid-redundant-work: "Agentic workloads share system prompt prefixes, but the radix cache fills only after a call completes — concurrent calls within the same turn don't benefit by default"
+  pipeline: "Incremental prefill pipelined with upstream decode cuts end-to-end latency up to 40%; the breakeven is when upstream decode time exceeds the per-token prefill overhead on the downstream."
+  cache: "Agentic workloads share system prompt prefixes, but the radix cache fills only after a call completes — concurrent calls within the same turn don't benefit by default"
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=m14PPUfgEc
 organizations:

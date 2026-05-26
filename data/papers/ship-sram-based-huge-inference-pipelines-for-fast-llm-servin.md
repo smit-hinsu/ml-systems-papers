@@ -42,13 +42,13 @@ key_results: Production SRAM-based LLM inference on thousands of GroqChips servi
   100B+ tokens/day; no HBM bandwidth bottleneck vs. GPU-based decode pipelines.
 models_evaluated: []
 observations:
-  exploit-memory-hierarchy: SRAM bandwidth is orders of magnitude higher than HBM;
+  tier: SRAM bandwidth is orders of magnitude higher than HBM;
     placing model weights in on-chip SRAM instead of HBM eliminates the memory bandwidth
     bottleneck that dominates GPU decode latency
-  overlap-independent-work: Large pipeline of chips partitions the model across SRAM
+  pipeline: Large pipeline of chips partitions the model across SRAM
     tiers, allowing prefill and decode stages to overlap across different pipeline
     stages for sustained high throughput
-  reduce-data-movement: Synchronous low-diameter interconnect enables pipelining across
+  fuse: Synchronous low-diameter interconnect enables pipelining across
     thousands of chips without the serialization delays of asynchronous HBM-based
     communication
 official_category: ''
@@ -57,9 +57,9 @@ organizations:
 - Groq
 presentation_type: oral
 principles:
-- exploit-memory-hierarchy
-- reduce-data-movement
-- overlap-independent-work
+- tier
+- fuse
+- pipeline
 problem: GPU decode is HBM-bandwidth-bound; loading model weights each token leaves
   FLOPS severely underutilized and caps tokens-per-second per chip.
 project_url: ''

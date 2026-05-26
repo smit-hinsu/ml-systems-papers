@@ -32,19 +32,20 @@ key_results: 1.7× FLOPs utilization gain; training step variance 20%→1% on te
   thousands of GPUs in multi-month foundation model pretraining.
 models_evaluated: []
 observations:
-  avoid-redundant-work: Offline node sweeping qualifies nodes before they join production
+  cache: Offline node sweeping qualifies nodes before they join production
     jobs, preventing straggler-induced checkpoint rollbacks that waste compute already
     spent on the aborted run segment.
-  balance-utilization: Step-time variance of 20% means fast nodes wait for the slowest
+  balance: Step-time variance of 20% means fast nodes wait for the slowest
     each iteration; remediating fail-slow nodes before the sync barrier eliminates
     these stall bubbles.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=JFEwQ821MS
-organizations: []
+organizations:
+- Amazon
 presentation_type: oral
 principles:
-- balance-utilization
-- avoid-redundant-work
+- balance
+- cache
 problem: Fail-slow GPU behaviors silently inflate step-time variance; burn-in tests
   miss performance regressions that accumulate over multi-month training runs.
 project_url: ''

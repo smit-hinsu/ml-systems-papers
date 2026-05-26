@@ -1,0 +1,86 @@
+---
+agentic_models: []
+arxiv_url: ''
+arxiv_date: ''
+authors:
+- Alec Hammond
+- Aram Markosyan
+- Aman Dontula
+- Simon Mahns
+- Zacharias Fisches
+- Dmitrii Pedchenko
+- Keyur Muzumdar
+- Natacha Supper
+- Site Cao
+- Haishan Zhu
+- Mark Saroufim
+- Joe Isaacson
+- Laura Wang
+- Warren Hunt
+- Kaustubh Gondkar
+- Roman Levenstein
+- Gabriel Synnaeve
+- Richard Li
+- Jacob Kahn
+- Ajit Mathews
+award: ''
+citations: null
+citations_updated: ''
+code_url: ''
+domain:
+- ml-kernels
+organizations:
+- Meta
+hardware:
+- MTIA
+indexed_by: smithinsu
+indexed_date: '2026-05-25'
+key_results: Generated 481 unique ATen operator kernels passing all PyTorch OpInfo
+  tests (20,000+ tests) for MTIA silicon and simulation environments
+models_evaluated: []
+observations:
+  search-ai: LLMs generate Triton PyTorch ATen kernels driven by a JIT
+    compilation loop and OpInfo test harness; correctness on 20,000+ tests provides
+    the verifiable signal that guides generation, enabling overnight backend creation.
+  cache: Shared JIT compilation cache and linter catch trivial errors
+    before expensive hardware simulation, reducing the cost of the LLM generation-test
+    loop across 481 operators.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=O3Bx0nNGnW
+presentation_type: oral
+principles:
+- search-ai
+- cache
+problem: New AI accelerator platforms lack PyTorch ATen backends; expert kernel authors
+  cannot keep pace with the breadth of operators needed, blocking deployment of standard
+  ML workloads.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: industry
+slides_url: ''
+slug: agentic-operator-generation-for-ml-asics
+status: draft
+title: Agentic Operator Generation for ML ASICs
+topics:
+- llm-code-generation
+- autotuning
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3817
+---
+
+## Key Contributions
+
+- **TritorX system**: agentic pipeline integrating LLMs with a custom linter, JIT compilation, and PyTorch OpInfo-based test harness to generate functionally correct Triton ATen kernels at scale for new accelerator targets
+- **Coverage-first philosophy**: unlike prior kernel-generation work that optimizes performance on a small set of high-usage kernels, TritorX targets correctness across the full ATen operator set including diverse data types, shapes, and argument patterns
+- **481 operator kernels generated**: successfully generated kernels and wrappers for 481 unique ATen operators that pass all corresponding PyTorch OpInfo tests (20,000+ tests in total) for Meta's MTIA hardware
+- **Hardware-simulation compatibility**: pipeline runs on both real MTIA silicon and hardware simulation environments for next-generation devices, enabling pre-silicon backend development
+
+## Trade-offs
+
+- Coverage-first design means generated kernels are not performance-optimized; achieving high throughput on critical operators requires a separate optimization pass after correctness is established.
+- The approach is limited to operators expressible in Triton; operators requiring architecture-specific assembly intrinsics or memory access patterns outside Triton's abstraction need manual implementation.
+
+## Nuances
+
+- "Overnight generation" of a complete backend refers to correctness of functional tests, not production-readiness; performance tuning and edge-case hardening are separate steps.
+- The evaluation covers 481 operators but the total ATen operator set is larger; coverage of less-common operators with unusual data type combinations is not fully characterized.

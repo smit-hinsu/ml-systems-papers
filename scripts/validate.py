@@ -255,9 +255,9 @@ def main():
             )
 
         paper_principles = set(p.get("principles") or [])
-        if "kernel-fusion" in paper_topics and "reduce-data-movement" not in paper_principles:
+        if "kernel-fusion" in paper_topics and "fuse" not in paper_principles:
             warnings.append(
-                f"{name}: has topic 'kernel-fusion' but principle 'reduce-data-movement' "
+                f"{name}: has topic 'kernel-fusion' but principle 'fuse' "
                 f"is not listed — review whether data movement reduction applies"
             )
 

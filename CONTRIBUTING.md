@@ -1,6 +1,6 @@
 # Contributing to MLSys 26 Paper Index
 
-This project is a community-maintained, semi-structured index of papers from [MLSys 2026](https://mlsys.org/virtual/2026). The goal is to make papers discoverable by observation, domain, and topic — not just by title.
+This project is a community-maintained, semi-structured index of papers from [MLSys 2026](https://mlsys.org/virtual/2026). The goal is to make papers discoverable by principle, domain, and topic — not just by title.
 
 ## Ways to contribute
 
@@ -8,7 +8,7 @@ This project is a community-maintained, semi-structured index of papers from [ML
 - **Enrich an existing paper** — fill in missing fields (arxiv URL, organizations, citations, hardware)
 - **Add your personal notes** — contribute to the `## Personal Notes` section
 - **Improve summaries** — better problem statement, key results, or method description
-- **Add new observations/domains/topics** — extend the registries if existing tags don't fit
+- **Add new principles/domains/topics** — extend the registries if existing tags don't fit
 
 ## Workflow
 
@@ -39,8 +39,8 @@ A paper file is mergeable when it has:
 - [ ] All required fields filled (see `schema.md`)
 - [ ] At least one `domain` tag
 - [ ] A non-empty `problem` field (one sentence)
-- [ ] A non-empty `## Summary` section (at least one paragraph)
-- [ ] `validate.py` passes with no errors
+  - [ ] A non-empty `## Key Contributions` section (at least one paragraph or bullet list)
+  - [ ] `validate.py` passes with no errors
 
 Optional but appreciated:
 - `key_results` with specific numbers
@@ -49,7 +49,7 @@ Optional but appreciated:
 
 ## Registries
 
-Before adding new slugs, check `data/observations.yaml`, `data/domains.yaml`, and `data/topics.yaml`. Add a new entry to the registry *before* referencing it in a paper file. Registry entries require `label` and `description`.
+Before adding new slugs, check `data/principles.yaml`, `data/domains.yaml`, and `data/topics.yaml`. Add a new entry to the registry *before* referencing it in a paper file. Registry entries require `label` and `description`.
 
 ## Non-indexed papers
 

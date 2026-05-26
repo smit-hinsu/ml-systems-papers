@@ -29,10 +29,10 @@ models_evaluated:
 - Qwen2.5-14B
 - Qwen2.5-32B
 observations:
-  avoid-redundant-work: CUDA Graph plans for power-of-two length-bucket short prefills
+  cache: CUDA Graph plans for power-of-two length-bucket short prefills
     reuse compiled graphs across requests, eliminating kernel launch overhead and
     JIT compilation per request.
-  balance-utilization: Mixing compute-bound long and memory-bound short prefills in
+  balance: Mixing compute-bound long and memory-bound short prefills in
     one batch leaves GPU idle after short requests finish; dedicated queues keep each
     batch's computation homogeneous.
 official_category: ''
@@ -42,8 +42,8 @@ organizations:
 - University of Illinois Urbana-Champaign
 presentation_type: oral
 principles:
-- balance-utilization
-- avoid-redundant-work
+- balance
+- cache
 problem: Batching short and long prompts together causes long requests to delay short
   ones, inflating TTFT for the majority of real-world workloads.
 project_url: ''

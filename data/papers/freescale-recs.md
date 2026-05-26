@@ -38,13 +38,13 @@ key_results: 90.3% reduction in computational bubbles on 256 H100 GPUs via load 
   + SM-free communication overlap for sequence recommendation model training at Meta
 models_evaluated: []
 observations:
-  balance-utilization: Variable-length user history sequences cause per-GPU compute
+  balance: Variable-length user history sequences cause per-GPU compute
     skew; reordering batches to equalize sequence-length sums before dispatch eliminates
     the dominant straggler source
-  overlap-independent-work: Embedding AllGather is independent of dense MLP forward
+  pipeline: Embedding AllGather is independent of dense MLP forward
     pass; pipelining them hides collective latency behind compute without correctness
     constraints
-  reduce-data-movement: SM-Free communication uses DMA engines for embedding collectives
+  fuse: SM-Free communication uses DMA engines for embedding collectives
     instead of streaming multiprocessors, eliminating resource contention and reducing
     effective communication cost
 official_category: Research Papers
@@ -53,9 +53,9 @@ organizations:
 - Meta
 presentation_type: oral
 principles:
-- balance-utilization
-- overlap-independent-work
-- reduce-data-movement
+- balance
+- pipeline
+- fuse
 problem: Recommendation training wastes compute via variable-sequence stragglers,
   serialized embedding communication, and SM contention during collective overlap.
 project_url: ''
@@ -63,7 +63,7 @@ reading_status: read
 research_or_industry: industry
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3821_gs6415h.pdf
 slug: freescale-recs
-status: draft
+status: under-review
 title: 'FreeScale: Distributed Training for Sequence Recommendation Models with Minimal
   Scaling Cost'
 topics:

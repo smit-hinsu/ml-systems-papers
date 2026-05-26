@@ -49,7 +49,7 @@ These are the core observations that motivated the design — what the authors n
 ### `## Key Contributions`
 3–5 bullets. Each = a concrete artifact (named algorithm, data structure, protocol) with
 a one-line mechanism. The problem context and key numbers are implicit here — don't add
-separate Problem or Results sections. Include hardware + model + metric + baseline inline
+separate Problem or Key Contributions sections. Include hardware + model + metric + baseline inline
 on the bullet that is the primary result.
 If you find yourself copying a sentence from another section, cut it — it belongs in one
 place only.

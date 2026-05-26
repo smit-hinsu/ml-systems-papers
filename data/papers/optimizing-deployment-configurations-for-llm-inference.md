@@ -23,10 +23,10 @@ key_results: Exhaustive search over millions of configs for Llama on H100/H200/M
 models_evaluated:
 - Llama (family)
 observations:
-  avoid-redundant-work: Configuration simulation before deployment avoids expensive
+  cache: Configuration simulation before deployment avoids expensive
     empirical search on production hardware by modeling throughput and latency SLO
     compliance for millions of candidate configurations offline.
-  balance-utilization: Simulation over millions of (TP/PP/EP/CP) configs identifies
+  balance: Simulation over millions of (TP/PP/EP/CP) configs identifies
     Pareto splits; manual configs commonly leave one dimension memory-saturated while
     another dimension idles.
 official_category: ''
@@ -35,8 +35,8 @@ organizations:
 - Meta
 presentation_type: oral
 principles:
-- balance-utilization
-- avoid-redundant-work
+- balance
+- cache
 problem: No framework exists to navigate hardware, parallelism, and runtime choices
   to find throughput-maximizing configs under strict latency SLOs at scale.
 project_url: ''

@@ -1,0 +1,73 @@
+---
+agentic_models: []
+arxiv_url: ''
+arxiv_date: ''
+authors:
+- Yongjun He
+- Shuai Zhang
+- Jiading Gai
+- Xiyuan Zhang
+- Boran Han
+- Bernie Wang
+- Huzefa Rangwala
+- George Karypis
+award: ''
+citations: null
+citations_updated: ''
+code_url: ''
+domain:
+- rl-training
+hardware:
+- Heterogeneous GPU clusters
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: Up to 9.17× and 3.17× average throughput over existing RL training systems
+  across diverse heterogeneous GPU workloads in a 20,000 GPU-hour evaluation
+models_evaluated: []
+observations:
+  balance: HetRL's constrained joint optimization assigns RL workflow
+    stages (actor, critic, rollout) to each GPU tier by matching compute capacity
+    to stage workload, preventing fast GPUs from idling while slow tiers are saturated.
+  pipeline: The hybrid scheduling algorithm identifies independent
+    RL pipeline stages that can run concurrently across different GPU types, shrinking
+    end-to-end iteration time beyond what serial stage execution allows.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=LRLyuaz1W7
+organizations:
+- ETH Zurich
+- Amazon
+presentation_type: oral
+principles:
+- balance
+- pipeline
+problem: RL post-training for LLMs on heterogeneous GPU clusters wastes compute because
+  existing schedulers assume homogeneous hardware and serialize multi-model RL stages.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: ''
+slug: hetrl-efficient-reinforcement-learning-for-llms-in-heterogen
+status: draft
+title: 'HetRL: Efficient Reinforcement Learning for LLMs in Heterogeneous Environments'
+topics:
+- pipeline-parallelism
+- tensor-parallelism
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3825
+---
+
+## Key Contributions
+
+- **Constrained joint optimization**: HetRL models the RL training workflow as a constrained optimization problem over heterogeneous GPU-network topologies, enabling principled task allocation rather than ad-hoc placement of actor, critic, and rollout stages.
+- **Hybrid scheduling algorithm**: A heuristic solver rapidly produces near-optimal schedules, trading a small optimality gap for fast schedule generation suitable for dynamic heterogeneous workloads.
+- **ILP-based scheduling**: An integer linear programming formulation yields optimal schedules when budget permits, enabling flexible throughput-vs-optimality trade-offs suited to offline or periodic re-scheduling.
+
+## Trade-offs
+
+- ILP scheduling is computationally expensive at large GPU counts; the hybrid heuristic must substitute for large clusters where exact optimization is intractable.
+- The system assumes a fixed RL workflow graph structure; novel RL algorithms with non-standard stage dependencies require re-modeling the optimization problem.
+
+## Nuances
+
+- The 9.17× peak speedup targets a specific workload configuration; the 3.17× average across the evaluation suite better reflects general heterogeneous cluster gains.
+- Results consume 20,000 GPU-hours, confirming large-scale validation but also indicating high development experimentation costs.

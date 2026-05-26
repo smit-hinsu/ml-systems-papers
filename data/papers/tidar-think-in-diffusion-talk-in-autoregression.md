@@ -23,7 +23,7 @@ key_results: 4.71×–5.91× tokens/s vs. autoregressive at 1.5B and 8B; surpass
   speculative decoding and diffusion models (Dream, Llada) in throughput and quality
 models_evaluated: []
 observations:
-  overlap-independent-work: Diffusion drafting generates multiple tokens in parallel
+  pipeline: Diffusion drafting generates multiple tokens in parallel
     within a single forward pass using structured attention masks, filling GPU compute
     that is idle during sequential AR token generation
 official_category: ''
@@ -35,7 +35,7 @@ organizations:
 - NVIDIA
 presentation_type: oral
 principles:
-- overlap-independent-work
+- pipeline
 problem: Speculative decoding serializes generation and needs a draft model; diffusion
   models parallelize token generation but degrade quality vs. AR baselines.
 project_url: ''

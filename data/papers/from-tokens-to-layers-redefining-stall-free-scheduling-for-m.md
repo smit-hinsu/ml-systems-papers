@@ -23,23 +23,24 @@ models_evaluated:
 - Qwen3-30B-A3B
 - GPT-OSS-20B
 observations:
-  overlap-independent-work: Layered prefill assigns one layer group per iteration
+  pipeline: Layered prefill assigns one layer group per iteration
     for both decode and prefill, interleaving across model depth rather than serializing;
     prefill latency hides behind decode.
-  reduce-data-movement: Token-level chunked prefill forces expert weight reloads per
+  fuse: Token-level chunked prefill forces expert weight reloads per
     chunk, inflating MoE off-chip traffic by up to 39%; layer-group scheduling loads
     each weight exactly once per request.
-  exploit-memory-hierarchy: Layer-group scheduling keeps each expert's weights resident
+  tier: Layer-group scheduling keeps each expert's weights resident
     for the full layer group, loading each weight exactly once per request vs. once
     per chunk with token-level scheduling (39% more traffic).
 official_category: ''
 openreview_url: https://openreview.net/forum?id=yyDbI3HXco
-organizations: []
+organizations:
+- Seoul National University
 presentation_type: oral
 principles:
-- reduce-data-movement
-- overlap-independent-work
-- exploit-memory-hierarchy
+- fuse
+- pipeline
+- tier
 problem: Chunked prefill in MoE serving forces redundant expert weight reloads per
   chunk, inflating memory traffic by up to 39% and increasing TTFT.
 project_url: ''

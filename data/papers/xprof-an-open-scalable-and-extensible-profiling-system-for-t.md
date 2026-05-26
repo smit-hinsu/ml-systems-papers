@@ -33,7 +33,7 @@ key_results: XProf profiles thousands of chips at <1% overhead with <7µs snapsh
   adopted by third-party vendors; used in MLPerf-winning Google submissions.
 models_evaluated: []
 observations:
-  balance-utilization: Utilization Viewer converts raw MXU bus activity counters into
+  balance: Utilization Viewer converts raw MXU bus activity counters into
     compute-bound vs. memory-bound diagnoses (e.g., 7.3% utilization), making load
     imbalance visible without hardware expertise.
 official_category: ''
@@ -42,7 +42,7 @@ organizations:
 - Google
 presentation_type: oral
 principles:
-- balance-utilization
+- balance
 problem: Optimizing ML across thousands of TPUs requires deep hardware expertise;
   profilers surface raw metrics but not actionable full-stack optimization guidance.
 project_url: ''

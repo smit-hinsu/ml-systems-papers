@@ -38,10 +38,10 @@ models_evaluated:
 - Llama-3.1-405B
 - DeepSeek-R1
 observations:
-  balance-utilization: The optimal context-to-generation GPU ratio varies significantly
+  balance: The optimal context-to-generation GPU ratio varies significantly
     with model size and traffic pattern; static ratios leave either prefill or decode
     GPUs underutilized without elastic scaling.
-  overlap-independent-work: Phase specialization improves Pareto only when prefill
+  pipeline: Phase specialization improves Pareto only when prefill
     dominates; for generation-heavy traffic, KV-transfer and scheduling overhead of
     disaggregation exceeds the gain from independent batching.
 official_category: ''
@@ -50,8 +50,8 @@ organizations:
 - NVIDIA
 presentation_type: oral
 principles:
-- overlap-independent-work
-- balance-utilization
+- pipeline
+- balance
 problem: In monolithic LLM serving, long prefill requests block decode batches causing
   head-of-line latency spikes, but disaggregation gains vary widely by workload.
 project_url: ''

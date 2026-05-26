@@ -54,18 +54,16 @@
       </div>
       {% endif %}
 
-      <!-- Principles: label + paper-specific observation (not generic description) -->
+      <!-- Principles: label (link) + paper-specific observation (plain text) -->
       {% if paper.principles %}
       <div class="observations-list" style="margin-bottom: .85rem;">
         {% for i in paper.principles %}
           {% set p = principles.get(i) %}
           {% set obs = (paper.observations or {}).get(i) %}
-          <a href="{{ root_path }}index.html?principle={{ i }}" class="observation-item">
-            {{ p.label if p else i }}
-            {% if obs %}
-              <span class="observation-desc">{{ obs }}</span>
-            {% endif %}
-          </a>
+          <div class="observation-item">
+            <a href="{{ root_path }}index.html?principle={{ i }}" class="obs-label">{{ p.label if p else i }}</a>
+            {% if obs %}<span class="observation-desc">{{ obs }}</span>{% endif %}
+          </div>
         {% endfor %}
       </div>
       {% endif %}
@@ -133,24 +131,6 @@
       {% endif %}
     </div>
 
-    {% set related = [] %}
-    {% for p in all_papers %}
-      {% if p.slug != paper.slug %}
-        {% for d in (p.domain or []) %}
-          {% if d in (paper.domain or []) and p not in related %}
-            {% set _ = related.append(p) %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-    {% if related %}
-    <div class="sidebar-section">
-      <h3>Same Domain</h3>
-      {% for p in related[:4] %}
-        <div style="font-size: .8rem; margin-bottom: .4rem;"><a href="{{ p.slug }}.html">{{ p.title | truncate(55) }}</a></div>
-      {% endfor %}
-    </div>
-    {% endif %}
   </aside>
 </div>
 {% endblock %}

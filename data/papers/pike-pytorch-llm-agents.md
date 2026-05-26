@@ -25,10 +25,10 @@ models_evaluated:
 - Llama-3
 - Mamba-2
 observations:
-  ai-solves-verifiable: Kernel correctness and latency are objectively measurable,
+  search-ai: Kernel correctness and latency are objectively measurable,
     enabling an exploit-heavy strategy that beats torch.compile by 1.85× on H100 without
     hand-crafted heuristics.
-  reduce-data-movement: Agents self-discovered FP16 + fused flash attention, monolithic
+  fuse: Agents self-discovered FP16 + fused flash attention, monolithic
     kernel fusion eliminating HBM round-trips between ops, and operation reordering
     to shrink tensor sizes before heavy compute.
 official_category: ''
@@ -37,8 +37,8 @@ organizations:
 - Lawrence Berkeley National Laboratory
 presentation_type: oral
 principles:
-- ai-solves-verifiable
-- reduce-data-movement
+- search-ai
+- fuse
 problem: Writing optimized CUDA/Triton kernels requires deep hardware expertise; no
   framework exists for AI agents to iteratively generate, test, and improve them.
 project_url: ''
@@ -46,7 +46,7 @@ reading_status: read
 research_or_industry: research
 slides_url: https://mlsys.org/media/mlsys-2026/Slides/3823.pdf
 slug: pike-pytorch-llm-agents
-status: draft
+status: under-review
 title: Optimizing PyTorch Inference with LLM-Based Multi-Agent Systems
 topics:
 - llm-code-generation

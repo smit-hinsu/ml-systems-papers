@@ -20,7 +20,7 @@ models_evaluated:
 - Mixtral-8x22B
 - Mixtral-8x7B
 observations:
-  avoid-redundant-work: A captured Chakra ET replays across simulated hardware configurations
+  cache: A captured Chakra ET replays across simulated hardware configurations
     without re-running the original training job, amortizing measurement cost across
     the design space.
 official_category: ''
@@ -34,7 +34,7 @@ organizations:
 - MLCommons
 presentation_type: oral
 principles:
-- avoid-redundant-work
+- cache
 problem: Without a portable workload format, ML co-design requires specialized hardware
   unavailable to most; optimizations can't be evaluated offline or shared.
 project_url: ''

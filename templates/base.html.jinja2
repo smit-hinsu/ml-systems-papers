@@ -87,38 +87,32 @@
     .tag-oral      { background: #fef9c3; color: #854d0e; }
     .tag-org       { background: #f1f5f9; color: #475569; font-weight: 500; }
     .tag-draft     { background: #fce7f3; color: #9d174d; border: 1px dashed #f9a8d4; }
+    .tag-review    { background: #fef3c7; color: #92400e; border: 1px dashed #fcd34d; }
+    .tag-principle { background: var(--tag-observation-bg); color: var(--tag-observation); font-weight: 500; }
     .tag-award     { background: var(--award-bg); color: var(--award); }
+    .card-summary  { font-size: .875rem; color: var(--text2); margin-bottom: .5rem; line-height: 1.4; }
     .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
 
-    /* ---- Insight items (full-sentence labels — never truncated) ---- */
+    /* ---- Principle observation items ---- */
     .observation-item {
       display: block;
-      font-size: .85rem; font-weight: 500; line-height: 1.4;
-      color: var(--tag-observation);
+      font-size: .85rem; line-height: 1.45;
       padding: .35rem .65rem .35rem .75rem;
       border-left: 3px solid var(--tag-observation);
       background: var(--tag-observation-bg);
       border-radius: 0 var(--radius) var(--radius) 0;
-      text-decoration: none;
       margin-bottom: .4rem;
     }
-    .observation-item:hover { background: #f3e8ff; text-decoration: none; }
+    .observation-item .obs-label {
+      font-weight: 600; color: var(--tag-observation);
+      text-decoration: none;
+    }
+    .observation-item .obs-label:hover { text-decoration: underline; }
     .observation-item .observation-desc {
       font-size: .775rem; font-weight: 400;
-      color: #7e22ce; opacity: .75; margin-top: .2rem; line-height: 1.35;
+      color: #7e22ce; opacity: .8; margin-left: .35rem;
     }
-    /* Compact variant (no description, used in cards) */
-    .observation-item-sm {
-      display: inline-flex; align-items: baseline; gap: .35rem;
-      font-size: .8rem; font-weight: 500; color: var(--tag-observation);
-      padding: .25rem .55rem .25rem .6rem;
-      border-left: 2px solid var(--tag-observation);
-      background: var(--tag-observation-bg);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      text-decoration: none; margin-bottom: .3rem; line-height: 1.35;
-    }
-    .observation-item-sm:hover { background: #f3e8ff; text-decoration: none; }
-    .observations-list { display: flex; flex-direction: column; }
+    .observations-list { display: flex; flex-direction: column; margin-bottom: .6rem; }
 
     /* ---- Cards ---- */
     .card {

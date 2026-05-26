@@ -24,10 +24,10 @@ key_results: 400 Gbps peak on ConnectX-7 and AWS EFA; RL weight updates for tril
   models in 1.3 s; MoE decode latency matches DeepEP on ConnectX-7.
 models_evaluated: []
 observations:
-  overlap-independent-work: KvCache transfers for disaggregated inference are issued
+  pipeline: KvCache transfers for disaggregated inference are issued
     layer-by-layer so RDMA operations are pipelined with computation on the GPU, hiding
     transfer latency behind prefill processing.
-  reduce-data-movement: Paging writes at 64 KiB granularity achieves 364–396 Gbps;
+  fuse: Paging writes at 64 KiB granularity achieves 364–396 Gbps;
     coarser writes waste bandwidth on padding while finer granularity increases doorbell
     overhead.
 official_category: ''
@@ -36,8 +36,8 @@ organizations:
 - Perplexity AI
 presentation_type: oral
 principles:
-- overlap-independent-work
-- reduce-data-movement
+- pipeline
+- fuse
 problem: Disaggregated inference, MoE routing, and async RL fine-tuning need flexible
   RDMA point-to-point, but existing libraries are NIC-specific and non-portable.
 project_url: ''

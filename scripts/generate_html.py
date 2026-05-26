@@ -41,6 +41,32 @@ def load_papers():
     return papers
 
 
+_PRESENTATION_RANK = {"oral": 1, "spotlight": 2, "poster": 3}
+_STATUS_RANK = {"published": 0, "under-review": 1, "draft": 2}
+
+
+class _Desc(str):
+    """String wrapper that reverses comparison, for descending alpha tiebreaks."""
+    def __lt__(self, other): return str.__gt__(self, other)
+    def __gt__(self, other): return str.__lt__(self, other)
+    def __le__(self, other): return str.__ge__(self, other)
+    def __ge__(self, other): return str.__le__(self, other)
+
+
+def sort_papers(papers):
+    # TODO: revisit this ordering when the index includes non-MLSys venues —
+    # award tiers and presentation types aren't standardized across conferences.
+    def key(p):
+        status_rank = _STATUS_RANK.get(p.get("status") or "draft", 2)
+        award_rank = 0 if p.get("award") else 1
+        ptype_rank = _PRESENTATION_RANK.get(p.get("presentation_type") or "", 99)
+        citations = -(p.get("citations") or 0)
+        date = _Desc(p.get("arxiv_date") or "")
+        return (status_rank, award_rank, ptype_rank, citations, date, _Desc(p.get("title") or ""))
+
+    return sorted(papers, key=key)
+
+
 def build_index(papers, principles, domains, topics, venues):
     """Build cross-reference maps."""
     by_principle = defaultdict(list)
@@ -126,11 +152,11 @@ def main():
     domains = load_registry("domains.yaml")
     topics = load_registry("topics.yaml")
     all_loaded = load_papers()
-    papers = all_loaded if args.dev else [p for p in all_loaded if p.get("status") != "draft"]
+    papers = all_loaded if args.dev else [p for p in all_loaded if p.get("status") == "published"]
     if not args.dev:
-        draft_count = len(all_loaded) - len(papers)
-        if draft_count:
-            print(f"Skipping {draft_count} draft paper(s). Use --dev to include them.")
+        excluded = len(all_loaded) - len(papers)
+        if excluded:
+            print(f"Skipping {excluded} non-published paper(s). Use --dev to include them.")
     index = build_index(papers, principles, domains, topics, venues)
 
     def sorted_by_count(registry, paper_index):
@@ -144,7 +170,7 @@ def main():
         principles=sorted_by_count(principles, index["by_principle"]),
         domains=sorted_by_count(domains, index["by_domain"]),
         topics=sorted_by_count(topics, index["by_topic"]),
-        all_papers=papers,
+        all_papers=sort_papers(papers),
         index=index,
         dev_mode=args.dev,
     )
