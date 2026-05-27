@@ -22,11 +22,16 @@ what's left each session — update them as work happens.
 
 ### Content
 - [x] First-pass summaries for all 135 papers
-- [x] Taxonomy critic pass on original 22 papers (not yet done on bulk 113)
-- [x] `## Background` section: NoC paper
-- [x] Validation warnings on first 10 papers: zero
 - [x] All 135 papers: 0 warnings, 0 errors (`validate.py` clean as of 2026-05-26)
-- [x] Taxonomy critic pass on bulk 113 papers (in-progress agent, findings to be applied)
+- [x] Taxonomy critic pass on all 135 papers; 34 papers corrected
+- [x] `## Background` sections added to all 135 papers, trimmed to ≤80 words
+- [x] `optimization_type` field added to schema, registry, templates; empty on all papers pending review
+
+### Infrastructure additions (this session)
+- [x] `?dev=1` URL flag — shows draft/reviewing status badges client-side without separate build
+- [x] `scripts/review.py` — per-paper review brief: data gaps, validation, heuristics, LLM check
+- [x] `check_quality.py` LLM prompt updated: adds optimization_type suggestion, domain/topic check, 6000-char body
+- [x] `optimization_type` registry (`data/optimization_types.yaml`): algorithm, system, hardware, workflow, application
 
 ---
 
@@ -56,20 +61,26 @@ python scripts/review.py --no-llm <slug>  # skip LLM call (faster)
 10. Set `status: published`
 11. Capture any systematic error found → add to Global Checklist below
 
-### Paper TODOs
+### Paper status (as of 2026-05-26)
+- 1 published · 9 under-review · 125 draft
+- Run `python scripts/review.py <slug>` before reading each paper
+
+### Paper TODOs (first batch — oral/award papers)
 
 | # | Paper | Remaining tasks |
 |---|---|---|
-| 1 | **flashagents** (published) | [ ] find arxiv_url [ ] verify taxonomy [ ] background? |
-| 2 | **ml-fleet-tpu-goodput** | [ ] read paper [ ] verify taxonomy [ ] background (industry/fleet paper — may need context) [ ] find code_url |
-| 3 | **freescale-recs** | [ ] read paper [ ] verify taxonomy [ ] background (recs domain — non-obvious for LLM engineers) [ ] find code_url |
-| 4 | **moeblaze** | [ ] read paper [ ] verify taxonomy [ ] background? [ ] find code_url |
-| 5 | **accelerating-large-scale-reasoning-model-inference-with-spar** | [ ] read paper [ ] verify taxonomy [ ] find code_url [ ] find slides_url |
-| 6 | **kitty-accurate-and-efficient-2-bit-kv-cache-quantization-wit** | [ ] read paper [ ] verify taxonomy [ ] find slides_url |
-| 7 | **pike-pytorch-llm-agents** | [ ] read paper [ ] verify taxonomy |
-| 8 | **flexicache-leveraging-temporal-stability-of-attention-heads-** | [ ] read paper [ ] verify taxonomy [ ] find code_url [ ] find slides_url |
-| 9 | **flashlight-pytorch-compiler-extensions-to-accelerate-attenti** | [ ] read paper [ ] verify taxonomy [ ] background (compiler domain) [ ] find code_url [ ] find slides_url |
-| 10 | **cdlm-consistency-diffusion-language-models-for-faster-sampli** | [ ] read paper [ ] verify taxonomy [ ] background (diffusion LM — non-obvious) [ ] find slides_url |
+| 1 | **flashagents** (published) | [ ] find arxiv_url [ ] add optimization_type |
+| 2 | **ml-fleet-tpu-goodput** | [ ] read [ ] verify taxonomy [ ] add optimization_type [ ] find code_url |
+| 3 | **freescale-recs** | [ ] read [ ] verify taxonomy [ ] add optimization_type [ ] find code_url |
+| 4 | **moeblaze** | [ ] read [ ] verify taxonomy [ ] add optimization_type [ ] find code_url |
+| 5 | **accelerating-large-scale-reasoning-model-inference-with-spar** | [ ] read [ ] verify taxonomy [ ] add optimization_type [ ] find code_url |
+| 6 | **kitty-accurate-and-efficient-2-bit-kv-cache-quantization-wit** | [ ] read [ ] verify taxonomy [ ] add optimization_type |
+| 7 | **pike-pytorch-llm-agents** | [ ] read [ ] verify taxonomy [ ] add optimization_type |
+| 8 | **flexicache-leveraging-temporal-stability-of-attention-heads-** | [ ] read [ ] verify taxonomy [ ] add optimization_type [ ] find code_url |
+| 9 | **flashlight-pytorch-compiler-extensions-to-accelerate-attenti** | [ ] read [ ] verify taxonomy [ ] add optimization_type [ ] find code_url |
+| 10 | **cdlm-consistency-diffusion-language-models-for-faster-sampli** | [ ] read [ ] verify taxonomy [ ] add optimization_type |
+
+Remaining 125 draft papers: add rows here as you work through them, or track in a separate session.
 
 ---
 
@@ -80,30 +91,23 @@ python scripts/review.py --no-llm <slug>  # skip LLM call (faster)
 - [x] All char-limit violations trimmed (problem ≤160, key_results ≤160, observations ≤200)
 - [x] All `key_results` contain at least one digit
 - [x] No unknown topic/principle slugs
-- [x] Taxonomy critic pass on bulk 113 papers (2026-05-26)
-- [x] Apply taxonomy critic findings: 34 papers corrected (2026-05-26)
-  - 7 speculative-decoding papers gained `speculate` principle (was 0/135)
-  - 5 quantization papers gained `quantize` principle (was 0/135)
-  - `recompute`, `elastic`, `portable`, `approximate`, `specialize` now have 1-2 correct assignments each
-  - ~17 wrong `cache` removals, ~6 wrong `balance` removals, ~2 wrong `fuse`/`pipeline` removals
-  - 7 measurement/tooling papers correctly have no principles (blueprint, charon, csle, profinfer, osworld, driftbench, cost-aware)
-  - reparo domain fixed: `llm-serving` → `edge-inference`
-  - grinnder + g-hemp domains fixed: `llm-training`/`llm-serving` → `ml-kernels` (GNN papers; no dedicated domain exists yet)
-- [ ] Identify ~20–30 papers needing `## Background` (hardware, compilers, specialized architectures, recs)
-- [ ] Add `attention-kernels` tagging to all papers that do attention kernel work (currently 2 known)
-- [ ] Consider adding `graph-learning` domain for grinnder + g-hemp (GNN papers misfit current taxonomy)
+- [x] Taxonomy critic pass on all 135 papers; 34 corrected (2026-05-26)
+- [x] `## Background` added to all 135 papers, trimmed to ≤80 words (2026-05-26)
+- [ ] `attention-kernels` tagging — audit all papers doing attention kernel work (2 known; likely more)
+- [ ] `graph-learning` domain — decision pending: add domain for grinnder + g-hemp, or leave as `ml-kernels`
 
 ---
 
 ## Track 3 — Metadata completeness
 
-- [ ] **`slides_url`**: all empty — requires one interactive login to mlsys.org, then headless:
-  1. `! source .venv/bin/activate && python scripts/fetch_slides.py` — opens browser, log in, session saved to `data/.auth_mlsys-2026.json`
-  2. Subsequent runs are headless and update all 135 papers
-- [ ] **`arxiv_url`**: ~60 papers missing — Semantic Scholar title search, serial with 0.5s delays (batch agent)
-- [ ] **`citations`**: run `scripts/fetch_metadata.py` after arxiv_url is populated; OpenAlex API
-- [ ] **`code_url`**: ~110 papers missing — read OpenReview/arXiv page per paper to find GitHub link in abstract or PDF (batch agent); NOT general web search
-- [ ] **`organizations`**: ~35 stubs have `organizations: []` — fill from OpenReview author affiliations
+Stats as of 2026-05-26: slides 112/135 · arxiv 24/135 · code 29/135 · orgs 135/135
+
+- [x] **`organizations`**: all 135 filled
+- [x] **`slides_url`**: 112/135 filled (23 missing) — ran `fetch_slides.py` after mlsys.org login
+- [ ] **`slides_url`** (remaining 23): re-run `fetch_slides.py` to pick up stragglers; may need fresh login
+- [ ] **`arxiv_url`**: 111/135 missing — Semantic Scholar title search, serial with 0.5s delays (batch agent)
+- [ ] **`citations`**: 0/135 — run `scripts/fetch_metadata.py` after arxiv_url populated; OpenAlex API
+- [ ] **`code_url`**: 106/135 missing — batch agent reads OpenReview/arXiv page per paper for GitHub link; NOT general web search
 
 ---
 
@@ -120,8 +124,9 @@ python scripts/review.py --no-llm <slug>  # skip LLM call (faster)
 - [x] Paper detail page: `## Background` section rendered with blue callout box (via JS)
 
 ### TODO
-- [ ] **Topics in search index**: `topic_labels` already in search index; verify Fuse.js weights are tuned correctly
-- [ ] **Analytics**: site live at https://smit-hinsu.github.io/ml-systems-papers/ — add snippet (GoatCounter or Plausible) to `analytics_html` field in `data/site.yaml`
+- [ ] **`optimization_type` filter**: tags render on cards and paper pages; no UI filter chip yet in the section nav — add when enough papers are tagged to make filtering useful
+- [ ] **Analytics**: add GoatCounter snippet to `analytics_html` in `data/site.yaml` (needs account URL)
+- [ ] **Fuse.js weights**: `topic_labels` in search index; verify weights are well-tuned
 
 ---
 
