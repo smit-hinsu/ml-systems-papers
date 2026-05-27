@@ -181,7 +181,8 @@ Use this to avoid the most common generation errors found during review.
 ### Content rules
 
 - [ ] `## Key Contributions`: each bullet has a **bold named artifact** — `**SystemName**:`, `**AlgorithmName**:`
-- [ ] `## Key Contributions` describes the *solution* — complementary to `observations` (which describe the problem insight); overlap with principles is expected and fine
+- [ ] `## Key Contributions` assumes readers have read the principles and observations — skip re-explaining the principle or its motivation; focus on the specific mechanism, design decision, or artifact that delivers it
+- [ ] Test: if a bullet could be fully replaced by just reading the principle label + observation, rewrite it to add the concrete detail that isn't already there
 - [ ] `## Background`: keep only when domain is non-obvious to an ML systems engineer; remove if title + key_results make context clear
 - [ ] `## Findings`: add *only* for measurement/characterization papers; omit for system-building papers
 - [ ] No repetition across sections — each section has one job
@@ -199,6 +200,7 @@ Use this to avoid the most common generation errors found during review.
 - **`skip` principle overused**: assigned to any paper with sparsity or pruning, even when the paper's core contribution is the quantization method, not the skipping decision.
 - **Observation = principle restatement**: e.g. `cache: shared prefixes can be cached` — adds no paper-specific information.
 - **Observation describes the solution, not the problem**: e.g. `pipeline: overlaps prefill and decode` describes what the system does. Rewrite as the motivating insight: `pipeline: downstream agents idle waiting for upstream output despite having spare GPU capacity — the dependency is on the token stream, not the full response`.
+- **Key Contributions restates the principle**: if `pipeline` is already a principle and an observation explains why, a bullet saying "we pipeline prefill and decode to hide latency" adds nothing. Instead: "**Incremental prefill protocol**: token-by-token forwarding via a modified SGLang HTTP endpoint; downstream scheduling begins after the first token, not after EOS".
 
 ---
 
