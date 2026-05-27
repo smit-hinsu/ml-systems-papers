@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3760
 ---
 
-## Background
-
-In multi-agent LLM pipelines, the downstream agent cannot start prefill until the upstream agent finishes — the full output must be assembled before the next serving engine accepts a job. For long responses this idle wait dominates end-to-end latency. HTTP streaming solves the display problem but most serving frameworks buffer the full prompt before scheduling prefill, so the downstream model sits idle despite having spare capacity.
-
 ## Key Contributions
 
 - **Incremental prefill protocol**: forwards each upstream token to the downstream serving

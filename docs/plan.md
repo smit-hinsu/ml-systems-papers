@@ -51,15 +51,16 @@ python scripts/review.py --no-llm <slug>  # skip LLM call (faster)
    - `code_url` present? If not, find it during review (OpenReview / arXiv abstract)
    - `organizations` filled? Required for taxonomy and research/industry classification
 2. Read the paper (arXiv or OpenReview abstract + intro)
-3. Verify `key_results` — hardware + model + metric + named baseline? ≤ 160 chars?
-4. Verify `principles` — core contribution only, not tangential?
-5. Verify `observations` — paper-specific insight, not principle restatement? ≤ 200 chars each?
-6. Verify `domain` and `topics` — correct and complete?
-7. **Add `optimization_type`** — one or more of: `algorithm`, `system`, `hardware`, `workflow`, `application`; leave empty only for pure measurement/tooling papers
-8. Fill `code_url`, `slides_url` if findable
-9. Run `python scripts/validate.py` — zero warnings for this paper
-10. Set `status: published`
-11. Capture any systematic error found → add to Global Checklist below
+3. **Decide on `## Background`** — remove it if the domain is obvious from the title + key_results to an ML systems engineer; keep (≤80 words) only when context is genuinely non-obvious (hardware NoC, GNNs, ZK proofs, diffusion LMs, recs, etc.)
+4. Verify `key_results` — hardware + model + metric + named baseline? ≤ 160 chars?
+5. Verify `principles` — core contribution only, not tangential?
+6. Verify `observations` — paper-specific insight, not principle restatement? ≤ 200 chars each?
+7. Verify `domain` and `topics` — correct and complete?
+8. **Add `optimization_type`** — one or more of: `algorithm`, `system`, `hardware`, `workflow`, `application`; leave empty only for pure measurement/tooling papers
+9. Fill `code_url`, `slides_url` if findable
+10. Run `python scripts/validate.py` — zero warnings for this paper
+11. Set `status: published`
+12. Capture any systematic error found → add to Global Checklist below
 
 ### Paper status (as of 2026-05-26)
 - 1 published · 9 under-review · 125 draft
