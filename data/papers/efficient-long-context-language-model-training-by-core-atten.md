@@ -36,6 +36,7 @@ observations:
     devices; attention servers process CA-task batches while hosts proceed with non-attention
     ops, eliminating idle time.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=oIonqkc8hM
 organizations:
 - Carnegie Mellon University

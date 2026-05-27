@@ -26,6 +26,7 @@ observations:
     local; those layers skip federated synchronization entirely, cutting communication
     without full training runs.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=QBUy1HdKrZ
 organizations:
 - Columbia University

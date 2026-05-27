@@ -31,6 +31,7 @@ observations:
     latency speculation was meant to hide is already absorbed, leaving token verification
     overhead as pure cost.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=fzkqtezFEi
 organizations:
 - UC Berkeley

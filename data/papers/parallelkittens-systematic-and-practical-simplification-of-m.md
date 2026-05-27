@@ -29,6 +29,7 @@ observations:
     kernels; a unified template ensures hardware resources are scheduled to hide interconnect
     latency behind active computation.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=Cv5e5uRXFb
 organizations:
 - Stanford University

@@ -42,6 +42,7 @@ observations:
   fuse: Pruning reduces model size by up to 40%, decreasing weight load per forward
     pass and reducing HBM bandwidth pressure during serving.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=re82zZczHj
 organizations:
 - LinkedIn

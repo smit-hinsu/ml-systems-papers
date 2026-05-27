@@ -30,6 +30,7 @@ observations:
   tier: Stable-head pages beyond top-K are offloaded to 1.1TB DDR5 host memory and
     asynchronously transferred via UVA CUDA kernels overlapped with computation.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=GgX6dPJx9M
 organizations:
 - UC Irvine

@@ -47,6 +47,7 @@ observations:
     task dependencies, enabling static and dynamic scheduling to overlap independent
     ops.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=PJqFhAbUHa
 organizations:
 - Carnegie Mellon University

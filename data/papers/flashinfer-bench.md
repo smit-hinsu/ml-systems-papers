@@ -39,6 +39,7 @@ observations:
     or GEMM variants; the benchmark reveals that reducing HBM round-trips via fusion
     is the dominant lever agents converge on.
 official_category: Research Papers
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=IyryZno8Hh
 organizations:
 - University of Washington

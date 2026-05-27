@@ -36,6 +36,7 @@ observations:
     GPU HBM for a larger KV cache, which improves decode throughput enough to offset
     the slightly lower expert load balance.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=zdRvzU9ZCe
 organizations:
 - University of Toronto

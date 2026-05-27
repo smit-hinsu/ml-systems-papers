@@ -41,6 +41,7 @@ observations:
     defect rate) on production workloads, with drift-aware continuous training adapting
     to evolving VM placement patterns.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=guCUThRvX5
 organizations:
 - Microsoft Research

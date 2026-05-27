@@ -25,6 +25,7 @@ key_results: Less than 4% runtime overhead while providing operator-level profil
 models_evaluated: []
 observations: {}
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=tYHWS7YPof
 organizations:
 - Huawei

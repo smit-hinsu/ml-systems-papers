@@ -32,6 +32,7 @@ observations:
     stage on failure, avoiding rerunning costly optimization steps already finished
     successfully.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=om4H7AI2hc
 organizations:
 - eBay

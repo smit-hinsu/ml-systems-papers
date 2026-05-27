@@ -30,6 +30,7 @@ observations:
     heads; db-SP routes blocks to workers by actual sparsity pattern rather than naive
     head or sequence splitting.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=XgKteNxNe0
 organizations:
 - Tsinghua University

@@ -30,6 +30,7 @@ observations:
     parallel; the AR phase verifies and commits only accepted positions, hiding full-sequence
     generation behind one pass.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=onfxEjoE4L
 organizations:
 - University of Chicago

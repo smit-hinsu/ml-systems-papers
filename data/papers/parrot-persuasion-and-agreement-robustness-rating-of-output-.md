@@ -27,6 +27,7 @@ observations:
     exposes sycophancy as a measurable accuracy degradation, enabling quantitative
     ranking of model robustness across authority pressure levels.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=cU2wiOnfm5
 organizations:
 - NewMind AI

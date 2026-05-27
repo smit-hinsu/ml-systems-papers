@@ -30,6 +30,7 @@ observations:
     higher alignment raises acceptance rates, making the parallel diffusion pass a
     reliable speculative proposal.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=o42VU86ZsV
 organizations:
 - University of Virginia

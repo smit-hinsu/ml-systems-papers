@@ -24,6 +24,7 @@ key_results: Acela improves upgrade window utilization 1.25×, schedules 33% mor
 models_evaluated: []
 observations: {}
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=l72e5oROLT
 organizations:
 - Meta

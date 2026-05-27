@@ -28,6 +28,7 @@ observations:
     and CPU simultaneously; higher bandwidth than PCIe enables profitable KV offloading
     under tight TTFT SLOs.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=RuslSHdIHa
 organizations:
 - UIUC

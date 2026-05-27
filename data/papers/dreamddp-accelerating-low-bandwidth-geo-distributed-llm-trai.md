@@ -35,6 +35,7 @@ observations:
     skipping full-model communication each step and cutting total cross-datacenter
     bandwidth by an order of magnitude.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=cnvw0mbZQp
 organizations:
 - HKUST

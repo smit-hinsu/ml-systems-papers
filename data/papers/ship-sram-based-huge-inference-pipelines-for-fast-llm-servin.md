@@ -52,6 +52,7 @@ observations:
     thousands of chips without the serialization delays of asynchronous HBM-based
     communication
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=IZaXDwDtL1
 organizations:
 - Groq

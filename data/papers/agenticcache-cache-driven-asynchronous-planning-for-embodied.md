@@ -26,6 +26,7 @@ observations:
     plans while the agent executes, hiding LLM inference latency behind task execution
     rather than blocking each planning step.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=UfABxFoSXH
 organizations:
 - Harvard University

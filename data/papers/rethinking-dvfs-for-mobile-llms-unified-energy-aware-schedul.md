@@ -29,6 +29,7 @@ observations:
     (prefill vs. decode), overlapping their frequency ramp-up to avoid sequential
     governor delays.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=PSyHQ8kVUT
 organizations:
 - Purdue University

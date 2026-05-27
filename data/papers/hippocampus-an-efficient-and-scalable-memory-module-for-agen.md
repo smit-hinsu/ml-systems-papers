@@ -28,6 +28,7 @@ observations:
     keeping search indices in fast memory while full token streams remain compressed
     until reconstruction is needed.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=0sUYZh9D4a
 organizations:
 - University of Texas at Dallas

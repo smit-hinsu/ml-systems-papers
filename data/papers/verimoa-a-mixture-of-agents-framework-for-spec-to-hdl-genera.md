@@ -35,6 +35,7 @@ observations:
     selection optimizes a verifiable objective (HDL correctness) by exploring diverse
     solution paths and selecting the best.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=5wgZXJ0kWA
 organizations:
 - University of Southern California

@@ -27,6 +27,7 @@ observations:
     to run efficiently on edge devices with limited SRAM, making tensor compression
     practical for bandwidth-constrained edge inference.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=NhMxI0GbB8
 organizations:
 - University of Toronto

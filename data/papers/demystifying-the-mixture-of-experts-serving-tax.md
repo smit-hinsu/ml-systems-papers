@@ -26,6 +26,7 @@ observations:
     that reduce expert memory traffic (replication, caching, fine-grained routing)
     directly shrink the serving gap to dense models.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=lELxqcgrsN
 organizations:
 - University of Washington

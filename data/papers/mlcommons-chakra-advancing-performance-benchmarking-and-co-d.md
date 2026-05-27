@@ -24,6 +24,7 @@ observations:
     without re-running the original training job, amortizing measurement cost across
     the design space.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=s2WcSv2Hzt
 organizations:
 - Meta

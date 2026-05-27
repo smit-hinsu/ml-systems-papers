@@ -41,6 +41,7 @@ observations:
     and per-frame deadlines, preventing head-of-line blocking under live-stream load
     spikes.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=p9WALNBvc6
 organizations:
 - MIT

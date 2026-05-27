@@ -26,6 +26,7 @@ models_evaluated:
 - AI workloads under GPU-CC
 observations: {}
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=t9RDCO1aL7
 organizations:
 - IBM Research

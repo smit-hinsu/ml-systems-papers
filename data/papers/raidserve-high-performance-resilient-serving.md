@@ -29,6 +29,7 @@ observations:
   tier: Cyclic KVCache Placement distributes cache evenly across
     surviving GPUs, avoiding memory hotspots that would force eviction and recomputation.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=5pl9fdbEkq
 organizations:
 - Stanford University

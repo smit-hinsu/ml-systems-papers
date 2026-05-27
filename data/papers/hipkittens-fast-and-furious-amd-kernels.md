@@ -35,6 +35,7 @@ observations:
     data reuse patterns that compiler auto-vectorization misses for attention and
     GEMM kernels on AMD hardware.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=xxSSrndQrI
 organizations:
 - Stanford University

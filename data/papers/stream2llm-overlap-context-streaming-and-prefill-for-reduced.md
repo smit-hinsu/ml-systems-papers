@@ -28,6 +28,7 @@ observations:
     context chunks trigger partial prefill computations rather than waiting for all
     context before beginning inference.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=FuRo7Ur5Ib
 organizations:
 - Georgia Institute of Technology

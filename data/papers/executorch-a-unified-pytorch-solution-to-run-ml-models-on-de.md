@@ -64,6 +64,7 @@ observations:
   tier: Static memory planning for microcontroller targets eliminates dynamic allocations
     and maximizes SRAM reuse across operators at inference time.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=jmE5nwC9kb
 organizations:
 - Meta

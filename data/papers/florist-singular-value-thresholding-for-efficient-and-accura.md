@@ -29,6 +29,7 @@ observations:
     matrices; FLoRIST-E achieves 3× lower communication than FFA-LoRA and 39× lower
     than FLoRA.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=GTZRs756YJ
 organizations:
 - University of Arizona

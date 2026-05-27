@@ -34,6 +34,7 @@ observations:
     reached 72% FLOPS utilization on 1024 TPUs, a 1.38× improvement, validating that
     this technique is the highest-leverage program goodput lever
 official_category: Research Papers
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=y31QSL9yMG
 organizations:
 - Google

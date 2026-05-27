@@ -38,6 +38,7 @@ observations:
     in parallel on Ray, overlapping LLM inference across tens of thousands of tasks
     simultaneously.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=ok96wGyPdI
 organizations:
 - Meta

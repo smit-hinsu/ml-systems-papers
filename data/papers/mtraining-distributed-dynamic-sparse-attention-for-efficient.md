@@ -32,6 +32,7 @@ observations:
     distributed index approximation makes sparsity patterns available across ring-attention
     workers without full synchronization.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=h6SD2zgwGq
 organizations:
 - Microsoft

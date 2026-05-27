@@ -30,6 +30,7 @@ observations:
     and bypass mechanisms tuned to full-graph GNN's unique cross-partition access
     patterns.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=8SNPzGRldN
 organizations:
 - Seoul National University

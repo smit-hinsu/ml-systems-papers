@@ -31,6 +31,7 @@ observations:
     reads; combining with Multimem eliminates an intermediate HBM write, achieving
     1.34×–1.39× single-layer speedup.
 official_category: Research Papers
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=rh2Ylffkq6
 organizations:
 - Microsoft

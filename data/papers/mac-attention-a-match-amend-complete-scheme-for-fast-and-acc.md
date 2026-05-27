@@ -27,6 +27,7 @@ observations:
   tier: Amend stage recomputes only a small band near the match boundary in SRAM rather
     than re-reading the full KV cache from HBM, keeping memory traffic O(1) on hit.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=b6HBRCejb7
 organizations:
 - Ohio State University

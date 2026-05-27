@@ -31,6 +31,7 @@ observations:
     runtime without retraining, avoiding full-scene rasterization for distant or occluded
     primitives.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=i05mMLR9BX
 organizations:
 - Imperial College London

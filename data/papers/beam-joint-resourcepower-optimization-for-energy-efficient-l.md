@@ -29,6 +29,7 @@ observations:
     reallocate latency slack across power and resource dimensions; sub-millisecond
     decisions stay off the critical path.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=BfNBXM8CCT
 organizations:
 - KAIST

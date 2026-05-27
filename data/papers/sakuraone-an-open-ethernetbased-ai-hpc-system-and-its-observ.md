@@ -25,6 +25,7 @@ observations:
     the project matures; few large jobs account for most GPU time while small jobs
     dominate count — classic HPC pattern.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=n7o6C3p3wk
 organizations:
 - SAKURA Internet Research Center

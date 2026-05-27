@@ -38,6 +38,7 @@ observations:
     shift; keeping drafter and target in sync prevents acceptance rate collapse as
     the target model changes during RL training.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=HhDSxs7x2R
 organizations:
 - Nanyang Technological University

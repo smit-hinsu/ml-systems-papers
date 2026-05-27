@@ -29,6 +29,7 @@ observations:
     estimates, skipping full inference on frames below query thresholds to save onboard
     compute for high-priority imagery.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=c3O6DnhUYm
 organizations:
 - Georgia Tech

@@ -37,6 +37,7 @@ observations:
     compute-bound vs. memory-bound diagnoses (e.g., 7.3% utilization), making load
     imbalance visible without hardware expertise.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=KqRLAdGK6C
 organizations:
 - Google

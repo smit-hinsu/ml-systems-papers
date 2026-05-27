@@ -28,6 +28,7 @@ observations:
     scale and data heterogeneity; sparse structured topologies can match dense graphs
     at much lower communication cost.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=4Bqg7Xyk5t
 organizations:
 - MIT Media Lab

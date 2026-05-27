@@ -28,6 +28,7 @@ observations:
   tier: Two-step dequantization reuses Tensor Core hardware pathways with fast data-type
     conversion, keeping dequantization overhead minimal relative to HBM-bound MatMul.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=VBbMRQ4VOc
 organizations:
 - Microsoft

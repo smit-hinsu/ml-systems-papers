@@ -30,6 +30,7 @@ observations:
     enabling safe KV-cache sharing where prior approaches required full recomputation
     to maintain accuracy.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=RnKvDy1jv2
 organizations:
 - University of Edinburgh

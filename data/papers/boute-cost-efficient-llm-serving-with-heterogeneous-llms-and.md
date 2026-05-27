@@ -26,6 +26,7 @@ observations:
   cache: MOBO jointly searches routing strategy and model deployment config, avoiding
     the sub-optimality of tuning each independently.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=ZVQb92umqX
 organizations:
 - University of Cambridge

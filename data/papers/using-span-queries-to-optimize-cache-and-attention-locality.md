@@ -29,6 +29,7 @@ observations:
     hits first in the attention order, maximizing prefix cache reuse and minimizing
     cache misses.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=qcGGSXpFcM
 organizations:
 - IBM Research

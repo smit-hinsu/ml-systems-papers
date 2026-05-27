@@ -35,6 +35,7 @@ observations:
     model stages; visual encoding and language prefill can proceed concurrently on
     separate instances.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=nNovi8fvGN
 organizations:
 - University of Science and Technology of China

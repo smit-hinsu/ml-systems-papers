@@ -26,6 +26,7 @@ observations:
     statistics; the correction enables W3A3 models to match W4A4 accuracy without
     extra training passes.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=Fubm1TtWeo
 organizations:
 - Institute of Science and Technology Austria (ISTA)

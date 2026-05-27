@@ -31,6 +31,7 @@ observations:
     CPU/host memory with GPU computation, hiding transfer latency behind active decode
     steps during test-time compute.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=dTo8jAXm9K
 organizations:
 - National Taiwan University

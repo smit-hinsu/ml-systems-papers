@@ -39,6 +39,7 @@ observations:
     each iteration; remediating fail-slow nodes before the sync barrier eliminates
     these stall bubbles.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=JFEwQ821MS
 organizations:
 - Amazon

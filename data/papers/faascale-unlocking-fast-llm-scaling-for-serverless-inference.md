@@ -35,6 +35,7 @@ observations:
   pipeline: PipeCast overlaps model block multicast transfer with pipeline-parallel
     inference execution, hiding model download latency during scale-out.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=jgL8LuOVyT
 organizations:
 - Chinese University of Hong Kong

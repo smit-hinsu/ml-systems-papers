@@ -36,6 +36,7 @@ observations:
     components, minimizing data transferred to untrusted devices while preserving
     reconstruction quality.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=WjJfnNhY65
 organizations:
 - The Chinese University of Hong Kong, Shenzhen

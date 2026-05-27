@@ -30,6 +30,7 @@ observations:
   fuse: Bottleneck-aware tensor parallelism splits low-rank factors across devices
     to avoid the excessive cross-device communication of naively applied 3D parallelism.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=JhN5hldx4V
 organizations:
 - UC Santa Barbara

@@ -52,6 +52,7 @@ observations:
     HBM loads and the attention-value matmul; at 74% sparsity, bandwidth freed dominates
     the speedup more than compute reduction.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=6INSBXTQ4x
 organizations:
 - Rice University

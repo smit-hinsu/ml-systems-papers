@@ -29,6 +29,7 @@ observations:
     step, keeping per-iteration work O(m log k) instead of O(k) and preventing the
     compute from scaling linearly with the arm count.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=lfHvcstuo2
 organizations:
 - Aarhus University

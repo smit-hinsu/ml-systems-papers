@@ -25,6 +25,7 @@ observations:
   cache: Cold start is predominantly CPU-bound across 6 identified phases; the analytical
     model pinpoints which steps can be parallelized or cached to reduce startup.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=eoEobeKTNZ
 organizations:
 - University of Paderborn

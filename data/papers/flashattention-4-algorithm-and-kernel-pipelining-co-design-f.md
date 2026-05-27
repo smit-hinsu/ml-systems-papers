@@ -14,6 +14,7 @@ organizations:
 - NVIDIA
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3759
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=mN5RtvuYl3
 arxiv_url: ''
 presentation_type: oral

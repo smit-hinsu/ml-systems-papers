@@ -24,6 +24,7 @@ observations:
     explicit per-device memory constraints, preventing post-hoc sharding that inflates
     communication and wastes compute.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=jpIoO2zSKA
 organizations:
 - Georgia Tech

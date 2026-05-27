@@ -34,6 +34,7 @@ observations:
     repeated FP transcendental computation and replacing it with integer table lookups
     at negligible memory cost.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=CPCRITwAaP
 organizations:
 - Southern University of Science and Technology

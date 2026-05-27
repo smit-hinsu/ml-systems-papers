@@ -30,6 +30,7 @@ observations:
     that weigh memory savings against recomputation overhead; the planner finds the
     optimal schedule without manual search.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=XDkOn0iTiH
 organizations:
 - University of Massachusetts Amherst

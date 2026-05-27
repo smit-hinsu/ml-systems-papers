@@ -19,6 +19,7 @@ key_results: PRI achieves R²=0.909 for unseen hardware and R²=0.763 for unseen
 models_evaluated: []
 observations: {}
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=Xfzzp6grRP
 organizations:
 - Universitas Mercatorum

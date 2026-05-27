@@ -26,6 +26,7 @@ observations:
     in a unified IR; approx-opt searches the joint space to skip work whose accuracy
     cost stays within budget.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=nKm25GWbuB
 organizations:
 - University of Illinois Urbana-Champaign

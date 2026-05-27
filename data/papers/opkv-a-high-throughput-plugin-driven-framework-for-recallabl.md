@@ -29,6 +29,7 @@ observations:
     PCIe transfer overhead; hot page hit algorithm keeps frequently recalled pages
     GPU-resident, exploiting temporal locality.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=EB5bgzv4qA
 organizations:
 - Southeast University

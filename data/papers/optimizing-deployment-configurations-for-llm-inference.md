@@ -30,6 +30,7 @@ observations:
     Pareto splits; manual configs commonly leave one dimension memory-saturated while
     another dimension idles.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=gEbKQeIdxB
 organizations:
 - Meta

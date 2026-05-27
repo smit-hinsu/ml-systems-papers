@@ -25,6 +25,7 @@ observations:
   balance: Combining learned optimizers with LR schedules and weight decay substantially
     improves convergence; prior JAX-based tools lacked this integration capability.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=M9V1n4KxSd
 organizations:
 - Concordia University

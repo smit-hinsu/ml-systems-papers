@@ -26,6 +26,7 @@ observations:
   tier: Parity shards are stored in host memory instead of GPU memory, protecting
     the KV cache at minimal GPU memory cost.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=xKjYiUgeOK
 organizations:
 - University of Central Florida

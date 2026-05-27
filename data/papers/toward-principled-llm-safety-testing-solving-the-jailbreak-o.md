@@ -27,6 +27,7 @@ observations:
     on promising low-probability paths, skipping unpromising branches and reducing
     exponential search space.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=vr3Rrg6Xnm
 organizations:
 - Northeastern University

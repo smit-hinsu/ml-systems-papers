@@ -64,6 +64,7 @@ observations:
     similar computation graphs reuse prior search results, avoiding redundant tuning
     runs across jobs sharing the same model architecture.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=hB3nov3gIP
 organizations:
 - Google

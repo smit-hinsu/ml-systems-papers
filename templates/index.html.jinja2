@@ -57,7 +57,8 @@
        data-domains="{{ (paper.domain or []) | join(' ') }}"
        data-principles="{{ (paper.principles or []) | join(' ') }}"
        data-topics="{{ (paper.topics or []) | join(' ') }}"
-       data-organizations="{{ (paper.organizations or []) | join('|') }}">
+       data-organizations="{{ (paper.organizations or []) | join('|') }}"
+       data-opttypes="{{ (paper.optimization_type or []) | join(' ') }}">
     <div class="card-title"><a href="papers/{{ paper.slug }}.html">{{ paper.title }}</a></div>
     {% set orgs = paper.organizations or [] %}
     {% set orgs_init_hidden = [orgs | length - 2, 0] | max %}
@@ -88,6 +89,14 @@
       {% if paper.status == 'draft' %}<span class="tag tag-draft dev-badge" style="display:none;">draft</span>{% endif %}
     </div>
     {% endif %}
+    <!-- Optimization type tags -->
+    {% if paper.optimization_type %}
+    <div class="tags" style="margin-bottom:.5rem;">
+      {% for ot in paper.optimization_type %}
+        <a href="#" class="tag tag-opttype" data-filter-type="opttype" data-filter-value="{{ ot }}">{{ optimization_types[ot].label if ot in optimization_types else ot }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
     {% if paper.key_results %}
       <div class="card-results"><strong>↗</strong> {{ paper.key_results }}</div>
     {% endif %}
@@ -109,6 +118,7 @@ const LABELS = {
   principle:    { {% for slug, p in principles.items() %}"{{ slug }}": {{ p.label | tojson }}, {% endfor %} },
   topic:        { {% for slug, t in topics.items() %}"{{ slug }}": "{{ t.label }}", {% endfor %} },
   organization: { {% for paper in all_papers %}{% for org in paper.organizations or [] %}"{{ org }}": "{{ org }}", {% endfor %}{% endfor %} },
+  opttype:      { {% for slug, ot in optimization_types.items() %}"{{ slug }}": "{{ ot.label }}", {% endfor %} },
 };
 const TOTAL = document.querySelectorAll('.paper-card').length;
 
@@ -133,6 +143,7 @@ const CHIP_STYLE = {
   principle:    { bg: 'var(--tag-observation-bg)',  color: 'var(--tag-observation)' },
   topic:        { bg: 'var(--tag-topic-bg)',         color: 'var(--tag-topic)' },
   organization: { bg: '#f1f5f9',                     color: '#475569' },
+  opttype:      { bg: 'var(--tag-opttype-bg)',       color: 'var(--tag-opttype)' },
 };
 
 function showFilterChip(type, value, n) {
@@ -234,7 +245,7 @@ const params = new URLSearchParams(location.search);
 const q = params.get('q');
 if (q) { document.getElementById('search-input').value = q; onSearch(q); }
 else {
-  for (const type of ['domain', 'principle', 'topic', 'organization']) {
+  for (const type of ['domain', 'principle', 'topic', 'organization', 'opttype']) {
     const val = params.get(type);
     if (val) { applyFilter(type, val); break; }
   }

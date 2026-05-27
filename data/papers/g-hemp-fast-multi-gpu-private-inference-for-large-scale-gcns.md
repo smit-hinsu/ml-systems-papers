@@ -26,6 +26,7 @@ observations:
   balance: Multi-GPU workload partitioning halves per-GPU peak memory on 4-GPU systems,
     enabling larger graphs that exceed single GPU capacity.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=RSTrFSPIMy
 organizations:
 - North Carolina State University

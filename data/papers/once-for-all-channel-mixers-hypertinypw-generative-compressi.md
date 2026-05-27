@@ -24,6 +24,7 @@ observations:
     only a tiny shared generator and compact codes live in MCU flash, exploiting the
     MCU's severe flash/SRAM hierarchy.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=NrDa5Fu10D
 organizations:
 - Independent Researcher

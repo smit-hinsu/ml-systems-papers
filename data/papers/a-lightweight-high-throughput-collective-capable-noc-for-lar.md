@@ -29,6 +29,7 @@ observations:
     and reduction complete in the network fabric while cores continue computing, eliminating
     stalls on large meshes.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=VDuS8N9RCx
 organizations:
 - ETH Zurich

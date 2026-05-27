@@ -32,6 +32,7 @@ observations:
     when ML outputs are trustworthy, enabling ML to solve measurable system objectives
     only within its reliable operating envelope.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=i0iOQL2MF5
 organizations:
 - Cornell University

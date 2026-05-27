@@ -31,6 +31,7 @@ observations:
     answers let RLVR train on objectively checkable problems, enabling scaling law
     studies without human annotation.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=fV4t4kYvgi
 organizations:
 - Snorkel AI

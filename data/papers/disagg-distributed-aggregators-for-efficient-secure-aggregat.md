@@ -27,6 +27,7 @@ observations:
     the Aggregator committee, preventing the server bottleneck that limits throughput
     in centralized secure aggregation.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=H0BLKrOgik
 organizations:
 - Samsung

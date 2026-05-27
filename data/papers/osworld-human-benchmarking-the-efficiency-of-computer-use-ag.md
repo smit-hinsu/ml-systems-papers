@@ -20,6 +20,7 @@ key_results: Best agents take 2.7–4.3× more steps than humans; planning/refle
 models_evaluated: []
 observations: {}
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=0Cp8l6cvyq
 organizations:
 - UC San Diego

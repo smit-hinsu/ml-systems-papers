@@ -29,6 +29,7 @@ observations:
     based on profiled exit distributions, freeing HBM for larger batch sizes instead
     of holding all layer weights resident.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=CV52m9NJFK
 organizations:
 - University of Texas at Austin

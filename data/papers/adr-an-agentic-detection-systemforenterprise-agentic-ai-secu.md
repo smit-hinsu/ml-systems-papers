@@ -36,6 +36,7 @@ observations:
     to the LLM detector; each tier is independently optimized — sensor for throughput,
     LLM for semantic reasoning quality.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=7B91Naeszw
 organizations:
 - Uber

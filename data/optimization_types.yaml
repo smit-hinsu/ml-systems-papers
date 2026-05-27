@@ -1,0 +1,29 @@
+algorithm:
+  label: Algorithmic
+  description: >
+    New mathematical method, formula, or computation strategy — changes
+    what the system computes, not just how it is implemented.
+
+system:
+  label: Systems
+  description: >
+    Engineering or infrastructure change — batching, scheduling, memory
+    management, disaggregation — without fundamental algorithmic novelty.
+
+hardware:
+  label: Hardware
+  description: >
+    Hardware design, ISA extension, or deep hardware-software co-design;
+    contribution lives at or below the software-hardware boundary.
+
+workflow:
+  label: Workflow
+  description: >
+    Training recipe, evaluation methodology, or operational process change
+    that improves outcomes without a new runtime system or algorithm.
+
+application:
+  label: Application
+  description: >
+    Domain-specific trick that exploits application-layer properties
+    (e.g., precomputing at off-peak hours, domain-specific priors).

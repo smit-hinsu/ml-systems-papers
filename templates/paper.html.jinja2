@@ -54,13 +54,16 @@
       </div>
       {% endif %}
 
-      <!-- Compact tags: domains, topics, metadata -->
+      <!-- Compact tags: domains, topics, optimization type -->
       <div class="tags">
         {% for d in paper.domain or [] %}
           <a href="{{ root_path }}index.html?domain={{ d }}" class="tag tag-domain">{{ domains[d].label if d in domains else d }}</a>
         {% endfor %}
         {% for t in paper.topics or [] %}
           <a href="{{ root_path }}index.html?topic={{ t }}" class="tag tag-topic">{{ topics[t].label if t in topics else t }}</a>
+        {% endfor %}
+        {% for ot in paper.optimization_type or [] %}
+          <a href="{{ root_path }}index.html?opttype={{ ot }}" class="tag tag-opttype">{{ optimization_types[ot].label if ot in optimization_types else ot }}</a>
         {% endfor %}
       </div>
     </div>

@@ -11,6 +11,7 @@ organizations:
 - Duplex
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3829
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=JnmgsTFQQv
 arxiv_url: ''
 presentation_type: oral

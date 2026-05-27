@@ -48,6 +48,7 @@ observations:
     instead of streaming multiprocessors, eliminating resource contention and reducing
     effective communication cost
 official_category: Research Papers
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=MY0BIdK4hn
 organizations:
 - Meta

@@ -33,6 +33,7 @@ observations:
     for the full layer group, loading each weight exactly once per request vs. once
     per chunk with token-level scheduling (39% more traffic).
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=yyDbI3HXco
 organizations:
 - Seoul National University

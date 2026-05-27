@@ -32,6 +32,7 @@ observations:
     across GPU types, shrinking iteration time beyond what serial actor-critic-rollout
     execution allows.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=LRLyuaz1W7
 organizations:
 - ETH Zurich

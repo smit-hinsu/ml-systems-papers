@@ -34,6 +34,7 @@ observations:
     heads; shared-prefix drafting reuses the target's own computation, keeping the
     drafter close to the target distribution.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=cvU2HuuxEf
 organizations:
 - Chinese University of Hong Kong

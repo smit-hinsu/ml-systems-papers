@@ -38,6 +38,7 @@ observations:
     bandwidth while maintaining near-zero performance loss via optimized scale
     selection.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=innqECyZPK
 organizations:
 - Together AI

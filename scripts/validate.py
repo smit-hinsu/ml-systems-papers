@@ -110,6 +110,7 @@ def main():
     principles_full = load_registry_full("principles.yaml")
     domains = load_registry("domains.yaml")
     topics = load_registry("topics.yaml")
+    optimization_types = load_registry("optimization_types.yaml")
     venues = load_venues()
 
     errors = []
@@ -158,6 +159,9 @@ def main():
         for s in p.get("topics") or []:
             if s not in topics:
                 record(bucket, f"{name}: unknown topic slug '{s}'")
+        for s in p.get("optimization_type") or []:
+            if s not in optimization_types:
+                record(bucket, f"{name}: unknown optimization_type slug '{s}'")
         if p.get("venue") and p["venue"] not in venues:
             record(bucket, f"{name}: unknown venue slug '{p['venue']}'")
 

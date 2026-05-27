@@ -37,6 +37,7 @@ observations:
     for contiguous parameter layout before AllGather; structure-aware planning further
     reduces calls by fusing collectives at block granularity.
 official_category: Research Papers
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=3Lj8R0F48P
 organizations:
 - ByteDance

@@ -40,6 +40,7 @@ observations:
     high acceptance rates on rare tokens close the gap between distribution-naive
     speculation and optimal throughput.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=kMeqqPBjSl
 organizations:
 - University of Illinois Urbana-Champaign

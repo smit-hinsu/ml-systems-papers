@@ -30,6 +30,7 @@ observations:
     error from the FP8-store→BF16-compute round-trip; single-format FP8 paths reduce
     noise across MoE.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=wyH60Su6G7
 organizations:
 - Zhejiang Lab

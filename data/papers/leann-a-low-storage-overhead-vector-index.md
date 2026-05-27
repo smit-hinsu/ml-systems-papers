@@ -36,6 +36,7 @@ observations:
     original storage and enabling deployment on personal devices or large-scale systems
     without embedding storage.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=e8Dp5QkFxP
 organizations:
 - UC Berkeley

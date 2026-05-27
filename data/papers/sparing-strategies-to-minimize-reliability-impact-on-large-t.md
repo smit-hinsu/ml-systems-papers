@@ -33,6 +33,7 @@ observations:
   balance: Sparing configuration (block size, spare count, GPU trays) determines replacement
     speed; under-sparing causes training downtime while over-sparing wastes GPU capacity.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=18jPgte2tM
 organizations:
 - Meta

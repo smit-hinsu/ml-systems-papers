@@ -39,6 +39,7 @@ observations:
     for each RAG lookup, keeping GPU memory overhead minimal while avoiding retrieval
     stalls.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=YsOyCpMUYD
 organizations:
 - University of Washington

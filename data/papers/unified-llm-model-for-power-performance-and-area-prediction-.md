@@ -25,6 +25,7 @@ observations:
     predict PPA metrics—a verifiable hardware design objective—enabling fast design-space
     search without full synthesis.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=lpO7kxiayb
 organizations:
 - University of Southern California

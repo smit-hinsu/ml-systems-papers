@@ -28,6 +28,7 @@ observations:
   skip: Generation is conditioned on what was actually received; the model focuses
     compute on the missing regions rather than reprocessing the entire frame.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=GaBGzA7fpe
 organizations:
 - MIT

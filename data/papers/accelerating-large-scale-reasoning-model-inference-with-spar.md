@@ -42,6 +42,7 @@ observations:
   tier: Dynamic KV-cache offloads chunks to host memory asynchronously overlapped
     with GPU compute, bounding peak GPU memory use without stalling inference.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=yeqrwcWjPu
 organizations:
 - MIT

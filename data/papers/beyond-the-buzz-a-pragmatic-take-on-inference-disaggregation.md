@@ -45,6 +45,7 @@ observations:
     dominates; for generation-heavy traffic, KV-transfer and scheduling overhead of
     disaggregation exceeds the gain from independent batching.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=NqC5tcBsa0
 organizations:
 - NVIDIA

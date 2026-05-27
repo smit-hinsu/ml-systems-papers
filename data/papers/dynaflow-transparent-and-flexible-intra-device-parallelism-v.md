@@ -34,6 +34,7 @@ observations:
     control/data-flow that naive async execution introduces as redundant intermediate
     buffers between concurrent operators.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=i0yqC9954S
 organizations:
 - University of Washington

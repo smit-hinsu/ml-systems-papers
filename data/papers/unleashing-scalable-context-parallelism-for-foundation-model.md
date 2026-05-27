@@ -33,6 +33,7 @@ observations:
     to place sequence blocks on workers that minimize cross-node transfers for the
     actual sequence distribution.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=MPVycRsIn6
 organizations:
 - University of Washington

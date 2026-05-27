@@ -37,6 +37,7 @@ observations:
     in HBM; four compact index structures replace these with index-only tensors, eliminating
     most permutation traffic.
 official_category: Research Papers
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=L8qKfWWkry
 organizations:
 - Meta

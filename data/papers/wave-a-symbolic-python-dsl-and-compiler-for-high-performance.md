@@ -38,6 +38,7 @@ observations:
     in the fastest memory tiers throughout matrix core computation, without requiring
     manual tiling directives.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=gcXV1E8HRH
 organizations:
 - AMD

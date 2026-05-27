@@ -26,6 +26,7 @@ observations:
     and search-space descriptions; performance vs. near-optimal configurations is
     the verifiable signal driving improvement.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=qKlHJCbY6m
 organizations:
 - Leiden University

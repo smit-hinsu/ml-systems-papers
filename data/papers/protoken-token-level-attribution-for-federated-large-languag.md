@@ -31,6 +31,7 @@ observations:
     activations, focusing attribution on neurons that directly influence each token
     generation rather than scoring all activations.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=8WXUjbFr0Z
 organizations:
 - Virginia Tech

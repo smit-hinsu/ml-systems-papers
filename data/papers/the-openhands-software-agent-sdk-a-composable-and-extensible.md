@@ -36,6 +36,7 @@ observations:
     offload sandboxed tasks to remote instances, parallelizing agent execution with
     local orchestration.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=pzVmWs6yGq
 organizations:
 - Carnegie Mellon University

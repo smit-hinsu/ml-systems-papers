@@ -28,6 +28,7 @@ observations:
     data parallelism with pipeline parallelism and also avoids replicating parameters
     across data-parallel ranks.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=40leuGH3iO
 organizations:
 - University of Waterloo

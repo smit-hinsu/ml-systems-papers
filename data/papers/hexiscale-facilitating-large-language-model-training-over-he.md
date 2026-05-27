@@ -31,6 +31,7 @@ observations:
     across heterogeneous tiers so that faster GPUs do not idle while slower ones finish
     their unequal slices.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=KgcqSNio0U
 organizations:
 - Hong Kong University of Science and Technology

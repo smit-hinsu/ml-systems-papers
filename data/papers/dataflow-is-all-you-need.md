@@ -49,6 +49,7 @@ observations:
     eliminating launch overhead and inter-kernel synchronization that forces
     unnecessary HBM round-trips on GPU architectures.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=7wOOhxkuN8
 organizations:
 - SambaNova Systems

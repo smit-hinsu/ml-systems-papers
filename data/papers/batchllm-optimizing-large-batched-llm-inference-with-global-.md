@@ -32,6 +32,7 @@ observations:
     by fitting more decode tokens into each forward pass iteration without exceeding
     KV cache memory limits.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=IuVHde07l6
 organizations:
 - Microsoft

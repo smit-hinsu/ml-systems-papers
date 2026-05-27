@@ -35,6 +35,7 @@ observations:
     VRAM freed by quantized layers, converting weight memory into KV memory on-the-fly
     without additional GPU hardware.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=PDu13oOl4G
 organizations:
 - University of Virginia

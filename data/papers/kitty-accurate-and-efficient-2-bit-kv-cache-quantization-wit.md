@@ -44,6 +44,7 @@ observations:
     a small fraction at 4-bit, and quantizes insensitive channels at 2-bit — avoiding
     accuracy loss from applying uniform 2-bit.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=r3mQiuYKIN
 organizations:
 - Cornell University

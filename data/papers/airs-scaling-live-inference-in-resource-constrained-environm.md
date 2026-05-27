@@ -30,6 +30,7 @@ observations:
     and caching shared prompt prefixes across ratings tasks that share common system-prompt
     templates.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=g1RWik4Gy1
 organizations:
 - Google

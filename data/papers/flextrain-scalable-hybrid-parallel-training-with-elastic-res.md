@@ -37,6 +37,7 @@ observations:
     overlaps independent gradient reductions across newly added GPUs, reaching 2.27×
     over static allocation.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=h2yhNcbwSL
 organizations:
 - HKUST (Guangzhou)

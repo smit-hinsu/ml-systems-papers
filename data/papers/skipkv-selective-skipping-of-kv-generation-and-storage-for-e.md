@@ -36,6 +36,7 @@ observations:
     entirely from KV cache, skipping both eviction and generation for redundant reasoning
     steps.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=0EsV9SIm8p
 organizations:
 - University of Southern California

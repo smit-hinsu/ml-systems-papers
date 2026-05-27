@@ -25,6 +25,7 @@ key_results: Prediction error under 5.35% across models and configurations; unde
 models_evaluated: []
 observations: {}
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=19O6GAS7Su
 organizations:
 - ByteDance

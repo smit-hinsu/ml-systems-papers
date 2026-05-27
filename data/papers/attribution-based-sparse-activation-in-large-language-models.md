@@ -29,6 +29,7 @@ observations:
     70% neuron deactivation with <5% accuracy loss enables 35% latency and 40% memory
     reduction without model retraining.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=gJFigZeb5D
 organizations:
 - University of Pittsburgh

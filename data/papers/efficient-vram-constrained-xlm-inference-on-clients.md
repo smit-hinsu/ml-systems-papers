@@ -29,6 +29,7 @@ observations:
   tier: Sub-layer sharding with prioritized VRAM placement puts hot tensors on GPU
     and offloads cold tensors to CPU, maximizing effective throughput.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=VKqQYg6JPb
 organizations:
 - NVIDIA

@@ -29,6 +29,7 @@ observations:
     responsible for the forgotten samples, applying a minimal surgical update rather
     than globally perturbing the model.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=bLx6orLvQM
 organizations:
 - Imperial College London

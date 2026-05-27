@@ -32,6 +32,7 @@ observations:
     kernel fusion eliminating HBM round-trips between ops, and operation reordering
     to shrink tensor sizes before heavy compute.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=MJxhiX3sSd
 organizations:
 - Lawrence Berkeley National Laboratory

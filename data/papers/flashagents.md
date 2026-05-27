@@ -31,6 +31,7 @@ observations:
   pipeline: "Incremental prefill pipelined with upstream decode cuts end-to-end latency up to 40%; the breakeven is when upstream decode time exceeds the per-token prefill overhead on the downstream."
   cache: "Agentic workloads share system prompt prefixes, but the radix cache fills only after a call completes — concurrent calls within the same turn don't benefit by default"
 official_category: Research Papers
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=m14PPUfgEc
 organizations:
 - Chinese Academy of Sciences

@@ -36,6 +36,7 @@ observations:
     one batch leaves GPU idle after short requests finish; dedicated queues keep each
     batch's computation homogeneous.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=dzjCkSEDyG
 organizations:
 - Carnegie Mellon University

@@ -26,6 +26,7 @@ observations:
     utility, skipping the long tail of low-value graph traversals that existing fixed-budget
     termination continues.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=IFz0pROwF1
 organizations:
 - Columbia University

@@ -31,6 +31,7 @@ observations:
     coarser writes waste bandwidth on padding while finer granularity increases doorbell
     overhead.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=SjVa05wEiY
 organizations:
 - Perplexity AI

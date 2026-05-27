@@ -151,6 +151,7 @@ def main():
     principles = load_registry("principles.yaml")
     domains = load_registry("domains.yaml")
     topics = load_registry("topics.yaml")
+    optimization_types = load_registry("optimization_types.yaml")
     all_loaded = load_papers()
     # Always build all papers; status filtering happens client-side via ?dev=1
     papers = all_loaded
@@ -167,6 +168,7 @@ def main():
         principles=sorted_by_count(principles, index["by_principle"]),
         domains=sorted_by_count(domains, index["by_domain"]),
         topics=sorted_by_count(topics, index["by_topic"]),
+        optimization_types=optimization_types,
         all_papers=sort_papers(papers),
         index=index,
         dev_mode=False,  # status badges controlled client-side via ?dev=1

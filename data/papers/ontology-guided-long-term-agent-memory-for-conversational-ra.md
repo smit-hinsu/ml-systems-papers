@@ -25,6 +25,7 @@ observations:
     rather than re-reading full session history; the graph serves as a cheap index
     before expensive LLM context expansion.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=wpZHLPz4N0
 organizations:
 - Apple

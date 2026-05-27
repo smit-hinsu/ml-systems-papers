@@ -29,6 +29,7 @@ observations:
     staging tiles through high-bandwidth GPU memory to avoid CPU bottleneck on large
     embeddings.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=CR35IJQD2J
 organizations:
 - UMBC

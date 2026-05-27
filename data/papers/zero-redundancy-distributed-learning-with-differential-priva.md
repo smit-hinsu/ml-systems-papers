@@ -30,6 +30,7 @@ observations:
     like standard ZeRO, keeping per-GPU memory proportional to shard size even under
     DP noise accumulation.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=VGacNNZfgo
 organizations:
 - AWS

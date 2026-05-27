@@ -29,6 +29,7 @@ observations:
     within top-3 recommendations in a single invocation across 8 real LLM workloads
     on TPU clusters.
 official_category: ''
+optimization_type: []
 openreview_url: https://openreview.net/forum?id=FTOfgVHcZn
 organizations:
 - Google
