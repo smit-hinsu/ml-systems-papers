@@ -20,8 +20,8 @@
         {% if paper.award %}
           <span class="tag tag-award" style="vertical-align: middle; margin-left: .5rem;">★ {{ paper.award }}</span>
         {% endif %}
-        {% if dev_mode and paper.status == 'draft' %}
-          <span class="tag tag-draft" style="vertical-align: middle; margin-left: .5rem;">draft</span>
+        {% if dev_mode and paper.status in ['draft', 'under-review'] %}
+          <span class="tag tag-{{ 'draft' if paper.status == 'draft' else 'review' }}" style="vertical-align: middle; margin-left: .5rem;">{{ paper.status }}</span>
         {% endif %}
       </h1>
 

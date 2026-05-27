@@ -153,8 +153,11 @@ def main():
     topics = load_registry("topics.yaml")
     optimization_types = load_registry("optimization_types.yaml")
     all_loaded = load_papers()
-    # Always build all papers; status filtering happens client-side via ?dev=1
-    papers = all_loaded
+    papers = all_loaded if args.dev else [p for p in all_loaded if p.get("status") == "published"]
+    if not args.dev:
+        excluded = len(all_loaded) - len(papers)
+        if excluded:
+            print(f"Skipping {excluded} non-published paper(s) (use --dev to include all).")
     index = build_index(papers, principles, domains, topics, venues)
 
     def sorted_by_count(registry, paper_index):
@@ -171,7 +174,7 @@ def main():
         optimization_types=optimization_types,
         all_papers=sort_papers(papers),
         index=index,
-        dev_mode=False,  # status badges controlled client-side via ?dev=1
+        dev_mode=args.dev,
     )
 
     print("Generating paper pages...")

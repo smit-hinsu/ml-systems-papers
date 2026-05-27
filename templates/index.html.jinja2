@@ -85,8 +85,8 @@
         <a href="#" class="tag tag-topic" data-filter-type="topic" data-filter-value="{{ t }}">{{ topics[t].label if t in topics else t }}</a>
       {% endfor %}
       {% if paper.award %}<span class="tag tag-award">★ {{ paper.award }}</span>{% endif %}
-      {% if paper.status == 'under-review' %}<span class="tag tag-review dev-badge" style="display:none;">reviewing</span>{% endif %}
-      {% if paper.status == 'draft' %}<span class="tag tag-draft dev-badge" style="display:none;">draft</span>{% endif %}
+      {% if paper.status == 'under-review' %}<span class="tag tag-review{% if not dev_mode %} dev-badge{% endif %}"{% if not dev_mode %} style="display:none;"{% endif %}>reviewing</span>{% endif %}
+      {% if paper.status == 'draft' %}<span class="tag tag-draft{% if not dev_mode %} dev-badge{% endif %}"{% if not dev_mode %} style="display:none;"{% endif %}>draft</span>{% endif %}
     </div>
     {% endif %}
     <!-- Optimization type tags -->
