@@ -69,7 +69,6 @@ venue_url: https://mlsys.org/virtual/2026/oral/3760
 ## Trade-offs
 
 - Incremental prefill processes tokens one at a time rather than in a batch, so per-token prefill efficiency is lower than a single batched call — net benefit depends on the ratio of upstream decode time to downstream prefill time.
-- Intra-turn prefix cache consumes additional GPU memory proportional to the number of concurrent agent requests sharing a prefix.
 
 ## Nuances
 
