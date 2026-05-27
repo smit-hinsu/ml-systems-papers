@@ -54,13 +54,14 @@ python scripts/review.py --no-llm <slug>  # skip LLM call (faster)
 3. **Decide on `## Background`** — remove it if the domain is obvious from the title + key_results to an ML systems engineer; keep (≤80 words) only when context is genuinely non-obvious (hardware NoC, GNNs, ZK proofs, diffusion LMs, recs, etc.)
 4. Verify `key_results` — hardware + model + metric + named baseline? ≤ 160 chars?
 5. Verify `principles` — core contribution only, not tangential?
-6. Verify `observations` — paper-specific insight, not principle restatement? ≤ 200 chars each?
-7. Verify `domain` and `topics` — correct and complete?
-8. **Add `optimization_type`** — one or more of: `algorithm`, `system`, `hardware`, `workflow`, `application`; leave empty only for pure measurement/tooling papers
-9. Fill `code_url`, `slides_url` if findable
-10. Run `python scripts/validate.py` — zero warnings for this paper
-11. Set `status: published`
-12. Capture any systematic error found → add to Global Checklist below
+6. Verify `observations` — framed as an observation ("X happens because…", "authors found…"), paper-specific, not a principle restatement? ≤ 200 chars each?
+7. Verify `## Key Contributions` doesn't duplicate `principles`/`observations` — bullets that restate a principle already captured in the structured fields should be trimmed or moved to an **`## Other Key Contributions`** sub-section for engineering/infrastructure contributions not expressed by a principle
+9. Verify `domain` and `topics` — correct and complete?
+10. **Add `optimization_type`** — one or more of: `algorithm`, `system`, `hardware`, `workflow`, `application`; leave empty only for pure measurement/tooling papers
+11. Fill `code_url`, `slides_url` if findable
+12. Run `python scripts/validate.py` — zero warnings for this paper
+13. Set `status: published`
+14. Capture any systematic error found → add to Global Checklist below
 
 ### Paper status (as of 2026-05-26)
 - 1 published · 9 under-review · 125 draft
@@ -156,6 +157,7 @@ Use this to avoid the most common generation errors found during review.
 - [ ] 2–4 principles typical; 1 is fine; 5+ usually means over-tagging
 
 **`observations`** (≤ 200 chars each)
+- [ ] Framed as an observation: "X happens because…", "authors measured…", "the bottleneck is…" — not a feature description
 - [ ] Paper-specific: what did *this* paper notice that made the principle applicable?
 - [ ] Fails if it could be copy-pasted to a different paper using the same principle
 - [ ] Must not restate the principle description — validate.py checks word-overlap
@@ -180,7 +182,8 @@ Use this to avoid the most common generation errors found during review.
 ### Content rules
 
 - [ ] `## Key Contributions`: each bullet has a **bold named artifact** — `**SystemName**:`, `**AlgorithmName**:`
-- [ ] `## Background`: add when the problem domain isn't obvious from the title (hardware, compilers, recs, specialized architectures)
+- [ ] `## Key Contributions` must not duplicate `principles`/`observations` — if a bullet just restates a principle already in the structured fields, remove it or consolidate into an `## Other Key Contributions` section for engineering/infrastructure work not captured by a principle
+- [ ] `## Background`: keep only when domain is non-obvious to an ML systems engineer; remove if title + key_results make context clear
 - [ ] `## Findings`: add *only* for measurement/characterization papers; omit for system-building papers
 - [ ] No repetition across sections — each section has one job
 - [ ] `research_or_industry`: use `industry` when it's a production system report with little algorithmic novelty
@@ -196,6 +199,8 @@ Use this to avoid the most common generation errors found during review.
 
 - **`skip` principle overused**: assigned to any paper with sparsity or pruning, even when the paper's core contribution is the quantization method, not the skipping decision.
 - **Observation = principle restatement**: e.g. `cache: shared prefixes can be cached` — adds no paper-specific information.
+- **Observation framed as a feature, not a finding**: e.g. `pipeline: overlaps prefill and decode` describes what the system does, not what the authors observed. Rewrite as: `pipeline: prefill and decode have no data dependency between requests, so their GPU time can be overlapped without correctness risk`.
+- **Key Contributions duplicates principles**: if `cache` is a principle and a bullet says "we cache KV states to avoid recomputation", the bullet adds nothing — either remove it or expand it to describe the specific caching mechanism in a way the principle doesn't capture.
 
 ---
 
