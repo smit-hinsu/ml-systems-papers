@@ -101,6 +101,9 @@
         wrapper.appendChild(next);
         next = following;
       }
+      // Move Background callout to before Observations (or to top of body if no Observations)
+      const obsH2 = Array.from(body.querySelectorAll('h2')).find(h => h.textContent.trim() === 'Observations');
+      body.insertBefore(wrapper, obsH2 || body.firstChild);
     })();
     </script>
   </article>
