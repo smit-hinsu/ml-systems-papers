@@ -23,17 +23,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Up to 1.29× throughput improvement across 6 state-of-the-art ML systems
-  with minimal code changes per system
+key_results: Up to 1.29× throughput vs. unmodified baseline across 6 ML systems
+  (including FlashAttention and vLLM) with minimal per-system code changes
 models_evaluated: []
 observations:
-  pipeline: DynaFlow's programmable operator scheduling enables intra-device
-    parallelism strategies that overlap operators with complementary resource profiles
-    (e.g., memory-bound and compute-bound) without model-specific code, achieving up
-    to 1.29× throughput.
-  cache: Custom memory management in DynaFlow's backend eliminates
-    copy overheads that would otherwise arise from asynchronous control/data-flow,
-    removing redundant memory operations that naive async execution introduces.
+  pipeline: DynaFlow's scheduler overlaps memory-bound and compute-bound operators
+    without model-specific code, achieving up to 1.29× throughput across 6 ML
+    systems including vLLM and FlashAttention.
+  cache: DynaFlow's custom memory manager eliminates copy overheads from async
+    control/data-flow that naive async execution introduces as redundant intermediate
+    buffers between concurrent operators.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=i0yqC9954S
 organizations:
@@ -42,9 +41,8 @@ presentation_type: oral
 principles:
 - pipeline
 - cache
-problem: Integrating intra-device parallelism into ML frameworks requires invasive,
-  model-specific code rewrites that don't generalize across model architectures or
-  hardware contexts.
+problem: Adding intra-device parallelism to ML frameworks requires invasive,
+  model-specific code rewrites that don't generalize across architectures or hardware.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -54,11 +52,14 @@ status: draft
 title: 'DynaFlow: Transparent and Flexible Intra-Device Parallelism via Programmable
   Operator Scheduling'
 topics:
-- kernel-fusion
 - pipeline-parallelism
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3771
 ---
+
+## Background
+
+A single GPU has multiple independent engines — tensor cores, copy engines, separate SM partitions — that can run concurrently. Overlapping memory-bound operators (KV cache loads) with compute-bound operators (matmuls) on the same device improves utilization, but ML frameworks serialize operators by default. Adding this intra-device overlap to an existing system like vLLM or FlashAttention requires invasive, model-specific rewrites — work that must be repeated from scratch for each framework and doesn't generalize.
 
 ## Key Contributions
 

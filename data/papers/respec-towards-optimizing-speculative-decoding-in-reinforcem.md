@@ -1,7 +1,7 @@
 ---
 agentic_models: []
+arxiv_date: 2025-10
 arxiv_url: https://arxiv.org/abs/2510.26475
-arxiv_date: '2025-10'
 authors:
 - Qiaoling Chen
 - Zijun Liu
@@ -28,12 +28,15 @@ models_evaluated:
 - Qwen-7B
 - Qwen-14B
 observations:
-  cache: Dynamic SD configuration tuning avoids fixed-overhead speculative
-    decoding at large batch sizes where drafting yields diminishing returns; configurations
+  balance: Drafter staleness under continual actor updates causes policy divergence;
+    evolving the drafter via knowledge distillation keeps it aligned with the current
+    actor, maintaining accept rates.
+  cache: Dynamic SD configuration tuning avoids fixed-overhead speculative decoding
+    at large batch sizes where drafting yields diminishing returns; configurations
     are tuned per-step.
-  balance: Drafter staleness under continual actor updates causes policy
-    divergence; evolving the drafter via knowledge distillation keeps it aligned with
-    the current actor, maintaining accept rates.
+  speculate: Draft model is updated alongside the RL policy to track its distribution
+    shift; keeping drafter and target in sync prevents acceptance rate collapse as
+    the target model changes during RL training.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=HhDSxs7x2R
 organizations:
@@ -46,13 +49,13 @@ presentation_type: oral
 principles:
 - cache
 - balance
-problem: Speculative decoding naively applied to RL training degrades at large batch
-  sizes, suffers drafter staleness, and causes policy degradation from drafter-actor
-  misalignment.
+- speculate
+problem: Speculative decoding in RL training degrades at large batch sizes, suffers
+  drafter staleness, and causes policy degradation from drafter-actor misalignment.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3836.pdf
 slug: respec-towards-optimizing-speculative-decoding-in-reinforcem
 status: draft
 title: 'ReSpec: Towards Optimizing Speculative Decoding in Reinforcement Learning
@@ -62,6 +65,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3836
 ---
+
+## Background
+
+RL-based LLM fine-tuning (RLHF, GRPO, PPO) generates thousands of rollout sequences per gradient step — autoregressive generation consumes over 75% of wall-clock training time. Speculative decoding is an obvious accelerant, but RL continuously updates the actor model. A draft model calibrated at step 0 diverges from the actor by step 100; acceptance rates collapse, and at the large batch sizes typical in RL rollouts the verifier is already compute-saturated even with a perfect drafter.
 
 ## Key Contributions
 

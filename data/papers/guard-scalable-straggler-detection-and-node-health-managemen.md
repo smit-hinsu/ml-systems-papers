@@ -61,6 +61,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3831
 ---
 
+## Background
+
+Distributed training is synchronous: every GPU waits at each step for the slowest node. Hardware crashes are easy to detect; "fail-slow" nodes are not — they pass all functional health checks (NCCL tests, GPU burn-in) but run 5–20% slower due to degradation or thermal throttling. Standard burn-in checks whether a node works, not whether it keeps up with the fleet. Over multi-month pretraining runs at tens of thousands of GPUs, even a few fail-slow nodes compound into significant utilization loss.
+
 ## Key Contributions
 
 - **Online performance monitoring**: Lightweight per-step telemetry collected during active training to continuously track step-time distributions across nodes; detects acute failures and gradual degradation in real time without requiring a separate diagnostic pass.

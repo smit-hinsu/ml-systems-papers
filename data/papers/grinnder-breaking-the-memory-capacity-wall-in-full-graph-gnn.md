@@ -1,6 +1,6 @@
 ---
-slug: grinnder-breaking-the-memory-capacity-wall-in-full-graph-gnn
-title: "GriNNder: Breaking the Memory Capacity Wall in Full-Graph GNN Training with Storage Offloading"
+agentic_models: []
+arxiv_url: ''
 authors:
 - Jaeyong Song
 - Seongyeon Park
@@ -9,43 +9,51 @@ authors:
 - Hunseong Lim
 - Junguk Hong
 - Jinho Lee
-organizations:
-- Seoul National University
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3851
-openreview_url: https://openreview.net/forum?id=8SNPzGRldN
-arxiv_url: ''
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: research
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
-- llm-training
+- ml-kernels
 hardware:
 - Single GPU
 - NVMe SSD
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: GriNNder achieves up to 9.78x speedup over baselines on a single GPU
+  with NVMe offloading, matching distributed multi-GPU system throughput on large
+  graphs.
 models_evaluated:
 - GNNs (various models and large graph datasets)
-agentic_models: []
-topics: []
+observations:
+  tier: SSO framework coordinates GPU-host-storage hierarchy via cache, regather,
+    and bypass mechanisms tuned to full-graph GNN's unique cross-partition access
+    patterns.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=8SNPzGRldN
+organizations:
+- Seoul National University
+presentation_type: oral
 principles:
 - tier
-- cache
-observations:
-  tier: "SSO framework coordinates GPU-host-storage hierarchy via cache, regather, and bypass mechanisms tuned to full-graph GNN's unique cross-partition access patterns."
-  cache: "Regathering strategy for gradient computation eliminates redundant NVMe reads by reusing already-fetched neighbor data during backprop."
-problem: "Full-graph GNN training requires multiple GPUs or servers when graphs exceed GPU/host memory, incurring high hardware and communication costs."
-key_results: "GriNNder achieves up to 9.78x speedup over baselines on a single GPU with NVMe offloading, matching distributed multi-GPU system throughput on large graphs."
+problem: Full-graph GNN training requires multiple GPUs or servers when graphs exceed
+  GPU/host memory, incurring high hardware and communication costs.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3851_xn3JSf6.pdf
+slug: grinnder-breaking-the-memory-capacity-wall-in-full-graph-gnn
+status: draft
+title: 'GriNNder: Breaking the Memory Capacity Wall in Full-Graph GNN Training with
+  Storage Offloading'
+topics: []
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3851
 ---
+
+## Background
+
+GNNs pass messages between connected nodes across layers. Full-graph training — processing all nodes and edges each iteration — is more accurate than mini-batch sampling but requires holding the entire graph in memory simultaneously. Real-world graphs (social, citation, molecular) easily exceed GPU memory, so the standard solution is multi-GPU distribution. GNN neighbor aggregation produces irregular random memory accesses that defeat naive CPU/NVMe offloading strategies, making single-machine alternatives impractical without careful hierarchy management.
 
 ## Key Contributions
 

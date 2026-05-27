@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Chien-Yu Lin
 - Keisuke Kamahori
@@ -30,15 +30,14 @@ key_results: Up to 1.98× latency reduction (single-query) and 1.83× throughput
   (batched) with minimal GPU memory requirements.
 models_evaluated: []
 observations:
-  pipeline: Lookahead retrieval predicts needed datastore entries
-    during LLM generation and prefetches them from CPU to GPU in parallel, hiding
-    retrieval latency behind decode.
-  tier: Prefetching scheduler moves retrieval data from CPU memory
-    to GPU just-in-time for each RAG lookup, keeping GPU memory overhead minimal while
-    avoiding retrieval stalls.
-  cache: Cache-aware scheduler routes repeated or similar queries to
-    cached GPU-side retrievals, avoiding redundant CPU-GPU transfers for hot datastore
-    entries.
+  cache: Cache-aware scheduler routes repeated or similar queries to cached GPU-side
+    retrievals, avoiding redundant CPU-GPU transfers for hot datastore entries.
+  pipeline: Lookahead retrieval predicts needed datastore entries during LLM generation
+    and prefetches them from CPU to GPU in parallel, hiding retrieval latency behind
+    decode.
+  tier: Prefetching scheduler moves retrieval data from CPU memory to GPU just-in-time
+    for each RAG lookup, keeping GPU memory overhead minimal while avoiding retrieval
+    stalls.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=YsOyCpMUYD
 organizations:
@@ -54,7 +53,7 @@ problem: Large RAG datastores cannot fit in GPU memory, forcing expensive CPU-to
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3796_JIkCNfh.pdf
 slug: telerag-efficient-retrieval-augmented-generation-inference-w
 status: draft
 title: 'TeleRAG: Efficient Retrieval-Augmented Generation Inference with Lookahead
@@ -66,6 +65,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3796
 ---
+
+## Background
+
+RAG fetches relevant documents from a large datastore and includes them in the prompt as context. The datastore is too large for GPU memory, so retrieval runs on the CPU and results transfer over PCIe before generation starts — turning retrieval latency directly into user-facing TTFT. Existing LLM serving schedulers treat retrieval as an opaque blocking call rather than an opportunity for asynchronous prefetching.
 
 ## Key Contributions
 

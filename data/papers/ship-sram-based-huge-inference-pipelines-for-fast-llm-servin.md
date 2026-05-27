@@ -77,6 +77,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3834
 ---
 
+## Background
+
+LLM decode is memory-bandwidth-bound: each token requires loading the full model weights from HBM even though only a tiny fraction are used. GPUs have only a few MB of on-chip SRAM — far too little for a large model. Groq's GroqChip takes a different design point: ~220 MB of on-chip SRAM per chip with a deterministic compiler. Thousands of chips on a synchronous low-latency fabric can collectively hold an entire model in SRAM, eliminating the HBM bottleneck entirely.
+
 ## Key Contributions
 
 - **SRAM-based inference pipeline (SHIP)**: deploys model weights and KV cache entirely in on-chip SRAM rather than HBM, eliminating the memory bandwidth bottleneck that limits GPU decode throughput; production deployment on Groq's public cloud serving hundreds of billions of tokens daily

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Jinsol Park
 - Corey Nolet
@@ -22,12 +22,12 @@ key_results: 22.7× speedup on single GPU vs CPU baseline; projected up to 74× 
   with multi-GPU for datasets too large for CPU to complete
 models_evaluated: []
 observations:
-  tier: Out-of-core strategy partitions the dataset across GPU
-    HBM and host DRAM, staging tiles through high-bandwidth GPU memory to avoid CPU
-    bottleneck on large embeddings.
-  balance: Multi-GPU sharding distributes nearest-neighbor construction
-    and graph optimization across devices, eliminating single-GPU memory wall at
-    hundreds-of-GB scale.
+  balance: Multi-GPU sharding distributes nearest-neighbor construction and graph
+    optimization across devices, eliminating single-GPU memory wall at hundreds-of-GB
+    scale.
+  tier: Out-of-core strategy partitions the dataset across GPU HBM and host DRAM,
+    staging tiles through high-bandwidth GPU memory to avoid CPU bottleneck on large
+    embeddings.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=CR35IJQD2J
 organizations:
@@ -42,7 +42,7 @@ problem: UMAP on tens to hundreds of GB of vectors is intractable on CPU (hours 
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3847.pdf
 slug: massive-scale-out-of-core-umap-on-the-gpu
 status: draft
 title: Massive-Scale Out-Of-Core UMAP on the GPU
@@ -50,6 +50,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3847
 ---
+
+## Background
+
+GPU-accelerated UMAP (cuML) runs in minutes for up to ~10M vectors, but industry-scale datasets (hundreds of millions for recommendation systems or genomics) exceed GPU HBM capacity. CPU-based UMAP at that scale takes hours to days, blocking interactive analysis. Out-of-core tiling through GPU memory in stages is the standard technique, but UMAP's k-NN graph construction and optimization steps have complex cross-dataset dependencies that complicate tiling.
 
 ## Key Contributions
 

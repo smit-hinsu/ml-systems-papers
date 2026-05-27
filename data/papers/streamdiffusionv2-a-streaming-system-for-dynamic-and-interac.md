@@ -68,6 +68,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3750
 ---
 
+## Background
+
+Video diffusion models generate frames by iteratively denoising over many steps — high quality but expensive. Offline generation optimizes for throughput, but live streaming imposes hard SLOs: frames must appear at a fixed rate (30+ FPS) with sub-second time-to-first-frame. At 14B parameter scale, a single denoising forward pass takes longer than the inter-frame budget, and existing diffusion serving stacks have no SLO-aware scheduling.
+
 ## Key Contributions
 
 - **SLO-aware batching scheduler**: jointly enforces time-to-first-frame and per-frame deadline constraints; dynamically batches live-streaming requests to maximize throughput without violating latency SLOs.

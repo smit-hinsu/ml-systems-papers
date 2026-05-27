@@ -59,6 +59,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3732
 ---
 
+## Background
+
+Chunked prefill splits long prompts into fixed-size token chunks processed alongside decode tokens, preventing GPU stalls on large prompts. For dense transformers this works well. In MoE models, each layer routes tokens to a subset of experts; with chunked prefill a request's tokens traverse the same layer across multiple iterations, forcing expert weights to reload once per chunk rather than once per request — redundant loads that inflate memory traffic and TTFT as prompt length grows.
+
 ## Key Contributions
 
 - **Layered prefill scheduling**: Partitions the transformer into G = max(1, ⌈L/512⌉) contiguous layer groups (where L is input length); per iteration, exactly one designated group processes both decode and new prefill work while all others run decode-only, ensuring each token traverses every expert weight exactly once.

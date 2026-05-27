@@ -48,6 +48,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3820
 ---
 
+## Background
+
+In federated learning and edge-cloud inference, bandwidth between nodes is the bottleneck — lossless compression reduces transmitted bytes without changing model behavior. General-purpose codecs (gzip, zstd) target text and binary data, not 8-bit quantized ML tensor distributions, leaving headroom above the Shannon entropy limit. Prior ANS-based ML tensor codecs either need megabytes of state (won't fit in edge SRAM) or sacrifice throughput to hit high compression ratios.
+
 ## Key Contributions
 
 - **Shannonic codec**: lossless ML tensor compression achieving near-entropy-optimal compression with only 530B of codec state and high throughput; encodes each value as a (range index, offset) pair

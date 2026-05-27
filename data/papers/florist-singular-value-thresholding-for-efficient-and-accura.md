@@ -1,50 +1,61 @@
 ---
-title: 'FLoRIST: Singular Value Thresholding for Efficient and Accurate Federated Fine-Tuning of Large Language Models'
-slug: florist-singular-value-thresholding-for-efficient-and-accura
+agentic_models: []
+arxiv_date: 2025-06
+arxiv_url: https://arxiv.org/abs/2506.09199
 authors:
 - Hariharan Ramesh
 - Jyotikrishna Dass
-organizations:
-- University of Arizona
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3840
-openreview_url: https://openreview.net/forum?id=GTZRs756YJ
-arxiv_url: https://arxiv.org/abs/2506.09199
-slides_url: ''
-code_url: ''
-project_url: ''
-official_category: ''
-presentation_type: oral
 award: ''
-arxiv_date: '2025-06'
+citations: null
+citations_updated: ''
+code_url: ''
 domain:
 - llm-training
-topics:
-- fsdp-zero
-- quantization
-principles:
-- cache
-- fuse
-observations:
-  cache: SVD is performed on the compact stacked-adapter space rather than constructing the full weight-update matrix, avoiding O(d²) computation and memory that scales with model width.
-  fuse: Clients transmit only low-rank adapter pairs (r × d) rather than full weight-update matrices; FLoRIST-E achieves 3× lower communication than FFA-LoRA and 39× lower than FLoRA.
 hardware:
 - A100
+indexed_by: smithinsu
+indexed_date: '2026-05-25'
+key_results: 3× lower communication vs. FFA-LoRA and 39× vs. FLoRA; 227× vs. full
+  fine-tuning with 8 clients; competitive accuracy on MMLU with A100 MIG slices.
 models_evaluated:
 - LLaMA-3.2-1B
 - TinyLLaMA
 - LLaMA-7B
-agentic_models: []
-citations: null
-citations_updated: ''
-research_or_industry: research
-problem: Federated LoRA aggregation either introduces noise via simple averaging, requires large stacked adapter uploads, or demands expensive full weight-matrix decomposition at the server.
-key_results: 3× lower communication vs. FFA-LoRA and 39× vs. FLoRA; 227× vs. full fine-tuning with 8 clients; competitive accuracy on MMLU with A100 MIG slices.
-status: draft
+observations:
+  cache: SVD is performed on the compact stacked-adapter space rather than constructing
+    the full weight-update matrix, avoiding O(d²) computation and memory that scales
+    with model width.
+  fuse: Clients transmit only low-rank adapter pairs (r × d) rather than full weight-update
+    matrices; FLoRIST-E achieves 3× lower communication than FFA-LoRA and 39× lower
+    than FLoRA.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=GTZRs756YJ
+organizations:
+- University of Arizona
+presentation_type: oral
+principles:
+- cache
+- fuse
+problem: Federated LoRA aggregation either adds noise from averaging, requires large
+  adapter uploads, or demands full weight-matrix decomposition at the server.
+project_url: ''
 reading_status: want-to-read
-indexed_by: smithinsu
-indexed_date: '2026-05-25'
+research_or_industry: research
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3840_BwPF7aI.pdf
+slug: florist-singular-value-thresholding-for-efficient-and-accura
+status: draft
+title: 'FLoRIST: Singular Value Thresholding for Efficient and Accurate Federated
+  Fine-Tuning of Large Language Models'
+topics:
+- fsdp-zero
+- quantization
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3840
 ---
+
+## Background
+
+Federated fine-tuning trains across many clients (hospitals, phones, edge devices) without centralizing data. LoRA keeps upload sizes small — each client sends low-rank A/B adapter pairs — but simply averaging adapters introduces cross-term noise: (A₁B₁ + A₂B₂)/2 ≠ the average of the underlying weight updates. Correct aggregation otherwise requires reconstructing the full O(d²) weight matrix on the server, which is prohibitively expensive.
 
 ## Key Contributions
 

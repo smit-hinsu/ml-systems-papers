@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Jiayi Tian
 - Seyedarmin Azizi
@@ -22,20 +22,19 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Up to 26.7% higher accuracy vs. baseline KV eviction; up to 1.6x shorter
-  generation length and 1.7x throughput improvement vs. state-of-the-art at similar
-  compression budget.
+key_results: Up to 26.7% accuracy gain vs. baseline KV eviction; 1.6x shorter generation
+  and 1.7x throughput vs. per-token eviction methods at similar compression budget.
 models_evaluated: []
 observations:
-  skip: Sentence-level scoring identifies and removes semantically similar
-    CoT sentences entirely from KV cache, skipping both eviction and generation for
-    redundant reasoning steps.
-  cache: Steering vector adjustment suppresses redundant token generation
-    by dynamically updating hidden activation states; prevents the LRM from revalidating
-    already-established reasoning steps.
-  kv-cache: Token-wise KV eviction suffers from unstable scoring and padding-caused
-    budget reduction; sentence-level removal maintains semantic coherence while achieving
+  cache: Steering vector adjustment suppresses redundant token generation by dynamically
+    updating hidden activation states; prevents the LRM from revalidating already-established
+    reasoning steps.
+  kv-cache: Token-wise KV eviction has unstable scoring and padding-caused budget
+    reduction; sentence-level removal maintains semantic coherence while achieving
     superior compression vs. per-token methods.
+  skip: Sentence-level scoring identifies and removes semantically similar CoT sentences
+    entirely from KV cache, skipping both eviction and generation for redundant reasoning
+    steps.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=0EsV9SIm8p
 organizations:
@@ -45,13 +44,12 @@ presentation_type: oral
 principles:
 - skip
 - cache
-problem: Large reasoning models generate verbose CoT responses that cause linear KV
-  cache growth; existing token-level eviction methods fail in multi-batch settings
-  due to unstable scoring.
+problem: Large reasoning models produce verbose CoT responses causing linear KV cache
+  growth; token-level eviction fails in multi-batch settings due to unstable scoring.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3864_lxfVaNQ.pdf
 slug: skipkv-selective-skipping-of-kv-generation-and-storage-for-e
 status: draft
 title: 'SkipKV: Selective Skipping of KV Generation and Storage for Efficient Inference
@@ -62,6 +60,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3864
 ---
+
+## Background
+
+Large reasoning models like DeepSeek-R1 generate chain-of-thought traces spanning thousands of tokens before answering. Each trace token occupies KV cache memory, causing linear memory growth with reasoning length. Per-token KV eviction based on attention scores misses sentence-level redundancy (models often restate intermediate conclusions) and is unstable in multi-batch settings because padding tokens distort attention scores and shrink the effective eviction budget.
 
 ## Key Contributions
 

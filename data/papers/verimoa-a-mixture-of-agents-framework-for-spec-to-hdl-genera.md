@@ -1,7 +1,8 @@
 ---
-agentic_models: []
-arxiv_url: ''
+agentic_models:
+- Multiple LLM backbones (GPT-4, smaller models)
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Heng Ping
 - Arijit Bhattacharjee
@@ -26,15 +27,13 @@ indexed_date: '2026-05-25'
 key_results: 15–30% improvement in Pass@1 on VerilogEval 2.0 and RTLLM 2.0 benchmarks
   across diverse LLM backbones without any training.
 models_evaluated: []
-agentic_models:
-- Multiple LLM backbones (GPT-4, smaller models)
 observations:
-  cache: Quality-guided caching retains all intermediate HDL outputs
-    and ranks them across reasoning layers; subsequent agents reuse high-quality prior
-    outputs instead of starting from scratch.
-  search-ai: Multi-path generation through C++ and Python intermediates
-    and quality-guided selection optimizes a verifiable objective (HDL correctness)
-    by exploring diverse solution paths and selecting the best.
+  cache: Quality-guided caching retains all intermediate HDL outputs and ranks them
+    across reasoning layers; subsequent agents reuse high-quality prior outputs instead
+    of starting from scratch.
+  search-ai: Multi-path generation through C++ and Python intermediates and quality-guided
+    selection optimizes a verifiable objective (HDL correctness) by exploring diverse
+    solution paths and selecting the best.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=5wgZXJ0kWA
 organizations:
@@ -46,11 +45,11 @@ principles:
 - cache
 - search-ai
 problem: LLM-based HDL generation suffers from noise propagation across agent layers
-  and constrained solution diversity, limiting correctness on complex RTL specifications.
+  and limited solution diversity, limiting correctness on complex RTL specifications.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3855_j54FoJa.pdf
 slug: verimoa-a-mixture-of-agents-framework-for-spec-to-hdl-genera
 status: draft
 title: 'VeriMoA: A Mixture-of-Agents Framework for Spec-to-HDL Generation'
@@ -59,6 +58,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3855
 ---
+
+## Background
+
+Verilog is the register-transfer-level language that synthesis tools compile into actual silicon. Writing correct Verilog requires expressing hardware parallelism, timing constraints, and bit-level behavior simultaneously; small errors produce circuits that silently compute wrong results. LLMs have high error rates on RTL generation tasks because Verilog is underrepresented in training data compared to Python or C++. Mixture-of-Agents (MoA) chains multiple LLM calls together for iterative refinement, but naively passing all outputs forward propagates early errors and reduces solution diversity.
 
 ## Key Contributions
 

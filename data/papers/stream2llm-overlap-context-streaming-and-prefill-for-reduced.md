@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Rajveer Bachkaniwala
 - Chengqi Luo
@@ -11,23 +11,22 @@ authors:
 award: ''
 citations: null
 citations_updated: ''
-code_url: 'https://github.com/rajveerb/stream2llm/tree/mlsys_artifact'
+code_url: https://github.com/rajveerb/stream2llm/tree/mlsys_artifact
 domain:
 - llm-serving
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Up to 11× TTFT improvement through streaming architecture; throughput
-  parity with non-streaming baselines maintained under memory pressure on real-world
-  web crawl and ANN search workloads
+key_results: Up to 11× TTFT improvement via streaming; throughput parity with non-streaming
+  baselines under memory pressure on web crawl and ANN search workloads.
 models_evaluated: []
 observations:
-  pipeline: Stream2LLM overlaps context retrieval with LLM prefill
-    processing, allowing incremental context chunks to trigger partial prefill computations
-    rather than waiting for all retrieved context before beginning inference.
-  cache: Longest common prefix matching minimizes redundant prefill
-    computation when context updates dynamically; only the changed suffix is re-processed
-    rather than re-prefilling the full updated context from scratch.
+  cache: Longest common prefix matching minimizes redundant prefill when context updates
+    dynamically; only the changed suffix is re-processed rather than re-prefilling
+    the full updated context.
+  pipeline: Stream2LLM overlaps context retrieval with prefill, letting incremental
+    context chunks trigger partial prefill computations rather than waiting for all
+    context before beginning inference.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=FuRo7Ur5Ib
 organizations:
@@ -36,12 +35,12 @@ presentation_type: oral
 principles:
 - pipeline
 - cache
-problem: LLM serving with context retrieval stalls on high retrieval latency while
-  waiting for complete context before starting prefill, causing poor time-to-first-token.
+problem: LLM serving stalls when context retrieval latency is high; the system waits
+  for complete context before starting prefill, causing poor time-to-first-token.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3842.pdf
 slug: stream2llm-overlap-context-streaming-and-prefill-for-reduced
 status: draft
 title: 'Stream2LLM: Overlap Context Streaming and Prefill for Reduced Time-to-First-Token'
@@ -52,6 +51,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3842
 ---
+
+## Background
+
+RAG pipelines and agentic systems retrieve context before answering — vector searches, tool calls, or file reads all take time. Current serving systems wait for all context to arrive before starting prefill, so TTFT = retrieval latency + prefill latency, fully sequential. Prefill could start on already-received chunks while retrieval continues in the background, hiding retrieval latency behind compute.
 
 ## Key Contributions
 

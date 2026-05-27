@@ -55,6 +55,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3780
 ---
 
+## Background
+
+Deploying an LLM in production means choosing a parallelism configuration: TP, PP, EP, and CP degrees plus runtime policies like continuous batching vs. prefill-decode disaggregation. The configuration space has millions of candidates, no closed-form ranking formula, and the right answer varies by model size, hardware, and workload shape. At Meta's scale, even a 5% throughput improvement per GPU-hour translates to significant cost savings.
+
 ## Key Contributions
 
 - **Configuration search framework**: systematically analyzes millions of deployment configurations spanning hardware type, tensor/pipeline/expert/context/data parallelism degrees, and runtime policies (continuous batching vs. prefill-decode disaggregation) to identify throughput-maximizing deployments under latency SLOs for Llama models at Meta scale

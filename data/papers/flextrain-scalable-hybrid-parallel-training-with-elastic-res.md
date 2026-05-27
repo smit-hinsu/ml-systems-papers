@@ -1,6 +1,7 @@
 ---
-title: 'FlexTrain: Scalable Hybrid-Parallel Training with Elastic Resource Utilization and Consistent Accuracy'
-slug: flextrain-scalable-hybrid-parallel-training-with-elastic-res
+agentic_models: []
+arxiv_date: ''
+arxiv_url: ''
 authors:
 - Weilin Cai
 - Diandian Gu
@@ -12,46 +13,60 @@ authors:
 - Shuguang Wang
 - Wencong Xiao
 - Jiayi Huang
-organizations:
-- HKUST (Guangzhou)
-- ByteDance
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3776
-openreview_url: https://openreview.net/forum?id=h2yhNcbwSL
-arxiv_url: ''
-slides_url: ''
-code_url: ''
-project_url: ''
-official_category: ''
-presentation_type: oral
 award: ''
-arxiv_date: ''
+citations: null
+citations_updated: ''
+code_url: ''
 domain:
 - llm-training
 - fleet-efficiency
+hardware: []
+indexed_by: smithinsu
+indexed_date: '2026-05-25'
+key_results: Up to 1.73× speedup with consistent accuracy and 2.27× with relaxed consistency
+  vs. non-elastic scheduling; evaluated on shared GPU clusters.
+models_evaluated: []
+observations:
+  balance: FlexTrain adjusts pipeline-parallelism degree first when idle GPUs appear,
+    preserving deterministic computation and consistent accuracy without needing full
+    retraining.
+  elastic: FlexTrain absorbs spare GPUs at runtime by redistributing layers across
+    the enlarged device set; if GPUs are reclaimed, training checkpoints and migrates
+    to the smaller configuration without restart.
+  pipeline: When accuracy consistency is relaxed, additional data-parallelism scaling
+    overlaps independent gradient reductions across newly added GPUs, reaching 2.27×
+    over static allocation.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=h2yhNcbwSL
+organizations:
+- HKUST (Guangzhou)
+- ByteDance
+presentation_type: oral
+principles:
+- balance
+- pipeline
+- elastic
+problem: Elastic LLM training on shared clusters causes accuracy inconsistency, high
+  profiling overhead, or limited parallelism flexibility when absorbing idle GPUs.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: mixed
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3776.pdf
+slug: flextrain-scalable-hybrid-parallel-training-with-elastic-res
+status: draft
+title: 'FlexTrain: Scalable Hybrid-Parallel Training with Elastic Resource Utilization
+  and Consistent Accuracy'
 topics:
 - pipeline-parallelism
 - tensor-parallelism
 - fsdp-zero
-principles:
-- balance
-- pipeline
-observations:
-  balance: FlexTrain adjusts pipeline-parallelism degree first when idle GPUs appear, preserving deterministic computation and consistent accuracy without needing full retraining.
-  pipeline: When accuracy consistency is relaxed, additional data-parallelism scaling overlaps independent gradient reductions across newly added GPUs, reaching 2.27× over static allocation.
-hardware: []
-models_evaluated: []
-agentic_models: []
-citations: null
-citations_updated: ''
-research_or_industry: mixed
-problem: Shared GPU clusters have significant idle GPUs, but elastic LLM training methods cause accuracy inconsistency, high profiling overhead, or limited parallelism flexibility.
-key_results: Up to 1.73× speedup with consistent accuracy and 2.27× with relaxed consistency vs. non-elastic scheduling; evaluated on shared GPU clusters.
-status: draft
-reading_status: want-to-read
-indexed_by: smithinsu
-indexed_date: '2026-05-25'
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3776
 ---
+
+## Background
+
+Shared GPU clusters reclaim or grant nodes mid-run, so LLM training jobs benefit from elastically adjusting GPU count without restarting. The challenge: naively adding data-parallel replicas changes gradient aggregation and causes loss curve divergence; adjusting pipeline stage assignments requires layer re-partitioning. Prior elastic systems accept accuracy non-determinism or restrict themselves to one parallelism axis, capping throughput gains.
 
 ## Key Contributions
 

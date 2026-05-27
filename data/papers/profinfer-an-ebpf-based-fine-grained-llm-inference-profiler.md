@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Bohua Zou
 - Debayan Roy
@@ -21,32 +21,22 @@ hardware:
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
 key_results: Less than 4% runtime overhead while providing operator-level profiling
-  of LLM inference including MoE routing and operator offloading patterns on edge
-  devices running llama.cpp
+  of LLM inference with MoE routing and offloading patterns on llama.cpp
 models_evaluated: []
-observations:
-  cache: eBPF dynamic probe attachment avoids modifying or recompiling
-    LLM inference engine source code; probes attach to already-running binaries,
-    eliminating the need to rebuild instrumented versions for each profiling session.
-  balance: ProfInfer's hardware counter trend visualization reveals whether
-    a workload is memory-bound or compute-bound per operator, enabling developers to
-    direct optimization effort to actual bottlenecks rather than guessing.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=tYHWS7YPof
 organizations:
 - Huawei
 - Technical University of Munich
 presentation_type: oral
-principles:
-- cache
-- balance
-problem: LLM inference engines on edge devices offer no operator-level visibility,
-  leaving developers unable to identify whether workloads are memory-bound or compute-bound
-  without modifying or recompiling the engine.
+principles: []
+problem: Edge LLM inference engines have no operator-level profiling; developers cannot
+  identify memory-bound vs. compute-bound bottlenecks without source modifications.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3740_fDdgYfm.pdf
 slug: profinfer-an-ebpf-based-fine-grained-llm-inference-profiler
 status: draft
 title: 'ProfInfer: An eBPF-based Fine-Grained LLM Inference Profiler'
@@ -54,6 +44,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3740
 ---
+
+## Background
+
+eBPF lets you attach lightweight tracing programs to kernel and userspace events without recompiling the target process. Edge LLM inference engines like llama.cpp run on devices with no GPU vendor profiling tools, and behaviors like MoE routing (dynamically selecting expert layers) and CPU offloading (moving KV pages to RAM under pressure) are invisible to coarse-grained timers. Without operator-level visibility, developers can't distinguish compute-bound from memory-bandwidth-bound slowdowns.
 
 ## Key Contributions
 

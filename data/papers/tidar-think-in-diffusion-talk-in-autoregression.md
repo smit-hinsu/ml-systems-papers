@@ -19,13 +19,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: 4.71×–5.91× tokens/s vs. autoregressive at 1.5B and 8B; surpasses
-  speculative decoding and diffusion models (Dream, Llada) in throughput and quality
+key_results: 4.71×–5.91× tokens/s vs. autoregressive at 1.5B and 8B; surpasses speculative
+  decoding and diffusion models (Dream, Llada) in throughput and quality
 models_evaluated: []
 observations:
-  pipeline: Diffusion drafting generates multiple tokens in parallel
-    within a single forward pass using structured attention masks, filling GPU compute
-    that is idle during sequential AR token generation
+  pipeline: Diffusion drafting generates multiple tokens in parallel within a single
+    forward pass using structured attention masks, filling GPU compute that is idle
+    during sequential AR token generation
+  speculate: Diffusion generates candidate token proposals across all positions in
+    parallel; the AR phase verifies and commits only accepted positions, hiding full-sequence
+    generation behind one pass.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=onfxEjoE4L
 organizations:
@@ -36,6 +39,7 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
+- speculate
 problem: Speculative decoding serializes generation and needs a draft model; diffusion
   models parallelize token generation but degrade quality vs. AR baselines.
 project_url: ''
@@ -51,6 +55,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3751
 ---
+
+## Background
+
+Autoregressive generation is inherently sequential — each token depends on all prior tokens. Speculative decoding uses a small draft model to propose tokens in parallel for a large model to verify, but requires two separate models. Diffusion language models generate all tokens simultaneously via iterative denoising, achieving parallelism but at a quality penalty vs. AR baselines. The gap is a single-model approach that combines diffusion's parallelism with AR's output quality.
 
 ## Key Contributions
 

@@ -31,12 +31,12 @@ models_evaluated:
 - Llama 3.1 70B
 - Qwen3-8B
 observations:
-  tier: Fine-grained scale search leverages mantissa bits in BFP
-    microscaling formats to minimize quantization error for the block's value distribution,
-    reducing the gap between stored precision and effective precision.
-  fuse: NVFP4-based attention (ScaleSearchAttention) reduces memory
-    bandwidth for attention computation by using 4-bit representation while maintaining
-    near-zero performance loss via optimized scale selection.
+  tier: Fine-grained scale search uses mantissa bits in BFP microscaling formats to
+    minimize quantization error for the block value distribution, reducing the gap
+    between stored and effective precision.
+  fuse: ScaleSearchAttention uses 4-bit representation for attention, reducing memory
+    bandwidth while maintaining near-zero performance loss via optimized scale
+    selection.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=innqECyZPK
 organizations:
@@ -47,7 +47,7 @@ principles:
 - tier
 - fuse
 problem: Standard BFP quantization uses maximum-magnitude scale factors that are suboptimal
-  for the actual value distribution, causing higher-than-necessary quantization error.
+  for the actual value distribution, causing unnecessary quantization error.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -61,6 +61,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3770
 ---
+
+## Background
+
+Block floating point (BFP) quantization assigns a shared scale factor to a block of values so only mantissa bits need to be stored per value. NVIDIA's NVFP4 format (native on Blackwell GPUs) uses this approach for 4-bit inference. The standard scale choice — the maximum-magnitude value in the block — prevents overflow but wastes mantissa precision on blocks with skewed distributions where most values are far smaller than the max.
 
 ## Key Contributions
 

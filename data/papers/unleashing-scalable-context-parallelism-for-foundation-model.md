@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yilong Zhao
 - Xiaonan Nie
@@ -26,12 +26,12 @@ key_results: Near-linear scalability on up to 256 GPUs with 1.13×–2.21× impr
   in attention MFU over prior context parallelism methods.
 models_evaluated: []
 observations:
-  balance: Block-level bin-packing of short and long sequence fragments
-    across workers eliminates the workload imbalance that arises when short sequences
-    are over-sharded or batched separately, improving attention MFU by up to 2.21×.
-  fuse: Arbitrary peer-to-peer communication topology (vs. fixed ring)
-    allows FCP to place sequence blocks on workers that minimize cross-node transfers
-    for the actual sequence distribution.
+  balance: Block-level bin-packing of short and long sequence fragments across workers
+    eliminates workload imbalance from over-sharding, improving attention MFU by up
+    to 2.21× vs. prior context parallelism.
+  fuse: Arbitrary peer-to-peer communication topology (vs. fixed ring) allows FCP
+    to place sequence blocks on workers that minimize cross-node transfers for the
+    actual sequence distribution.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=MPVycRsIn6
 organizations:
@@ -41,13 +41,12 @@ presentation_type: oral
 principles:
 - balance
 - fuse
-problem: Existing context parallelism designs over-shard short sequences or separate
-  them from long ones, causing compute inefficiency and workload imbalance during
-  pretraining.
+problem: Existing context parallelism designs over-shard short sequences or batch
+  them separately, causing compute inefficiency and imbalance during LLM pretraining.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3822_HdG9Mug.pdf
 slug: unleashing-scalable-context-parallelism-for-foundation-model
 status: draft
 title: Unleashing Scalable Context Parallelism for Foundation Models Pre-Training
@@ -58,6 +57,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3822
 ---
+
+## Background
+
+Context parallelism shards long sequences across GPUs using ring-pattern collectives so each worker sees the full sequence. The difficulty is length diversity in pretraining datasets: short documents (hundreds of tokens) mixed with very long ones (millions). Existing designs either over-shard short sequences — many workers holding tiny slices, wasting bandwidth — or process short and long sequences in separate batches, losing throughput. Neither adapts the communication topology to the actual sequence distribution.
 
 ## Key Contributions
 

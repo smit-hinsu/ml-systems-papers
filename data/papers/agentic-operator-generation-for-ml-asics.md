@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Alec Hammond
 - Aram Markosyan
@@ -29,8 +29,6 @@ citations_updated: ''
 code_url: ''
 domain:
 - ml-kernels
-organizations:
-- Meta
 hardware:
 - MTIA
 indexed_by: smithinsu
@@ -39,25 +37,26 @@ key_results: Generated 481 unique ATen operator kernels passing all PyTorch OpIn
   tests (20,000+ tests) for MTIA silicon and simulation environments
 models_evaluated: []
 observations:
-  search-ai: LLMs generate Triton PyTorch ATen kernels driven by a JIT
-    compilation loop and OpInfo test harness; correctness on 20,000+ tests provides
-    the verifiable signal that guides generation, enabling overnight backend creation.
-  cache: Shared JIT compilation cache and linter catch trivial errors
-    before expensive hardware simulation, reducing the cost of the LLM generation-test
-    loop across 481 operators.
+  cache: Shared JIT compilation cache and linter catch trivial errors before expensive
+    hardware simulation, reducing the cost of the LLM generation-test loop across
+    481 operators.
+  search-ai: LLMs generate ATen kernels via JIT compilation and OpInfo test harness;
+    passing 20,000+ correctness tests provides the verifiable signal guiding generation
+    and enabling overnight backend creation.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=O3Bx0nNGnW
+organizations:
+- Meta
 presentation_type: oral
 principles:
 - search-ai
 - cache
-problem: New AI accelerator platforms lack PyTorch ATen backends; expert kernel authors
-  cannot keep pace with the breadth of operators needed, blocking deployment of standard
-  ML workloads.
+problem: New AI accelerator platforms (e.g., MTIA) lack PyTorch ATen backends; expert
+  kernel authors cannot cover the full operator set needed for standard ML workloads.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3817.pdf
 slug: agentic-operator-generation-for-ml-asics
 status: draft
 title: Agentic Operator Generation for ML ASICs
@@ -67,6 +66,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3817
 ---
+
+## Background
+
+A new AI accelerator chip (like Meta's MTIA) cannot run any ML model until every PyTorch ATen operator it needs has a correct implementation — hundreds of primitives covering matmul, normalization, activations, and their data-type/shape variants. Writing these by hand takes weeks per chip. Prior LLM-based kernel generation focused on optimizing a handful of high-value operators; this paper targets correctness across the full operator long tail, using PyTorch's OpInfo test suite (20,000+ tests) as the verifiable signal.
 
 ## Key Contributions
 

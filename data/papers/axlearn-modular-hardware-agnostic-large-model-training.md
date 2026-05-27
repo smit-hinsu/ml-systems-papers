@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Mark Lee
 - Chang Lan
@@ -48,35 +48,33 @@ citations_updated: ''
 code_url: ''
 domain:
 - llm-training
-organizations:
-- Apple
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Integrates new features like RoPE across hundreds of modules with 10
-  lines of code vs. hundreds required in comparable systems; maintains equivalent
-  training performance at scale
+key_results: Adds RoPE across hundreds of modules with 10 lines of code vs. hundreds
+  in comparable systems; O(1) integration complexity vs. O(N) or O(N²) in alternatives.
 models_evaluated: []
 observations:
-  cache: Strict interface encapsulation between components allows RoPE
-    to be added across hundreds of modules with only 10 lines of code; changes propagate
-    automatically without per-module manual updates.
-  balance: Constant-complexity scaling (vs. linear/quadratic in competing
-    systems) means adding parallelism dimensions or new hardware backends does not
-    require proportionally more framework integration code.
+  balance: Constant-complexity scaling (vs. linear/quadratic in competing systems)
+    means adding parallelism dimensions or new hardware backends does not require
+    proportionally more framework integration code.
+  portable: All model components implement against an abstract Tensor interface; swapping
+    the backend (TPU, GPU, CPU) requires no changes to model code — the same config
+    runs unmodified on any supported hardware.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=41x11EB3bc
+organizations:
+- Apple
 presentation_type: oral
 principles:
-- cache
 - balance
-problem: Large-scale training frameworks accumulate quadratic integration complexity
-  as hardware backends and model components multiply, making rapid experimentation
-  and hardware migration slow and error-prone.
+- portable
+problem: Training frameworks accumulate quadratic complexity as hardware backends
+  and model components multiply, slowing experimentation and hardware migration.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3858_Pfx0B13.pdf
 slug: axlearn-modular-hardware-agnostic-large-model-training
 status: draft
 title: 'AXLearn: Modular, Hardware-Agnostic Large Model Training'
@@ -87,6 +85,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3858
 ---
+
+## Background
+
+Training frameworks accumulate hardware-specific optimizations across GPU and TPU backends until adding a new feature (RoPE, a new parallelism strategy) requires touching many files and risks breaking other components. At Apple's scale across multiple hardware generations, this O(N) integration complexity slows every research iteration. The design question is whether strict component encapsulation can achieve O(1) integration complexity — adding RoPE in 10 lines rather than hundreds — without sacrificing training throughput.
 
 ## Key Contributions
 

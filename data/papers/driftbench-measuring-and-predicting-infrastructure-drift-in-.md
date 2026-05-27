@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Gianluigi Vitale
 award: ''
@@ -17,24 +17,19 @@ indexed_date: '2026-05-25'
 key_results: PRI achieves R²=0.909 for unseen hardware and R²=0.763 for unseen precision;
   blocked a real upgrade where 23.85% of safety prompts changed classification
 models_evaluated: []
-observations:
-  balance: Hardware/precision changes exhibit systematic drift (R²≥0.76)
-    enabling predict-once deployment risk assessment; framework/model changes show
-    idiosyncratic drift (R²<0.48) requiring per-change re-measurement—a fundamental
-    operational dichotomy.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=Xfzzp6grRP
 organizations:
 - Universitas Mercatorum
 presentation_type: oral
-principles:
-- balance
-problem: Production LLM deployments lack a systematic way to predict output consistency
-  risk when upgrading hardware, precision, or frameworks, leading to silent regressions.
+principles: []
+problem: Production LLM deployments lack a way to predict output consistency risk
+  when upgrading hardware, precision, or frameworks, leading to silent regressions.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3799_Hct4euu.pdf
 slug: driftbench-measuring-and-predicting-infrastructure-drift-in-
 status: draft
 title: 'DriftBench: Measuring and Predicting Infrastructure Drift in LLM Serving Systems'
@@ -42,6 +37,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3799
 ---
+
+## Background
+
+Changing a production LLM's infrastructure — GPU type, precision (FP16 → BF16), or serving framework — can silently change model outputs even with identical weights, because floating-point arithmetic is not bit-reproducible across implementations. For most tokens this is harmless, but tokens near a decision boundary (a safety classifier, a structured-output choice) can flip. There is no established methodology for predicting how risky an infrastructure change is before rolling it out.
 
 ## Key Contributions
 

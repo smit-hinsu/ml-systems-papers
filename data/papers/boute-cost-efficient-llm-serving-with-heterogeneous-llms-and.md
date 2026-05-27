@@ -1,48 +1,57 @@
 ---
-slug: boute-cost-efficient-llm-serving-with-heterogeneous-llms-and
-title: "BOute: Cost-Efficient LLM Serving with Heterogeneous LLMs and GPUs via Multi-Objective Bayesian Optimization"
+agentic_models: []
+arxiv_url: ''
 authors:
 - Youhe Jiang
 - Fangcheng Fu
 - Eiko Yoneki
-organizations:
-- University of Cambridge
-- Shanghai Jiao Tong University
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3795
-openreview_url: https://openreview.net/forum?id=ZVQb92umqX
-arxiv_url: ''
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: research
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - llm-serving
 - fleet-efficiency
 hardware:
 - Heterogeneous GPU cluster
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: BOute improves throughput by up to 157% and reduces cost by 15-61% vs
+  existing systems under identical quality and latency constraints.
 models_evaluated:
 - Heterogeneous LLMs
-agentic_models: []
-topics: []
+observations:
+  balance: Heterogeneous GPU deployment routes simple queries to cheaper GPUs and
+    models, keeping high-end GPUs busy with complex queries.
+  cache: MOBO jointly searches routing strategy and model deployment config, avoiding
+    the sub-optimality of tuning each independently.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=ZVQb92umqX
+organizations:
+- University of Cambridge
+- Shanghai Jiao Tong University
+presentation_type: oral
 principles:
 - cache
 - balance
-observations:
-  cache: "MOBO jointly searches routing strategy and model deployment config, avoiding the sub-optimality of tuning each independently."
-  balance: "Heterogeneous GPU deployment routes simple queries to cheaper GPUs and models, keeping high-end GPUs busy with complex queries."
-problem: "Co-optimizing query routing across heterogeneous LLMs and GPU deployment configs is too complex for manual tuning, leaving significant cost savings unrealized."
-key_results: "BOute improves throughput by up to 157% and reduces cost by 15-61% vs existing systems under identical quality and latency constraints."
+problem: Co-optimizing query routing across heterogeneous LLMs and GPU deployment
+  configs is too complex for manual tuning, leaving significant cost savings unrealized.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3795.pdf
+slug: boute-cost-efficient-llm-serving-with-heterogeneous-llms-and
+status: draft
+title: 'BOute: Cost-Efficient LLM Serving with Heterogeneous LLMs and GPUs via Multi-Objective
+  Bayesian Optimization'
+topics: []
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3795
 ---
+
+## Background
+
+Queries vary enormously in difficulty — a factual lookup doesn't need a 70B model on an H100, but a multi-step reasoning task does. Heterogeneous serving routes easy queries to cheaper models or GPUs and reserves expensive hardware for complex queries. Routing policy and GPU allocation are coupled: routing more traffic to a cheap tier frees capacity on the expensive tier, changing the optimal allocation. Prior systems tune these separately, missing configurations only optimal when both are solved together.
 
 ## Key Contributions
 

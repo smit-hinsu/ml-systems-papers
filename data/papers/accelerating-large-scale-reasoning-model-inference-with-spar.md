@@ -1,7 +1,7 @@
 ---
 agentic_models: []
+arxiv_date: 2025-12
 arxiv_url: https://arxiv.org/abs/2512.01278
-arxiv_date: '2025-12'
 authors:
 - Yilong Zhao
 - Jiaming Tang
@@ -22,11 +22,6 @@ citations_updated: ''
 code_url: ''
 domain:
 - llm-serving
-organizations:
-- MIT
-- UC Berkeley
-- University of Michigan
-- Tsinghua University
 hardware:
 - H100
 indexed_by: smithinsu
@@ -35,19 +30,24 @@ key_results: Up to 2.13× throughput over vLLM on H100 for long-CoT reasoning mo
   3.29× attention latency reduction via PillarAttn sparse drafting
 models_evaluated: []
 observations:
-  skip: PillarAttn reuses verification-phase attention scores to select
-    critical tokens at zero overhead; top-k filtering identifies the sparse set
-    that preserves accuracy across reasoning steps.
-  cache: Suffix-tree-based sparse attention draft reuses the sparsity
-    pattern identified during the previous verification step, avoiding redundant full-attention
-    computation during drafting phases.
-  pipeline: Delayed verification decouples CPU metadata preparation
-    from the critical GPU path by deferring it one iteration, enabling asynchronous
-    CPU-GPU execution that hides verification overhead.
-  tier: Dynamic KV-cache offloads chunks to host memory asynchronously
-    overlapped with GPU compute, bounding peak GPU memory use without stalling inference.
+  cache: Suffix-tree-based sparse attention draft reuses the sparsity pattern identified
+    during the previous verification step, avoiding redundant full-attention computation
+    during drafting phases.
+  pipeline: Delayed verification decouples CPU metadata preparation from the critical
+    GPU path by deferring it one iteration, enabling asynchronous CPU-GPU execution
+    that hides verification overhead.
+  skip: PillarAttn reuses verification-phase attention scores to select critical tokens
+    at zero overhead; top-k filtering identifies the sparse set that preserves accuracy
+    across reasoning steps.
+  tier: Dynamic KV-cache offloads chunks to host memory asynchronously overlapped
+    with GPU compute, bounding peak GPU memory use without stalling inference.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=yeqrwcWjPu
+organizations:
+- MIT
+- UC Berkeley
+- University of Michigan
+- Tsinghua University
 presentation_type: oral
 principles:
 - skip
@@ -59,7 +59,7 @@ problem: Long CoT reasoning shifts inference from compute-bound to memory-bound;
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3733_usZ8H1U.pdf
 slug: accelerating-large-scale-reasoning-model-inference-with-spar
 status: under-review
 title: Accelerating Large-Scale Reasoning Model Inference with Sparse Self-Speculative
@@ -72,6 +72,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3733
 ---
+
+## Background
+
+Long chain-of-thought reasoning models generate thousands of tokens per response, making inference memory-bandwidth-bound as the KV-cache grows. Speculative decoding speeds generation by having a draft model propose tokens for the full model to verify in one pass, but a separate draft model is impractical when the primary model's KV-cache already strains GPU memory. Self-speculative decoding uses the same model as both drafter and verifier, but needs a sparse attention approximation for draft steps that requires no extra profiling.
 
 ## Key Contributions
 

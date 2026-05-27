@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Jianan Lu
 - Asaf Cidon
@@ -19,12 +19,12 @@ key_results: Up to 1.4× higher throughput vs. existing early termination scheme
   3.2× vs. no early termination at the same accuracy target.
 models_evaluated: []
 observations:
-  skip: Terminus terminates disk I/O once recent reads yield negligible
-    rank-weighted utility, skipping the long tail of low-value graph traversals that
-    existing fixed-budget termination continues.
-  cache: Rank-aware termination stops searching after discovering the
-    highest-ranked results, avoiding redundant I/Os spent retrieving lower-ranked
-    neighbors that contribute minimally to downstream RAG accuracy.
+  cache: Rank-aware termination stops searching after the highest-ranked results are
+    found, avoiding redundant I/Os for lower-ranked neighbors that contribute minimally
+    to RAG accuracy.
+  skip: Terminus terminates disk I/O once recent reads yield negligible rank-weighted
+    utility, skipping the long tail of low-value graph traversals that existing fixed-budget
+    termination continues.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=IFz0pROwF1
 organizations:
@@ -34,12 +34,12 @@ presentation_type: oral
 principles:
 - skip
 - cache
-problem: Graph-based vector search continues reading disk long after the highest-ranked
-  results are found, wasting I/O budget on low-value results and limiting throughput.
+problem: Graph-based vector search reads disk long after the highest-ranked results
+  are found, wasting I/O budget on low-value results and limiting throughput.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3835_aLQTTRb.pdf
 slug: when-enough-is-enough-rank-aware-early-termination-for-vecto
 status: draft
 title: 'When Enough is Enough: Rank-Aware Early Termination for Vector Search'
@@ -49,6 +49,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3835
 ---
+
+## Background
+
+Graph-based vector indexes (e.g., HNSW) traverse a proximity graph toward a query, requiring sequential disk reads when the index doesn't fit in RAM. Traversal finds close neighbors early then enters a long tail of diminishing returns — the top-1 result is typically locked in well before the budget is exhausted. Existing early termination schemes use fixed I/O budgets or similarity thresholds, ignoring that downstream RAG applications weight the top-ranked results far more heavily than lower-ranked ones.
 
 ## Key Contributions
 

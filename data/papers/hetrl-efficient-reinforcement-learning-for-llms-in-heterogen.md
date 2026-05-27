@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yongjun He
 - Shuai Zhang
@@ -21,16 +21,16 @@ hardware:
 - Heterogeneous GPU clusters
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Up to 9.17× and 3.17× average throughput over existing RL training systems
-  across diverse heterogeneous GPU workloads in a 20,000 GPU-hour evaluation
+key_results: Up to 9.17× throughput vs. Ray on heterogeneous GPU clusters in 20,000
+  GPU-hour evaluation
 models_evaluated: []
 observations:
-  balance: HetRL's constrained joint optimization assigns RL workflow
-    stages (actor, critic, rollout) to each GPU tier by matching compute capacity
-    to stage workload, preventing fast GPUs from idling while slow tiers are saturated.
-  pipeline: The hybrid scheduling algorithm identifies independent
-    RL pipeline stages that can run concurrently across different GPU types, shrinking
-    end-to-end iteration time beyond what serial stage execution allows.
+  balance: HetRL's joint optimization assigns actor, critic, and rollout stages to
+    GPU tiers by matching capacity to workload, preventing fast GPUs from idling while
+    slow tiers are saturated.
+  pipeline: The hybrid scheduler identifies independent RL stages that run concurrently
+    across GPU types, shrinking iteration time beyond what serial actor-critic-rollout
+    execution allows.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=LRLyuaz1W7
 organizations:
@@ -40,12 +40,12 @@ presentation_type: oral
 principles:
 - balance
 - pipeline
-problem: RL post-training for LLMs on heterogeneous GPU clusters wastes compute because
-  existing schedulers assume homogeneous hardware and serialize multi-model RL stages.
+problem: RL post-training for LLMs on heterogeneous GPU clusters wastes compute; schedulers
+  assume homogeneous hardware and serialize actor, critic, rollout stages.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3825_dNuKxpR.pdf
 slug: hetrl-efficient-reinforcement-learning-for-llms-in-heterogen
 status: draft
 title: 'HetRL: Efficient Reinforcement Learning for LLMs in Heterogeneous Environments'
@@ -55,6 +55,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3825
 ---
+
+## Background
+
+RL post-training for LLMs requires three compute-heavy stages per iteration: rollout (trajectory sampling), actor update (policy gradients), and critic update. Standard frameworks like Ray assume homogeneous hardware and schedule these stages serially — but real clusters mix GPU generations acquired over multiple procurement cycles. On heterogeneous hardware, naive scheduling wastes fast GPUs waiting on slower ones, and ignores that the three stages have very different memory and compute profiles.
 
 ## Key Contributions
 

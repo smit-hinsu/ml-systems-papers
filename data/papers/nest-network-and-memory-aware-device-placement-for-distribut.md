@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Irene Wang
 - Vishnu Varma Venkata
@@ -16,17 +16,13 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Up to 2.43× higher training throughput over state-of-the-art baselines
-  with better memory efficiency and improved scalability across diverse hardware and
-  networks
+key_results: Up to 2.43× training throughput vs. heuristic placement methods, with
+  better memory efficiency across diverse hardware and datacenter network topologies
 models_evaluated: []
 observations:
-  balance: Structured DP jointly optimizes pipeline, data, and ZeRO
-    partitioning with explicit per-device memory constraints, preventing post-hoc
-    sharding that inflates communication and wastes compute.
-  fuse: Topology-aware allreduce latency modeling co-optimizes co-location
-    and network paths, minimizing synchronization traffic across hierarchical datacenter
-    networks.
+  balance: Structured DP jointly optimizes pipeline, data, and ZeRO partitioning with
+    explicit per-device memory constraints, preventing post-hoc sharding that inflates
+    communication and wastes compute.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=jpIoO2zSKA
 organizations:
@@ -35,14 +31,12 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- fuse
-problem: Prior distributed training placement relies on heuristic or topology-agnostic
-  search, causing post-hoc sharding that inflates communication and underutilizes
-  compute.
+problem: Heuristic or topology-agnostic distributed training placement causes post-hoc
+  sharding that inflates communication and underutilizes compute.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3767_u5zq5Pz.pdf
 slug: nest-network-and-memory-aware-device-placement-for-distribut
 status: draft
 title: 'NEST: Network- and Memory-Aware Device Placement for Distributed Deep Learning'
@@ -54,6 +48,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3767
 ---
+
+## Background
+
+Distributing a large model requires jointly choosing tensor parallelism, pipeline parallelism, and ZeRO/FSDP sharding — each affecting communication volume, memory, and compute differently. Current practice is heuristic: engineers pick a default layout and tune by hand, a process that fails badly on heterogeneous clusters where an optimal allocation on one topology can saturate memory ranks on another.
 
 ## Key Contributions
 

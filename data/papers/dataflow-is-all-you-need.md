@@ -35,20 +35,19 @@ hardware:
 - H100
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: '>75% of theoretical peak roofline on SN40 across diverse models; speculative
-  decoding 1.7× faster on 16 SN40 chips vs. DGX H100 despite comparable HBM bandwidth;
-  6× speculative decoding speedup'
+key_results: '>75% roofline efficiency on SN40; speculative decoding 1.7× faster vs.
+  DGX H100 on 16 SN40 chips; 6× speculative decoding speedup over baseline'
 models_evaluated: []
 observations:
-  tier: GPUs extract as little as 21% of available memory bandwidth
-    for decode due to CPU scheduling and kernel synchronization overhead; SN40 dataflow
-    eliminates these overheads by keeping data moving continuously without CPU involvement.
-  pipeline: BatchStreaming overlaps KV cache loading for subsequent
-    requests with compute for the current request; ScheduleOffloading shifts dispatch
-    logic off the compute path entirely, eliminating synchronization gaps between kernels.
-  fuse: KernelLooping fuses multiple decode iterations into a single
-    persistent kernel, eliminating kernel launch overhead and inter-kernel synchronization
-    that forces unnecessary HBM round-trips on GPU architectures.
+  tier: GPUs extract as little as 21% of memory bandwidth for decode due to CPU
+    scheduling overhead; SN40 dataflow keeps data moving continuously without any
+    CPU involvement in the critical path.
+  pipeline: BatchStreaming overlaps KV cache loading with current compute;
+    ScheduleOffloading moves dispatch logic off the compute path, eliminating
+    synchronization gaps between kernels on SN40.
+  fuse: KernelLooping fuses multiple decode iterations into one persistent kernel,
+    eliminating launch overhead and inter-kernel synchronization that forces
+    unnecessary HBM round-trips on GPU architectures.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=7wOOhxkuN8
 organizations:
@@ -58,9 +57,8 @@ principles:
 - tier
 - pipeline
 - fuse
-problem: GPU decode is bottlenecked by kernel launch overhead, synchronization, and
-  poor compute-communication overlap; even high-bandwidth GPUs extract only 21% of
-  available memory bandwidth for autoregressive decode.
+problem: GPU decode extracts only 21% of memory bandwidth; kernel launch overhead
+  and synchronization gaps block continuous data movement during autoregressive decode.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
@@ -75,6 +73,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3852
 ---
+
+## Background
+
+Autoregressive decode is memory-bandwidth-bound, yet GPUs achieve only ~21% bandwidth utilization because CPU kernel launch, barrier synchronization, and dispatch scheduling inject stall time between every pair of kernels. SambaNova's SN40 Reconfigurable Dataflow Unit (RDU) statically schedules operators into a continuous data-movement graph with no CPU on the critical path — but extracting this advantage for full LLM workloads requires rethinking decode loops, KV prefetching, and speculative decoding for dataflow execution.
 
 ## Key Contributions
 

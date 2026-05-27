@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Jiahuan Yu
 - Mingtao Hu
@@ -17,16 +17,16 @@ hardware:
 - NVIDIA GH200
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Up to 74.7% improvement in TTFT SLO attainment on GH200 vs. state-of-the-art
-  systems while maintaining comparable TBT and throughput.
+key_results: Up to 74.7% improvement in TTFT SLO attainment on GH200 vs. vLLM/SGLang
+  while maintaining comparable TBT and throughput.
 models_evaluated: []
 observations:
-  tier: DuplexKV uses full-duplex NVLink-C2C to transfer KV cache
-    between GH200 GPU and CPU simultaneously; higher bandwidth than PCIe enables profitable
-    KV offloading under tight TTFT SLOs.
-  balance: RotaSched proactively rotates requests between GPU and CPU
-    pools before KV cache exhaustion, preventing head-of-line blocking without reactive
-    eviction that degrades TTFT.
+  balance: RotaSched proactively rotates requests between GPU and CPU pools before
+    KV cache exhaustion, preventing head-of-line blocking without reactive eviction
+    that degrades TTFT.
+  tier: DuplexKV uses full-duplex NVLink-C2C to transfer KV cache between GH200 GPU
+    and CPU simultaneously; higher bandwidth than PCIe enables profitable KV offloading
+    under tight TTFT SLOs.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=RuslSHdIHa
 organizations:
@@ -35,12 +35,12 @@ presentation_type: oral
 principles:
 - tier
 - balance
-problem: PCIe-based KV offloading cannot sustain tight TTFT and TBT SLOs at high
-  request rates, causing head-of-line blocking when the KV cache budget is exhausted.
+problem: PCIe-based KV offloading cannot sustain tight TTFT and TBT SLOs at high request
+  rates, causing head-of-line blocking when the KV cache budget is exhausted.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3809.pdf
 slug: superinfer-slo-aware-rotary-scheduling-and-memory-management
 status: draft
 title: 'SuperInfer: SLO-Aware Rotary Scheduling and Memory Management for LLM Inference
@@ -52,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3809
 ---
+
+## Background
+
+LLM serving keeps the KV cache in GPU HBM. When the budget fills, systems evict or offload KV to CPU — but PCIe bandwidth (~64 GB/s) makes offloading slow enough to miss TTFT SLOs, causing head-of-line blocking behind long-context requests. The NVIDIA GH200 Superchip connects the Grace CPU and Hopper GPU via NVLink-C2C at ~900 GB/s (~14× PCIe), making fast KV offloading physically possible — but only if the scheduler is redesigned to exploit it proactively.
 
 ## Key Contributions
 

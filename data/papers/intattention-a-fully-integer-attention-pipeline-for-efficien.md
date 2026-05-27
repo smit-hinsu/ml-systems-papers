@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Wanli Zhong
 - Haibo Feng
@@ -11,7 +11,7 @@ authors:
 award: ''
 citations: null
 citations_updated: ''
-code_url: 'https://github.com/WanliZhong/IntAttention'
+code_url: https://github.com/WanliZhong/IntAttention
 domain:
 - edge-inference
 hardware:
@@ -24,14 +24,15 @@ models_evaluated:
 - Transformer language models
 - Vision transformers
 observations:
-  fuse: IntAttention eliminates the dequantize-softmax-requantize
-    datatype conversion detour that consumed up to 65% of attention latency, keeping
-    the entire attention path in integer domain and removing costly memory round-trips
-    for type conversion.
-  tier: A 32-entry integer lookup table for exponential approximation
-    fits entirely in L1 cache, eliminating repeated computation of floating-point
-    transcendentals and replacing them with integer table lookups at negligible memory
-    cost.
+  fuse: IntAttention eliminates the dequantize-softmax-requantize detour consuming
+    65% of attention latency, keeping the attention path in integer domain and removing
+    FP type-conversion memory round-trips.
+  quantize: All attention operations — Q/K/V projection and softmax — run in INT8/INT4
+    without dequantization; the fully integer pipeline eliminates format-conversion
+    overhead at every boundary.
+  tier: A 32-entry integer LUT for softmax fits entirely in L1 cache, eliminating
+    repeated FP transcendental computation and replacing it with integer table lookups
+    at negligible memory cost.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=CPCRITwAaP
 organizations:
@@ -40,12 +41,13 @@ presentation_type: oral
 principles:
 - fuse
 - tier
-problem: INT8 attention on edge hardware still requires float softmax, causing a
-  dequantize-softmax-requantize detour that dominates up to 65% of attention latency.
+- quantize
+problem: INT8 attention on edge hardware still requires float softmax, causing a dequantize-softmax-requantize
+  detour that dominates up to 65% of attention latency.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3848.pdf
 slug: intattention-a-fully-integer-attention-pipeline-for-efficien
 status: draft
 title: 'IntAttention: A Fully Integer Attention Pipeline for Efficient Edge Inference'
@@ -55,6 +57,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3848
 ---
+
+## Background
+
+INT8 quantization reduces memory and enables faster integer arithmetic on edge devices (smartphones, microcontrollers). Quantizing Q/K/V projections is well-understood, but softmax applies an exponential that requires floating-point. Prior INT8 attention implementations therefore dequantize to float for softmax, then requantize — a type-conversion round-trip benchmarked at up to 65% of total attention latency on Armv8 CPUs, negating most of the INT8 speedup gained in the linear layers.
 
 ## Key Contributions
 

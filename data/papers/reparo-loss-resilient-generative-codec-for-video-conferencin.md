@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Tianhong Li
 - Vibhaalakshmi Sivaraman
@@ -14,27 +14,27 @@ citations: null
 citations_updated: ''
 code_url: ''
 domain:
-- llm-serving
+- edge-inference
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Outperforms state-of-the-art FEC-based video conferencing on PSNR, SSIM,
-  and LPIPS metrics with fewer video freezes on public datasets.
+key_results: Outperforms FEC on 3 quality metrics (PSNR, SSIM, LPIPS) with fewer video
+  freezes on public video conferencing datasets
 models_evaluated: []
 observations:
-  cache: Generative model regenerates only lost frames/regions conditioned
-    on received data, avoiding retransmission overhead that is impractical under real-time
-    latency constraints.
-  skip: Generation is conditioned on what was actually received; the model
-    focuses compute on the missing regions rather than reprocessing the entire frame.
+  approximate: Lost video frames are replaced by generative outputs conditioned on
+    surrounding frames; approximate reconstruction avoids retransmission round-trips
+    at the cost of occasional visual artifacts.
+  skip: Generation is conditioned on what was actually received; the model focuses
+    compute on the missing regions rather than reprocessing the entire frame.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=GaBGzA7fpe
 organizations:
 - MIT
 presentation_type: oral
 principles:
-- cache
 - skip
+- approximate
 problem: Packet loss in video conferencing causes video freezes; FEC is impractical
   due to bursty Internet losses requiring unpredictable and wasteful redundancy.
 project_url: ''
@@ -49,6 +49,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3839
 ---
+
+## Background
+
+Video conferencing uses UDP — no retransmission, so packet loss causes freezes. Forward Error Correction (FEC) adds sender-side redundancy to recover losses, but real Internet loss is bursty and unpredictable: under-provisioned FEC causes freezes, over-provisioned FEC wastes bandwidth. Deep generative models offer an alternative: reconstruct missing frames at the receiver from surrounding context rather than adding redundancy at the sender.
 
 ## Key Contributions
 

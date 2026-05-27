@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Kayhan Behdin
 - Qingquan Song
@@ -37,10 +37,10 @@ key_results: 10x throughput increase in production at LinkedIn serving millions 
   requests/sec; 40% model size reduction via pruning with maintained accuracy.
 models_evaluated: []
 observations:
-  cache: Context compression reduces input context length by >10x with
-    minimal accuracy loss, cutting prefill compute and KV cache memory per request.
-  fuse: Pruning reduces model size by up to 40%, decreasing weight
-    load per forward pass and reducing HBM bandwidth pressure during serving.
+  cache: Context compression reduces input context length by >10x with minimal accuracy
+    loss, cutting prefill compute and KV cache memory per request.
+  fuse: Pruning reduces model size by up to 40%, decreasing weight load per forward
+    pass and reducing HBM bandwidth pressure during serving.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=re82zZczHj
 organizations:
@@ -54,7 +54,7 @@ problem: Deploying LLMs for semantic job search at LinkedIn is prohibitively exp
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3745_jivse2G.pdf
 slug: scaling-up-large-language-models-serving-systems-for-semanti
 status: draft
 title: Scaling Up Large Language Models Serving Systems for Semantic Job Search
@@ -65,6 +65,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3745
 ---
+
+## Background
+
+LinkedIn's job search must rank millions of listings against user profiles in real time — millions of requests per second with strict latency budgets. LLMs dramatically outperform traditional embedding models on semantic matching, but even a small decoder-only LLM is expensive per request: prefill cost scales with input length, and naive deployment would require far more GPUs than cost-per-click economics justify.
 
 ## Key Contributions
 

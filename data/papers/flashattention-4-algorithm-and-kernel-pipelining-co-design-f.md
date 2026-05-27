@@ -50,6 +50,10 @@ problem: "Blackwell GPUs double tensor core throughput but other units scale slo
 key_results: "FlashAttention-4 achieves 1613 TFLOPs/s (71% utilization) on B200 BF16, 1.3x over cuDNN 9.13 and 2.7x over Triton."
 ---
 
+## Background
+
+FlashAttention (v1–v3) fused attention into a tiled shared-memory kernel tuned for Hopper (H100). NVIDIA's Blackwell (B200/GB200) doubles tensor core throughput but shared memory bandwidth and softmax instruction throughput do not scale proportionally. This asymmetric scaling makes non-matmul operations and synchronization the new bottlenecks — Hopper-era assumptions break, and a kernel designed around Blackwell's actual unit balance is needed.
+
 ## Key Contributions
 
 - **Asymmetric hardware co-design**: Redesigned pipelines exploiting B200's fully asynchronous MMA and larger tiles, addressing the bottleneck shift when tensor cores scale 2x but shared memory bandwidth does not.

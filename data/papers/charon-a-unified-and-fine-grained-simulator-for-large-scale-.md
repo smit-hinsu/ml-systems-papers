@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Mengtian Yang
 - Zhekun Zhang
@@ -19,34 +19,27 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Prediction error under 5.35% across models and configurations; under 3.74%
-  for large-scale GPU cluster training; discovered a higher-throughput inference config
+key_results: Prediction error under 5.35% across models and configurations; under
+  3.74% for large-scale GPU cluster training; discovered a higher-throughput inference
+  config
 models_evaluated: []
-observations:
-  balance: Charon's fine-grained simulation discovered an inference configuration
-    surpassing an engineering-tuned baseline, showing simulation can surface load-balance
-    improvements not caught by manual tuning.
-  cache: Rapid simulation of what-if hypotheses avoids costly empirical
-    searches across the full hardware/parallelism design space, reducing engineering
-    iteration cycles.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=19O6GAS7Su
 organizations:
 - ByteDance
 presentation_type: oral
-principles:
-- balance
-- cache
-problem: Exploring the parallelism and system-optimization design space for large-scale
-  LLM training/inference requires expensive empirical runs that are prohibitively slow.
+principles: []
+problem: Exploring parallelism and optimization design spaces for large-scale LLM
+  training/inference requires expensive empirical runs that are prohibitively slow.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3861_7kTIKEc.pdf
 slug: charon-a-unified-and-fine-grained-simulator-for-large-scale-
 status: draft
-title: 'Charon: A Unified and Fine-Grained Simulator for Large-Scale LLM Training and
-  Inference'
+title: 'Charon: A Unified and Fine-Grained Simulator for Large-Scale LLM Training
+  and Inference'
 topics:
 - tensor-parallelism
 - pipeline-parallelism
@@ -54,6 +47,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3861
 ---
+
+## Background
+
+Choosing parallelism strategies for LLM training — pipeline parallelism, tensor parallelism, data parallelism, and communication overlap — requires evaluating combinations that each demand real GPU-hours to measure. Running systematic experiments on a 512-GPU cluster is prohibitively expensive, but naive roofline simulators miss fine-grained effects like pipeline bubbles and NCCL contention that determine actual throughput.
 
 ## Key Contributions
 

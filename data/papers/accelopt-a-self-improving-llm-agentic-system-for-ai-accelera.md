@@ -1,8 +1,8 @@
 ---
 agentic_models:
 - Claude Sonnet 4
+arxiv_date: 2025-11
 arxiv_url: https://arxiv.org/abs/2511.15915
-arxiv_date: '2025-11'
 authors:
 - Genghan Zhang
 - Shaowei Zhu
@@ -19,9 +19,6 @@ citations_updated: ''
 code_url: https://github.com/zhang677/AccelOpt
 domain:
 - ml-kernels
-organizations:
-- Stanford University
-- Amazon
 hardware:
 - Trainium
 - H100
@@ -31,12 +28,12 @@ key_results: Improves NKIBench kernels from 49% to 61% peak throughput on Traini
   1; matches Claude Sonnet 4 quality at 26× lower cost using open-source models
 models_evaluated: []
 observations:
-  search-ai: Agentic beam search explores kernel optimization space with
-    memory of slow-fast kernel pairs; each iteration distills insights into an optimization
-    memory, enabling measurable improvement across iterations on NKIBench.
-  cache: Optimization memory caches generalizable insights from prior
-    slow-fast kernel pairs, preventing the LLM planner from re-discovering the same
-    strategies on subsequent kernels.
+  cache: Optimization memory caches generalizable insights from prior slow-fast kernel
+    pairs, preventing the LLM planner from re-discovering the same strategies on subsequent
+    kernels.
+  search-ai: Agentic beam search explores kernel optimization space with memory of
+    slow-fast kernel pairs; each iteration distills insights into an optimization
+    memory, improving NKIBench scores across iterations.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=SBS4NJHYjZ
 organizations:
@@ -51,7 +48,7 @@ problem: Emerging AI accelerators (Trainium, custom ASICs) lack expert-written o
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3808.pdf
 slug: accelopt-a-self-improving-llm-agentic-system-for-ai-accelera
 status: draft
 title: 'AccelOpt: A Self-Improving LLM Agentic System for AI Accelerator Kernel Optimization'
@@ -61,6 +58,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3808
 ---
+
+## Background
+
+New AI accelerators (AWS Trainium, custom ASICs) need hand-tuned kernels to reach peak throughput, but the required hardware expertise is scarce and doesn't transfer across chip generations. Traditional auto-tuners search within a fixed parameter space; they can't invent new code structures. LLMs can generate novel kernel code but naively produce a random walk through the optimization space with no mechanism to learn from past attempts.
 
 ## Key Contributions
 

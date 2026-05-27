@@ -28,13 +28,12 @@ models_evaluated:
 - GPT-2
 - Llama-2
 observations:
-  pipeline: Layer-wise partial synchronization decouples model synchronization
-    from the backward pass; only a subset of layers sync per iteration, letting other
-    layers' gradients overlap with ongoing computation rather than blocking on full-model
-    all-reduce.
-  cache: Partial Local SGD synchronizes only layers whose staleness
-    exceeds a threshold per iteration, avoiding full-model communication rounds in
-    every step and reducing total cross-datacenter bandwidth by an order of magnitude.
+  pipeline: Layer-wise partial sync decouples gradient communication from the backward
+    pass; non-synced layers' gradients overlap with compute rather than blocking on
+    a cross-datacenter all-reduce.
+  cache: Partial Local SGD syncs only layers whose staleness exceeds a threshold,
+    skipping full-model communication each step and cutting total cross-datacenter
+    bandwidth by an order of magnitude.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=cnvw0mbZQp
 organizations:
@@ -61,6 +60,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3790
 ---
+
+## Background
+
+Geo-distributed LLM training spans GPU clusters across datacenters connected by links orders of magnitude slower than intra-datacenter InfiniBand (1–10 Gbps vs. 400 Gbps). Standard data parallelism all-reduces after every backward pass — too expensive across slow WAN links. Local SGD reduces synchronization frequency by letting clusters train independently for several steps, but its sync step still exchanges every parameter in the full model, consuming enormous bandwidth even infrequently and blocking compute while the sync completes.
 
 ## Key Contributions
 

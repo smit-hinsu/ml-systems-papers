@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Fumikazu KONISHI
 - Yuuki Tsubouchi
@@ -17,14 +17,13 @@ hardware:
 - H100
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: 33.95 PFLOP/s HPL on 100×H100 nodes; top-49 ISC 2025 system using fully
-  open 800 GbE SONiC networking; workload shifts from large-scale to mid-scale as
-  project matures.
+key_results: 33.95 PFLOP/s HPL on 100×H100 nodes; top-49 ISC 2025 via open 800 GbE
+  SONiC; workload shifts from large-scale to mid-scale jobs as project matures.
 models_evaluated: []
 observations:
-  balance: Single-tenant cluster shows resource use shifting from large
-    to mid-scale jobs as project matures; small jobs dominate in count but few large
-    jobs account for most GPU time — classic HPC utilization pattern.
+  balance: Single-tenant cluster shows use shifting from large to mid-scale jobs as
+    the project matures; few large jobs account for most GPU time while small jobs
+    dominate count — classic HPC pattern.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=n7o6C3p3wk
 organizations:
@@ -37,15 +36,19 @@ problem: Characterizing real-world GPU cluster utilization under a single unifie
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3758_d2pso2Y.pdf
 slug: sakuraone-an-open-ethernetbased-ai-hpc-system-and-its-observ
 status: draft
-title: "SAKURAONE: An Open Ethernet–Based AI HPC System and Its Observed Workload\
-  \ Dynamics in a Single-Tenant LLM Development Environment"
+title: 'SAKURAONE: An Open Ethernet–Based AI HPC System and Its Observed Workload
+  Dynamics in a Single-Tenant LLM Development Environment'
 topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3758
 ---
+
+## Background
+
+AI training clusters have historically relied on proprietary high-speed interconnects (InfiniBand), but RoCEv2 over Ethernet with open-source SONiC network OS offers a vendor-neutral alternative. Whether open-Ethernet clusters match proprietary interconnects at 800 Gb/s scale is an open empirical question. Single-tenant clusters dedicated to one LLM project are also rare data points for understanding how GPU utilization actually evolves over a development lifecycle.
 
 ## Key Contributions
 

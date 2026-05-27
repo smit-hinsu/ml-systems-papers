@@ -17,8 +17,7 @@ hardware:
 - H100
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Up to 2x higher throughput and 100x faster recovery than standard fault-handling
-  on 8xH100 DGX; sustains performance under multiple GPU failures.
+key_results: 'Up to 2× throughput and 100× faster recovery vs. standard fault-handling on 8×H100 DGX under multiple GPU failures'
 models_evaluated: []
 observations:
   balance: Cyclic KVCache Placement and Hybrid Attention eliminate compute
@@ -38,8 +37,7 @@ principles:
 - balance
 - cache
 - tier
-problem: Tensor-parallel LLM serving is fragile; a single GPU failure halts execution,
-  triggers costly KVCache recomputation, and causes long-term compute/memory imbalance.
+problem: 'TP LLM serving fails on single GPU fault — halts execution, forces full KVCache recompute, and leaves surviving GPUs compute/memory imbalanced.'
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -54,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3856
 ---
+
+## Background
+
+Tensor-parallel LLM serving splits weight matrices across GPUs and requires all-reduce on every forward pass. A single GPU failure stalls the entire group — existing recovery restarts from scratch, reloading weights and recomputing the KV cache for all in-flight requests. The surviving GPUs also end up with asymmetric memory layouts, causing compute imbalance even after recovery begins.
 
 ## Key Contributions
 

@@ -16,8 +16,7 @@ hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
 key_results: Advanced models (GPT-5, Claude Sonnet 4.5) show ≤11% follow rates; older
-  models show up to 94% sycophantic collapse across 22 models and 1,302 MMLU-style
-  questions
+  models up to 94% sycophantic collapse across 22 models and 1,302 MMLU-style questions
 models_evaluated:
 - GPT-4
 - GPT-4.1
@@ -34,9 +33,8 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
-problem: LLM sycophancy under authority-based social pressure is poorly quantified;
-  existing benchmarks do not isolate causal effects of persuasion on accuracy vs.
-  neutral baselines.
+problem: LLM sycophancy under authority-based pressure is poorly quantified; benchmarks
+  do not isolate causal effects of persuasion on accuracy vs. neutral baselines.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -49,6 +47,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3791
 ---
+
+## Background
+
+LLM sycophancy — abandoning a correct answer when a user confidently asserts a wrong one — is actively harmful in high-stakes settings. Existing evaluations are qualitative or poorly controlled, making it impossible to compare models or track whether RLHF training is improving or worsening the problem. A causal benchmark isolating the effect of authority pressure on accuracy, with a double-blind design, has been missing.
 
 ## Key Contributions
 

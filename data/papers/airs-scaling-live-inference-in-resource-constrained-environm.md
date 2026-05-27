@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Nilesh Jagnik
 - Xiaohao Yang
@@ -15,36 +15,34 @@ code_url: ''
 domain:
 - llm-serving
 - fleet-efficiency
-organizations:
-- Google
 hardware:
 - TPU
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Maximizes TPU inference throughput for LLM-based quality evaluation at
-  Google; serves multiple evaluation workflows under constrained TPU budgets with
-  priority-differentiated latency
+key_results: Serves Google LLM-based evaluation across 2+ priority tiers on shared
+  TPUs; high-priority tasks meet latency SLOs while background tasks fill spare capacity.
 models_evaluated: []
 observations:
-  balance: AIRS schedules evaluation workflows across shared TPU resources
-    with priority-aware scheduling; higher-priority rating tasks receive lower latency
-    while background evaluation fills spare capacity, maximizing overall TPU utilization.
-  cache: Pipeline engineering across evaluation workflows avoids redundant
-    preprocessing and caching shared prompt prefixes across ratings tasks that share
-    common system-prompt templates.
+  balance: AIRS priority-aware scheduling gives high-priority rating tasks lower latency
+    while background evaluation fills spare TPU capacity, maximizing utilization under
+    a fixed resource budget.
+  cache: Pipeline engineering across evaluation workflows avoids redundant preprocessing
+    and caching shared prompt prefixes across ratings tasks that share common system-prompt
+    templates.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=g1RWik4Gy1
+organizations:
+- Google
 presentation_type: oral
 principles:
 - balance
 - cache
-problem: LLM rating demand at Google far exceeds the allocated TPU budget; human raters
-  take days and are expensive, but serving all LLM evaluation tasks competes with
-  live user traffic for the same TPUs.
+problem: LLM rating demand at Google far exceeds the allocated TPU budget; serving
+  all evaluation tasks competes with live user traffic for the same TPUs.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3781.pdf
 slug: airs-scaling-live-inference-in-resource-constrained-environm
 status: draft
 title: 'AIRS: Scaling Live Inference in Resource Constrained Environments'
@@ -54,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3781
 ---
+
+## Background
+
+Google uses LLM-based automated rating to evaluate search quality at the pace of model updates — replacing multi-day human rater cycles. This rating workload competes with live user traffic for the same TPU budget and total demand consistently exceeds capacity. Rating is latency-tolerant compared to user requests, making it a candidate for filling spare capacity, but requires a scheduler that can differentiate priority tiers without over-provisioning dedicated pools.
 
 ## Key Contributions
 

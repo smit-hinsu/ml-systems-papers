@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Jinghan Yao
 - Sam Jacobs
@@ -21,12 +21,11 @@ key_results: Reduces KV accesses by up to 99% and cuts token generation latency 
   over 60% at 128K context; up to 14.3× attention-phase speedup
 models_evaluated: []
 observations:
-  cache: Pre-RoPE L2 matching over a local window finds semantically
-    similar prior queries; reusing their attention output cuts constant-complexity
-    decode regardless of context length.
-  tier: Amend stage recomputes only a small band near the match
-    boundary in SRAM rather than re-reading the full KV cache from HBM, keeping
-    memory traffic O(1) on hit.
+  cache: Pre-RoPE L2 matching over a local window finds semantically similar prior
+    queries; reusing their attention output cuts constant-complexity decode regardless
+    of context length.
+  tier: Amend stage recomputes only a small band near the match boundary in SRAM rather
+    than re-reading the full KV cache from HBM, keeping memory traffic O(1) on hit.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=b6HBRCejb7
 organizations:
@@ -42,8 +41,7 @@ problem: Long-context LLM decode re-reads the full ever-growing KV cache for eve
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3794_HiTCC0P.pdf
 slug: mac-attention-a-match-amend-complete-scheme-for-fast-and-acc
 status: draft
 title: 'MAC-Attention: a Match--Amend--Complete scheme for fast and accurate attention
@@ -54,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3794
 ---
+
+## Background
+
+At 128K token contexts, each decode step reads the full KV cache from HBM — an O(N) memory transfer that grows with every generated token. FlashAttention minimizes passes but can't reduce total bytes transferred. Sparse attention (sliding-window, StreamingLLM) drops tokens to cut reads but accepts accuracy loss. MAC-Attention exploits a different observation: nearby tokens often have semantically similar queries, so prior attention outputs can be reused instead of recomputed.
 
 ## Key Contributions
 

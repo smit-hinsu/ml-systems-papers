@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Varun Gohil
 - Nevena Stojkovic
@@ -20,17 +20,17 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Uncertainty-aware framework improves system resilience across 3 case
-  studies (server provisioning, cluster management, storage I/O) by rejecting unreliable
-  ML predictions before they cause failures.
+key_results: Uncertainty-aware rejection improves resilience across 3 case studies
+  (server provisioning, cluster management, storage I/O) by filtering unreliable ML
+  calls.
 models_evaluated: []
 observations:
-  balance: Graceful degradation to safe fallback strategies when prediction
-    uncertainty is high prevents ML-driven misconfigurations that would cause resource
-    imbalance or admission failures in production systems.
-  search-ai: The framework quantifies prediction uncertainty at runtime
-    to determine when ML outputs are trustworthy, enabling ML to solve measurable
-    system objectives only within its reliable operating envelope.
+  balance: Falling back to safe strategies when prediction uncertainty is high prevents
+    ML-driven misconfigurations that would cause resource imbalance or admission failures
+    in production.
+  search-ai: The framework quantifies prediction uncertainty at runtime to determine
+    when ML outputs are trustworthy, enabling ML to solve measurable system objectives
+    only within its reliable operating envelope.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=i0iOQL2MF5
 organizations:
@@ -41,21 +41,24 @@ presentation_type: oral
 principles:
 - balance
 - search-ai
-problem: ML models deployed in computer systems fail silently on out-of-distribution
-  inputs, causing costly system failures when predictions are applied without uncertainty
-  awareness.
+problem: ML models in computer systems fail silently on out-of-distribution inputs,
+  causing costly failures when predictions are applied without uncertainty awareness.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: mixed
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3772_bJ5i4pq.pdf
 slug: when-machine-learning-isnt-sure-building-resilient-ml-based-
 status: draft
-title: "When Machine Learning Isn’t Sure: Building Resilient ML-Based Computer\
-  \ Systems by Embracing Uncertainty"
+title: 'When Machine Learning Isn’t Sure: Building Resilient ML-Based Computer Systems
+  by Embracing Uncertainty'
 topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3772
 ---
+
+## Background
+
+ML models make operational decisions — server provisioning, job routing, I/O admission control — trained on historical telemetry that drifts over time. New application versions, traffic changes, and hardware upgrades create out-of-distribution inputs where predictions can be badly wrong. Unlike a bad recommendation, incorrect system control predictions cascade: an underprovisioned server causes latency spikes, a misrouted job starves a cluster. Standard models produce confident-looking outputs even on OOD inputs, so failures are silent until they cause visible damage.
 
 ## Key Contributions
 

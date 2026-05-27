@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: '2511.18643'
 arxiv_date: '2025-11-23'
+arxiv_url: '2511.18643'
 authors:
 - Haojun Xia
 - Xiaoxia Wu
@@ -21,7 +21,7 @@ authors:
 award: ''
 citations: null
 citations_updated: ''
-code_url: 'https://github.com/Summer-Summer/Kitty'
+code_url: https://github.com/Summer-Summer/Kitty
 domain:
 - llm-serving
 hardware:
@@ -34,12 +34,15 @@ models_evaluated:
 - Qwen3
 - LLaMA3
 observations:
-  skip: Channel-wise Precision Boost ranks Key-cache channels by sensitivity,
-    keeps a small fraction at 4-bit, and quantizes insensitive channels at 2-bit —
-    avoiding accuracy loss from applying uniform 2-bit.
-  fuse: Page-centric KV layout decomposes mixed-precision Key pages
-    into two unified 2-bit tensors, enabling coalesced memory reads and removing
-    scattered access patterns that harm HBM bandwidth utilization.
+  fuse: Page-centric KV layout decomposes mixed-precision Key pages into two unified
+    2-bit tensors, enabling coalesced memory reads and removing scattered access patterns
+    that harm HBM bandwidth utilization.
+  quantize: 2-bit KV quantization identifies per-channel outliers and preserves them
+    at higher precision; mixed-precision cuts KV memory 4× vs FP16 with <1% accuracy
+    degradation on Llama-3.
+  skip: Channel-wise Precision Boost ranks Key-cache channels by sensitivity, keeps
+    a small fraction at 4-bit, and quantizes insensitive channels at 2-bit — avoiding
+    accuracy loss from applying uniform 2-bit.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=r3mQiuYKIN
 organizations:
@@ -49,12 +52,13 @@ presentation_type: oral
 principles:
 - skip
 - fuse
+- quantize
 problem: 2-bit KV cache quantization degrades LLM accuracy, especially on long-context
   reasoning, while 4-bit preserves accuracy but limits batch size gains.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3746.pdf
 slug: kitty-accurate-and-efficient-2-bit-kv-cache-quantization-wit
 status: under-review
 title: 'Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise
@@ -66,6 +70,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3746
 ---
+
+## Background
+
+KV cache quantization compresses key/value memory by storing at lower bit-width. 4-bit preserves accuracy while halving memory vs. FP16, but 2-bit (which would halve it again) degrades quality sharply on long-context reasoning. The root cause is Key-cache **outlier channels** — a small fraction of channels with much larger magnitude that uniform 2-bit quantization collapses, destroying attention distributions.
 
 ## Key Contributions
 

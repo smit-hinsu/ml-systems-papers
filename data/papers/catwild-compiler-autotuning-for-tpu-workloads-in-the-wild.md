@@ -86,6 +86,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3774
 ---
 
+## Background
+
+XLA, Google's compiler for TPU workloads, must choose tiling factors, fusion strategies, and tensor layout for every computation graph — decisions currently made by hand-written heuristics. A fleet running thousands of distinct training jobs makes manual tuning infeasible, but the search space is too large for brute force without a system that amortizes tuning cost across jobs sharing the same model structure.
+
 ## Key Contributions
 
 - **CATWILD system**: First ML compiler autotuning system deployed at datacenter scale, automatically searching over XLA compiler parameters (tiling factors, fusion strategies, memory layout) for diverse TPU training workloads without requiring human expert intervention.

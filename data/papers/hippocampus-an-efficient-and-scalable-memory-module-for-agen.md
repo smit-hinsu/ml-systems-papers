@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yi Li
 - Lianjie Cao
@@ -17,17 +17,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: 1.1×–31.5× retrieval latency speedup and 1.1×–14.5× token footprint
-  reduction over dense-vector and knowledge-graph memory baselines on LoCoMo and LongMemEval
+key_results: 1.1×–31.5× retrieval latency speedup and 1.1×–14.5× token footprint reduction
+  over dense-vector and knowledge-graph memory baselines on LoCoMo and LongMemEval
 models_evaluated: []
 observations:
-  cache: Compact binary signatures enable semantic search in the compressed
-    domain without expanding embeddings; the Dynamic Wavelet Matrix avoids re-decompressing
-    memory entries for queries that can be resolved from the binary index alone.
-  tier: The DWM co-indexes binary signatures and lossless token-ID
-    streams together in a compressed structure, keeping frequently searched indices
-    in fast memory while full token streams stay compressed until reconstruction is
-    needed.
+  cache: Compact binary signatures enable semantic search without expanding embeddings;
+    the Dynamic Wavelet Matrix avoids re-decompressing entries for queries resolvable
+    from the binary index alone.
+  tier: DWM co-indexes binary signatures and token-ID streams in one compressed structure,
+    keeping search indices in fast memory while full token streams remain compressed
+    until reconstruction is needed.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=0sUYZh9D4a
 organizations:
@@ -37,12 +36,12 @@ presentation_type: oral
 principles:
 - cache
 - tier
-problem: Agentic AI memory systems using dense vectors or knowledge graphs incur high
-  retrieval latency and storage costs that prevent scaling to long-horizon deployments.
+problem: Dense vector and knowledge-graph memory systems incur high retrieval latency
+  and storage costs that prevent agentic AI from scaling to long-horizon tasks.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3863.pdf
 slug: hippocampus-an-efficient-and-scalable-memory-module-for-agen
 status: draft
 title: 'Hippocampus: An Efficient and Scalable Memory Module for Agentic AI'
@@ -52,6 +51,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3863
 ---
+
+## Background
+
+LLM-based agents accumulate context across many turns beyond a single context window, requiring external memory stores. Dense vector stores (float embeddings + cosine similarity retrieval) scale poorly: float32/float16 embeddings are large and retrieval requires full vector scans or HNSW indices that store many embedding copies. Knowledge graphs are brittle for unstructured conversation history. Neither approach handles millions of entries on commodity hardware — the regime long-horizon agents eventually reach.
 
 ## Key Contributions
 

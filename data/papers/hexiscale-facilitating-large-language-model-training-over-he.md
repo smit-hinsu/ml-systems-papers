@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Ran Yan
 - Youhe Jiang
@@ -24,12 +24,12 @@ key_results: 1.5×–2.4× higher throughput vs. heterogeneous baselines; simila
 models_evaluated:
 - LLMs (7B to 30B)
 observations:
-  balance: HexiScale's hierarchical graph partitioning assigns asymmetric
-    computation slices proportional to each GPU's FLOPS and memory, preventing weaker
-    GPUs from becoming bottlenecks that stall the entire training iteration.
-  pipeline: Asymmetric tensor and pipeline parallelism partitions
-    allow work-stealing across heterogeneous tiers so that faster GPUs do not idle
-    while slower ones finish their unequal slices.
+  balance: HexiScale's hierarchical partitioner assigns computation slices proportional
+    to each GPU's FLOPS and memory, preventing weaker GPUs from becoming bottlenecks
+    that stall the training iteration.
+  pipeline: Asymmetric tensor and pipeline parallelism partitions allow work-stealing
+    across heterogeneous tiers so that faster GPUs do not idle while slower ones finish
+    their unequal slices.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=KgcqSNio0U
 organizations:
@@ -40,12 +40,12 @@ presentation_type: oral
 principles:
 - balance
 - pipeline
-problem: Training LLMs across heterogeneous GPU clusters wastes compute because standard
-  parallelism strategies assume equal-speed devices and leave weaker GPUs as stragglers.
+problem: Standard LLM parallelism strategies assume equal-speed devices, leaving weaker
+  GPUs as stragglers in heterogeneous clusters and wasting available compute.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3828_GyjCel6.pdf
 slug: hexiscale-facilitating-large-language-model-training-over-he
 status: draft
 title: 'HexiScale: Facilitating Large Language Model Training over Heterogeneous Hardware'
@@ -55,6 +55,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3828
 ---
+
+## Background
+
+Standard LLM parallelism strategies — data, pipeline, and tensor — partition work into equal-sized chunks, which is optimal only when all GPUs have identical capacity. In heterogeneous clusters with mixed GPU generations, the slowest device sets iteration time: fast GPUs idle waiting for the straggler. No existing training framework offered a principled way to right-size each device's workload to its actual compute and memory capacity.
 
 ## Key Contributions
 

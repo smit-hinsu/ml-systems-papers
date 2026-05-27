@@ -1,6 +1,6 @@
 ---
-slug: blueprint-bootstrap-and-bridge-a-security-look-at-nvidia-gpu
-title: "Blueprint, Bootstrap, and Bridge: A Security Look at NVIDIA GPU Confidential Computing"
+agentic_models: []
+arxiv_url: https://arxiv.org/abs/2507.02770
 authors:
 - Zhongshu Gu
 - Enriquillo Valdez
@@ -10,41 +10,46 @@ authors:
 - Hani Jamjoom
 - Shixuan Zhao
 - Zhiqiang Lin
-organizations:
-- IBM Research
-- Ohio State University
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3741
-openreview_url: https://openreview.net/forum?id=t9RDCO1aL7
-arxiv_url: 'https://arxiv.org/abs/2507.02770'
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: research
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - observability
 hardware:
 - NVIDIA GPU (Ampere, Hopper)
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: Experiments on 2 GPU architectures (Ampere, Hopper) reveal unprotected
+  data transfer paths under GPU-CC threat model; findings disclosed to NVIDIA PSIRT.
 models_evaluated:
 - AI workloads under GPU-CC
-agentic_models: []
+observations: {}
+official_category: ''
+openreview_url: https://openreview.net/forum?id=t9RDCO1aL7
+organizations:
+- IBM Research
+- Ohio State University
+presentation_type: oral
+principles: []
+problem: NVIDIA GPU Confidential Computing is proprietary and opaque, making it hard
+  to audit security guarantees for AI workloads running in untrusted clouds.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3741.pdf
+slug: blueprint-bootstrap-and-bridge-a-security-look-at-nvidia-gpu
+status: draft
+title: 'Blueprint, Bootstrap, and Bridge: A Security Look at NVIDIA GPU Confidential
+  Computing'
 topics: []
-principles:
-- cache
-observations:
-  cache: "Systematic reverse-engineering of GPU-CC architecture reveals redundant trust establishment steps and unprotected data paths across the CPU-GPU bridge."
-problem: "NVIDIA GPU Confidential Computing is proprietary and opaque, making it hard to audit security guarantees for AI workloads running in untrusted clouds."
-key_results: "Targeted experiments on Ampere/Hopper GPUs reveal unprotected data transfer paths under the GPU-CC threat model; findings disclosed to NVIDIA PSIRT."
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3741
 ---
+
+## Background
+
+NVIDIA GPU Confidential Computing (GPU-CC) extends Trusted Execution Environments to GPUs, keeping ML models and inputs encrypted from the cloud operator — important for healthcare and regulated workloads on untrusted infrastructure. GPU-CC relies on proprietary mechanisms — security processors, attestation hardware, encrypted PCIe channels — that are not publicly documented. Whether data transfers between the CPU TEE and GPU secure memory are actually protected, or exposed at unguarded "bridges," requires reverse-engineering the architecture to determine.
 
 ## Key Contributions
 

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yi Ding
 - Aijia Gao
@@ -22,35 +22,31 @@ indexed_date: '2026-05-25'
 key_results: Acela improves upgrade window utilization 1.25×, schedules 33% more upgrades,
   completes 41% more, and reduces cancellations 2.4× vs. Meta's existing scheduler
 models_evaluated: []
-observations:
-  balance: Asymmetric misprediction costs mean overestimating upgrade
-    duration wastes window capacity while underestimating causes SLO violations; Acela
-    uses cost-aware model selection to minimize total scheduling waste.
-  cache: Straggler-induced overestimation propagates across the fleet
-    and inflates predicted windows; Acela detects and corrects these outliers to prevent
-    conservatism from accumulating across the upgrade pipeline.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=l72e5oROLT
 organizations:
 - Meta
 - University of Chicago
 presentation_type: oral
-principles:
-- balance
-- cache
-problem: Datacenter software upgrades stall due to poor duration predictions — overestimates
-  waste maintenance windows and underestimates cause SLO violations and cancellations.
+principles: []
+problem: Software upgrades in datacenters stall due to poor duration predictions —
+  overestimates waste maintenance windows and underestimates cause SLO violations.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3765.pdf
 slug: cost-aware-duration-prediction-for-software-upgrades-in-data
 status: draft
-title: 'Cost-aware Duration Prediction for Software Upgrades in Datacenters'
+title: Cost-aware Duration Prediction for Software Upgrades in Datacenters
 topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3765
 ---
+
+## Background
+
+Datacenter maintenance schedulers pack software upgrades (OS patches, firmware updates) into maintenance windows by predicting how long each upgrade takes. Mispredictions are asymmetric: underestimates risk SLO violations when machines stay offline too long; overestimates waste windows by leaving capacity idle. Standard regression models optimizing symmetric accuracy don't capture this asymmetry, and straggler machines that take far longer than peers compound the problem.
 
 ## Key Contributions
 

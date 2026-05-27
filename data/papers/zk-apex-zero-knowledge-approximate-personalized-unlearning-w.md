@@ -16,15 +16,15 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: ZK-SNARK proof generation completes in ~2 hours, 10^7× faster than retraining-based
-  verification, with <0.7 GB peak memory and 99% Top-1 accuracy recovery on ViT.
+key_results: ZK-SNARK proofs complete in ~2 hours (10^7× faster than retraining),
+  <0.7 GB peak memory, 99% Top-1 accuracy on ViT after unlearning.
 models_evaluated:
 - ViT (Vision Transformer)
 - OPT-125M
 observations:
-  cache: Zero-shot unlearning via sparse masking and block-wise Fisher
-    compensation avoids full model retraining, removing specific training samples
-    from personalized models with a single forward-backward pass.
+  cache: Zero-shot unlearning via sparse masking and block-wise Fisher compensation
+    avoids full retraining, removing targeted samples from personalized models in one
+    forward-backward pass.
   skip: Provider-side sparse masking targets only the parameters most
     responsible for the forgotten samples, applying a minimal surgical update rather
     than globally perturbing the model.
@@ -36,9 +36,8 @@ presentation_type: oral
 principles:
 - cache
 - skip
-problem: Verifying correct machine unlearning for distributed personalized models
-  is intractable with retraining-based methods, and clients may falsify deletion on
-  resource-constrained edge devices.
+problem: Verifying correct machine unlearning in personalized distributed models is
+  intractable with retraining; edge device clients may falsify deletion.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -50,6 +49,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3793
 ---
+
+## Background
+
+Machine unlearning removes the influence of specific training data from a deployed model, as required by GDPR "right to be forgotten" requests. Retraining is prohibitively expensive, so approximate unlearning applies a lightweight update instead. In personalized federated learning, each user has a locally fine-tuned model, and the provider must trust the prescribed update was applied — verifying this without receiving weights violates privacy. ZK-SNARKs can certify a computation without revealing inputs, but prior systems couldn't scale to neural network operations.
 
 ## Key Contributions
 

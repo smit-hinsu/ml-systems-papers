@@ -1,7 +1,7 @@
 ---
 agentic_models: []
+arxiv_date: 2025-11
 arxiv_url: https://arxiv.org/abs/2511.19269
-arxiv_date: '2025-11'
 authors:
 - Minseo Kim
 - Chenfeng Xu
@@ -21,18 +21,21 @@ hardware:
 - A100
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: 14.5× latency reduction on MBPP and 11.2× on GSM8K vs. baseline DLMs on
-  A100, with competitive accuracy vs. AR models
+key_results: 14.5× latency reduction on MBPP and 11.2× on GSM8K vs. baseline DLMs
+  on A100, with competitive accuracy vs. AR models
 models_evaluated:
 - Dream-7B-Instruct
 - LLaDA-8B-Instruct
 observations:
-  cache: Block-wise causal attention mask enables standard KV caching
-    in diffusion LMs; previously each denoising step re-computed all positions from
-    scratch, making caching impossible.
-  pipeline: Consistency distillation enables multi-token finalization
-    per step, reducing total denoising steps by 4.1×–7.7× and letting the model finalize
-    multiple tokens in one forward pass.
+  cache: Block-wise causal attention mask enables standard KV caching in diffusion
+    LMs; previously each denoising step re-computed all positions from scratch, making
+    caching impossible.
+  pipeline: Consistency distillation enables multi-token finalization per step, reducing
+    total denoising steps by 4.1×–7.7× and letting the model finalize multiple tokens
+    in one forward pass.
+  speculate: Consistency distillation compresses multi-step diffusion into single-step
+    proposals; multiple positions are finalized simultaneously, amortizing sequential
+    AR overhead over a full sequence segment.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=eB8yjR6alL
 organizations:
@@ -43,12 +46,13 @@ presentation_type: oral
 principles:
 - cache
 - pipeline
+- speculate
 problem: Diffusion language models require dozens of iterative denoising steps and
   cannot use KV caching, making inference 10–15× slower than autoregressive models.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3785_4lDloP6.pdf
 slug: cdlm-consistency-diffusion-language-models-for-faster-sampli
 status: under-review
 title: 'CDLM: Consistency Diffusion Language Models for Faster Sampling'
@@ -58,6 +62,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3785
 ---
+
+## Background
+
+Diffusion language models (DLMs) generate text by iteratively unmasking a fully masked sequence over 50–200 steps using bidirectional attention. Two structural problems make them 10–15× slower than autoregressive models: bidirectional attention prevents KV caching, and each step produces only an intermediate state rather than a final token. Consistency distillation — a technique from image diffusion — can compress many steps into far fewer, but adapting it to discrete masked language requires rethinking both the attention structure and training objective.
 
 ## Key Contributions
 

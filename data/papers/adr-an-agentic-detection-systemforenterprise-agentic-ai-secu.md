@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Chenning Li
 - Pan Hu
@@ -22,9 +22,6 @@ code_url: ''
 domain:
 - agentic-inference
 - observability
-organizations:
-- Uber
-- MIT
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
@@ -32,25 +29,27 @@ key_results: 97.2% precision detecting credentials at Uber across 26 categories;
   attack detection on ADR-Bench with zero false positives, 2–4× F1 over baselines
 models_evaluated: []
 observations:
-  balance: Two-tier detector routes most sessions through a fast triage
-    model, escalating ambiguous cases to the costly LLM reasoner only; sustains reliable
-    detection across 10,000+ daily agent sessions at Uber.
-  cache: ADR Sensor captures full agentic telemetry including prompts
-    and causal chains at the MCP protocol layer, delivering pre-structured context
-    to the detector rather than forcing reconstruction from raw OS events.
+  balance: Two-tier detector routes most sessions through a fast triage model, escalating
+    ambiguous cases to the costly LLM reasoner only; sustains reliable detection across
+    10,000+ daily agent sessions at Uber.
+  specialize: ADR Sensor pre-structures telemetry into a fixed schema before passing
+    to the LLM detector; each tier is independently optimized — sensor for throughput,
+    LLM for semantic reasoning quality.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=7B91Naeszw
+organizations:
+- Uber
+- MIT
 presentation_type: oral
 principles:
 - balance
-- cache
-problem: Enterprise AI agents using MCP tools are invisible to existing EDR systems
-  which see file writes but not agent reasoning or causal chains linking intent to
-  tool execution.
+- specialize
+problem: Enterprise AI agents using MCP tools are invisible to EDR — which sees file
+  writes but not agent reasoning or causal chains linking intent to tool execution.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3853_k9cXWDE.pdf
 slug: adr-an-agentic-detection-systemforenterprise-agentic-ai-secu
 status: draft
 title: 'ADR: AN AGENTIC DETECTION SYSTEMFORENTERPRISE AGENTIC AI SECURITY'
@@ -59,6 +58,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3853
 ---
+
+## Background
+
+Enterprise AI agents take actions through tools via the Model Context Protocol (MCP). Traditional EDR tools watch file-system and network artifacts but are blind to agent reasoning — they can't see the causal chain between a prompt injection attack in a retrieved document and the tool call it triggers. The missing layer is semantic telemetry that captures why an agent made each tool call, paired with a detector that scales to tens of thousands of daily sessions.
 
 ## Key Contributions
 

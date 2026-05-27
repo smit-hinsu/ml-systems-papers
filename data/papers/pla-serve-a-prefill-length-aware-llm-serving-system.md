@@ -61,6 +61,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3787
 ---
 
+## Background
+
+Continuous batching mixes requests with different prompt lengths into one batch to maximize GPU utilization, but a single long prefill blocks all short requests, inflating TTFT for most users. Real-world workloads are bimodal — many short conversational prompts alongside occasional document-length ones — so this head-of-line blocking is the common path, not an edge case.
+
 ## Key Contributions
 
 - **Dual-queue length disaggregation**: Separate request queues for long-prefill (compute-bound) and short-prefill (memory-bound) requests with either temporal disaggregation (alternating on a single prefill instance) or spatial disaggregation (dedicated instances per length class), eliminating contention between the two bottleneck types.

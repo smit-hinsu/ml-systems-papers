@@ -1,6 +1,6 @@
 ---
-slug: executorch-a-unified-pytorch-solution-to-run-ml-models-on-de
-title: "ExecuTorch - A Unified PyTorch Solution to Run ML Models On-Device"
+agentic_models: []
+arxiv_url: https://arxiv.org/abs/2605.08195
 authors:
 - Mergen Nachin
 - Digant Desai
@@ -41,46 +41,54 @@ authors:
 - Jerry Zhang
 - Shunting Zhang
 - Cagatay Bilgin
-organizations:
-- Meta
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3768
-openreview_url: https://openreview.net/forum?id=jmE5nwC9kb
-arxiv_url: 'https://arxiv.org/abs/2605.08195'
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: industry
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - llm-serving
 hardware:
 - Microcontrollers
 - Mobile SoCs
 - Wearables
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: ExecuTorch ships LLMs on Meta AI wearables and smartphones, scaling from
+  <1MB microcontrollers to multi-accelerator SoCs with PyTorch-native semantics.
 models_evaluated:
 - LLMs
 - VLMs
-agentic_models: []
-topics:
-- quantization
+observations:
+  fuse: Sub-graph delegation keeps tensors in accelerator-native formats, avoiding
+    costly CPU-GPU copies for each heterogeneous SoC component in the serving pipeline.
+  tier: Static memory planning for microcontroller targets eliminates dynamic allocations
+    and maximizes SRAM reuse across operators at inference time.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=jmE5nwC9kb
+organizations:
+- Meta
+presentation_type: oral
 principles:
 - fuse
 - tier
-observations:
-  fuse: "Sub-graph delegation keeps tensors in accelerator-native formats, avoiding costly CPU-GPU copies for each heterogeneous SoC component in the serving pipeline."
-  tier: "Static memory planning for microcontroller targets eliminates dynamic allocations and maximizes SRAM reuse across operators at inference time."
-problem: "Edge ML deployment is fragmented across hardware, requiring model conversion outside PyTorch and blocking rapid iteration from research to production."
-key_results: "ExecuTorch ships LLMs on Meta AI wearables and smartphones, scaling from <1MB microcontrollers to multi-accelerator SoCs with PyTorch-native semantics."
+problem: Edge ML deployment is fragmented across hardware, requiring model conversion
+  outside PyTorch and blocking rapid iteration from research to production.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: industry
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3768_4KzY8Rk.pdf
+slug: executorch-a-unified-pytorch-solution-to-run-ml-models-on-de
+status: draft
+title: ExecuTorch - A Unified PyTorch Solution to Run ML Models On-Device
+topics:
+- quantization
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3768
 ---
+
+## Background
+
+Edge ML deployment is fragmented: each hardware vendor (Apple, Qualcomm, ARM) has its own SDK, requiring model conversion out of PyTorch before deployment. On the most constrained targets — microcontrollers under 1 MB SRAM — there is no runtime allocator, so memory planning must happen at compile time. ExecuTorch provides a single PyTorch-native path from embedded targets to multi-accelerator mobile SoCs.
 
 ## Key Contributions
 

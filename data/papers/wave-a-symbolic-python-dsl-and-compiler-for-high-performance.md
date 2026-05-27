@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Harsh Menon
 - Oleksandr Zinenko
@@ -27,16 +27,16 @@ hardware:
 - NVIDIA GPU
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Wave matches or surpasses state-of-the-art kernel DSLs and libraries
-  in performance while automating complex address computations for matrix cores.
+key_results: Wave matches or surpasses 2 leading baselines (Triton, CUTLASS) in kernel
+  performance while eliminating manual matrix core address computation on NVIDIA GPUs
 models_evaluated: []
 observations:
-  fuse: Wave's symbolic address computation automatically generates
-    optimal tile addressing for matrix cores, avoiding manual indexing errors that
-    cause excess global memory traffic in hand-written kernels.
-  tier: Automated register and shared-memory address scheduling
-    in Wave keeps operands in the fastest memory tiers throughout matrix core computation,
-    without requiring manual tiling directives.
+  fuse: Wave's symbolic address computation automatically generates optimal tile addressing
+    for matrix cores, avoiding manual indexing errors that cause excess global memory
+    traffic in hand-written kernels.
+  tier: Automated register and shared-memory address scheduling in Wave keeps operands
+    in the fastest memory tiers throughout matrix core computation, without requiring
+    manual tiling directives.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=gcXV1E8HRH
 organizations:
@@ -45,13 +45,12 @@ presentation_type: oral
 principles:
 - fuse
 - tier
-problem: GPU matrix cores require complex addressing schemes and programming models
-  that are difficult to manage by hand, making high-performance kernel authoring error-prone
-  and tedious.
+problem: GPU matrix cores require complex addressing schemes that are difficult to
+  manage by hand, making high-performance kernel authoring error-prone and tedious.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3778_wPh602N.pdf
 slug: wave-a-symbolic-python-dsl-and-compiler-for-high-performance
 status: draft
 title: 'Wave: A Symbolic Python DSL And Compiler for High-Performance Machine Learning'
@@ -61,6 +60,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3778
 ---
+
+## Background
+
+GPU matrix cores require precisely structured operand layouts in registers and shared memory: tiles must arrive in a specific arrangement, results must land at specific register locations, and the sequence must not stall the units. CUTLASS exposes these details directly, requiring intricate multi-level addressing where a single wrong index silently kills performance. Higher-level DSLs like Triton abstract some details but still require explicit tiling strategies and memory access patterns from the programmer.
 
 ## Key Contributions
 

@@ -58,6 +58,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3734
 ---
 
+## Background
+
+MFU (Model FLOP Utilization) is the standard training efficiency metric, but a low MFU number could mean jobs aren't scheduled, jobs crash and restart, or the program itself has poor compute density — three problems requiring completely different fixes. Operating a fleet of thousands of TPUs with only MFU as the health signal makes optimization efforts guesswork; engineers can't tell which layer of the stack has actionable headroom.
+
 ## Key Contributions
 
 - **ML Productivity Goodput (MPG) metric**: decomposes overall fleet efficiency into three multiplicative components — Scheduling Goodput (resource availability), Runtime Goodput (forward progress vs. failures/overhead), and Program Goodput (actual vs. roofline compute utilization)

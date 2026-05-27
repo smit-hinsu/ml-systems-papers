@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Xianzhe Dong
 - Tongxuan Liu
@@ -28,12 +28,12 @@ key_results: Up to 3.7× higher inference throughput vs. vLLM and SGLang while m
   90th-percentile SLO under real multimodal workloads.
 models_evaluated: []
 observations:
-  balance: Scheduling encode, prefill, and decode onto separate heterogeneous
-    instances eliminates resource contention between vision encoding (compute-bound)
-    and token decoding (memory-bandwidth-bound), raising overall GPU utilization.
-  pipeline: Stage-level batching enables parallel execution of visual
-    and language model stages; visual encoding and language prefill can proceed concurrently
-    on separate instances.
+  balance: Scheduling encode, prefill, and decode onto separate instances eliminates
+    resource contention between vision encoding (compute-bound) and decoding (memory-bound),
+    raising overall GPU utilization.
+  pipeline: Stage-level batching enables parallel execution of visual and language
+    model stages; visual encoding and language prefill can proceed concurrently on
+    separate instances.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=nNovi8fvGN
 organizations:
@@ -45,12 +45,11 @@ principles:
 - balance
 - pipeline
 problem: Monolithic MLLM serving couples image encoding, prefill, and decode on the
-  same GPUs, causing resource contention and low utilization due to heterogeneous
-  stage demands.
+  same GPUs, causing resource contention and low utilization across divergent stages.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3756.pdf
 slug: triinfer-hybrid-epd-disaggregation-for-efficient-multimodal-
 status: draft
 title: 'TriInfer: Hybrid EPD Disaggregation for Efficient Multimodal Large Language
@@ -62,6 +61,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3756
 ---
+
+## Background
+
+Multimodal LLM inference has three stages with different resource profiles: vision encoding is compute-bound, prefill is compute-bound and batching-sensitive, decode is memory-bandwidth-bound. When all three share a GPU pool, they interfere — a long decode phase blocks new vision encoding, and bursty image workloads starve decode throughput. Prefill-decode disaggregation for text-only LLMs is established, but MLLMs require a third stage split for vision encoding that no prior system addresses.
 
 ## Key Contributions
 

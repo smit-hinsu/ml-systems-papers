@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Stuart H. Sul
 - Simran Arora
@@ -22,12 +22,12 @@ key_results: Up to 4.08× speedup for sequence-parallel, 2.33× for data/tensor-
   and 1.22× for expert-parallel workloads with fewer than 50 lines of device code
 models_evaluated: []
 observations:
-  pipeline: Eight core primitives systematically express compute-communication
-    overlap for multi-GPU kernels; a unified programming template ensures hardware
-    resources are scheduled to hide interconnect latency behind active computation.
-  fuse: Comprehensive analysis of data-transfer mechanisms identifies
-    which data must cross NVLink vs. stay on-device; PK kernels minimize cross-GPU
-    transfers by restructuring tiling to match interconnect bandwidth constraints.
+  fuse: Analysis of data-transfer mechanisms identifies which data must cross NVLink
+    vs. stay on-device; PK kernels minimize cross-GPU transfers by restructuring tiling
+    to match interconnect bandwidth.
+  pipeline: Eight core primitives express compute-communication overlap for multi-GPU
+    kernels; a unified template ensures hardware resources are scheduled to hide interconnect
+    latency behind active computation.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=Cv5e5uRXFb
 organizations:
@@ -36,13 +36,12 @@ presentation_type: oral
 principles:
 - pipeline
 - fuse
-problem: Inter-GPU communication bottlenecks AI workloads as compute throughput outpaces
-  interconnect bandwidth; existing overlap techniques fail to reach theoretical peak
-  across heterogeneous workloads and accelerators.
+problem: Inter-GPU communication bottlenecks AI workloads; existing overlap techniques
+  fail to reach peak bandwidth across heterogeneous workloads and accelerators.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3845.pdf
 slug: parallelkittens-systematic-and-practical-simplification-of-m
 status: draft
 title: 'ParallelKittens: Systematic and Practical Simplification of Multi-GPU AI Kernels'
@@ -52,6 +51,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3845
 ---
+
+## Background
+
+Multi-GPU AI kernels often bottleneck on inter-GPU communication rather than compute. The fix is compute-communication overlap: structuring kernels so communication is in-flight while the GPU does independent math. Each workload — tensor-parallel matmuls, sequence-parallel attention, expert routing — has its own ad-hoc implementation today, with no shared abstraction across patterns or GPU generations.
 
 ## Key Contributions
 

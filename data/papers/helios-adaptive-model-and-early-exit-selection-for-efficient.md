@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Avinash Kumar
 - Shashank Nag
@@ -22,13 +22,12 @@ key_results: 1.48× higher throughput and 15.14× larger batch size vs. existing
 models_evaluated:
 - Early-Exit LLMs
 observations:
-  balance: Multi-model switching routes tokens that miss early exits on
-    one model to another where those tokens do exit, collectively maximizing early-exit
-    utilization across the combined ensemble rather than stalling on the single-model
-    bottleneck.
-  tier: Greedy layer loading loads only weights for layers most
-    likely to be used based on profiled exit distributions, freeing HBM for larger
-    batch sizes instead of holding all layer weights resident.
+  balance: Multi-model switching routes tokens that miss exits on one EE-LLM to another
+    where they do exit, collectively maximizing early-exit utilization rather than
+    stalling on a single-model bottleneck.
+  tier: Greedy layer loading loads only weights for layers most likely to be used
+    based on profiled exit distributions, freeing HBM for larger batch sizes instead
+    of holding all layer weights resident.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=CV52m9NJFK
 organizations:
@@ -38,12 +37,12 @@ presentation_type: oral
 principles:
 - balance
 - tier
-problem: EE-LLM serving bottlenecks on tokens that never exit early; loading all
-  layer weights wastes HBM that could be used for larger batches.
+problem: EE-LLM serving bottlenecks on tokens that never exit early; loading all layer
+  weights wastes HBM that could be used for larger batches.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3846.pdf
 slug: helios-adaptive-model-and-early-exit-selection-for-efficient
 status: draft
 title: 'HELIOS : Adaptive Model And Early-Exit Selection for Efficient LLM Inference
@@ -54,6 +53,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3846
 ---
+
+## Background
+
+Early-exit LLMs (EE-LLMs) add classifiers at intermediate transformer layers so simpler tokens exit before the final layer, reducing average per-token compute. In practice, a single EE-LLM has a fixed exit distribution — some tokens always traverse deep layers, creating a bottleneck that limits throughput. Loading all layer weights into HBM even when most exits happen early wastes memory that could hold more concurrent requests.
 
 ## Key Contributions
 

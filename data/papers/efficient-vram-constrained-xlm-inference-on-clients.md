@@ -1,51 +1,59 @@
 ---
-slug: efficient-vram-constrained-xlm-inference-on-clients
-title: "Efficient, VRAM-Constrained xLM Inference on Clients"
+agentic_models: []
+arxiv_url: ''
 authors:
 - Aditya Ukarande
 - Deep Shekhar
 - Marc Blackstein
 - Ram Rangan
-organizations:
-- NVIDIA
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3802
-openreview_url: https://openreview.net/forum?id=VKqQYg6JPb
-arxiv_url: ''
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: industry
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - llm-serving
 hardware:
 - Client GPU (NVIDIA IGI SDK)
 - CPU
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: Pipelined sharding achieves up to 6.7x TTFT and 30x TPS improvement for
+  LLMs, and 10x VRAM reduction for Cosmos-Reason1 VLM on NVIDIA client GPUs.
 models_evaluated:
 - Dense LLMs
 - MoE LLMs
 - Cosmos-Reason1 VLM
-agentic_models: []
-topics:
-- cpu-offload
+observations:
+  pipeline: Pipelined sharding overlaps CPU-to-GPU tensor copy with GPU compute, hiding
+    memory transfer latency for VRAM-constrained inference.
+  tier: Sub-layer sharding with prioritized VRAM placement puts hot tensors on GPU
+    and offloads cold tensors to CPU, maximizing effective throughput.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=VKqQYg6JPb
+organizations:
+- NVIDIA
+presentation_type: oral
 principles:
 - pipeline
 - tier
-observations:
-  pipeline: "Pipelined sharding overlaps CPU-to-GPU tensor copy with GPU compute, hiding memory transfer latency for VRAM-constrained inference."
-  tier: "Sub-layer sharding with prioritized VRAM placement puts hot tensors on GPU and offloads cold tensors to CPU, maximizing effective throughput."
-problem: "Client VRAM budgets block full LLM and high-res VLM inference; no single product handles dense, MoE, and VLM workloads across all client conditions."
-key_results: "Pipelined sharding achieves up to 6.7x TTFT and 30x TPS improvement for LLMs, and 10x VRAM reduction for Cosmos-Reason1 VLM on NVIDIA client GPUs."
+problem: Client VRAM budgets block full LLM and high-res VLM inference; no single
+  product handles dense, MoE, and VLM workloads across all client conditions.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: industry
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3802.pdf
+slug: efficient-vram-constrained-xlm-inference-on-clients
+status: draft
+title: Efficient, VRAM-Constrained xLM Inference on Clients
+topics:
+- cpu-offload
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3802
 ---
+
+## Background
+
+A typical client GPU has 8–24 GB of VRAM while a 7B FP16 model requires 14 GB. The standard fix is CPU offloading — keeping layers in CPU RAM and copying them to GPU before use — but naive offloading serializes copy and compute, leaving the GPU idle during transfers. VLMs like Cosmos-Reason1 add high-resolution image encoders that push requirements even higher, and client hardware heterogeneity (3–10× CPU-to-GPU bandwidth variation) means no static configuration works across all devices.
 
 ## Key Contributions
 

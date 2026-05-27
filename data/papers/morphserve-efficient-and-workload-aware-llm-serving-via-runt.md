@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Zhaoyuan Su
 - Zeyu Zhang
@@ -19,19 +19,21 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Reduces average SLO violations by 92.45% and improves P95 TTFT by
-  2.2–3.9× vs. full-precision serving; 41.3% less accuracy degradation vs. planning-based
-  quantization
+key_results: Reduces SLO violations by 92.45% and improves P95 TTFT by 2.2–3.9× vs.
+  full-precision serving; 41.3% less accuracy degradation vs. planning-based quantization
 models_evaluated:
 - Vicuna
 - Llama-2
 observations:
-  balance: Quantized layer swapping replaces low-impact layers with INT4
-    during high-load bursts; freed memory is immediately repurposed as KV cache capacity,
-    balancing weight precision cost against batching headroom.
-  tier: Pressure-aware KV cache resizing dynamically expands
-    KV capacity using the VRAM freed by quantized layers, converting weight memory
-    into KV memory on-the-fly without additional GPU hardware.
+  balance: Quantized layer swapping replaces low-impact layers with INT4 during bursts;
+    freed memory is immediately repurposed as KV cache capacity, balancing precision
+    cost against batching headroom.
+  quantize: Layers are dynamically quantized to INT4 and swapped based on current
+    SLO headroom; elastic quantization depth adapts throughput vs. latency trade-off
+    without recompiling the model.
+  tier: Pressure-aware KV cache resizing dynamically expands KV capacity using the
+    VRAM freed by quantized layers, converting weight memory into KV memory on-the-fly
+    without additional GPU hardware.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=PDu13oOl4G
 organizations:
@@ -41,12 +43,13 @@ presentation_type: oral
 principles:
 - balance
 - tier
-problem: Static quantization degrades accuracy permanently while full-precision serving
-  violates SLOs under bursty load; neither adapts to real-time workload fluctuations.
+- quantize
+problem: Static quantization degrades accuracy permanently; full-precision serving
+  violates SLOs under bursty load. Neither adapts to real-time workload fluctuations.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3816_X9jZeWW.pdf
 slug: morphserve-efficient-and-workload-aware-llm-serving-via-runt
 status: draft
 title: 'MorphServe: Efficient and Workload-Aware LLM Serving via Runtime Quantized
@@ -58,6 +61,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3816
 ---
+
+## Background
+
+LLM serving faces a tension between latency SLOs and GPU utilization. Under traffic bursts, the KV cache fills, requests queue, and TTFT spikes. The standard response — static INT4/INT8 quantization — accepts a permanent accuracy penalty even when the system is lightly loaded and full precision would easily meet SLOs. The ideal is elastic: full precision at normal load, deeper compression under burst, returning to full precision automatically without interrupting in-flight generation.
 
 ## Key Contributions
 

@@ -55,6 +55,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3807
 ---
 
+## Background
+
+RDMA (Remote Direct Memory Access) lets GPUs transfer data directly between machines without CPU involvement — critical for KV cache movement in disaggregated inference, RL weight updates, and MoE token routing. The problem: RDMA hardware is vendor-specific (NVIDIA ConnectX vs. AWS EFA expose different APIs), and cloud instances attach 2–4 NICs per GPU that callers must manage manually. Existing libraries like DeepEP are NIC-specific and can't port across environments without rewriting.
+
 ## Key Contributions
 
 - **TransferEngine abstraction**: A portable RDMA library exposing a uniform API over NVIDIA ConnectX-7 and AWS EFA, transparently managing multiple NICs per GPU (required on EFA instances with 2–4 × 100 Gbps NICs) without application-level NIC awareness.

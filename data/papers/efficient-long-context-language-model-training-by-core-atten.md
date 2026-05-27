@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yonghao Zhuang
 - Junda Chen
@@ -26,16 +26,15 @@ key_results: Up to 1.9× training throughput over Megatron-LM and 1.35× over ex
   load-balancing methods at 512K context length on 512 H200 GPUs
 models_evaluated: []
 observations:
-  balance: At long context the core attention computation (softmax(QKᵀ)V)
-    grows quadratically while other components grow near-linearly; DistCA dispatches
-    CA-tasks to dedicated attention servers, equalizing load and eliminating DP/PP
-    stragglers that cap throughput.
-  pipeline: DistCA uses a ping-pong scheme to completely overlap CA
-    communication with compute on training devices; attention servers process fused
-    batches of CA-tasks while host devices proceed with non-attention work.
-  fuse: Rebatching CA-tasks at attention servers creates compute-dense
-    fused batches that sustain high attention kernel utilization, avoiding the low
-    utilization of scattered small attention shards processed in isolation.
+  balance: At 512K context, softmax(QKᵀ)V grows quadratically vs. near-linear for
+    other ops; DistCA dispatches CA-tasks to dedicated attention servers, equalizing
+    load and eliminating DP/PP stragglers.
+  fuse: Rebatching CA-tasks at attention servers creates dense fused batches that
+    sustain high kernel utilization, avoiding the low utilization of scattered small
+    attention shards processed independently.
+  pipeline: DistCA's ping-pong scheme overlaps CA communication with compute on host
+    devices; attention servers process CA-task batches while hosts proceed with non-attention
+    ops, eliminating idle time.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=oIonqkc8hM
 organizations:
@@ -47,13 +46,12 @@ principles:
 - balance
 - pipeline
 - fuse
-problem: Long-context LLM training creates load imbalance because core attention computation
-  grows quadratically while other components grow linearly, causing stragglers across
-  data and pipeline parallel groups.
+problem: At long context, attention grows quadratically while other ops grow linearly,
+  creating stragglers that cap throughput across DP and PP groups.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3754.pdf
 slug: efficient-long-context-language-model-training-by-core-atten
 status: draft
 title: Efficient Long-Context Language Model Training by Core Attention Disaggregation
@@ -64,6 +62,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3754
 ---
+
+## Background
+
+At long context (512K+ tokens), attention grows quadratically while FFN and other ops grow linearly, so attention consumes a disproportionate share of each training step. In standard pipeline or data-parallel setups, every GPU must finish all operators before communicating; since attention is so much heavier, devices that finish non-attention work first stall waiting, creating stragglers that cap cluster throughput. Sequence parallelism distributes attention across GPUs but doesn't eliminate the compute density mismatch — it just spreads the slow phase evenly.
 
 ## Key Contributions
 

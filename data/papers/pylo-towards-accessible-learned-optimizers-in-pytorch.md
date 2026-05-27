@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Paul Janson
 - Benjamin Thérien
@@ -18,29 +18,25 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: CUDA-accelerated VeLO/fc_lopt throughput on ViT-B/16 increases from
-  49.73/39.36 to 191.18/205.59 samples/sec; ~4x speedup over naive implementations.
+key_results: CUDA-accelerated VeLO/fc_lopt throughput on ViT-B/16 increases from 49.73/39.36
+  to 191.18/205.59 samples/sec; ~4x speedup over naive implementations.
 models_evaluated: []
 observations:
-  cache: Custom CUDA kernels eliminate Python-level overhead in learned
-    optimizer step computation; ViT-B/16 throughput improves ~4x vs. interpreted dispatch.
-  balance: Combining learned optimizers with LR schedules and weight decay
-    substantially improves convergence; prior JAX-based tools lacked this integration
-    capability.
+  balance: Combining learned optimizers with LR schedules and weight decay substantially
+    improves convergence; prior JAX-based tools lacked this integration capability.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=M9V1n4KxSd
 organizations:
 - Concordia University
 presentation_type: oral
 principles:
-- cache
 - balance
 problem: State-of-the-art learned optimizers like VeLO are JAX-only and lack PyTorch
   interfaces, excluding ~70% of the ML community from using them at scale.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3824_HZUGKXd.pdf
 slug: pylo-towards-accessible-learned-optimizers-in-pytorch
 status: draft
 title: 'Pylo: Towards Accessible Learned Optimizers in PyTorch'
@@ -48,6 +44,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3824
 ---
+
+## Background
+
+Learned optimizers are neural networks meta-trained to replace fixed rules like Adam — they take gradients as input and output weight updates. The flagship example, VeLO, was meta-trained for 4,000 TPU-months entirely in JAX. No PyTorch library exposed these as drop-in `torch.optim.Optimizer` replacements with competitive throughput, leaving ~70% of the ML community unable to use them.
 
 ## Key Contributions
 

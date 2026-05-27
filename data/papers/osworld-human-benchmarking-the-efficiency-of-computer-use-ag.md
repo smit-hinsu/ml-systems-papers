@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Reyna Abhyankar
 - Qi Qi
@@ -15,32 +15,22 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Best agents take 2.7–4.3× more steps than necessary; model calls for
-  planning/reflection account for most end-to-end latency; each successive step takes
-  3× longer than initial steps
+key_results: Best agents take 2.7–4.3× more steps than humans; planning/reflection
+  model calls dominate latency; per-step latency grows 3× as context accumulates
 models_evaluated: []
-observations:
-  cache: Agents use 2.7–4.3× more steps than human-determined optimal
-    trajectories; eliminating redundant planning, reflection, and re-evaluation calls
-    is the primary lever for closing the latency gap to humans.
-  balance: Large model calls for planning, reflection, and judging dominate
-    total latency; rebalancing toward lighter inference or cached decisions would
-    reduce per-task time substantially.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=0Cp8l6cvyq
 organizations:
 - UC San Diego
 presentation_type: oral
-principles:
-- cache
-- balance
-problem: Computer-use agents achieve high accuracy on benchmarks but are practically
-  unusable due to end-to-end latency tens of minutes for tasks humans complete in
-  minutes.
+principles: []
+problem: Computer-use agents achieve high benchmark accuracy but are unusable in practice
+  due to end-to-end latency tens of minutes for tasks humans complete in minutes.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3865.pdf
 slug: osworld-human-benchmarking-the-efficiency-of-computer-use-ag
 status: draft
 title: 'OSWorld-Human: Benchmarking the Efficiency of Computer-Use Agents'
@@ -48,6 +38,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3865
 ---
+
+## Background
+
+Computer-use agents control a desktop GUI to complete tasks, but benchmarks like OSWorld only measure task completion rate — not how many steps the agent took or how long it ran. Without human-determined optimal trajectories as a reference, there's no way to quantify how inefficient any given agent is. Per-step latency also compounds: each step passes the full action history as context to the planning model.
 
 ## Key Contributions
 

@@ -1,54 +1,63 @@
 ---
-title: 'FlexiCache: Leveraging Temporal Stability of Attention Heads for Efficient KV Cache Management'
-slug: flexicache-leveraging-temporal-stability-of-attention-heads-
+agentic_models: []
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.00868
 authors:
 - Nazmul Takbir
 - HamidReza Alikhani Koshkak
 - Nikil Dutt
 - Sangeetha Abdu Jyothi
-organizations:
-- UC Irvine
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3838
-openreview_url: https://openreview.net/forum?id=GgX6dPJx9M
-arxiv_url: https://arxiv.org/abs/2511.00868
-slides_url: ''
-code_url: ''
-project_url: ''
-official_category: ''
-presentation_type: oral
 award: ''
-arxiv_date: '2025-11'
+citations: null
+citations_updated: ''
+code_url: ''
 domain:
 - llm-serving
-topics:
-- kv-cache
-- sparse-attention
-- cpu-offload
-principles:
-- skip
-- tier
-observations:
-  skip: Classifying 75% of heads as stable and caching only top-K pages for them reduces GPU KV footprint by up to 70% with near-zero accuracy drop on long-context workloads.
-  tier: Stable-head pages beyond top-K are offloaded to 1.1TB DDR5 host memory and asynchronously transferred via UVA CUDA kernels overlapped with computation.
 hardware:
 - H100
+indexed_by: smithinsu
+indexed_date: '2026-05-25'
+key_results: 70% GPU memory reduction, 1.38–1.55× offline throughput and 1.6–2.1×
+  lower online token latency on H100 across four models vs. vLLM.
 models_evaluated:
 - Llama-3.1-8B-Instruct
 - Mistral-7B-Instruct-v0.2
 - Mistral-Small-24B-Instruct-2501
 - Qwen2.5-32B-Instruct
-agentic_models: []
-citations: null
-citations_updated: ''
-research_or_industry: research
-problem: KV cache memory grows with context and generation length, limiting LLM serving throughput; naively evicting tokens degrades accuracy in long-generation tasks.
-key_results: 70% GPU memory reduction, 1.38–1.55× offline throughput and 1.6–2.1× lower online token latency on H100 across four models vs. vLLM.
-status: under-review
+observations:
+  skip: Classifying 75% of heads as stable and caching only top-K pages for them reduces
+    GPU KV footprint by up to 70% with near-zero accuracy drop on long-context workloads.
+  tier: Stable-head pages beyond top-K are offloaded to 1.1TB DDR5 host memory and
+    asynchronously transferred via UVA CUDA kernels overlapped with computation.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=GgX6dPJx9M
+organizations:
+- UC Irvine
+presentation_type: oral
+principles:
+- skip
+- tier
+problem: KV cache memory grows with context and generation length, limiting LLM serving
+  throughput; naively evicting tokens degrades accuracy in long-generation tasks.
+project_url: ''
 reading_status: want-to-read
-indexed_by: smithinsu
-indexed_date: '2026-05-25'
+research_or_industry: research
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3838_zYgO11t.pdf
+slug: flexicache-leveraging-temporal-stability-of-attention-heads-
+status: under-review
+title: 'FlexiCache: Leveraging Temporal Stability of Attention Heads for Efficient
+  KV Cache Management'
+topics:
+- kv-cache
+- sparse-attention
+- cpu-offload
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3838
 ---
+
+## Background
+
+The KV cache grows with context length and dominates GPU memory in long-generation workloads. Eviction-based approaches recover memory but risk accuracy loss. FlexiCache builds on the observation that attention heads vary in temporal stability — some consistently attend to the same tokens across decode steps, others are volatile. Stable heads can have most KV pages offloaded to CPU memory without accuracy loss, an asymmetry that uniform eviction policies miss.
 
 ## Key Contributions
 

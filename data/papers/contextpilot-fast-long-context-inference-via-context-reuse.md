@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yinsicheng Jiang
 - Yeqi Huang
@@ -19,16 +19,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Up to 3× prefill latency reduction vs. state-of-the-art methods while
-  preserving—or even improving—reasoning quality at longer context lengths
+key_results: Up to 3× prefill latency reduction vs. full-context recompute baselines
+  while preserving—or improving—reasoning quality at longer context lengths.
 models_evaluated: []
 observations:
-  cache: Context index identifies overlapping context blocks across
-    users and turns; alignment and de-duplication maximize KV-cache reuse so shared
-    context is computed at most once, regardless of surface-level textual differences.
-  tier: Succinct context annotations prevent reasoning quality
-    degradation under reuse, enabling safe KV-cache sharing where prior approaches
-    required full recomputation to maintain accuracy.
+  cache: Context index identifies overlapping blocks across users and turns; alignment
+    and de-duplication maximize KV-cache reuse so shared context is computed at most
+    once despite surface differences.
+  tier: Succinct context annotations prevent reasoning quality degradation under reuse,
+    enabling safe KV-cache sharing where prior approaches required full recomputation
+    to maintain accuracy.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=RnKvDy1jv2
 organizations:
@@ -42,7 +42,7 @@ problem: Long-context prefill dominates latency in RAG/agent workloads; prior KV
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3810_J3tlVOU.pdf
 slug: contextpilot-fast-long-context-inference-via-context-reuse
 status: draft
 title: 'ContextPilot: Fast Long-Context Inference via Context Reuse'
@@ -53,6 +53,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3810
 ---
+
+## Background
+
+In RAG and multi-turn agent workloads, prefill dominates latency because every request must process large context — documents, tool results, conversation history — before generating the first token. Standard prefix caching only helps when requests share identical prefixes; real workloads share most context with small surface differences (different retrieved docs, diverged history) that defeat exact-match caching and leave most reuse opportunity unused.
 
 ## Key Contributions
 

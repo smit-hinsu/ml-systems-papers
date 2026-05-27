@@ -4,12 +4,11 @@
 {% block title %}{{ site.name }}{% endblock %}
 
 {% block content %}
-<div class="hero">
-  <h1>{{ site.name }}</h1>
-  <p style="color: var(--text2);">{{ site.tagline }}</p>
-  <div class="stats">
-    <div class="stat"><span class="num" id="stat-papers">{{ all_papers | length }}</span>papers</div>
-  </div>
+<!-- Compact hero -->
+<div style="display:flex; align-items:baseline; gap:.75rem; flex-wrap:wrap; margin-bottom:.6rem;">
+  <span style="font-size:1.2rem; font-weight:700; color:var(--text);">{{ site.name }}</span>
+  <span style="color:var(--text2); font-size:.875rem;">{{ site.tagline }}</span>
+  <span class="count-badge" id="stat-papers">{{ all_papers | length }} papers</span>
 </div>
 
 <!-- Search + filter bar -->
@@ -30,11 +29,22 @@
   </div>
 </div>
 
-<!-- Active filter status -->
-<div style="display:flex; align-items:baseline; gap:1rem; margin-bottom:.75rem; flex-wrap:wrap; min-height:1.5rem;">
-  <span id="filter-status" style="font-size:.85rem; color:var(--text2);"></span>
-  <button id="clear-btn" onclick="clearAll()"
-    style="display:none; font-size:.75rem; padding:.2em .6em; border:1px solid var(--border);
+<!-- Active filter strip -->
+<div id="filter-strip" style="display:none; align-items:center; gap:.5rem; margin-bottom:.75rem; flex-wrap:wrap; min-height:1.75rem;">
+  <span style="font-size:.75rem; color:var(--text3); font-weight:600; text-transform:uppercase; letter-spacing:.04em;">Filtered by</span>
+  <span id="active-chip" style="
+    display:inline-flex; align-items:center; gap:.35rem;
+    font-size:.75rem; font-weight:600; padding:.25em .65em;
+    border-radius:999px; cursor:pointer; user-select:none;">
+    <span id="active-chip-label"></span>
+    <span style="font-size:.85em; opacity:.7;">×</span>
+  </span>
+  <span id="result-count" style="font-size:.8rem; color:var(--text3);"></span>
+</div>
+<div id="search-strip" style="display:none; align-items:center; gap:.5rem; margin-bottom:.75rem;">
+  <span id="search-status" style="font-size:.85rem; color:var(--text2);"></span>
+  <button onclick="clearAll()"
+    style="font-size:.75rem; padding:.2em .6em; border:1px solid var(--border);
            border-radius:999px; background:#fff; color:var(--text2); cursor:pointer;">
     × clear
   </button>
@@ -63,6 +73,9 @@
         <span style="color:var(--text3); flex-shrink:0; white-space:nowrap;">{{ venues[paper.venue].short }}</span>
       {% endif %}
     </div>
+    <!-- Domain + topic tags immediately after meta -->
+    {% set has_tags = (paper.domain or []) or (paper.topics or []) or paper.award or paper.status in ['under-review', 'draft'] %}
+    {% if has_tags %}
     <div class="tags" style="margin-bottom:.5rem;">
       {% for d in paper.domain or [] %}
         <a href="#" class="tag tag-domain" data-filter-type="domain" data-filter-value="{{ d }}">{{ domains[d].label if d in domains else d }}</a>
@@ -70,17 +83,21 @@
       {% for t in paper.topics or [] %}
         <a href="#" class="tag tag-topic" data-filter-type="topic" data-filter-value="{{ t }}">{{ topics[t].label if t in topics else t }}</a>
       {% endfor %}
+      {% if paper.award %}<span class="tag tag-award">★ {{ paper.award }}</span>{% endif %}
+      {% if paper.status == 'under-review' %}<span class="tag tag-review dev-badge" style="display:none;">reviewing</span>{% endif %}
+      {% if paper.status == 'draft' %}<span class="tag tag-draft dev-badge" style="display:none;">draft</span>{% endif %}
+    </div>
+    {% endif %}
+    {% if paper.key_results %}
+      <div class="card-results"><strong>↗</strong> {{ paper.key_results }}</div>
+    {% endif %}
+    <!-- Principles section after key results -->
+    {% if paper.principles %}
+    <div class="tags" style="margin-top:.4rem;">
       {% for i in paper.principles or [] %}
         <a href="#" class="tag tag-principle" data-filter-type="principle" data-filter-value="{{ i }}">{{ principles[i].label if i in principles else i }}</a>
       {% endfor %}
-      {% if paper.award %}<span class="tag tag-award">★ {{ paper.award }}</span>{% endif %}
-      {% if dev_mode %}
-        {% if paper.status == 'under-review' %}<span class="tag tag-review">reviewing</span>{% endif %}
-        {% if paper.status == 'draft' %}<span class="tag tag-draft">draft</span>{% endif %}
-      {% endif %}
     </div>
-    {% if paper.key_results %}
-      <div class="card-results"><strong>↗</strong> {{ paper.key_results }}</div>
     {% endif %}
   </div>
 {% endfor %}
@@ -110,9 +127,31 @@ function setVisible(predicate) {
   return n;
 }
 
-function setStatus(text, show) {
-  document.getElementById('filter-status').textContent = text;
-  document.getElementById('clear-btn').style.display = show ? '' : 'none';
+// ── chip colours per filter type ───────────────────────────────────────────────
+const CHIP_STYLE = {
+  domain:       { bg: 'var(--tag-domain-bg)',       color: 'var(--tag-domain)' },
+  principle:    { bg: 'var(--tag-observation-bg)',  color: 'var(--tag-observation)' },
+  topic:        { bg: 'var(--tag-topic-bg)',         color: 'var(--tag-topic)' },
+  organization: { bg: '#f1f5f9',                     color: '#475569' },
+};
+
+function showFilterChip(type, value, n) {
+  const strip = document.getElementById('filter-strip');
+  const chip  = document.getElementById('active-chip');
+  const label = document.getElementById('active-chip-label');
+  const count = document.getElementById('result-count');
+  const s = CHIP_STYLE[type] || CHIP_STYLE.organization;
+  chip.style.background = s.bg;
+  chip.style.color = s.color;
+  label.textContent = LABELS[type]?.[value] || value;
+  count.textContent = `${n} paper${n !== 1 ? 's' : ''}`;
+  strip.style.display = 'flex';
+  document.getElementById('search-strip').style.display = 'none';
+}
+
+function hideStrips() {
+  document.getElementById('filter-strip').style.display = 'none';
+  document.getElementById('search-strip').style.display = 'none';
 }
 
 // ── tag filter ─────────────────────────────────────────────────────────────────
@@ -120,8 +159,8 @@ function applyFilter(type, value) {
   activeType = type; activeValue = value; activeSearch = null;
   document.getElementById('search-input').value = '';
   const sep = type === 'organization' ? '|' : ' ';
-  setVisible(c => (c.dataset[type + 's'] || '').split(sep).includes(value));
-  setStatus(`Filtered by: ${LABELS[type]?.[value] || value}`, true);
+  const n = setVisible(c => (c.dataset[type + 's'] || '').split(sep).includes(value));
+  showFilterChip(type, value, n);
   document.querySelectorAll('[data-filter-type]').forEach(el => {
     el.style.outline = (el.dataset.filterType === type && el.dataset.filterValue === value)
       ? '2px solid var(--accent)' : '';
@@ -160,7 +199,9 @@ function onSearch(q) {
 
   const hits = new Set(fuse.search(q).map(r => r.item.slug));
   const n = setVisible(c => hits.has(c.dataset.slug));
-  setStatus(`${n} result${n !== 1 ? 's' : ''} for "${q}"`, true);
+  document.getElementById('search-status').textContent = `${n} result${n !== 1 ? 's' : ''} for "${q}"`;
+  document.getElementById('search-strip').style.display = 'flex';
+  document.getElementById('filter-strip').style.display = 'none';
   history.replaceState({}, '', `?q=${encodeURIComponent(q)}`);
 }
 
@@ -169,10 +210,14 @@ function clearAll() {
   activeType = activeValue = activeSearch = null;
   document.getElementById('search-input').value = '';
   setVisible(() => true);
-  setStatus('', false);
+  hideStrips();
+  document.getElementById('stat-papers').textContent = TOTAL;
   document.querySelectorAll('[data-filter-type]').forEach(el => el.style.outline = '');
   history.replaceState({}, '', location.pathname);
 }
+
+// ── filter chip click ─────────────────────────────────────────────────────────
+document.getElementById('active-chip').addEventListener('click', clearAll);
 
 // ── tag click delegation ───────────────────────────────────────────────────────
 document.addEventListener('click', e => {
@@ -237,5 +282,17 @@ function fitMetaRow(card) {
 requestAnimationFrame(() => {
   document.querySelectorAll('.paper-card').forEach(fitMetaRow);
 });
+
+// ── dev mode (?dev=1 in URL) ───────────────────────────────────────────────────
+(function() {
+  const isDev = new URLSearchParams(location.search).has('dev');
+  if (isDev) {
+    document.querySelectorAll('.dev-badge').forEach(el => el.style.display = '');
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;bottom:1rem;right:1rem;background:#1e293b;color:#f8fafc;font-size:.75rem;padding:.4em .85em;border-radius:999px;z-index:99;opacity:.85;pointer-events:none;';
+    banner.textContent = 'dev mode';
+    document.body.appendChild(banner);
+  }
+})();
 </script>
 {% endblock %}

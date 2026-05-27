@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Zhen Zheng
 - Xiaonan Song
@@ -20,15 +20,13 @@ key_results: Perplexity increase for Llama 3.1 70B reduced from ~0.5 (SOTA) to w
 models_evaluated:
 - Llama-3.1-70B
 observations:
-  tier: Two-step dequantization reuses Tensor Core hardware
-    pathways with fast data-type conversion, keeping dequantization overhead minimal
-    relative to HBM-bound MatMul.
-  fuse: Software pipeline overlaps memory access, dequantization,
-    and MatMul so HBM reads are hidden behind compute, maximizing effective bandwidth
-    utilization.
-  skip: Global cross-layer sensitivity analysis identifies the small
-    fraction of output features needing higher bit-width; most features use low bits,
-    reducing average memory footprint vs. uniform quantization.
+  fuse: Software pipeline overlaps memory access, dequantization, and MatMul so HBM
+    reads are hidden behind compute, maximizing effective bandwidth utilization.
+  skip: Global cross-layer sensitivity analysis identifies the small fraction of output
+    features needing higher bit-width; most features use low bits, reducing memory
+    footprint vs. uniform quantization.
+  tier: Two-step dequantization reuses Tensor Core hardware pathways with fast data-type
+    conversion, keeping dequantization overhead minimal relative to HBM-bound MatMul.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=VBbMRQ4VOc
 organizations:
@@ -43,7 +41,7 @@ problem: Mixed-precision quantization prior work either sacrifices accuracy or a
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3805.pdf
 slug: mixllm-llm-quantization-with-global-mixed-precision-between-
 status: draft
 title: 'MixLLM: LLM Quantization with Global Mixed-precision between Output-features
@@ -54,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3805
 ---
+
+## Background
+
+Weight quantization stores LLM parameters at 4-bit or lower, shrinking model size and accelerating memory-bandwidth-bound inference. Uniform quantization wastes precision budget — some weights tolerate aggressive quantization while others are sensitive. Mixed-precision methods allocate bit-widths by sensitivity, but prior work analyzes layers independently, over-allocating bits. A second challenge: mixed-precision weights require dequantization before GEMM, and naive implementations erase the bandwidth savings.
 
 ## Key Contributions
 

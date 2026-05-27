@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Kim Hammar
 award: ''
@@ -13,26 +13,22 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Near-optimal security management across four use cases in an emulated
-  operational environment; simulation-to-emulation gap closed via iterative refinement
+key_results: Near-optimal RL policies across 4 security use cases in emulated operational
+  environment; simulation-to-emulation gap closed via iterative MDP refinement.
 models_evaluated: []
-observations:
-  balance: Emulation system replicates the target operational environment
-    in virtualized form, enabling realistic RL training that closes the simulation-to-operational
-    performance gap seen in prior simulation-only approaches.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=QGuRWjFsnm
 organizations:
 - KTH Royal Institute of Technology
 presentation_type: oral
-principles:
-- balance
+principles: []
 problem: RL-based security management strategies trained in simulation fail to generalize
   to operational networked systems due to the sim-to-real gap in system dynamics.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3812_EZJ5vJH.pdf
 slug: csle-a-reinforcement-learning-platform-for-autonomous-securi
 status: draft
 title: 'CSLE: A Reinforcement Learning Platform for Autonomous Security Management'
@@ -40,6 +36,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3812
 ---
+
+## Background
+
+Reinforcement learning for autonomous network security management (blocking traffic, isolating segments, triggering recovery) must train in simulation because running real attacks on live infrastructure is unsafe. The sim-to-real gap — differences in timing, software behavior, and failure modes between a simulated and actual network — means policies that look optimal in simulation often fail in production.
 
 ## Key Contributions
 

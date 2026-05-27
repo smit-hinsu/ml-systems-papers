@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Haaris Mehmood
 - Giorgos Tatsis
@@ -23,13 +23,9 @@ key_results: 4.6× speedup over OPA (prior best protocol) for 100k-dimensional u
   from 100k 5G clients; eliminates local masking and homomorphic encryption overhead
 models_evaluated: []
 observations:
-  fuse: Clients secret-share updates only to a small Aggregator committee
-    rather than sending masked vectors to the central server; Aggregators return partial
-    sums — drastically reducing per-client computation and server-side cryptographic
-    work.
-  balance: Optimal communication-computation tradeoff selection in DisAgg
-    distributes aggregation load across the Aggregator committee, preventing the server
-    bottleneck that limits throughput in centralized secure aggregation protocols.
+  balance: DisAgg's optimal tradeoff selection distributes aggregation load across
+    the Aggregator committee, preventing the server bottleneck that limits throughput
+    in centralized secure aggregation.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=H0BLKrOgik
 organizations:
@@ -37,11 +33,9 @@ organizations:
 - Pragma IoT
 presentation_type: oral
 principles:
-- fuse
 - balance
-problem: Secure aggregation in federated learning imposes heavy cryptographic overhead
-  per round; existing protocols require many communication rounds or expensive homomorphic
-  encryption, limiting practical FL deployment.
+problem: Secure FL aggregation requires many communication rounds or expensive homomorphic
+  encryption, making practical large-scale deployment too slow.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -54,6 +48,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3837
 ---
+
+## Background
+
+Federated learning (FL) trains across many client devices without sending raw data to a server. Gradient updates can still leak private data through inference attacks, so FL uses **secure aggregation**: clients mask their gradients with values that cancel in the sum so the server sees only the aggregate. At scale (100k+ clients, 100k-dimensional updates), generating those canceling masks requires multi-round coordination or homomorphic encryption — both prohibitively slow for large 5G deployments.
 
 ## Key Contributions
 

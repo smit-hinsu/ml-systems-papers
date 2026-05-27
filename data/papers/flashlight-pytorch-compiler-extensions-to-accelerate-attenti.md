@@ -1,6 +1,7 @@
 ---
-title: 'Flashlight: PyTorch Compiler Extensions to Accelerate Attention Variants'
-slug: flashlight-pytorch-compiler-extensions-to-accelerate-attenti
+agentic_models: []
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.02043
 authors:
 - Bozhi You
 - Irene Wang
@@ -10,49 +11,58 @@ authors:
 - Roshan Dathathri
 - Divya Mahajan
 - Keshav Pingali
+award: ''
+citations: null
+citations_updated: ''
+code_url: ''
+domain:
+- ml-compilers
+- ml-kernels
+hardware:
+- H100
+- A100
+indexed_by: smithinsu
+indexed_date: '2026-05-25'
+key_results: Up to 1.48× over FlexAttention on H100/A100; 5× for Evoformer; 6–9% end-to-end
+  latency reduction for AlphaFold2 row/column-wise attention.
+models_evaluated:
+- LLaMA-3.2-1B
+observations:
+  fuse: Structural fusion with dimension demotion eliminates intermediate HBM tensor
+    writes by merging GEMM output with dependent operations in a single fused kernel,
+    avoiding a full round-trip.
+  tier: Semantic fusion via algebraic transformation rewrites multi-pass reductions
+    like stable softmax into single-pass online algorithms, keeping partial results
+    in registers.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=lboOMA8XWr
 organizations:
 - UT Austin
 - Georgia Tech
 - Microsoft
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3763
-openreview_url: https://openreview.net/forum?id=lboOMA8XWr
-arxiv_url: https://arxiv.org/abs/2511.02043
-slides_url: ''
-code_url: ''
-project_url: ''
-official_category: ''
 presentation_type: oral
-award: ''
-arxiv_date: '2025-11'
-domain:
-- ml-compilers
-- ml-kernels
-topics:
-- kernel-fusion
-- autotuning
 principles:
 - fuse
 - tier
-observations:
-  fuse: Structural fusion with dimension demotion eliminates intermediate HBM tensor writes by merging GEMM output with dependent operations in a single fused kernel, avoiding a full round-trip.
-  tier: Semantic fusion via algebraic transformation rewrites multi-pass reductions like stable softmax into single-pass online algorithms, keeping partial results in registers.
-hardware:
-- H100
-- A100
-models_evaluated:
-- LLaMA-3.2-1B
-agentic_models: []
-citations: null
-citations_updated: ''
-research_or_industry: research
-problem: New attention variants require hand-written specialized kernels; FlexAttention covers only a subset via rigid static templates, blocking rapid exploration.
-key_results: Up to 1.48× over FlexAttention on H100/A100; 5× for Evoformer; 6–9% end-to-end latency reduction for AlphaFold2 row/column-wise attention.
-status: under-review
+problem: New attention variants require hand-written specialized kernels; FlexAttention
+  covers only a subset via rigid static templates, blocking rapid exploration.
+project_url: ''
 reading_status: want-to-read
-indexed_by: smithinsu
-indexed_date: '2026-05-25'
+research_or_industry: research
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3763_pOXWfhT.pdf
+slug: flashlight-pytorch-compiler-extensions-to-accelerate-attenti
+status: under-review
+title: 'Flashlight: PyTorch Compiler Extensions to Accelerate Attention Variants'
+topics:
+- kernel-fusion
+- autotuning
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3763
 ---
+
+## Background
+
+FlashAttention fused kernels handle standard SDPA efficiently, but many research models — AlphaFold's Evoformer, gated row/column-wise attention — need custom attention variants that FlexAttention's static templates cannot express. TorchInductor also treats matrix multiplications as atomic, blocking fusion with surrounding elementwise or reduction operations that would eliminate HBM round-trips. Each new variant currently requires a hand-tuned CUDA kernel.
 
 ## Key Contributions
 

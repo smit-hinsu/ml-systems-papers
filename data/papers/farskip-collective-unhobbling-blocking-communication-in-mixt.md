@@ -1,6 +1,6 @@
 ---
-slug: farskip-collective-unhobbling-blocking-communication-in-mixt
-title: "FarSkip-Collective: Unhobbling Blocking Communication in Mixture of Experts Models"
+agentic_models: []
+arxiv_url: ''
 authors:
 - Yonatan Dukler
 - Guihong Li
@@ -8,44 +8,52 @@ authors:
 - Jiang Liu
 - Vikram Appia
 - Emad Barsoum
-organizations:
-- AMD
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3743
-openreview_url: https://openreview.net/forum?id=ruOpvLzsGV
-arxiv_url: ''
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: industry
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - llm-serving
 - llm-training
 hardware:
 - GPU cluster
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: FarSkip-Collective achieves 32.6% TTFT speedup serving DeepSeek-V3, 97.3%
+  comm-compute overlap in prefill, and <1% accuracy loss on Llama 4 Scout 109B.
 models_evaluated:
 - Llama 4 Scout (109B)
 - DeepSeek-V3
-agentic_models: []
+observations:
+  pipeline: Skip connections let later-layer compute begin before all-to-all MoE routing
+    completes, achieving 97.3% communication-computation overlap during prefill.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=ruOpvLzsGV
+organizations:
+- AMD
+presentation_type: oral
+principles:
+- pipeline
+problem: Blocking all-to-all MoE communication serializes compute in distributed inference
+  and training, wasting GPU cycles at every expert routing boundary.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: industry
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3743.pdf
+slug: farskip-collective-unhobbling-blocking-communication-in-mixt
+status: draft
+title: 'FarSkip-Collective: Unhobbling Blocking Communication in Mixture of Experts
+  Models'
 topics:
 - communication-overlap
 - moe
-principles:
-- pipeline
-observations:
-  pipeline: "Skip connections let later-layer compute begin before all-to-all MoE routing completes, achieving 97.3% communication-computation overlap during prefill."
-problem: "Blocking all-to-all MoE communication serializes compute in distributed inference and training, wasting GPU cycles at every expert routing boundary."
-key_results: "FarSkip-Collective achieves 32.6% TTFT speedup serving DeepSeek-V3, 97.3% comm-compute overlap in prefill, and <1% accuracy loss on Llama 4 Scout 109B."
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3743
 ---
+
+## Background
+
+In distributed MoE models, each expert layer requires an all-to-all collective to route tokens across GPUs — a blocking operation that idles compute on both sides. Overlapping this with other computation is the standard mitigation, but only works if the architecture has independent work to fill the gap. FarSkip-Collective adds skip connections to the model so that later-layer compute can proceed before the all-to-all completes, creating the overlap opportunity structurally.
 
 ## Key Contributions
 

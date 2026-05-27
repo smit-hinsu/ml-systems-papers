@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Shuang Cao
 - Rui Li
@@ -18,12 +18,12 @@ key_results: Lifts Recall@10 to 0.70 vs. 0.58 for dense-only; improves nDCG@10 f
   0.41 to 0.51; 47% less cross-modality disagreement; 81% cost reduction vs. long-context
 models_evaluated: []
 observations:
-  cache: Budget-aware router selects retrieval paths by cost, skipping
-    expensive long-context prompting when the memory graph already contains the
-    needed facts, cutting serving cost by 81%.
-  tier: Durable user facts are extracted into a lightweight
-    memory graph (fast tier) rather than re-reading full session history; the graph
-    serves as a cheap index before expensive LLM context expansion.
+  cache: Budget-aware router selects retrieval paths by cost, skipping expensive long-context
+    prompting when the memory graph already contains the needed facts, cutting serving
+    cost by 81%.
+  tier: Durable user facts are extracted into a lightweight memory graph (fast tier)
+    rather than re-reading full session history; the graph serves as a cheap index
+    before expensive LLM context expansion.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=wpZHLPz4N0
 organizations:
@@ -32,13 +32,12 @@ presentation_type: oral
 principles:
 - cache
 - tier
-problem: Standard dense retrieval and long-context prompting fail to recall implicit
-  user preferences in multi-session conversations due to missing lexical overlap with
-  earlier stored facts.
+problem: Dense retrieval and long-context prompting fail to recall implicit user preferences
+  across sessions due to missing lexical overlap with earlier stored facts.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3738.pdf
 slug: ontology-guided-long-term-agent-memory-for-conversational-ra
 status: draft
 title: Ontology-Guided Long-Term Agent Memory for Conversational RAG
@@ -48,6 +47,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3738
 ---
+
+## Background
+
+Conversational RAG retrieves past interactions before generating a response, but dense retrieval fails when a query like "remind me of my dietary restriction" has no lexical overlap with a past message like "I'm vegetarian, by the way." Re-reading full session histories with a long-context LLM handles this but is expensive. The gap is a structured intermediate that captures durable user facts cheaply enough to index but richly enough to answer implicit preference questions.
 
 ## Key Contributions
 

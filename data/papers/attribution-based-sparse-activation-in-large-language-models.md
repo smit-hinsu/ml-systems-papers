@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Jifeng Song
 - Xiangyu Yin
@@ -15,9 +15,6 @@ citations_updated: ''
 code_url: ''
 domain:
 - llm-serving
-organizations:
-- University of Pittsburgh
-- Huazhong University of Science and Technology
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
@@ -25,25 +22,27 @@ key_results: 70% model sparsity with <5% accuracy loss on QA and text summarizat
   35% latency reduction and 40% memory reduction for LLM inference
 models_evaluated: []
 observations:
-  skip: New attribution metric corrects interdependency errors in existing
-    scores; 70% neuron deactivation with <5% accuracy loss enables 35% latency and
-    40% memory reduction without model retraining.
-  balance: Input-dependent sparse activation selects the neuron subset
-    at runtime per token, keeping GPU computation focused on high-attribution neurons
-    while idle FLOPS from zero-attribution neurons are skipped.
+  balance: Input-dependent sparse activation selects neurons per token at runtime,
+    keeping GPU compute on high-attribution neurons while skipping zero-attribution
+    ones.
+  skip: New attribution metric corrects interdependency errors in existing scores;
+    70% neuron deactivation with <5% accuracy loss enables 35% latency and 40% memory
+    reduction without model retraining.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=gJFigZeb5D
+organizations:
+- University of Pittsburgh
+- Huazhong University of Science and Technology
 presentation_type: oral
 principles:
 - skip
 - balance
-problem: LLM inference is expensive due to large parameter counts; existing lossless
-  sparse activation only deactivates zero-output neurons and is ineffective on modern
-  high-efficiency LLMs where near-zero neurons are rare.
+problem: Existing lossless sparse activation only skips zero-output neurons, which
+  are rare in modern efficient LLMs, making activation sparsity ineffective in practice.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3779_uKmthRH.pdf
 slug: attribution-based-sparse-activation-in-large-language-models
 status: draft
 title: Attribution-based Sparse Activation in Large Language Models
@@ -53,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3779
 ---
+
+## Background
+
+Sparse activation skips neurons whose output contribution is effectively zero, cutting compute and memory bandwidth. Early LLMs used ReLU activations that produce exact zeros, enabling lossless skipping. Modern models use SwiGLU/GELU, which produce almost no true zeros, so lossless sparsity is ineffective. Attribution scores (borrowed from interpretability research) can estimate each neuron's contribution, but existing metrics assume neuron scores are independent — in FFN layers they're not, making the scores systematically wrong and causing either accuracy loss or over-estimated sparsity.
 
 ## Key Contributions
 

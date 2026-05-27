@@ -30,16 +30,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Catur reduces average resource defect by 34.2%–50.0% vs. state-of-the-art
-  hypervisor policies, evaluated on 100 million VM production traces.
+key_results: Catur reduces average resource defect by 34.2%–50.0% vs. default hypervisor
+  heuristics, evaluated on 100 million VM production traces.
 models_evaluated: []
 observations:
   balance: RL-based NUMA placement learns from 100M VM production traces
     to assign VMs to NUMA nodes that minimize remote memory access, reducing average
     resource defect by up to 50% vs. heuristic policies.
-  search-ai: Reinforcement learning optimizes a directly measurable objective
-    (NUMA resource defect rate) on production workloads, with drift-aware continuous
-    training adapting the policy to evolving VM placement patterns.
+  search-ai: Reinforcement learning optimizes a measurable objective (NUMA resource
+    defect rate) on production workloads, with drift-aware continuous training adapting
+    to evolving VM placement patterns.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=guCUThRvX5
 organizations:
@@ -48,8 +48,8 @@ presentation_type: oral
 principles:
 - balance
 - search-ai
-problem: Poor VM NUMA placement in data centers causes up to 30% performance degradation
-  due to remote memory access; optimal placement at scale is intractable with heuristics.
+problem: Poor VM NUMA placement causes up to 30% performance degradation from remote
+  memory access; optimal placement at scale is intractable with heuristics.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
@@ -62,6 +62,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3777
 ---
+
+## Background
+
+Server CPUs have multiple NUMA nodes — clusters of cores with local memory banks. Accessing remote NUMA memory is 2–3× slower, causing 20–30% VM performance degradation when vCPUs and memory span nodes. Optimal placement is NP-hard bin-packing: VM configurations vary continuously, topologies differ across server generations, and providers run millions of VMs simultaneously. Heuristics baked into hypervisors generalize poorly across the diversity of VM sizes and workload mixes in a real fleet.
 
 ## Key Contributions
 

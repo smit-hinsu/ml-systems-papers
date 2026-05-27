@@ -1,6 +1,6 @@
 ---
-slug: boost-bottleneck-optimized-scalable-training-framework-for-l
-title: "BOOST: BOttleneck-Optimized Scalable Training Framework for Low-Rank Large Language Models"
+agentic_models: []
+arxiv_url: ''
 authors:
 - Zhengyang Wang
 - Ziyue Liu
@@ -10,44 +10,53 @@ authors:
 - Paul Hovland
 - Franck Cappello
 - Zheng Zhang
-organizations:
-- UC Santa Barbara
-- Argonne National Laboratory
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3830
-openreview_url: https://openreview.net/forum?id=JhN5hldx4V
-arxiv_url: ''
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: research
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - llm-training
 hardware:
 - GPU
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: BOOST achieves 1.46-1.91x speedup over full-rank baselines and 1.87-2.27x
+  over naive 3D-parallel low-rank training on GPU clusters.
 models_evaluated:
 - Low-rank bottleneck LLMs
-agentic_models: []
-topics:
-- tensor-parallelism
+observations:
+  balance: Online-RMSNorm and linear layer grouping keep GPU utilization high by eliminating
+    idle bubbles introduced by bottleneck architecture's uneven operator sizes.
+  fuse: Bottleneck-aware tensor parallelism splits low-rank factors across devices
+    to avoid the excessive cross-device communication of naively applied 3D parallelism.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=JhN5hldx4V
+organizations:
+- UC Santa Barbara
+- Argonne National Laboratory
+presentation_type: oral
 principles:
 - fuse
 - balance
-observations:
-  fuse: "Bottleneck-aware tensor parallelism splits low-rank factors across devices to avoid the excessive cross-device communication of naively applied 3D parallelism."
-  balance: "Online-RMSNorm and linear layer grouping keep GPU utilization high by eliminating idle bubbles introduced by bottleneck architecture's uneven operator sizes."
-problem: "Low-rank bottleneck architectures scale poorly under standard 3D tensor parallelism, causing excessive communication overhead and low GPU utilization."
-key_results: "BOOST achieves 1.46-1.91x speedup over full-rank baselines and 1.87-2.27x over naive 3D-parallel low-rank training on GPU clusters."
+problem: Low-rank bottleneck architectures scale poorly under standard 3D tensor parallelism,
+  causing excessive communication overhead and low GPU utilization.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3830.pdf
+slug: boost-bottleneck-optimized-scalable-training-framework-for-l
+status: draft
+title: 'BOOST: BOttleneck-Optimized Scalable Training Framework for Low-Rank Large
+  Language Models'
+topics:
+- tensor-parallelism
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3830
 ---
+
+## Background
+
+Low-rank bottleneck architectures factor large transformer weight matrices into a product of two smaller matrices, reducing parameter count. Training at scale uses 3D parallelism (tensor + pipeline + data parallel), but standard tensor parallelism was designed for full-rank matrices. In a bottleneck layer the intermediate tensor is much smaller, so naively splitting it across GPUs leaves each device with a tiny slice — communication dominates and GPUs stall on all-reduce, making naive 3D parallelism 1.8–2.3× slower than necessary.
 
 ## Key Contributions
 

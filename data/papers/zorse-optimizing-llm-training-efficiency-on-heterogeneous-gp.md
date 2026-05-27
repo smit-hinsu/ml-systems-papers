@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Runsheng Guo
 - Utkarsh Anand
@@ -17,16 +17,15 @@ hardware:
 - NVIDIA GPU (heterogeneous generations)
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Up to 3× higher training throughput than state-of-the-art systems across
-  representative heterogeneous training scenarios.
+key_results: Up to 3× training throughput vs. Megatron-LM and DeepSpeed on representative
+  heterogeneous GPU cluster scenarios
 models_evaluated: []
 observations:
-  balance: Pipeline-Efficient ZeRO DP partitions model parameters across
-    pipeline stages without replication, ensuring slower GPUs do not bottleneck the
-    pipeline through balanced compute assignment found by the planner.
-  fuse: Pipeline-Efficient ZeRO DP is both communication- and memory-efficient;
-    it avoids the extra all-reduce traffic of sharded data parallelism combined with
-    pipeline parallelism while also avoiding the memory overhead of replicating parameters
+  balance: Pipeline-Efficient ZeRO DP assigns model parameters across pipeline stages
+    without replication, ensuring slower GPUs do not bottleneck training through balanced
+    compute assignment.
+  fuse: Pipeline-Efficient ZeRO DP avoids the extra all-reduce traffic of sharded
+    data parallelism with pipeline parallelism and also avoids replicating parameters
     across data-parallel ranks.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=40leuGH3iO
@@ -37,13 +36,12 @@ presentation_type: oral
 principles:
 - balance
 - fuse
-problem: Training LLMs on heterogeneous GPU clusters is inefficient because existing
-  integrations of data, pipeline, and tensor parallelism trade off communication overhead
-  for memory overhead, causing bottlenecks.
+problem: Heterogeneous GPU clusters bottleneck LLM training — existing parallelism
+  integrations trade communication for memory overhead with no clean solution.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3859.pdf
 slug: zorse-optimizing-llm-training-efficiency-on-heterogeneous-gp
 status: draft
 title: 'Zorse: Optimizing LLM Training Efficiency on Heterogeneous GPU Clusters'
@@ -54,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3859
 ---
+
+## Background
+
+LLM training combines tensor, pipeline, and data parallelism. In heterogeneous clusters — where A100s, H100s, and V100s coexist from gradual upgrades or multi-cloud procurement — standard strategies break: equal-sized pipeline stages mean the slowest GPU determines the step time. Isolating GPU generations into separate jobs wastes slower capacity. Megatron-LM and DeepSpeed have no planner that accounts for per-GPU heterogeneity when assigning pipeline stages and data-parallel groups simultaneously.
 
 ## Key Contributions
 

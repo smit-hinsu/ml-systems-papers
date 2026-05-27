@@ -40,8 +40,7 @@ principles:
 - fuse
 - cache
 problem: 3D Gaussian Splatting requires rendering millions of Gaussians in parallel,
-  imposing memory and compute demands that limit deployment on resource-constrained
-  GPUs.
+  imposing memory and compute demands that limit deployment on constrained GPUs.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -55,6 +54,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3773
 ---
+
+## Background
+
+3D Gaussian Splatting (3DGS) represents scenes as millions of semi-transparent ellipsoidal Gaussians, rendered by depth-sorting and alpha-compositing them tile-by-tile — producing high-quality novel-view images faster than NeRF. Each frame sorts and rasterizes all primitives regardless of contribution. Two cost centers dominate: O(N log N) depth sort over all Gaussians, and per-tile rasterization that redundantly loads data per thread.
 
 ## Key Contributions
 

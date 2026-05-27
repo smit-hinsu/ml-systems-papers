@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Hyunjae Lee
 - Sangjin Choi
@@ -14,8 +14,6 @@ code_url: ''
 domain:
 - llm-serving
 - fleet-efficiency
-organizations:
-- KAIST
 hardware:
 - GPU
 indexed_by: smithinsu
@@ -24,34 +22,39 @@ key_results: Up to 51% reduction in end-to-end GPU energy consumption vs. vLLM w
   meeting per-request TTFT and TBT SLOs
 models_evaluated: []
 observations:
-  balance: BEAM co-optimizes GPU frequency, chunk size, and microbatch
-    count jointly; fixing one dimension while tuning the other yields only a local
-    optimum, and joint optimization achieves up to 51% energy savings vs. vLLM.
-  pipeline: Event-driven controller responds instantly to request
-    arrivals and completions to reallocate latency slack across resource and power
-    dimensions; sub-millisecond decisions hide controller overhead from the serving
-    critical path.
+  balance: BEAM jointly optimizes GPU frequency, chunk size, and microbatch count;
+    independent tuning of any single dimension yields only a local optimum, missing
+    up to 51% energy savings vs. vLLM.
+  pipeline: Event-driven controller responds to request arrivals and completions to
+    reallocate latency slack across power and resource dimensions; sub-millisecond
+    decisions stay off the critical path.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=BfNBXM8CCT
+organizations:
+- KAIST
 presentation_type: oral
 principles:
 - balance
 - pipeline
-problem: LLM inference SLOs leave latency slack when requests complete early, but
-  existing systems exploit only batching (resource efficiency) or DVFS (power efficiency)
-  in isolation, leaving joint optimization gains unrealized.
+problem: LLM inference SLOs leave latency slack unexploited; existing systems tune
+  batching or DVFS in isolation rather than jointly, missing compound energy savings.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3849_mCVfQGX.pdf
 slug: beam-joint-resourcepower-optimization-for-energy-efficient-l
 status: draft
-title: 'BEAM: Joint Resource–Power Optimization for Energy-Efficient LLM Inference under SLO contraints'
+title: 'BEAM: Joint Resource–Power Optimization for Energy-Efficient LLM Inference
+  under SLO contraints'
 topics:
 - continuous-batching
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3849
 ---
+
+## Background
+
+LLM inference SLOs (TTFT and TBT) leave latency slack when requests finish before their deadlines. DVFS (dynamic voltage and frequency scaling) exploits this by running the GPU at lower frequency, trading latency headroom for power savings. Batching strategy and microbatch count interact with DVFS — lowering frequency changes the compute-vs-bandwidth tradeoff, which shifts the optimal batch size. Prior work tunes these knobs in isolation, missing configurations that are only optimal when all three dimensions are solved jointly.
 
 ## Key Contributions
 

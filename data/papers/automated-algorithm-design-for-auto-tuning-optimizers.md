@@ -1,7 +1,7 @@
 ---
 agentic_models: []
+arxiv_date: 2025-10
 arxiv_url: https://arxiv.org/abs/2510.17899
-arxiv_date: '2025-10'
 authors:
 - Floris-Jan Willemsen
 - Niki van Stein
@@ -12,35 +12,34 @@ citations_updated: ''
 code_url: ''
 domain:
 - ml-compilers
-organizations:
-- Leiden University
-- Netherlands eScience Center
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Best LLM-generated optimizer achieves 72.4% improvement over state-of-the-art
-  human-designed algorithms on 4 apps (GEMM, convolution, hotspot, dedispersion) across 6 GPUs
+key_results: Best LLM-generated optimizer achieves 72.4% improvement over human-designed
+  baselines on 4 apps (GEMM, convolution, hotspot, dedispersion) across 6 GPUs.
 models_evaluated: []
 observations:
-  search-ai: LLMs synthesize and iteratively refine auto-tuning search
-    algorithms using application-specific and search-space descriptions; performance
-    against known near-optimal configurations is the verifiable signal driving improvement.
-  balance: LLM-generated optimizers with problem-specific knowledge navigate
-    irregular auto-tuning search spaces more efficiently than generic evolutionary
-    or surrogate-based methods, reducing wasted evaluations on unpromising configurations.
+  balance: LLM-generated optimizers with problem-specific knowledge navigate irregular
+    auto-tuning spaces more efficiently than generic evolutionary or surrogate methods,
+    reducing wasted evaluations.
+  search-ai: LLMs synthesize and refine auto-tuning search algorithms using application-
+    and search-space descriptions; performance vs. near-optimal configurations is
+    the verifiable signal driving improvement.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=qKlHJCbY6m
+organizations:
+- Leiden University
+- Netherlands eScience Center
 presentation_type: oral
 principles:
 - search-ai
 - balance
 problem: Auto-tuning search spaces are vast and irregular; manually designed optimizers
-  cannot exploit application- and hardware-specific structure, leaving significant
-  performance on the table.
+  miss hardware-specific structure, leaving significant performance on the table.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3748_4D9zX0g.pdf
 slug: automated-algorithm-design-for-auto-tuning-optimizers
 status: draft
 title: Automated Algorithm Design for Auto-Tuning Optimizers
@@ -50,6 +49,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3748
 ---
+
+## Background
+
+Auto-tuning searches for optimal kernel parameters (tile sizes, unroll factors, memory access patterns) by benchmarking configurations. Standard search algorithms (evolutionary, Bayesian optimization) are generic — they don't exploit hardware-specific structure or application semantics. LLMs encode implicit knowledge of both, potentially enabling them to synthesize specialized search algorithms rather than just generating kernel code, with hardware performance as the verifiable feedback signal.
 
 ## Key Contributions
 

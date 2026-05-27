@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yuran Ding
 - Ruobing Han
@@ -22,12 +22,12 @@ key_results: Top recommendation matched production config in 87.5% of cases; up 
   434% perf improvement across 8 workloads on 2–512 TPU chips.
 models_evaluated: []
 observations:
-  search-ai: Multi-agent RAG framework identifies expert-validated sharding
-    configs within top-3 recommendations in a single invocation across 8 real LLM
-    workloads on TPU clusters.
-  balance: Analyzer Agent diagnoses bottlenecks by synthesizing profiler
-    data; Proposal Agent generates sharding configs that eliminate idle compute from
-    tensor/pipeline parallelism imbalance.
+  balance: Analyzer Agent diagnoses bottlenecks by synthesizing profiler data; Proposal
+    Agent generates sharding configs that eliminate idle compute from tensor/pipeline
+    parallelism imbalance.
+  search-ai: Multi-agent RAG framework identifies expert-validated sharding configs
+    within top-3 recommendations in a single invocation across 8 real LLM workloads
+    on TPU clusters.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=FTOfgVHcZn
 organizations:
@@ -41,7 +41,7 @@ problem: Optimizing LLM training/serving sharding configs on large TPU clusters 
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3843.pdf
 slug: prompts-performance-optimization-via-multi-agent-planning-fo
 status: draft
 title: 'PROMPTS: PeRformance Optimization via Multi-Agent Planning for LLM Training
@@ -52,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3843
 ---
+
+## Background
+
+Running LLMs on TPU clusters requires choosing a sharding configuration across tensor, pipeline, data, and expert parallelism dimensions — a space that grows multiplicatively with model depth and the 2D/3D torus interconnect topology. Expert engineers at Google can tune this manually, but it takes days and the knowledge lives in individuals. Exhaustive empirical search is accurate but prohibitively expensive at large TPU allocations.
 
 ## Key Contributions
 

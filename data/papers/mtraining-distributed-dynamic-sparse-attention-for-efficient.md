@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Wenxuan Li
 - Chengruidong Zhang
@@ -25,12 +25,12 @@ models_evaluated:
 - Qwen2.5-3B
 - Llama-3.1-8B
 observations:
-  skip: Dynamic sparse attention skips attention computation for provably
-    unimportant token pairs; a distributed index approximation makes this sparsity
-    pattern available across ring-attention workers without full synchronization.
-  balance: Balanced sparse ring attention partitions tokens so each worker
-    receives equal compute load despite variable sparse patterns; hierarchical ring
-    attention further reduces cross-node communication at 512K sequence length.
+  balance: Balanced sparse ring attention partitions tokens so each worker gets equal
+    compute load despite variable patterns; hierarchical ring attention reduces cross-node
+    communication at 512K context.
+  skip: Dynamic sparse attention skips computation for unimportant token pairs; a
+    distributed index approximation makes sparsity patterns available across ring-attention
+    workers without full synchronization.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=h6SD2zgwGq
 organizations:
@@ -46,17 +46,21 @@ problem: Dynamic sparse attention for ultra-long context training causes worker-
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3775_6HYrxML.pdf
 slug: mtraining-distributed-dynamic-sparse-attention-for-efficient
 status: draft
-title: 'MTraining: Distributed Dynamic Sparse Attention for Efficient Ultra-Long
-  Context Training'
+title: 'MTraining: Distributed Dynamic Sparse Attention for Efficient Ultra-Long Context
+  Training'
 topics:
 - sparse-attention
 - communication-overlap
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3775
 ---
+
+## Background
+
+Sparse attention skips token pairs with negligible attention scores, making 512K-token training tractable. Ring attention distributes long sequences across GPUs, but dynamic sparsity patterns are uneven — some workers get far more active pairs than others — and the sparsity pattern can't be known until attention scores are computed.
 
 ## Key Contributions
 

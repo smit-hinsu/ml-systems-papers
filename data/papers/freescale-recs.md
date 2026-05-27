@@ -73,6 +73,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3821
 ---
 
+## Background
+
+Sequence recommendation models encode variable-length user histories through transformer architectures with large embedding tables. Unlike LLM training where inputs are padded to uniform length, recommendation batches have wide per-user history variance, causing per-GPU compute skew and straggler delays at every sync barrier. Embedding AllGather and ReduceScatter collectives also compete for streaming multiprocessors (SMs) with compute kernels, limiting effective communication overlap.
+
 ## Key Contributions
 
 - **Load-balanced input sampling**: analyzes per-GPU sequence-length distributions before dispatch and reorders batches to equalize total work per worker, eliminating the dominant straggler source in variable-length recommendation workloads

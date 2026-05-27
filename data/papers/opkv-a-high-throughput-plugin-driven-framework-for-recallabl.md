@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Huazheng Lao
 - Xiaofeng Li
@@ -22,12 +22,12 @@ key_results: 1.3–1.8× higher decoding throughput vs. SoTA recallable sparsity
   under different batch sizes
 models_evaluated: []
 observations:
-  tier: Object reaggregation groups spatially discrete KV pages
-    before CPU recall, reducing PCIe transfer overhead; hot page hit algorithm keeps
-    frequently recalled pages GPU-resident, exploiting temporal locality.
-  skip: Plugin interface decouples the sparsity selection policy from
-    KV cache management so any recallable sparsity method can be applied without
-    modifying the serving framework, enabling clean integration with existing systems.
+  skip: Plugin interface decouples sparsity selection from KV cache management so
+    any recallable sparsity method integrates without modifying the serving framework,
+    enabling clean adoption.
+  tier: Object reaggregation groups discrete KV pages before CPU recall, reducing
+    PCIe transfer overhead; hot page hit algorithm keeps frequently recalled pages
+    GPU-resident, exploiting temporal locality.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=EB5bgzv4qA
 organizations:
@@ -42,7 +42,7 @@ problem: Recallable KV sparsity methods are intrusive to paged KV cache manageme
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3844_RqcbN0P.pdf
 slug: opkv-a-high-throughput-plugin-driven-framework-for-recallabl
 status: draft
 title: 'OPKV: A High-Throughput Plugin-Driven Framework for Recallable Sparsity in
@@ -54,6 +54,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3844
 ---
+
+## Background
+
+At large batch sizes, the KV cache for all active sequences doesn't fit in GPU memory, so pages are evicted to CPU RAM and recalled on demand. Recallable sparsity predicts which KV pages each attention step actually needs and skips recalling the rest — but integrating this into paged KV cache systems (like vLLM) requires touching memory management internals, and recall overhead grows linearly with batch size.
 
 ## Key Contributions
 

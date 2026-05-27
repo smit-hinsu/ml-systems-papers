@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Minchen Yu
 - Rui Yang
@@ -18,7 +18,7 @@ authors:
 award: ''
 citations: null
 citations_updated: ''
-code_url: 'https://github.com/georgia-tech-synergy-lab/Privatar'
+code_url: https://github.com/georgia-tech-synergy-lab/Privatar
 domain:
 - edge-inference
 hardware:
@@ -26,17 +26,15 @@ hardware:
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
 key_results: 2.37× more concurrent users on Meta Quest Pro at 5.7–6.5% higher reconstruction
-  loss and ~9% energy overhead vs. local reconstruction baseline; robust against NN-based
-  Expression Identification Attack
+  loss and ~9% energy overhead vs. local reconstruction baseline
 models_evaluated: []
 observations:
-  fuse: Horizontal Partitioning (HP) uses block-wise DCT to keep
-    high-energy frequency components on-device and offloads only low-energy components,
-    minimizing the data volume transferred to untrusted devices while preserving avatar
+  balance: Offloading reconstruction from VR headset to local network devices distributes
+    compute, allowing the headset to support more concurrent avatars than its on-device
+    capacity allows.
+  fuse: HP keeps high-energy DCT components on-device and offloads only low-energy
+    components, minimizing data transferred to untrusted devices while preserving
     reconstruction quality.
-  balance: Offloading avatar reconstruction from VR headset to local
-    network devices distributes compute across multiple devices, allowing the headset
-    to support more concurrent avatars than its on-device capacity allows.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=WjJfnNhY65
 organizations:
@@ -55,7 +53,7 @@ problem: Multi-user VR avatar reconstruction on headsets limits concurrent users
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3801_3ox1dQR.pdf
 slug: privatar-scalable-privacy-preserving-multi-user-vr-via-secur
 status: draft
 title: 'Privatar: Scalable Privacy-preserving Multi-user VR via Secure Offloading'
@@ -63,6 +61,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3801
 ---
+
+## Background
+
+VR headsets like Meta Quest Pro run neural avatar reconstruction for each participant in real time, but the on-device GPU saturates quickly with multiple concurrent users. Offloading reconstruction to a nearby edge device would scale capacity, but doing so sends raw facial expression data — intimate biometric information — to an untrusted machine. Differential privacy can mask individual signals, but worst-case per-frame noise destroys reconstruction fidelity.
 
 ## Key Contributions
 

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Dong Wang
 - Yang Li
@@ -31,12 +31,12 @@ key_results: 2–15× higher synthetic data generation throughput under identica
   across multi-agent dialogue, web reasoning, and tool-use scenarios
 models_evaluated: []
 observations:
-  balance: Eliminating the central orchestrator removes the coordination
-    bottleneck; tasks progress independently through queues, keeping all workers busy
-    without a serializing scheduler.
-  pipeline: Peer-to-peer message passing lets concurrent agentic
-    workflows advance in parallel on Ray, overlapping LLM inference across tens of
-    thousands of tasks simultaneously.
+  balance: Eliminating the central orchestrator removes the coordination bottleneck;
+    tasks progress independently through queues, keeping all workers busy without
+    a serializing scheduler.
+  pipeline: Peer-to-peer message passing lets concurrent agentic workflows advance
+    in parallel on Ray, overlapping LLM inference across tens of thousands of tasks
+    simultaneously.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=ok96wGyPdI
 organizations:
@@ -46,11 +46,12 @@ principles:
 - balance
 - pipeline
 problem: Centralized orchestrators in multi-agent synthetic data pipelines create
-  scalability bottlenecks; hardcoded designs limit reuse across diverse generation tasks.
+  scalability bottlenecks; hardcoded designs limit reuse across diverse generation
+  tasks.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3753_h4L43wQ.pdf
 slug: matrix-peer-to-peer-multi-agent-synthetic-data-generation-fr
 status: draft
 title: 'Matrix: Peer-to-Peer Multi-Agent Synthetic Data Generation Framework'
@@ -59,6 +60,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3753
 ---
+
+## Background
+
+Synthetic data generation for LLM training uses multi-agent pipelines where agents interact to produce labeled conversations, reasoning traces, and tool-use trajectories. The standard architecture is centralized orchestration: a controller dispatches tasks and collects results. At scale this hits two limits — the orchestrator becomes a throughput bottleneck, and hard-coded task graphs require a new orchestration layer for each synthesis workflow.
 
 ## Key Contributions
 

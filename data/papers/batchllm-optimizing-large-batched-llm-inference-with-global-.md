@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Zhen Zheng
 - Xin Ji
@@ -15,42 +15,41 @@ citations_updated: ''
 code_url: https://github.com/microsoft/MixLLM/tree/batchllm_vllm_064
 domain:
 - llm-serving
-organizations:
-- Microsoft
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: 1.3×–10.8× throughput over vLLM and SGLang on microbenchmarks and industry
-  workloads; largest gains on high-prefix-sharing batched tasks
+key_results: 1.3×–10.8× throughput vs. vLLM/SGLang on microbenchmarks; largest gains
+  on high-prefix-sharing batch tasks
 models_evaluated: []
 observations:
-  cache: Global prefix identification groups requests sharing the same
-    prefix together for scheduling, ensuring KV cache of the common prefix is computed
-    once and reused across all requests in the batch rather than being evicted by LRU
-    before reuse.
-  balance: Reordering requests to schedule high-decode-ratio requests
-    first enables mixing decode tokens with later prefill chunks, filling the GPU with
-    mixed computation rather than leaving it underutilized during decode-heavy phases.
-  tier: Memory-centric token batching enlarges token batch sizes
-    to increase GPU utilization by fitting more decode tokens into each forward pass
-    iteration without exceeding KV cache memory limits.
+  balance: Scheduling high-decode-ratio requests first mixes decode tokens with later
+    prefill chunks in the same forward pass, filling the GPU rather than leaving it
+    idle during decode-heavy phases.
+  cache: Global prefix scan groups all requests sharing a prefix before scheduling;
+    the common KV cache is computed once and stays resident rather than being evicted
+    by LRU between requests.
+  tier: Memory-centric token batching enlarges token batch sizes to increase GPU utilization
+    by fitting more decode tokens into each forward pass iteration without exceeding
+    KV cache memory limits.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=IuVHde07l6
+organizations:
+- Microsoft
 presentation_type: oral
 principles:
 - cache
 - balance
 - tier
-problem: LLM inference engines optimized for streaming requests fail large-batch offline
-  tasks with prefix sharing because LRU caches evict shared KV context before it can
-  be reused, wasting compute and leaving GPU underutilized.
+problem: Batch LLM engines optimized for streaming evict shared KV before reuse; LRU
+  caches waste compute and underutilize GPUs on prefix-heavy workloads.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3833.pdf
 slug: batchllm-optimizing-large-batched-llm-inference-with-global-
 status: draft
-title: 'BatchLLM: Optimizing Large Batched LLM Inference with Global Prefix Sharing and Throughput-oriented Token Batching'
+title: 'BatchLLM: Optimizing Large Batched LLM Inference with Global Prefix Sharing
+  and Throughput-oriented Token Batching'
 topics:
 - prefix-caching
 - kv-cache
@@ -58,6 +57,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3833
 ---
+
+## Background
+
+vLLM and similar engines evict KV context with LRU when memory fills — fine for interactive streaming but a poor fit for batch inference (scoring thousands of pre-collected prompts, nightly re-ranking). Batch workloads share long common prefixes that LRU evicts under pressure, forcing recomputation. All requests are known upfront, so a scheduler with global visibility could group prefix-sharing requests and keep shared KV cache resident — impossible when the scheduler sees only one request at a time.
 
 ## Key Contributions
 

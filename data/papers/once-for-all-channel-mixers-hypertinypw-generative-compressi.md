@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yassien Shaalan
 award: ''
@@ -13,17 +13,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: 6.31× smaller flash footprint (~225 kB vs. ~1.4 MB) while retaining
-  ≥95% of large-model macro-F1 on three ECG benchmarks; 96.2% accuracy on Speech
-  Commands
+key_results: 6.31× smaller flash footprint (~225 kB vs. ~1.4 MB) while retaining ≥95%
+  of large-model macro-F1 on three ECG benchmarks; 96.2% accuracy on Speech Commands
 models_evaluated: []
 observations:
-  cache: A shared micro-MLP generates all pointwise kernels from
-    tiny per-layer codes once at load time and caches them; inference reuses cached
-    weights with zero synthesis overhead at steady state.
-  tier: Cross-layer weight generation eliminates independent
-    stored weights for most PW layers; only a tiny shared generator and compact codes
-    live in MCU flash, exploiting the MCU's severe flash/SRAM hierarchy constraint.
+  cache: A shared micro-MLP generates all pointwise kernels from tiny per-layer codes
+    once at load time and caches them; inference reuses cached weights with zero synthesis
+    overhead at steady state.
+  tier: Cross-layer weight generation eliminates stored weights for most PW layers;
+    only a tiny shared generator and compact codes live in MCU flash, exploiting the
+    MCU's severe flash/SRAM hierarchy.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=NrDa5Fu10D
 organizations:
@@ -37,7 +36,7 @@ problem: Pointwise convolution mixers dominate flash/SRAM on microcontrollers ev
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3818_UaGcJ0C.pdf
 slug: once-for-all-channel-mixers-hypertinypw-generative-compressi
 status: draft
 title: 'Once-for-All Channel Mixers (HyperTinyPW): Generative Compression for TinyML'
@@ -46,6 +45,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3818
 ---
+
+## Background
+
+TinyML runs neural nets on microcontrollers with kilobytes of flash and SRAM. Pointwise (1×1) convolutions dominate flash footprint in lightweight CNNs like MobileNet because every layer stores its own weight matrix — even INT8-quantized models can exceed MCU budgets. Conventional compression (pruning, quantization) still stores one matrix per layer; no prior approach eliminates the per-layer storage cost by treating layers as instances of a shared latent structure.
 
 ## Key Contributions
 

@@ -62,6 +62,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3860
 ---
 
+## Background
+
+FSDP shards parameters, gradients, and optimizer states across data-parallel workers, gathering each layer's weights for computation then discarding them. PyTorch FSDP implements this by flattening all parameters into a contiguous buffer before each AllGather — fine for standard AdamW. This flat-parameter assumption breaks with block-wise quantization (non-uniform shard sizes), second-order optimizers like Shampoo or Muon (which need block-structured access), or per-module parallelism mixing FSDP with tensor or pipeline parallelism.
+
 ## Key Contributions
 
 - **RaggedShard format**: flexible sharding metadata representation that decouples parameter sharding from flat-parameter assumptions, supporting non-uniform block sizes arising from block-wise quantization, sparse layers, or custom module boundaries

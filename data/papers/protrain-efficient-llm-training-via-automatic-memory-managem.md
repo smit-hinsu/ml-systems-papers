@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Hanmei Yang
 - Jin Zhou
@@ -19,16 +19,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: 1.43x–2.71x training throughput improvement over state-of-the-art training
+key_results: 1.43x–2.71x training throughput improvement over manual-tuned training
   systems via automated memory management without accuracy loss.
 models_evaluated: []
 observations:
-  balance: ProTrain's cost models estimate latency, memory, and I/O bandwidth
-    precisely to find configurations that avoid memory pressure while keeping GPU utilization
+  balance: ProTrain's cost models estimate latency, memory, and I/O bandwidth precisely
+    to find configurations that avoid memory pressure while keeping GPU utilization
     high, eliminating manual misconfiguration.
-  cache: Automated search over memory management config space eliminates
-    repeated manual tuning experiments; cost models predict optimal settings without
-    exhaustive runtime search.
+  recompute: ProTrain auto-selects activation checkpoint granularity using cost models
+    that weigh memory savings against recomputation overhead; the planner finds the
+    optimal schedule without manual search.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=XDkOn0iTiH
 organizations:
@@ -36,13 +36,13 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- cache
+- recompute
 problem: LLM training memory-saving techniques expose low-level knobs requiring manual
   tuning; misconfiguration causes suboptimal hardware utilization or OOM failures.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3800_lv912MR.pdf
 slug: protrain-efficient-llm-training-via-automatic-memory-managem
 status: draft
 title: 'ProTrain: Efficient LLM Training via Automatic Memory Management'
@@ -51,6 +51,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3800
 ---
+
+## Background
+
+LLM training requires fitting activations, gradients, optimizer states, and weights simultaneously in GPU memory. Techniques like activation checkpointing (recompute instead of store), CPU offloading, and gradient accumulation each reduce memory pressure but add compute or I/O overhead. Choosing the right combination and granularity depends on model, batch size, and hardware — and is currently configured by hand, with expert engineers still routinely misconfiguring it.
 
 ## Key Contributions
 

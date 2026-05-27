@@ -1,47 +1,56 @@
 ---
-slug: cage-curvature-aware-gradient-estimation-for-accurate-quanti
-title: "CAGE: Curvature-Aware Gradient Estimation For Accurate Quantization-Aware Training"
+agentic_models: []
+arxiv_url: ''
 authors:
 - Soroush Tabesh
 - Mher Safaryan
 - Andrei Panferov
 - Alexandra Volkova
 - Dan Alistarh
-organizations:
-- Institute of Science and Technology Austria (ISTA)
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3841
-openreview_url: https://openreview.net/forum?id=Fubm1TtWeo
-arxiv_url: ''
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: research
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - llm-training
 hardware:
 - GPU
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: CAGE halves compression accuracy loss vs prior best method; W3A3 Llama
+  accuracy matches W4A4 with QuEST at similar compute cost.
 models_evaluated:
 - Llama (W3A3, W4A4)
-agentic_models: []
+observations:
+  quantize: CAGE corrects STE gradient bias using curvature from Adam second-moment
+    statistics; the correction enables W3A3 models to match W4A4 accuracy without
+    extra training passes.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=Fubm1TtWeo
+organizations:
+- Institute of Science and Technology Austria (ISTA)
+presentation_type: oral
+principles:
+- quantize
+problem: Straight-through estimator in QAT introduces gradient bias from quantization
+  discontinuities, leaving an accuracy gap vs full-precision training.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3841_N6ZwMw7.pdf
+slug: cage-curvature-aware-gradient-estimation-for-accurate-quanti
+status: draft
+title: 'CAGE: Curvature-Aware Gradient Estimation For Accurate Quantization-Aware
+  Training'
 topics:
 - quantization
-principles:
-- cache
-observations:
-  cache: "Curvature-aware correction reuses Adam second-moment statistics already computed during training to estimate local curvature with no extra passes."
-problem: "Straight-through estimator in QAT introduces gradient bias from quantization discontinuities, leaving an accuracy gap vs full-precision training."
-key_results: "CAGE halves compression accuracy loss vs prior best method; W3A3 Llama accuracy matches W4A4 with QuEST at similar compute cost."
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3841
 ---
+
+## Background
+
+Quantization-aware training (QAT) fine-tunes a model while simulating low-bit rounding, using the **straight-through estimator (STE)** to pass gradients through the non-differentiable quantization step. STE works at 4-bit but introduces gradient bias at aggressive precisions like W3A3, leaving a significant accuracy gap versus full-precision training.
 
 ## Key Contributions
 

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Ansel Erol
 - Seungjun Lee
@@ -16,18 +16,18 @@ hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
 key_results: 1.9× lower compute time per image; 90th-percentile end-to-end latency
-  from 51 to 21 minutes vs. state-of-the-art baseline using satellite simulator
+  51→21 minutes vs. per-satellite independent inference baseline in satellite simulator
 models_evaluated: []
 observations:
-  skip: Dynamic filter ordering rejects low-value images early based on
-    selectivity and accuracy estimates, avoiding full inference on images unlikely
-    to meet user query thresholds — amortizing compute only on high-value imagery.
-  balance: Ground-station query scheduler aggregates user requests and
-    distributes compute budgets to incoming images across the constellation, preventing
-    hotspot satellites from wasting cycles while others are idle.
-  cache: Shared backbone multi-task inference amortizes feature extraction
-    across multiple vision tasks per satellite pass, so the same backbone activations
-    serve N tasks rather than running N separate models.
+  balance: Ground-station scheduler aggregates requests and distributes compute budgets
+    across the constellation, preventing hotspot satellites from wasting cycles while
+    others remain idle.
+  cache: Shared backbone multi-task inference amortizes feature extraction across
+    multiple vision tasks per satellite pass, so the same backbone activations serve
+    N tasks rather than running N separate models.
+  skip: Dynamic filter ordering rejects low-value frames using selectivity and accuracy
+    estimates, skipping full inference on frames below query thresholds to save onboard
+    compute for high-priority imagery.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=c3O6DnhUYm
 organizations:
@@ -42,7 +42,7 @@ problem: Satellite constellation intelligence is bottlenecked by redundant onboa
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3792_EM9rZRX.pdf
 slug: earthsight-a-distributed-framework-for-low-latency-satellite
 status: draft
 title: 'EarthSight: A Distributed Framework for Low-Latency Satellite Intelligence'
@@ -51,6 +51,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3792
 ---
+
+## Background
+
+Earth observation satellites increasingly carry onboard compute to run vision models (fire, flood, ship detection) before downlinking, conserving scarce bandwidth by sending only relevant findings. In a constellation, each satellite typically operates independently, which wastes compute in two ways: separate model instances per task re-run identical backbone computations, and no global scheduler coordinates load — a satellite over a high-value region can be overwhelmed while others over open ocean sit idle.
 
 ## Key Contributions
 

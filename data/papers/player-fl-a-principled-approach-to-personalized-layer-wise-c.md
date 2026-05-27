@@ -1,11 +1,11 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Ahmed Elhussein
 - Florent Pollet
-- "Gamze Gürsoy"
+- Gamze Gürsoy
 award: ''
 citations: null
 citations_updated: ''
@@ -15,16 +15,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Consistently competitive performance across diverse architectures; federation-sensitivity
-  metric computed from a single training epoch identifies the optimal layer split point
+key_results: Competitive FL accuracy with 1-epoch split-point search vs. ad-hoc partial
+  FL baselines across diverse architectures and non-IID data splits
 models_evaluated: []
 observations:
-  balance: Federating only the early, generalizable layers avoids synchronizing
-    task-specific layers across clients; this splits the parameter space so that
-    federation benefits only where global aggregation helps, not where it hurts.
-  cache: Computing the federation-sensitivity metric after a single
-    epoch avoids full training runs for split-point search; one lightweight pass
-    is sufficient to identify the generalizable-to-task-specific transition.
+  balance: Federating only early generalizable layers avoids synchronizing task-specific
+    layers; this splits the parameter space so aggregation helps only where it improves,
+    not where it hurts.
+  skip: A federation-sensitivity score after one epoch identifies layers safe to keep
+    local; those layers skip federated synchronization entirely, cutting communication
+    without full training runs.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=QBUy1HdKrZ
 organizations:
@@ -32,10 +32,9 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- cache
-problem: Existing partial FL methods rely on ad-hoc architecture-specific heuristics
-  for choosing which layers to federate, causing inconsistent performance and client
-  regressions on non-IID data.
+- skip
+problem: Partial FL methods use ad-hoc heuristics for layer federation choice, causing
+  inconsistent performance and client regressions on non-IID data.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
@@ -48,6 +47,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3813
 ---
+
+## Background
+
+Federated learning trains across clients without centralizing data, but on non-IID data full-model aggregation overwrites task-specific layers tuned to each client's distribution. Partial FL keeps later layers local and only federates early general-purpose layers, but deciding where to split has been done by intuition — freeze the last N layers — with no principled method and inconsistent results across architectures.
 
 ## Key Contributions
 

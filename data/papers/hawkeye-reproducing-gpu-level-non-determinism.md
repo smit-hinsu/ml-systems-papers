@@ -42,6 +42,10 @@ problem: "GPU arithmetic non-determinism prevents verifiable reproduction of ML 
 key_results: "Hawkeye enables perfect CPU reproduction of NVIDIA Tensor Core matmul across Ampere, Hopper, and Lovelace for FP16, BF16, and FP8 without precision loss."
 ---
 
+## Background
+
+Floating-point arithmetic is not associative: GPU matmuls use massively parallel reduction trees whose accumulation order depends on undocumented, architecture-specific hardware details. The same model on different GPU generations (Ampere vs. Hopper) or precisions (FP16 vs. FP8) produces different bit patterns. For third-party ML auditing — verifying a model owner's reported outputs match declared weights — this non-determinism is a fundamental blocker: an auditor cannot reproduce the computation to check it without burdening the model owner with cryptographic overhead.
+
 ## Key Contributions
 
 - **Hawkeye framework**: A systematic sequence of tests that characterizes NVIDIA Tensor Core behavior — rounding direction, subnormal number handling, and non-associative accumulation order — enabling exact CPU reproduction of GPU matrix multiplications.

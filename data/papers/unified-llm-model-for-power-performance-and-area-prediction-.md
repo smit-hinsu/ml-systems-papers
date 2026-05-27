@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Armin Abdollahi
 - Mehdi Kamal
@@ -19,12 +19,11 @@ key_results: 9.4 percentage point improvement in pass rate at 10% tolerance over
   methods, with ~20× higher throughput (0.12 s per design).
 models_evaluated: []
 observations:
-  search-ai: RocketPPA uses an LLM backbone with MoE regression and contrastive
-    learning to predict PPA metrics—a verifiable hardware design objective—enabling
-    fast design-space exploration without running full synthesis.
-  cache: At 0.12 s per design vs. minutes-long synthesis runs, RocketPPA
-    avoids the redundant work of full tool invocations during early-stage design space
-    exploration.
+  cache: At 0.12 s per design vs. minutes-long synthesis runs, RocketPPA avoids the
+    redundant work of full tool invocations during early-stage design space exploration.
+  search-ai: RocketPPA uses an LLM with MoE regression and contrastive learning to
+    predict PPA metrics—a verifiable hardware design objective—enabling fast design-space
+    search without full synthesis.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=lpO7kxiayb
 organizations:
@@ -33,22 +32,25 @@ presentation_type: oral
 principles:
 - search-ai
 - cache
-problem: Predicting power, performance, and area for Verilog designs requires slow
-  synthesis runs; fast surrogate models lack accuracy across technology nodes and
-  optimization styles.
+problem: Fast surrogate models for Verilog PPA prediction lack accuracy across technology
+  nodes; slow synthesis runs block early design-space exploration.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3761.pdf
 slug: unified-llm-model-for-power-performance-and-area-prediction-
 status: draft
-title: 'Unified LLM Model for Power, Performance, and Area Prediction from Hardware
-  Code'
+title: Unified LLM Model for Power, Performance, and Area Prediction from Hardware
+  Code
 topics:
 - llm-code-generation
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3761
 ---
+
+## Background
+
+Evaluating PPA (Power, Performance, Area) for Verilog RTL requires logic synthesis tools (Synopsys DC, Cadence Genus) that take minutes to hours per design — a bottleneck when comparing thousands of candidates in early exploration. Surrogate models predicting PPA from source code can accelerate this by orders of magnitude, but prior approaches use hand-crafted features or small neural networks that don't generalize across technology nodes (15 nm vs. 45 nm) or optimization styles, requiring per-configuration retraining.
 
 ## Key Contributions
 

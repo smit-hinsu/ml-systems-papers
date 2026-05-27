@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Hojoon Kim
 - Yuheng Wu
@@ -12,8 +12,6 @@ citations_updated: ''
 code_url: https://github.com/hojoonleokim/MLSys26_AgenticCache
 domain:
 - agentic-inference
-organizations:
-- Harvard University
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
@@ -21,14 +19,16 @@ key_results: 22% avg task success improvement across 12 configs (4 benchmarks ×
   models); 65% latency reduction and 50% fewer tokens via cached plan reuse
 models_evaluated: []
 observations:
-  cache: Embodied tasks exhibit strong plan locality where the next
-    plan closely mirrors the current one; AgenticCache reuses cached plan transitions
-    to skip per-step LLM calls, cutting token usage by 50% across benchmarks.
-  pipeline: A background Cache Updater asynchronously calls the LLM
-    to validate and refine cached plans while the agent executes; LLM inference latency
-    is hidden behind task execution rather than blocking each planning step.
+  cache: Embodied tasks exhibit strong plan locality; AgenticCache reuses cached plan
+    transitions to skip per-step LLM calls, cutting token usage by 50% and latency
+    by 65% across benchmarks.
+  pipeline: A background Cache Updater asynchronously validates and refines cached
+    plans while the agent executes, hiding LLM inference latency behind task execution
+    rather than blocking each planning step.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=UfABxFoSXH
+organizations:
+- Harvard University
 presentation_type: oral
 principles:
 - cache
@@ -38,7 +38,7 @@ problem: Per-step LLM calls in embodied AI agents impose severe latency and toke
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3806_NIaKgZ6.pdf
 slug: agenticcache-cache-driven-asynchronous-planning-for-embodied
 status: draft
 title: 'AgenticCache: Cache-Driven Asynchronous Planning for Embodied AI Agents'
@@ -48,6 +48,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3806
 ---
+
+## Background
+
+Embodied AI agents (robots, simulated agents) call an LLM at each step to decide what to do next — pick up object A, navigate to room B — and block waiting for the response before acting. This per-step synchronous call dominates latency. Crucially, embodied tasks exhibit strong plan locality: the same bounded environment produces similar action sequences across episodes, making cached plans a viable substitute for on-demand LLM generation.
 
 ## Key Contributions
 

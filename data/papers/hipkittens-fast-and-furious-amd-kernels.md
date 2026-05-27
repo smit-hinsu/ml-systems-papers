@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - William Hu
 - Drew Wadsworth
@@ -15,7 +15,7 @@ authors:
 award: ''
 citations: null
 citations_updated: ''
-code_url: 'https://github.com/HazyResearch/HipKittens'
+code_url: https://github.com/HazyResearch/HipKittens
 domain:
 - ml-kernels
 hardware:
@@ -23,17 +23,17 @@ hardware:
 - AMD CDNA4
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: HK GEMM and attention kernels match AMD hand-optimized assembly; 1.2–2.4×
-  speedup over all available baselines for d=64 attention, GQA non-causal backward,
-  and memory-bound kernels on CDNA3/CDNA4
+key_results: 1.2–2.4× over all baselines for d=64 attention, GQA non-causal backward,
+  and memory-bound kernels on AMD CDNA3/CDNA4; matches hand-optimized assembly for
+  GEMM
 models_evaluated: []
 observations:
-  fuse: HipKittens' tile-based memory access primitives group data
-    into hardware-aligned tiles, reducing redundant global memory transactions and
-    maximizing L2 reuse rates on AMD CDNA GPUs without hand-written assembly.
-  tier: Explicit tile-based programming exposes CDNA's LDS (local
-    data share) and cache hierarchy to the programmer, enabling data reuse patterns
-    that compiler auto-vectorization misses for attention and GEMM kernels.
+  fuse: HipKittens' tile-based primitives group data into hardware-aligned tiles,
+    reducing redundant global memory transactions and maximizing L2 reuse on AMD CDNA
+    GPUs without hand-written assembly.
+  tier: Explicit tile-based programming exposes CDNA's LDS and cache hierarchy, enabling
+    data reuse patterns that compiler auto-vectorization misses for attention and
+    GEMM kernels on AMD hardware.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=xxSSrndQrI
 organizations:
@@ -44,12 +44,12 @@ presentation_type: oral
 principles:
 - fuse
 - tier
-problem: Peak-performance AMD GPU kernels require hand-written assembly; no high-level
-  DSL like ThunderKittens existed for AMD hardware, blocking efficient AI kernel development.
+problem: Peak-performance AMD GPU kernels required hand-written assembly; no high-level
+  DSL existed for AMD CDNA hardware, blocking efficient AI kernel development.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3735.pdf
 slug: hipkittens-fast-and-furious-amd-kernels
 status: draft
 title: 'HipKittens: Fast and Furious AMD Kernels'
@@ -59,6 +59,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3735
 ---
+
+## Background
+
+ThunderKittens introduced a C++ tile-based DSL for NVIDIA GPUs that exposes the memory hierarchy and wavefront scheduling without hand-written assembly. AMD's CDNA GPUs (MI300X and successors) are gaining datacenter adoption, but the ROCm stack lacked an equivalent: engineers tolerated compiler-auto-vectorized code or wrote low-level HIP approaching assembly complexity. Porting high-performance attention and GEMM kernels from NVIDIA to AMD required substantial per-kernel effort, fragile across AMD generations.
 
 ## Key Contributions
 

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Hsing-Ti Wang
 - Hung-Tso Shiao
@@ -18,20 +18,18 @@ hardware:
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
 key_results: Over 95% KV cache transfer reduction; 3.39×–9.72× end-to-end speedup
-  on OPT-6.7B, 3.60×–8.74× on LLaMA-2-7B, 4.17×–7.99× on Qwen-7B vs. layer-wise
-  offloading
+  on OPT-6.7B, 3.60×–8.74× on LLaMA-2-7B, 4.17×–7.99× on Qwen-7B vs. layer-wise offloading
 models_evaluated:
 - OPT-6.7B
 - LLaMA-2-7B
 - Qwen-7B
 observations:
-  cache: Inter-beam locality detection identifies beams sharing a common
-    prefix and reuses their overlapping KV segments, eliminating redundant KV cache
-    transfers for prefix data that would otherwise be re-transferred independently
-    for each beam.
-  pipeline: Balanced grouping with prefetching overlaps KV cache
-    data movement from CPU/host memory with GPU computation, hiding transfer latency
-    behind active decode steps during test-time compute.
+  cache: Inter-beam locality detection finds beams sharing a common prefix and reuses
+    their overlapping KV segments, eliminating redundant transfers that would otherwise
+    be issued independently per beam.
+  pipeline: Balanced grouping with prefetching overlaps KV cache data movement from
+    CPU/host memory with GPU computation, hiding transfer latency behind active decode
+    steps during test-time compute.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=dTo8jAXm9K
 organizations:
@@ -40,13 +38,12 @@ presentation_type: oral
 principles:
 - cache
 - pipeline
-problem: Step-wise beam search for test-time compute on consumer GPUs causes severe
-  I/O stalls because the expanding KV cache must be repeatedly transferred between
-  CPU and GPU memory.
+problem: Step-wise beam search for test-time compute on consumer GPUs causes I/O stalls
+  because the KV cache must be repeatedly transferred between CPU and GPU memory.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3788_AVkP8ig.pdf
 slug: locality-aware-beam-scheduling-for-efficient-test-time-compu
 status: draft
 title: Locality-Aware Beam Scheduling for Efficient Test-Time Compute with a Consumer-grade
@@ -58,6 +55,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3788
 ---
+
+## Background
+
+Beam search test-time compute requires holding each beam's KV cache in GPU memory during decoding. Consumer GPUs (8–24 GB VRAM) can't fit all beams simultaneously for long sequences, so KV caches are offloaded to CPU and paged back. Naive layer-wise offloading produces a waterfall of small independent transfers that stall the GPU — and ignores that beams sharing a common prefix have identical KV data that could be reused.
 
 ## Key Contributions
 

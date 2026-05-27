@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Paul Castro
 - Nick Mitchell
@@ -22,12 +22,12 @@ key_results: 10–20× TTFT reduction for two non-chat use cases; attention-opti
   span query on 2B model outperforms stock 8B model on accuracy.
 models_evaluated: []
 observations:
-  cache: Span query commutativity constraints allow the server to reorder
-    commutative input segments and reuse cached KV states across structurally equivalent
-    queries, eliminating redundant prefill computation.
-  tier: Span query optimization places commutative segments with
-    existing KV cache hits first in the attention order, maximizing prefix cache reuse
-    and minimizing cache misses.
+  cache: Span query commutativity constraints let the server reorder commutative input
+    segments and reuse cached KV states across structurally equivalent queries, eliminating
+    redundant prefill.
+  tier: Span query optimization places commutative segments with existing KV cache
+    hits first in the attention order, maximizing prefix cache reuse and minimizing
+    cache misses.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=qcGGSXpFcM
 organizations:
@@ -36,13 +36,12 @@ presentation_type: oral
 principles:
 - cache
 - tier
-problem: Inference servers are optimized for linear chat completion and use poor KV
-  cache strategies for inference-time scaling, RAG, and agentic workloads that have
-  non-linear input structure.
+problem: Inference servers optimized for linear chat use poor KV cache strategies
+  for inference-time scaling, RAG, and agentic workloads with non-linear input structure.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3747_FfJdljm.pdf
 slug: using-span-queries-to-optimize-cache-and-attention-locality
 status: draft
 title: Using Span Queries to Optimize Cache and Attention Locality
@@ -53,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3747
 ---
+
+## Background
+
+KV prefix caching reduces TTFT by reusing states when a request starts with the same token prefix. This works for linear chat, but RAG, inference-time scaling, and agentic pipelines have non-linear inputs: retrieved chunks can arrive in any order, reasoning branches share partial context, and tool results are inserted mid-conversation. When document order doesn't match the prefix tree, KV states can't be reused even for semantically identical inputs — serving frameworks have no way to express that segments are interchangeable.
 
 ## Key Contributions
 

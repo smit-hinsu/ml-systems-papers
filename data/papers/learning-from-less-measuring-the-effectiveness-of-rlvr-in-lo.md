@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Justin Bauer
 - Thomas Walshe
@@ -19,19 +19,17 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Mixed-complexity RLVR training datasets yield up to 5× sample efficiency
-  over easy-only datasets for small language models in low-data regimes across number
-  counting, graph, and spatial reasoning tasks
+key_results: Mixed-complexity RLVR datasets yield 5× sample efficiency vs. easy-only
+  training for SLMs on counting, graph, and spatial reasoning in low-data regimes
 models_evaluated:
 - Small Language Models (SLMs)
 observations:
-  search-ai: Procedurally generated datasets with controllable complexity
-    and verifiable ground truth answers allow RLVR to train on problems whose correctness
-    is objectively checkable, enabling systematic data scaling law studies without
-    human annotation.
-  balance: Training on mixed-complexity tasks prevents both trivial (easy-only)
-    and intractable (hard-only) examples from dominating the curriculum, keeping the
-    model's learning signal dense throughout low-data training.
+  balance: Training on mixed-complexity tasks prevents trivial (easy-only) and intractable
+    (hard-only) examples from dominating the curriculum, keeping learning signal dense
+    throughout low-data training.
+  search-ai: Procedurally generated datasets with controllable complexity and verifiable
+    answers let RLVR train on objectively checkable problems, enabling scaling law
+    studies without human annotation.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=fV4t4kYvgi
 organizations:
@@ -41,13 +39,12 @@ presentation_type: oral
 principles:
 - search-ai
 - balance
-problem: RLVR post-training requires large annotated datasets or problems with ground
-  truth answers; it is unclear how to apply it effectively when data and compute are
-  scarce.
+problem: RLVR post-training requires large annotated datasets with ground-truth answers;
+  applying it effectively in low-data, low-compute regimes is unsolved.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3783.pdf
 slug: learning-from-less-measuring-the-effectiveness-of-rlvr-in-lo
 status: draft
 title: 'Learning from Less: Measuring the Effectiveness of RLVR in Low Data and Compute
@@ -56,6 +53,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3783
 ---
+
+## Background
+
+RLVR fine-tunes LLMs on problems with objectively checkable answers (math, code, puzzles), using pass/fail as the reward signal. It has shown strong results at frontier scale, but those runs assume large annotated datasets and thousands of GPU-days. For sub-7B models with single-GPU budgets, whether RLVR produces real capability gains — and which dataset properties matter — was an open empirical question.
 
 ## Key Contributions
 

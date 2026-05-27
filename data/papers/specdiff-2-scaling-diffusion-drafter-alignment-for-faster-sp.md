@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Jameson Sandler
 - Jacob Christopher
@@ -16,17 +16,19 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Up to +55% average tokens-per-second over prior speculative decoding
-  baselines; up to 5.5× average speedup over standard autoregressive decoding on
-  reasoning, coding, and math benchmarks
+key_results: +55% tokens-per-second over prior SD baselines; 5.5× avg speedup over
+  standard autoregressive decoding on reasoning, coding, and math benchmarks.
 models_evaluated: []
 observations:
-  pipeline: Discrete diffusion drafting generates multiple tokens
-    in parallel in a non-autoregressive pass, eliminating the sequential per-token
-    dependency that limits draft parallelism in autoregressive draft models.
-  cache: Diffusion drafter calibration techniques align draft-token
-    distributions with the autoregressive verifier, reducing the rate of rejected
-    draft tokens and avoiding wasted verification compute on misaligned drafts.
+  cache: Drafter calibration aligns draft-token distributions with the autoregressive
+    verifier, reducing rejection rates and avoiding wasted verification compute on
+    misaligned tokens.
+  pipeline: Discrete diffusion drafting generates multiple tokens in parallel in a
+    single non-autoregressive pass, eliminating the sequential per-token dependency
+    that limits autoregressive drafts.
+  speculate: SpecDiff-2 aligns the diffusion drafter to the target LLM distribution;
+    higher alignment raises acceptance rates, making the parallel diffusion pass a
+    reliable speculative proposal.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=o42VU86ZsV
 organizations:
@@ -35,13 +37,13 @@ presentation_type: oral
 principles:
 - pipeline
 - cache
-problem: Autoregressive draft models in speculative decoding cannot parallelize drafting,
-  and draft-verifier misalignment causes high rejection rates that eliminate speedup
-  gains.
+- speculate
+problem: Autoregressive draft models cannot parallelize token drafting; draft-verifier
+  misalignment causes high rejection rates that negate speculative decoding speedup.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3755.pdf
 slug: specdiff-2-scaling-diffusion-drafter-alignment-for-faster-sp
 status: draft
 title: 'SpecDiff-2: Scaling Diffusion Drafter Alignment For Faster Speculative Decoding'
@@ -50,6 +52,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3755
 ---
+
+## Background
+
+Speculative decoding uses a small draft model to propose tokens that a larger target model verifies in one pass. Two bottlenecks limit speedup: autoregressive drafting is sequential (N tokens = N steps), and draft-verifier distribution mismatch causes rejections. Discrete diffusion models can generate all draft tokens in a single non-autoregressive pass, but their training objective differs from autoregressive models — prior diffusion drafters produced low acceptance rates that cancelled the parallelism gain.
 
 ## Key Contributions
 

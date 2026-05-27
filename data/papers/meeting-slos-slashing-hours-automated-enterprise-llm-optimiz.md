@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Nicholas Santavas
 - Kareem Eissa
@@ -25,12 +25,12 @@ key_results: More than 2× GPU throughput improvement in production deployment; 
   model optimization from hours of manual effort to automated pipeline execution
 models_evaluated: []
 observations:
-  balance: Dynamic resource allocation across heterogeneous GPU infrastructure
-    assigns compression and evaluation jobs to available capacity, reducing idle GPUs
-    during multi-stage optimization pipelines.
-  cache: Staged pipeline execution with automatic cleanup resumes
-    from the last completed stage on failure, avoiding rerunning costly optimization
-    steps already finished successfully.
+  balance: Dynamic resource allocation across heterogeneous GPU infrastructure assigns
+    compression and evaluation jobs to available capacity, reducing idle GPUs during
+    multi-stage optimization pipelines.
+  cache: Staged pipeline execution with automatic cleanup resumes from the last completed
+    stage on failure, avoiding rerunning costly optimization steps already finished
+    successfully.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=om4H7AI2hc
 organizations:
@@ -41,11 +41,11 @@ principles:
 - balance
 - cache
 problem: Enterprise teams lack LLM optimization expertise to compress models within
-  constrained GPU budgets, leaving GPU utilization low across heterogeneous infrastructure.
+  GPU budgets, leaving utilization low across heterogeneous infrastructure.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3752.pdf
 slug: meeting-slos-slashing-hours-automated-enterprise-llm-optimiz
 status: draft
 title: 'Meeting SLOs, Slashing Hours: Automated Enterprise LLM Optimization with OptiKIT'
@@ -54,6 +54,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3752
 ---
+
+## Background
+
+LLM compression (quantization, pruning, distillation) can reduce GPU memory 2–8× and improve throughput, but requires expertise most application teams don't have: selecting schemes, tuning calibration data, and validating accuracy regressions. At a large enterprise, teams default to FP16 or attempt ad-hoc compression that breaks quality. Heterogeneous GPU infrastructure adds further complexity — a multi-stage optimization pipeline must run across partially occupied clusters.
 
 ## Key Contributions
 

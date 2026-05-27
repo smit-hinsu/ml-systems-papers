@@ -65,6 +65,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3832
 ---
 
+## Background
+
+LLM agents that write GPU kernels have improved rapidly, but the feedback loop is broken: correctness tests don't reflect production performance, and serving systems don't easily accept dynamically generated code. An agent may produce a faster attention kernel in isolation, but no standard benchmark measures performance against real serving workloads, and no mechanism swaps the kernel into a running vLLM or SGLang instance.
+
 ## Key Contributions
 
 - **FlashInfer Trace schema**: unified representation for kernel definitions, workload descriptions, implementations, and evaluation results, enabling consistent communication between LLM agents and inference systems

@@ -25,6 +25,8 @@ what's left each session — update them as work happens.
 - [x] Taxonomy critic pass on original 22 papers (not yet done on bulk 113)
 - [x] `## Background` section: NoC paper
 - [x] Validation warnings on first 10 papers: zero
+- [x] All 135 papers: 0 warnings, 0 errors (`validate.py` clean as of 2026-05-26)
+- [x] Taxonomy critic pass on bulk 113 papers (in-progress agent, findings to be applied)
 
 ---
 
@@ -66,26 +68,36 @@ Move each paper `under-review` → `published` after human review.
 
 ---
 
-## Track 2 — Data quality at scale (after first 10 are reviewed)
+## Track 2 — Data quality at scale
 
-Run these after reviewing the first 10 to establish the right quality bar before touching the remaining 125.
-
-- [ ] Taxonomy critic pass on bulk 113 papers (agent scan for principle misapplications, generic observations, domain misclassifications)
-- [ ] Batch trim char-limit violations (LLM agent — one pass for `problem`, one for `key_results`, one for `observations`)
-- [ ] Fix `key_results` with no hardware or model (`check_quality.py` flags these)
-- [ ] Fix `key_results` using "state-of-the-art" without a named baseline
+- [x] All 135 papers: 0 warnings, 0 errors in `validate.py` (2026-05-26)
+- [x] All `key_results` "state-of-the-art" replaced with named baselines
+- [x] All char-limit violations trimmed (problem ≤160, key_results ≤160, observations ≤200)
+- [x] All `key_results` contain at least one digit
+- [x] No unknown topic/principle slugs
+- [x] Taxonomy critic pass on bulk 113 papers (2026-05-26)
+- [x] Apply taxonomy critic findings: 34 papers corrected (2026-05-26)
+  - 7 speculative-decoding papers gained `speculate` principle (was 0/135)
+  - 5 quantization papers gained `quantize` principle (was 0/135)
+  - `recompute`, `elastic`, `portable`, `approximate`, `specialize` now have 1-2 correct assignments each
+  - ~17 wrong `cache` removals, ~6 wrong `balance` removals, ~2 wrong `fuse`/`pipeline` removals
+  - 7 measurement/tooling papers correctly have no principles (blueprint, charon, csle, profinfer, osworld, driftbench, cost-aware)
+  - reparo domain fixed: `llm-serving` → `edge-inference`
+  - grinnder + g-hemp domains fixed: `llm-training`/`llm-serving` → `ml-kernels` (GNN papers; no dedicated domain exists yet)
 - [ ] Identify ~20–30 papers needing `## Background` (hardware, compilers, specialized architectures, recs)
-- [ ] Audit unknown topic slugs: `python scripts/validate.py 2>&1 | grep "unknown.*slug"`
 - [ ] Add `attention-kernels` tagging to all papers that do attention kernel work (currently 2 known)
+- [ ] Consider adding `graph-learning` domain for grinnder + g-hemp (GNN papers misfit current taxonomy)
 
 ---
 
-## Track 3 — Metadata completeness (automatable, no paper reading required)
+## Track 3 — Metadata completeness
 
-- [ ] **`arxiv_url`**: ~60 papers missing — Semantic Scholar title search (serial, 0.5s delay)
+- [ ] **`slides_url`**: all empty — requires one interactive login to mlsys.org, then headless:
+  1. `! source .venv/bin/activate && python scripts/fetch_slides.py` — opens browser, log in, session saved to `data/.auth_mlsys-2026.json`
+  2. Subsequent runs are headless and update all 135 papers
+- [ ] **`arxiv_url`**: ~60 papers missing — Semantic Scholar title search, serial with 0.5s delays (batch agent)
 - [ ] **`citations`**: run `scripts/fetch_metadata.py` after arxiv_url is populated; OpenAlex API
-- [ ] **`code_url`**: ~110 papers missing — web search per paper (GitHub link usually in OpenReview or arXiv abstract); consider a batch agent
-- [ ] **`slides_url`**: all empty — run `scripts/fetch_slides.py` after interactive login to mlsys.org (requires headed browser)
+- [ ] **`code_url`**: ~110 papers missing — read OpenReview/arXiv page per paper to find GitHub link in abstract or PDF (batch agent); NOT general web search
 - [ ] **`organizations`**: ~35 stubs have `organizations: []` — fill from OpenReview author affiliations
 
 ---
@@ -94,19 +106,17 @@ Run these after reviewing the first 10 to establish the right quality bar before
 
 ### Done
 - [x] Sort order on homepage
-- [x] 1-line `problem` summary on cards
 - [x] Compact principle chips replacing verbose observation blocks
 - [x] Status badges (reviewing / draft) in dev mode
+- [x] Brand clickable (links to index)
+- [x] Hero redesign: compact inline title + tagline + badge count; search immediately below
+- [x] Card layout: domain/topic tags after meta row; principles in separate labelled section after key_results
+- [x] Filter UX: dismissable chip with colour-coded badge shows active filter; click × to clear
+- [x] Paper detail page: `## Background` section rendered with blue callout box (via JS)
 
 ### TODO
-- [ ] **Remove "All Papers" nav link** — clicking the "ML Systems Papers" brand already navigates to the index; the link is redundant (`base.html.jinja2` line 213)
-- [ ] **Redesign hero section** — current layout stacks title, tagline, paper count, then search below. Integrate into a single compact header: site name + tagline inline, paper count as a small badge, search box immediately below. Reduce vertical space consumed before papers appear.
-- [ ] **Paper detail page**: show `code_url` / `slides_url` as action buttons; show citation count; render `## Background` section visually distinct (e.g., slightly different background)
-- [ ] **Card layout — move domain/topic tags after authors**: currently tags appear at the bottom of the card after principles. Move domain and topic chips to immediately after the authors/orgs/venue meta row, so the paper's classification is visible before the summary and results.
-- [ ] **Card layout — dedicated principles section**: move principles out of the tags row into their own labelled section between key_results and the domain/topic tags. Only the principle name should be the clickable/filterable element — not the full observation text (which is removed from cards anyway). This reduces tag-row clutter and gives principles visual prominence.
-- [ ] **Filter UX**: clicking a principle chip filters the grid but there's no persistent sidebar — consider adding a compact filter strip above the grid showing active filters with X to clear each
 - [ ] **Topics in search index**: `topic_labels` already in search index; verify Fuse.js weights are tuned correctly
-- [ ] **Footer/deploy**: configure custom domain `mlsys26.hinsu.org` CNAME; add analytics snippet to `data/site.yaml`
+- [ ] **Analytics**: site live at https://smit-hinsu.github.io/ml-systems-papers/ — add snippet (GoatCounter or Plausible) to `analytics_html` field in `data/site.yaml`
 
 ---
 

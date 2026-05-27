@@ -62,6 +62,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3826
 ---
 
+## Background
+
+MoE models activate only top-k (1–4) of 4–16 experts per token, scaling capacity without scaling per-token compute. The memory problem: all expert weights must stay in HBM during training even though most are idle. Worse, the token dispatch step — permuting tokens so each expert receives only its assigned tokens — materializes large intermediate buffers (permutation indices, routing metadata) that can exceed 90 GB per step, creating a memory wall that limits batch size on 80 GB GPUs.
+
 ## Key Contributions
 
 - **Four compact token dispatch index structures**: expert_token_indices, expert_token_offsets, token_expert_indices, and token_index_map replace conventional large materialized routing buffers, eliminating ~94GB of intermediate tensor allocations during expert dispatch

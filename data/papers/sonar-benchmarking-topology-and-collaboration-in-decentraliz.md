@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Joyce Yuan
 - Yichuan Shi
@@ -20,17 +20,13 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Sparse ring/torus topologies match or outperform dense graphs at substantially
-  lower communication cost; collaborator collapse identified as a systematic failure
-  mode in adaptive neighbor selection.
+key_results: 5+ topology variants; sparse ring/torus match dense graphs at lower communication
+  cost; collaborator collapse is a systematic failure in adaptive selection
 models_evaluated: []
 observations:
-  balance: Topology is a first-class systems variable whose impact amplifies
-    with scale and data heterogeneity; sparse structured topologies can match dense
-    graphs at much lower communication cost.
-  pipeline: SONAR telemetry measures end-to-end performance, communication,
-    robustness, and privacy under consistent conditions, enabling controlled isolation
-    of topology effects on communication-compute overlap.
+  balance: Topology is a first-class systems variable whose impact amplifies with
+    scale and data heterogeneity; sparse structured topologies can match dense graphs
+    at much lower communication cost.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=4Bqg7Xyk5t
 organizations:
@@ -39,13 +35,12 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- pipeline
 problem: Network topology's role in decentralized learning is poorly understood due
   to lack of controlled, reproducible evaluation frameworks with consistent conditions.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3857.pdf
 slug: sonar-benchmarking-topology-and-collaboration-in-decentraliz
 status: draft
 title: 'SONAR: Benchmarking Topology and Collaboration in Decentralized Learning'
@@ -55,6 +50,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3857
 ---
+
+## Background
+
+Decentralized learning trains models across nodes where each communicates only with neighbors defined by a communication topology — no central parameter server. Topology choice (dense graphs vs. sparse rings or tori) affects convergence speed, communication cost, and robustness to data heterogeneity, but prior work uses inconsistent setups that make results incomparable. Adaptive methods that pick neighbors by similarity introduce an additional failure mode: nodes cluster into homogeneous groups, losing gradient diversity without any standard metric capturing the problem.
 
 ## Key Contributions
 

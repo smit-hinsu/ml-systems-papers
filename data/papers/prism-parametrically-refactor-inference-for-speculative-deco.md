@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Xuliang Wang
 - Yuetao Chen
@@ -20,19 +20,19 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: PRISM boosts decoding throughput of a highly optimized inference engine
-  by more than 2.6× and outperforms all existing draft architectures on acceptance
-  length at minimal draft latency
+key_results: PRISM boosts decoding throughput 2.6× on a highly optimized engine and
+  outperforms existing draft architectures on acceptance length at minimal draft latency
 models_evaluated: []
 observations:
-  pipeline: PRISM disaggregates each draft prediction step across
-    multiple disjoint parameter sets, allowing independent parameter subsets to compute
-    in parallel rather than in a single sequential forward pass through a large draft
-    model.
-  cache: By splitting capacity across separate parameter sets rather
-    than a single large model, PRISM avoids executing unused model capacity for each
-    draft token, keeping per-token draft latency low while maintaining high acceptance
-    length.
+  cache: By splitting capacity across separate parameter sets, PRISM avoids executing
+    unused model capacity for each draft token, keeping per-token draft latency low
+    while maintaining high acceptance length.
+  pipeline: PRISM disaggregates each draft step across disjoint parameter sets, allowing
+    subsets to compute in parallel rather than a single sequential forward pass through
+    a large draft model.
+  speculate: PRISM extracts shared prefix layers from the target and adds thin adapter
+    heads; shared-prefix drafting reuses the target's own computation, keeping the
+    drafter close to the target distribution.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=cvU2HuuxEf
 organizations:
@@ -45,12 +45,13 @@ presentation_type: oral
 principles:
 - pipeline
 - cache
+- speculate
 problem: Larger speculative decoding draft models improve acceptance length but add
   prohibitive compute overhead, creating a fundamental accuracy-vs-latency trade-off.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3789.pdf
 slug: prism-parametrically-refactor-inference-for-speculative-deco
 status: draft
 title: 'PRISM: Parametrically Refactor Inference for Speculative Decoding Draft Models'
@@ -59,6 +60,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3789
 ---
+
+## Background
+
+Speculative decoding has a small draft model propose several tokens, then the large target model verifies them in parallel — gaining throughput proportional to how many draft tokens are accepted. The core tension: small drafters are fast but diverge from the target distribution; large drafters improve acceptance length but add enough compute overhead to eliminate the speedup. Architectural tricks (SSM drafters, multi-head drafters) have narrowed but not broken this trade-off.
 
 ## Key Contributions
 

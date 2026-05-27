@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Kevin Quirk
 - Matthew Lennie
@@ -26,18 +26,12 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Analytical closed-form framework optimizes sparing strategy for Meta's
-  hyperscale LLM training clusters; simulation validates model and guides production
-  sparing decisions.
+key_results: Closed-form framework for sparing at Meta 10,000+ GPU LLM clusters; 3
+  parameters (block size, spare count, GPU trays) optimized via simulation
 models_evaluated: []
 observations:
-  balance: Sparing strategy (block size, spare count, spare GPU trays)
-    directly determines how quickly failed components can be replaced, controlling
-    the imbalance between active and spare compute; under-sparing causes long downtime
-    while over-sparing wastes resources.
-  cache: Pre-allocating the right number of spare compute blocks minimizes
-    recomputation from checkpoint rollback by reducing mean time-to-recovery for hardware
-    failures during LLM training.
+  balance: Sparing configuration (block size, spare count, GPU trays) determines replacement
+    speed; under-sparing causes training downtime while over-sparing wastes GPU capacity.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=18jPgte2tM
 organizations:
@@ -45,14 +39,12 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- cache
-problem: Choosing the optimal sparing strategy (block size, spare count, spare GPU
-  trays) for LLM training clusters is complex and directly impacts fault tolerance
-  and goodput.
+problem: Selecting optimal sparing (block size, spare count, GPU trays) for LLM training
+  clusters is complex and directly impacts fault tolerance and training goodput.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3862_xkbT8SW.pdf
 slug: sparing-strategies-to-minimize-reliability-impact-on-large-t
 status: draft
 title: Sparing Strategies to Minimize Reliability Impact On Large Training Jobs
@@ -60,6 +52,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3862
 ---
+
+## Background
+
+At 10,000+ GPU scale, hardware failures are daily events, not exceptions. When a GPU fails mid-run, the training job stalls until hardware is replaced. Sparing pre-provisions spare GPU nodes or trays for hot-swap, but the configuration space — compute block size, spare count, spare tray count — is non-trivial: over-spare and you waste GPUs sitting idle; under-spare and jobs wait hours for replacement hardware.
 
 ## Key Contributions
 

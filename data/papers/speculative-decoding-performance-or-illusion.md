@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Xiaoxuan Liu
 - Jiaxiang Yu
@@ -17,18 +17,19 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: First systematic study of speculative decoding on production vLLM; reveals
-  substantial gaps between observed and theoretical speedup upper bounds across n-gram,
-  EAGLE/EAGLE-3, Draft-Model, and MTP variants at real batch sizes
+key_results: 4 SD variants (n-gram, EAGLE, Draft-Model, MTP) consistently underperform
+  theoretical speedup on production vLLM; gains diminish at large batch sizes
 models_evaluated: []
 observations:
-  balance: Acceptance length varies markedly across output token positions,
-    requests, and datasets; this uneven acceptance distribution means SD benefits
-    are concentrated in a fraction of tokens and diminish as batch size grows because
-    verification cost dominates.
-  cache: Theoretical speedup analysis reveals that verification by
-    the target model dominates total execution time, exposing that draft generation
-    cost is not the limiting factor for many SD configurations in production settings.
+  balance: Acceptance length varies across token positions, requests, and datasets;
+    SD benefits concentrate in a fraction of tokens and diminish at larger batch sizes
+    where verification cost dominates.
+  cache: Theoretical speedup analysis reveals verification by the target model dominates
+    total execution time, exposing draft generation cost as not the limiting factor
+    in production SD settings.
+  speculate: At large batch sizes, continuous batching fully utilizes the GPU; the
+    latency speculation was meant to hide is already absorbed, leaving token verification
+    overhead as pure cost.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=fzkqtezFEi
 organizations:
@@ -37,13 +38,13 @@ presentation_type: oral
 principles:
 - balance
 - cache
-problem: Speculative decoding speedup claims rely on research prototypes and small
-  batch sizes; its real-world effectiveness on production inference engines at scale
-  is unknown.
+- speculate
+problem: Speculative decoding speedup claims use research prototypes at small batches;
+  production effectiveness on inference engines at scale is unknown.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3782.pdf
 slug: speculative-decoding-performance-or-illusion
 status: draft
 title: 'Speculative Decoding: Performance or Illusion?'
@@ -53,6 +54,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3782
 ---
+
+## Background
+
+Speculative decoding papers routinely report 2–4× speedups, but benchmarks almost always measure a single request on a custom inference stack. Production serving uses continuous batching, which keeps the GPU busy regardless of draft quality — the target model's verification pass is already compute-saturated, so verification is no longer "free." Whether SD delivers real latency gains on production inference engines at realistic batch sizes had not been systematically studied.
 
 ## Key Contributions
 

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Zhiqi Bu
 - Justin Chiu
@@ -18,17 +18,17 @@ hardware:
 - NVIDIA GPU
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: DP-ZeRO scales differentially private training to GPT-100B with the
-  same computation and communication efficiency as standard ZeRO on multiple GPUs.
+key_results: DP-ZeRO scales differentially private training to GPT-100B with the same
+  computation and communication efficiency as standard ZeRO on multiple GPUs.
 models_evaluated:
 - GPT-100B (target scale)
 observations:
-  fuse: DP-ZeRO shards gradients, optimizer states, and parameters
-    across workers like standard ZeRO, keeping per-GPU memory proportional to shard
-    size rather than full model size even under DP noise accumulation.
-  balance: Matching standard ZeRO's communication pattern eliminates
-    the extra all-reduce rounds that naive DP distributed training introduces, preventing
-    communication bottlenecks that would otherwise underutilize GPU compute.
+  balance: Matching ZeRO's communication pattern eliminates extra all-reduce rounds
+    that naive DP distributed training introduces, preventing bottlenecks that would
+    underutilize GPU compute.
+  fuse: DP-ZeRO shards gradients, optimizer states, and parameters across workers
+    like standard ZeRO, keeping per-GPU memory proportional to shard size even under
+    DP noise accumulation.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=VGacNNZfgo
 organizations:
@@ -38,13 +38,12 @@ presentation_type: oral
 principles:
 - fuse
 - balance
-problem: Differential privacy training on multiple GPUs is significantly less efficient
-  than standard distributed training; existing DP methods are incompatible with ZeRO
-  sharding and add high communication overhead.
+problem: DP training on multiple GPUs is far less efficient than standard ZeRO; existing
+  DP methods add high communication overhead incompatible with gradient sharding.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: industry
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3803.pdf
 slug: zero-redundancy-distributed-learning-with-differential-priva
 status: draft
 title: Zero redundancy distributed learning with differential privacy
@@ -54,6 +53,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3803
 ---
+
+## Background
+
+Differential privacy (DP) training clips each sample's gradient to a maximum norm and adds calibrated Gaussian noise, bounding any individual example's influence. Per-sample clipping requires computing individual gradients before averaging — incompatible with standard mini-batch computation. ZeRO shards gradients across data-parallel workers to train 100B+ models, but DP requires each worker to apply clipping and noise before gradients are reduced. Naive implementations add extra AllReduce rounds to enforce this ordering, erasing most of ZeRO's efficiency gains.
 
 ## Key Contributions
 

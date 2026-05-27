@@ -152,11 +152,8 @@ def main():
     domains = load_registry("domains.yaml")
     topics = load_registry("topics.yaml")
     all_loaded = load_papers()
-    papers = all_loaded if args.dev else [p for p in all_loaded if p.get("status") == "published"]
-    if not args.dev:
-        excluded = len(all_loaded) - len(papers)
-        if excluded:
-            print(f"Skipping {excluded} non-published paper(s). Use --dev to include them.")
+    # Always build all papers; status filtering happens client-side via ?dev=1
+    papers = all_loaded
     index = build_index(papers, principles, domains, topics, venues)
 
     def sorted_by_count(registry, paper_index):
@@ -172,7 +169,7 @@ def main():
         topics=sorted_by_count(topics, index["by_topic"]),
         all_papers=sort_papers(papers),
         index=index,
-        dev_mode=args.dev,
+        dev_mode=False,  # status badges controlled client-side via ?dev=1
     )
 
     print("Generating paper pages...")

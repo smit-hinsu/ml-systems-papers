@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Hao Ren
 - Yi Mu
@@ -12,35 +12,33 @@ citations_updated: ''
 code_url: ''
 domain:
 - ml-compilers
-organizations:
-- University of Illinois Urbana-Champaign
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Consistently higher speedups than static approximation strategies on
-  3 compound AI systems combining LLMs with retrieval and tool calling; discovers
-  Pareto-optimal accuracy-performance trade-off points
+key_results: Higher speedups than static approximation on 3 compound AI systems (LLM+retrieval,
+  LLM+tools); finds Pareto-optimal accuracy-performance trade-offs.
 models_evaluated: []
 observations:
-  skip: approx MLIR dialect expresses approximation choices for both ML
-    and non-ML components (LLM sampling, retrieval heuristics) in a unified IR; approx-opt
-    explores the space to skip computation whose accuracy cost is within budget.
-  cache: End-to-end compilation of compound systems lets approxMLIR
-    discover cross-component approximations (e.g., skip retrieval when LLM confidence
-    is high) that per-component optimizers cannot see.
+  cache: End-to-end compilation of compound systems lets approxMLIR discover cross-component
+    approximations (e.g., skip retrieval when LLM confidence is high) that per-component
+    optimizers cannot see.
+  skip: approx MLIR dialect expresses approximation choices for ML and non-ML components
+    in a unified IR; approx-opt searches the joint space to skip work whose accuracy
+    cost stays within budget.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=nKm25GWbuB
+organizations:
+- University of Illinois Urbana-Champaign
 presentation_type: oral
 principles:
 - skip
 - cache
-problem: Compound AI systems mixing LLMs and non-ML components (RAG, tool calling)
-  have no unified way to trade accuracy for performance across both component types,
-  leaving cross-component optimization opportunities unexploited.
+problem: Compound AI systems (LLM+RAG, tool calling) have no unified way to trade
+  accuracy for performance, leaving cross-component optimization unexploited.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3757.pdf
 slug: approxmlir-accuracy-aware-compiler-for-compound-ml-system
 status: draft
 title: 'ApproxMLIR : Accuracy-Aware Compiler for Compound ML System'
@@ -50,6 +48,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3757
 ---
+
+## Background
+
+Compound AI systems (LLM + RAG, LLM + tool calls) can be approximated at many points — quantize the LLM, skip retrieval on high-confidence queries, use cheaper tool policies — but these choices interact. Existing ML compilers optimize single neural networks with no way to express an accuracy budget spanning an LLM and a retrieval engine in one IR, forcing cross-component trade-offs to be found by hand-tuning. The result: individually reasonable approximations combine unexpectedly to breach quality constraints.
 
 ## Key Contributions
 

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Shuyi Lin
 - Anshuman Suri
@@ -16,17 +16,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: BOA's two-phase search finds jailbreak responses with high-likelihood
-  more systematically than prior methods, enabling model certification under adversarial
-  conditions.
+key_results: BOA 2-phase search certifies LLM jailbreak absence above a user-set probability
+  threshold more reliably than prior methods, enabling reproducible auditing
 models_evaluated: []
 observations:
-  skip: Depth-first priority search guided by fine-grained safety scores
-    focuses compute on promising low-probability paths, skipping unpromising branches
-    and reducing exponential search space.
-  search-ai: BOA frames jailbreak detection as a verifiable oracle problem
-    with a probability threshold, allowing AI-guided search to systematically solve
-    a measurable security objective.
+  search-ai: BOA frames jailbreak detection as a verifiable oracle problem with a
+    probability threshold, allowing AI-guided search to systematically solve a measurable
+    security objective.
+  skip: Depth-first priority search guided by fine-grained safety scores focuses compute
+    on promising low-probability paths, skipping unpromising branches and reducing
+    exponential search space.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=vr3Rrg6Xnm
 organizations:
@@ -35,12 +34,12 @@ presentation_type: oral
 principles:
 - skip
 - search-ai
-problem: No systematic method exists to determine whether an LLM can generate a jailbreak
-  response above a probability threshold, making security assessment unprincipled.
+problem: No systematic method exists to determine if an LLM can generate a jailbreak
+  above a probability threshold, making security assessment unprincipled.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3739.pdf
 slug: toward-principled-llm-safety-testing-solving-the-jailbreak-o
 status: draft
 title: 'Toward Principled LLM Safety Testing: Solving the Jailbreak Oracle Problem'
@@ -48,6 +47,10 @@ topics: []
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3739
 ---
+
+## Background
+
+Red-teaming finds individual jailbreak examples but produces no meaningful guarantee: finding one says nothing about how many others exist, and failing to find one doesn't mean they don't. The output space under adversarial decoding is exponential in sequence length, making exhaustive search impossible. The missing piece is a formal statement asking not "can we find a jailbreak" but "does the model produce jailbreaks with probability above a threshold?" — a question with an auditable, reproducible answer.
 
 ## Key Contributions
 

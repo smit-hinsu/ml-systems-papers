@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
 arxiv_date: ''
+arxiv_url: ''
 authors:
 - Yichuan Wang
 - Zhifei Li
@@ -25,17 +25,16 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-24'
-key_results: Up to 50× index size reduction vs. conventional HNSW-style indices while
-  maintaining comparable accuracy and latency for RAG applications on real-world benchmarks
+key_results: Up to 50× index size reduction vs. HNSW-style indices while maintaining
+  comparable accuracy and latency for RAG on real-world benchmarks
 models_evaluated: []
 observations:
-  cache: LEANN recomputes embeddings on the fly at query time rather
-    than storing precomputed vectors, trading CPU/GPU compute for storage elimination;
-    index metadata is compressed to 5% of original data size.
-  tier: Compressed proximity graph retains only the graph structure
-    and IDs rather than full embeddings, fitting the graph into a fraction of the
-    storage and enabling deployment on personal devices or large-scale distributed
-    systems without embedding storage.
+  recompute: LEANN drops precomputed embeddings after index construction and recomputes
+    them at query time from compressed graph structure; storage shrinks to 1.5 bytes/vector
+    at ~2× query latency.
+  tier: Compressed proximity graph retains only structure and IDs, fitting to 5% of
+    original storage and enabling deployment on personal devices or large-scale systems
+    without embedding storage.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=e8Dp5QkFxP
 organizations:
@@ -44,15 +43,14 @@ organizations:
 - Wuhan University
 presentation_type: oral
 principles:
-- cache
 - tier
-problem: Vector search indices storing full embeddings and graph metadata can be several
-  times larger than raw data, making deployment on personal devices or massive datasets
-  impractical.
+- recompute
+problem: Vector search indices storing full embeddings and graph metadata are several
+  times larger than raw data, making personal-device deployment impractical.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research
-slides_url: ''
+slides_url: https://mlsys.org/media/mlsys-2026/Slides/3786_vlIWXsd.pdf
 slug: leann-a-low-storage-overhead-vector-index
 status: draft
 title: 'LEANN: A Low-Storage Overhead Vector Index'
@@ -62,6 +60,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3786
 ---
+
+## Background
+
+Vector search indices (e.g., HNSW) store both embeddings and multi-layer graph metadata, typically occupying 3–10× more storage than raw text. For RAG on a laptop or personal device, this overhead makes indexing even a moderately large corpus impractical — the index alone can exhaust disk before a user's data is ingested.
 
 ## Key Contributions
 
