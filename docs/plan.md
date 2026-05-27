@@ -34,18 +34,23 @@ what's left each session — update them as work happens.
 
 Move each paper `under-review` → `published` after human review.
 
+**Review command (runs all checks automatically):**
+```bash
+python scripts/review.py <slug>            # full brief with LLM check
+python scripts/review.py --no-llm <slug>  # skip LLM call (faster)
+```
+
 **Review checklist per paper:**
-1. **Pre-review data check** — before reading, surface what's missing so the reviewer knows what they can't verify:
-   - Is `arxiv_url` or `openreview_url` present? If neither, the reviewer has no PDF to check against.
-   - Is `code_url` present? If not, note it as a find-during-review task.
-   - Are `organizations` filled? If empty, taxonomy and industry/research classification can't be confirmed.
-   - Flag these gaps upfront so the reviewer can push back or fill them before signing off.
+1. **Pre-review data check** — `review.py` surfaces this automatically:
+   - `arxiv_url` or `openreview_url` present? (need a PDF to verify against)
+   - `code_url` present? If not, find it during review (OpenReview / arXiv abstract)
+   - `organizations` filled? Required for taxonomy and research/industry classification
 2. Read the paper (arXiv or OpenReview abstract + intro)
-3. Verify `key_results` — hardware + model + metric + baseline? ≤ 160 chars?
+3. Verify `key_results` — hardware + model + metric + named baseline? ≤ 160 chars?
 4. Verify `principles` — core contribution only, not tangential?
 5. Verify `observations` — paper-specific insight, not principle restatement? ≤ 200 chars each?
 6. Verify `domain` and `topics` — correct and complete?
-7. Add `## Background` if the problem domain isn't obvious from the title
+7. **Add `optimization_type`** — one or more of: `algorithm`, `system`, `hardware`, `workflow`, `application`; leave empty only for pure measurement/tooling papers
 8. Fill `code_url`, `slides_url` if findable
 9. Run `python scripts/validate.py` — zero warnings for this paper
 10. Set `status: published`
@@ -156,6 +161,15 @@ Use this to avoid the most common generation errors found during review.
 **`topics`**
 - [ ] Concrete technique tags only — what method does the paper use?
 - [ ] Add to `data/topics.yaml` first if the slug doesn't exist
+
+**`optimization_type`** (new field — fill during review)
+- [ ] `algorithm` — new formula, method, or computation strategy
+- [ ] `system` — engineering change without fundamental algorithmic novelty
+- [ ] `hardware` — hardware design or deep hardware-software co-design
+- [ ] `workflow` — training recipe, eval methodology, operational process
+- [ ] `application` — domain-specific trick exploiting application-layer properties
+- [ ] Multiple values are expected for most papers; empty only for pure measurement papers
+- [ ] `review.py` LLM check suggests values — verify before accepting
 
 ### Content rules
 

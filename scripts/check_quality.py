@@ -221,7 +221,7 @@ def cross_paper_obs_check(all_papers: list[tuple[str, dict]]) -> list[tuple[str,
 
 LLM_PROMPT_TEMPLATE = """\
 You are reviewing a paper entry in an ML systems paper index. The audience is senior ML \
-systems engineers. Evaluate the entry quality on these 4 dimensions:
+systems engineers. Evaluate the entry quality on these 5 dimensions:
 
 1. PROBLEM VOICE: Does `problem` read like a practitioner describing a real pain point \
 (specific, concrete) or like an academic abstract (vague, generic)?
@@ -236,15 +236,26 @@ Or are they vague ("we propose a new approach")?
 4. MISSING NUANCES: Based on the problem and contributions described, what obvious \
 limitations or gotchas are likely present that are missing from `## Nuances`?
 
+5. OPTIMIZATION TYPE: Which of these apply? Pick all that fit:
+   algorithm  — new mathematical method, formula, or computation strategy
+   system     — engineering change: batching, scheduling, memory, disaggregation
+   hardware   — hardware design, ISA, or deep hardware-software co-design
+   workflow   — training recipe, eval methodology, or operational process change
+   application — domain-specific trick exploiting application-layer properties
+   Current value: {optimization_type}
+
 For each dimension, give ONE sentence of critique if there's a real issue, or "OK" if fine.
 Be concise. Don't repeat the content back to me.
 
 --- PAPER ENTRY ---
 slug: {slug}
+domain: {domain}
+topics: {topics}
 problem: {problem}
 key_results: {key_results}
 principles: {principles}
-observations: {observations}
+observations:
+{observations}
 
 {body}
 --- END ---
@@ -254,6 +265,7 @@ PROBLEM VOICE: <one sentence or OK>
 KEY CONTRIBUTIONS: <one sentence or OK>
 OBSERVATIONS: <one sentence or OK>
 MISSING NUANCES: <one sentence or OK>
+OPTIMIZATION TYPE: <comma-separated slugs, e.g. "algorithm, system">
 """
 
 
@@ -267,13 +279,16 @@ def llm_check_paper(slug: str, p: dict, body: str) -> tuple[str, str]:
     client = anthropic.Anthropic()
     prompt = LLM_PROMPT_TEMPLATE.format(
         slug=slug,
+        domain=", ".join(p.get("domain") or []),
+        topics=", ".join(p.get("topics") or []),
+        optimization_type=", ".join(p.get("optimization_type") or []) or "not tagged",
         problem=p.get("problem") or "",
         key_results=p.get("key_results") or "",
         principles=", ".join(p.get("principles") or []),
         observations="\n".join(
             f"  {k}: {v}" for k, v in (p.get("observations") or {}).items()
-        ),
-        body=body[:3000],  # truncate very long bodies
+        ) or "  (none)",
+        body=body[:6000],
     )
     try:
         message = client.messages.create(
@@ -368,6 +383,7 @@ def main() -> None:
 
     if args.llm:
         run_llm_checks(papers)
+        print("  (OPTIMIZATION TYPE suggestions above are for filling the new field during review)")
 
     if has_failures:
         sys.exit(1)
