@@ -14,6 +14,34 @@ Every claim must be specific enough to be useful. If you could substitute the se
 
 If the paper names a specific system, algorithm, or prior work — include it. If a result has hardware, model size, and metric — include all three.
 
+## The writing rules
+
+Every entry follows Orwell's six rules from *Politics and the English Language*. They are
+the house style, and they sit underneath every field-specific rule below.
+
+1. **Never use a metaphor, simile, or figure of speech you are used to seeing in print.**
+   Dead metaphors are the tell of writing that was assembled rather than thought through:
+   *unlocks, paves the way, sheds light on, at the heart of, game-changing, seamlessly,
+   leverages, harnesses the power of.* Say what the thing does.
+2. **Never use a long word where a short one will do.** *utilize* → use. *methodology* →
+   method. *facilitates* → lets. *in order to* → to. *demonstrates that* → shows.
+3. **If it is possible to cut a word out, cut it.** *in the context of, it is worth noting
+   that, a variety of, in terms of, the fact that* — all deletable without loss. Character
+   limits on `problem`, `key_results`, and `observations` exist to force this.
+4. **Never use the passive where you can use the active.** "The KV cache is recomputed by
+   the scheduler" → "the scheduler recomputes the KV cache." Passive voice hides who acts,
+   which is exactly the information a systems reader wants.
+5. **Never use a jargon word where an everyday word will do.** This targets *needless*
+   jargon, not domain vocabulary. Terms of art — KV cache, prefill, all-reduce, HBM — are
+   precise and required; rule 5 never overrides the specificity requirement above. It
+   forbids the vague-academic register: *paradigm, holistic, novel framework, orthogonal
+   to, non-trivial.*
+6. **Break any of these rules sooner than say anything outright barbarous.** If following
+   a rule makes a sentence wrong, misleading, or unreadable, the rule loses.
+
+Rules 1 and 5 do most of the work here, because model-generated prose defaults to exactly
+the register they forbid.
+
 ## The workflow
 
 1. **Read the paper yourself.** There is no shortcut here. Take rough notes on what surprised you or what you'd want to tell a colleague.

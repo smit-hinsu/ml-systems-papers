@@ -318,6 +318,19 @@ page. **Recommendation: stay single-parent** (`skip` → Eliminate) and let each
 
 Use this to avoid the most common generation errors found during review.
 
+### Writing style (applies to every field and section)
+
+Orwell's six rules are the house style — full text in `docs/summarizing.md`, enforced in
+`prompts/paper_summary.md`.
+
+- [ ] No print-worn metaphors: *unlocks, paves the way, at the heart of, seamlessly, leverages, harnesses*
+- [ ] Short word over long: *utilize*→use, *methodology*→method, *in order to*→to
+- [ ] Cut every cuttable word: *in the context of, it is worth noting that, a variety of*
+- [ ] Active voice — name the actor
+- [ ] No vague-academic register (*paradigm, holistic, novel framework, non-trivial*); terms of
+      art (KV cache, prefill, all-reduce) are required and always beat this rule
+- [ ] Break any rule sooner than write something inaccurate
+
 ### Field rules
 
 **`problem`** (≤ 160 chars)

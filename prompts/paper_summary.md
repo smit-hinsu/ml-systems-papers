@@ -11,6 +11,26 @@ systems engineer or researcher deciding whether to read the full paper. Your job
 them enough to understand the approach and evaluate whether it's relevant to their work —
 without making them open the PDF.
 
+## Writing style — Orwell's six rules
+
+Apply these to every field and every section. They override any instinct toward academic
+register.
+
+1. Never use a metaphor or figure of speech you are used to seeing in print. Banned:
+   *unlocks, paves the way, sheds light on, at the heart of, game-changing, seamlessly,
+   leverages, harnesses, revolutionizes.*
+2. Never use a long word where a short one will do: *utilize*→use, *methodology*→method,
+   *facilitates*→lets, *in order to*→to, *demonstrates*→shows.
+3. If a word can be cut, cut it. Delete *in the context of, it is worth noting that, a
+   variety of, in terms of, the fact that.*
+4. Never use the passive where the active works. Name the actor: "the scheduler recomputes
+   the KV cache", not "the KV cache is recomputed".
+5. Never use a jargon word where an everyday word will do. This bans the vague-academic
+   register (*paradigm, holistic, novel framework, orthogonal to, non-trivial*) — it does
+   NOT ban terms of art. KV cache, prefill, all-reduce, and HBM are precise and required;
+   specificity always wins over rule 5.
+6. Break any of these rules sooner than write something barbarous or inaccurate.
+
 ## Rules
 
 ### problem
