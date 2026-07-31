@@ -25,9 +25,6 @@ models_evaluated:
 - Vicuna
 - Llama-2
 observations:
-  balance: Quantized layer swapping replaces low-impact layers with INT4 during bursts;
-    freed memory is immediately repurposed as KV cache capacity, balancing precision
-    cost against batching headroom.
   quantize: Layers are dynamically quantized to INT4 and swapped based on current
     SLO headroom; elastic quantization depth adapts throughput vs. latency trade-off
     without recompiling the model.
@@ -42,7 +39,6 @@ organizations:
 - Harvard University
 presentation_type: oral
 principles:
-- balance
 - tier
 - quantize
 problem: Static quantization degrades accuracy permanently; full-precision serving

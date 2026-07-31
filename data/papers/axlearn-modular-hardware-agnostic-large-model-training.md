@@ -55,9 +55,6 @@ key_results: Adds RoPE across hundreds of modules with 10 lines of code vs. hund
   in comparable systems; O(1) integration complexity vs. O(N) or O(N²) in alternatives.
 models_evaluated: []
 observations:
-  balance: Constant-complexity scaling (vs. linear/quadratic in competing systems)
-    means adding parallelism dimensions or new hardware backends does not require
-    proportionally more framework integration code.
   portable: All model components implement against an abstract Tensor interface; swapping
     the backend (TPU, GPU, CPU) requires no changes to model code — the same config
     runs unmodified on any supported hardware.
@@ -68,7 +65,6 @@ organizations:
 - Apple
 presentation_type: oral
 principles:
-- balance
 - portable
 problem: Training frameworks accumulate quadratic complexity as hardware backends
   and model components multiply, slowing experimentation and hardware migration.

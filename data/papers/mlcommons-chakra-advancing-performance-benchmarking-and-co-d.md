@@ -23,6 +23,9 @@ observations:
   cache: A captured Chakra ET replays across simulated hardware configurations without
     re-running the original training job, amortizing measurement cost across the design
     space.
+  measure: Co-designing an interconnect needs a real distributed training workload,
+    but those traces stay inside the companies that run them and the target hardware
+    does not exist yet.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=s2WcSv2Hzt
 optimization_type: []
@@ -36,6 +39,7 @@ organizations:
 presentation_type: oral
 principles:
 - cache
+- measure
 problem: Without a portable workload format, ML co-design requires specialized hardware
   unavailable to most; optimizations can't be evaluated offline or shared.
 project_url: ''

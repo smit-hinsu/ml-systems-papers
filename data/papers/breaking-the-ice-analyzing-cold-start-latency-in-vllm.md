@@ -25,6 +25,9 @@ models_evaluated:
 observations:
   cache: Cold start is predominantly CPU-bound across 6 identified phases; the analytical
     model pinpoints which steps can be parallelized or cached to reduce startup.
+  measure: Serverless and autoscaled vLLM pay cold start on every scale-up, yet nobody
+    had asked which startup step — torch.compile, weight load, CUDA init — spends
+    the seconds.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=eoEobeKTNZ
 optimization_type: []
@@ -33,6 +36,7 @@ organizations:
 presentation_type: oral
 principles:
 - cache
+- measure
 problem: vLLM cold start latency is opaque despite being the default inference engine,
   blocking resource planning for serverless and auto-scaling deployments.
 project_url: ''

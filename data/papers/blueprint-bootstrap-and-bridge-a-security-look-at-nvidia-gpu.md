@@ -25,7 +25,10 @@ key_results: Experiments on 2 GPU architectures (Ampere, Hopper) reveal unprotec
   data transfer paths under GPU-CC threat model; findings disclosed to NVIDIA PSIRT.
 models_evaluated:
 - AI workloads under GPU-CC
-observations: {}
+observations:
+  measure: NVIDIA ships GPU-CC as a closed box, so a tenant renting untrusted cloud
+    GPUs cannot check whether CPU-to-GPU transfers are really encrypted without rebuilding
+    the architecture from outside.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=t9RDCO1aL7
 optimization_type: []
@@ -33,7 +36,8 @@ organizations:
 - IBM Research
 - Ohio State University
 presentation_type: oral
-principles: []
+principles:
+- measure
 problem: NVIDIA GPU Confidential Computing is proprietary and opaque, making it hard
   to audit security guarantees for AI workloads running in untrusted clouds.
 project_url: ''

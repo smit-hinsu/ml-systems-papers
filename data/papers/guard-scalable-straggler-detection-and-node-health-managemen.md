@@ -32,8 +32,9 @@ key_results: 1.7× FLOPs utilization gain; training step variance 20%→1% on te
   thousands of GPUs in multi-month foundation model pretraining.
 models_evaluated: []
 observations:
-  balance: Step-time variance of 20% means fast nodes wait for the slowest each iteration;
-    remediating fail-slow nodes before the sync barrier eliminates these stall bubbles.
+  balance: Fail-slow nodes pass functional tests — they never fail outright, they just
+    run each step slower, and every other node waits at the sync barrier. Step-time
+    variance reached 20%.
   cache: Offline node sweeping qualifies nodes before they join production jobs, preventing
     straggler-induced checkpoint rollbacks that waste compute already spent on the
     aborted run segment.

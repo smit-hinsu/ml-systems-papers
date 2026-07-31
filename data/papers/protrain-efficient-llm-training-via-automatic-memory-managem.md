@@ -23,9 +23,6 @@ key_results: 1.43x–2.71x training throughput improvement over manual-tuned tra
   systems via automated memory management without accuracy loss.
 models_evaluated: []
 observations:
-  balance: ProTrain's cost models estimate latency, memory, and I/O bandwidth precisely
-    to find configurations that avoid memory pressure while keeping GPU utilization
-    high, eliminating manual misconfiguration.
   recompute: ProTrain auto-selects activation checkpoint granularity using cost models
     that weigh memory savings against recomputation overhead; the planner finds the
     optimal schedule without manual search.
@@ -36,7 +33,6 @@ organizations:
 - University of Massachusetts Amherst
 presentation_type: oral
 principles:
-- balance
 - recompute
 problem: LLM training memory-saving techniques expose low-level knobs requiring manual
   tuning; misconfiguration causes suboptimal hardware utilization or OOM failures.

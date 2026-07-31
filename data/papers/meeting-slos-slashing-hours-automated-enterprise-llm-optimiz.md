@@ -25,9 +25,6 @@ key_results: More than 2× GPU throughput improvement in production deployment; 
   model optimization from hours of manual effort to automated pipeline execution
 models_evaluated: []
 observations:
-  balance: Dynamic resource allocation across heterogeneous GPU infrastructure assigns
-    compression and evaluation jobs to available capacity, reducing idle GPUs during
-    multi-stage optimization pipelines.
   cache: Staged pipeline execution with automatic cleanup resumes from the last completed
     stage on failure, avoiding rerunning costly optimization steps already finished
     successfully.
@@ -39,7 +36,6 @@ organizations:
 - Democritus University of Thrace
 presentation_type: oral
 principles:
-- balance
 - cache
 problem: Enterprise teams lack LLM optimization expertise to compress models within
   GPU budgets, leaving utilization low across heterogeneous infrastructure.

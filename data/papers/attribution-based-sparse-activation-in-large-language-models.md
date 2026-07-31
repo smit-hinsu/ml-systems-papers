@@ -22,9 +22,6 @@ key_results: 70% model sparsity with <5% accuracy loss on QA and text summarizat
   35% latency reduction and 40% memory reduction for LLM inference
 models_evaluated: []
 observations:
-  balance: Input-dependent sparse activation selects neurons per token at runtime,
-    keeping GPU compute on high-attribution neurons while skipping zero-attribution
-    ones.
   skip: New attribution metric corrects interdependency errors in existing scores;
     70% neuron deactivation with <5% accuracy loss enables 35% latency and 40% memory
     reduction without model retraining.
@@ -37,7 +34,6 @@ organizations:
 presentation_type: oral
 principles:
 - skip
-- balance
 problem: Existing lossless sparse activation only skips zero-output neurons, which
   are rare in modern efficient LLMs, making activation sparsity ineffective in practice.
 project_url: ''

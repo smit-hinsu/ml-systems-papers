@@ -17,14 +17,18 @@ indexed_date: '2026-05-25'
 key_results: PRI achieves R²=0.909 for unseen hardware and R²=0.763 for unseen precision;
   blocked a real upgrade where 23.85% of safety prompts changed classification
 models_evaluated: []
-observations: {}
+observations:
+  measure: Swapping a GPU, a precision, or a serving framework changes model outputs
+    with nothing in the deploy pipeline firing, so a flip in safety classifications
+    reaches users unnoticed.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=Xfzzp6grRP
 optimization_type: []
 organizations:
 - Universitas Mercatorum
 presentation_type: oral
-principles: []
+principles:
+- measure
 problem: Production LLM deployments lack a way to predict output consistency risk
   when upgrading hardware, precision, or frameworks, leading to silent regressions.
 project_url: ''

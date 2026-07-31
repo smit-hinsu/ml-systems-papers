@@ -23,7 +23,10 @@ indexed_date: '2026-05-24'
 key_results: Less than 4% runtime overhead while providing operator-level profiling
   of LLM inference with MoE routing and offloading patterns on llama.cpp
 models_evaluated: []
-observations: {}
+observations:
+  measure: llama.cpp offloads layers and routes MoE experts at run time, but a shipped
+    edge binary cannot be recompiled with instrumentation, so nobody sees which operator
+    stalled or why.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=tYHWS7YPof
 optimization_type: []
@@ -31,7 +34,8 @@ organizations:
 - Huawei
 - Technical University of Munich
 presentation_type: oral
-principles: []
+principles:
+- measure
 problem: Edge LLM inference engines have no operator-level profiling; developers cannot
   identify memory-bound vs. compute-bound bottlenecks without source modifications.
 project_url: ''

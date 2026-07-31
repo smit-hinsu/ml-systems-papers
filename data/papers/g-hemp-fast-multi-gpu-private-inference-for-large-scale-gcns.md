@@ -22,17 +22,14 @@ key_results: G-HEMP achieves 4.41x speedup over feature-wise packing and 3.88x l
   improvement on 4-GPU vs single GPU, 3.13x gain vs Cinnamon on GCN inference.
 models_evaluated:
 - Large-scale GCNs
-observations:
-  balance: Multi-GPU workload partitioning halves per-GPU peak memory on 4-GPU systems,
-    enabling larger graphs that exceed single GPU capacity.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=RSTrFSPIMy
 organizations:
 - North Carolina State University
 presentation_type: oral
-principles:
-- balance
+principles: []
 problem: Homomorphic encryption for private GCN inference on GPUs has excessive memory
   and redundant compute, preventing scaling to large real-world graphs.
 project_url: ''

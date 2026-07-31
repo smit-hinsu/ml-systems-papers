@@ -30,6 +30,9 @@ observations:
   search-ai: Procedurally generated datasets with controllable complexity and verifiable
     answers let RLVR train on objectively checkable problems, enabling scaling law
     studies without human annotation.
+  measure: RLVR data-scaling claims rest on benchmarks whose difficulty nobody can
+    dial, so there is no way to tell what one more training example buys when data
+    and compute are both scarce.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=fV4t4kYvgi
 optimization_type: []
@@ -40,6 +43,7 @@ presentation_type: oral
 principles:
 - search-ai
 - balance
+- measure
 problem: RLVR post-training requires large annotated datasets with ground-truth answers;
   applying it effectively in low-data, low-compute regimes is unsolved.
 project_url: ''

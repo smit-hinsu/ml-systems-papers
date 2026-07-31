@@ -22,9 +22,6 @@ key_results: 1.48× higher throughput and 15.14× larger batch size vs. existing
 models_evaluated:
 - Early-Exit LLMs
 observations:
-  balance: Multi-model switching routes tokens that miss exits on one EE-LLM to another
-    where they do exit, collectively maximizing early-exit utilization rather than
-    stalling on a single-model bottleneck.
   tier: Greedy layer loading loads only weights for layers most likely to be used
     based on profiled exit distributions, freeing HBM for larger batch sizes instead
     of holding all layer weights resident.
@@ -36,7 +33,6 @@ organizations:
 - NVIDIA
 presentation_type: oral
 principles:
-- balance
 - tier
 problem: EE-LLM serving bottlenecks on tokens that never exit early; loading all layer
   weights wastes HBM that could be used for larger batches.

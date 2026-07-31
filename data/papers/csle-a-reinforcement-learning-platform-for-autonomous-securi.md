@@ -16,14 +16,18 @@ indexed_date: '2026-05-25'
 key_results: Near-optimal RL policies across 4 security use cases in emulated operational
   environment; simulation-to-emulation gap closed via iterative MDP refinement.
 models_evaluated: []
-observations: {}
+observations:
+  measure: Nobody can run real attacks on production networks, and a hand-written
+    MDP's error goes unquantified, so a policy looks optimal in simulation and fails
+    in operation with no way to say why.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=QGuRWjFsnm
 optimization_type: []
 organizations:
 - KTH Royal Institute of Technology
 presentation_type: oral
-principles: []
+principles:
+- measure
 problem: RL-based security management strategies trained in simulation fail to generalize
   to operational networked systems due to the sim-to-real gap in system dynamics.
 project_url: ''

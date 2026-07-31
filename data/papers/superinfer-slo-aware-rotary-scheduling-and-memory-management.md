@@ -21,9 +21,6 @@ key_results: Up to 74.7% improvement in TTFT SLO attainment on GH200 vs. vLLM/SG
   while maintaining comparable TBT and throughput.
 models_evaluated: []
 observations:
-  balance: RotaSched proactively rotates requests between GPU and CPU pools before
-    KV cache exhaustion, preventing head-of-line blocking without reactive eviction
-    that degrades TTFT.
   tier: DuplexKV uses full-duplex NVLink-C2C to transfer KV cache between GH200 GPU
     and CPU simultaneously; higher bandwidth than PCIe enables profitable KV offloading
     under tight TTFT SLOs.
@@ -35,7 +32,6 @@ organizations:
 presentation_type: oral
 principles:
 - tier
-- balance
 problem: PCIe-based KV offloading cannot sustain tight TTFT and TBT SLOs at high request
   rates, causing head-of-line blocking when the KV cache budget is exhausted.
 project_url: ''

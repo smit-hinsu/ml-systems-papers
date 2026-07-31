@@ -19,10 +19,7 @@ indexed_date: '2026-05-25'
 key_results: Up to 2.43× training throughput vs. heuristic placement methods, with
   better memory efficiency across diverse hardware and datacenter network topologies
 models_evaluated: []
-observations:
-  balance: Structured DP jointly optimizes pipeline, data, and ZeRO partitioning with
-    explicit per-device memory constraints, preventing post-hoc sharding that inflates
-    communication and wastes compute.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=jpIoO2zSKA
@@ -30,8 +27,7 @@ organizations:
 - Georgia Tech
 - University of Washington
 presentation_type: oral
-principles:
-- balance
+principles: []
 problem: Heuristic or topology-agnostic distributed training placement causes post-hoc
   sharding that inflates communication and underutilizes compute.
 project_url: ''

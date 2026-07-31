@@ -24,6 +24,9 @@ key_results: 5+ topology variants; sparse ring/torus match dense graphs at lower
   cost; collaborator collapse is a systematic failure in adaptive selection
 models_evaluated: []
 observations:
+  measure: Every decentralized-learning paper picks its own node count, data split,
+    and neighbor graph, so topology results cannot be compared — and collaborator
+    collapse never shows up in the accuracy number.
   balance: Topology is a first-class systems variable whose impact amplifies with
     scale and data heterogeneity; sparse structured topologies can match dense graphs
     at much lower communication cost.
@@ -36,6 +39,7 @@ organizations:
 presentation_type: oral
 principles:
 - balance
+- measure
 problem: Network topology's role in decentralized learning is poorly understood due
   to lack of controlled, reproducible evaluation frameworks with consistent conditions.
 project_url: ''

@@ -22,9 +22,6 @@ key_results: Up to 51% reduction in end-to-end GPU energy consumption vs. vLLM w
   meeting per-request TTFT and TBT SLOs
 models_evaluated: []
 observations:
-  balance: BEAM jointly optimizes GPU frequency, chunk size, and microbatch count;
-    independent tuning of any single dimension yields only a local optimum, missing
-    up to 51% energy savings vs. vLLM.
   pipeline: Event-driven controller responds to request arrivals and completions to
     reallocate latency slack across power and resource dimensions; sub-millisecond
     decisions stay off the critical path.
@@ -35,7 +32,6 @@ organizations:
 - KAIST
 presentation_type: oral
 principles:
-- balance
 - pipeline
 problem: LLM inference SLOs leave latency slack unexploited; existing systems tune
   batching or DVFS in isolation rather than jointly, missing compound energy savings.

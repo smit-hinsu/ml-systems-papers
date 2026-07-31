@@ -23,9 +23,6 @@ key_results: Serves Google LLM-based evaluation across 2+ priority tiers on shar
   TPUs; high-priority tasks meet latency SLOs while background tasks fill spare capacity.
 models_evaluated: []
 observations:
-  balance: AIRS priority-aware scheduling gives high-priority rating tasks lower latency
-    while background evaluation fills spare TPU capacity, maximizing utilization under
-    a fixed resource budget.
   cache: Pipeline engineering across evaluation workflows avoids redundant preprocessing
     and caching shared prompt prefixes across ratings tasks that share common system-prompt
     templates.
@@ -36,7 +33,6 @@ organizations:
 - Google
 presentation_type: oral
 principles:
-- balance
 - cache
 problem: LLM rating demand at Google far exceeds the allocated TPU budget; serving
   all evaluation tasks competes with live user traffic for the same TPUs.

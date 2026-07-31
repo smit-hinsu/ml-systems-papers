@@ -27,9 +27,6 @@ key_results: Up to 1.73× speedup with consistent accuracy and 2.27× with relax
   vs. non-elastic scheduling; evaluated on shared GPU clusters.
 models_evaluated: []
 observations:
-  balance: FlexTrain adjusts pipeline-parallelism degree first when idle GPUs appear,
-    preserving deterministic computation and consistent accuracy without needing full
-    retraining.
   elastic: FlexTrain absorbs spare GPUs at runtime by redistributing layers across
     the enlarged device set; if GPUs are reclaimed, training checkpoints and migrates
     to the smaller configuration without restart.
@@ -44,7 +41,6 @@ organizations:
 - ByteDance
 presentation_type: oral
 principles:
-- balance
 - pipeline
 - elastic
 problem: Elastic LLM training on shared clusters causes accuracy inconsistency, high

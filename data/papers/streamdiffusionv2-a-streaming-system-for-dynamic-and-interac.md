@@ -37,9 +37,6 @@ observations:
     GPUs; near-linear FPS scaling achieved without violating per-frame latency deadlines.
   cache: Sink-token-guided rolling KV cache reuses attention state
     across streaming frames, avoiding full recomputation each generation step.
-  balance: SLO-aware batching scheduler co-manages time-to-first-frame
-    and per-frame deadlines, preventing head-of-line blocking under live-stream load
-    spikes.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=p9WALNBvc6
@@ -51,7 +48,6 @@ presentation_type: oral
 principles:
 - pipeline
 - cache
-- balance
 problem: Offline video diffusion systems optimize throughput via batching but cannot
   meet strict per-frame SLOs and time-to-first-frame requirements of live streaming.
 project_url: ''

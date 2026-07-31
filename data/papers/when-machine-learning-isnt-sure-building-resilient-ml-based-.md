@@ -25,9 +25,6 @@ key_results: Uncertainty-aware rejection improves resilience across 3 case studi
   calls.
 models_evaluated: []
 observations:
-  balance: Falling back to safe strategies when prediction uncertainty is high prevents
-    ML-driven misconfigurations that would cause resource imbalance or admission failures
-    in production.
   search-ai: The framework quantifies prediction uncertainty at runtime to determine
     when ML outputs are trustworthy, enabling ML to solve measurable system objectives
     only within its reliable operating envelope.
@@ -40,7 +37,6 @@ organizations:
 - Google
 presentation_type: oral
 principles:
-- balance
 - search-ai
 problem: ML models in computer systems fail silently on out-of-distribution inputs,
   causing costly failures when predictions are applied without uncertainty awareness.

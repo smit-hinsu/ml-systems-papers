@@ -26,9 +26,9 @@ key_results: Near-linear scalability on up to 256 GPUs with 1.13×–2.21× impr
   in attention MFU over prior context parallelism methods.
 models_evaluated: []
 observations:
-  balance: Block-level bin-packing of short and long sequence fragments across workers
-    eliminates workload imbalance from over-sharding, improving attention MFU by up
-    to 2.21× vs. prior context parallelism.
+  balance: Sequence lengths in a pretraining batch vary widely, so sequence-level
+    sharding hands some context-parallel ranks far less attention work than others,
+    leaving them idle each step.
   fuse: Arbitrary peer-to-peer communication topology (vs. fixed ring) allows FCP
     to place sequence blocks on workers that minimize cross-node transfers for the
     actual sequence distribution.

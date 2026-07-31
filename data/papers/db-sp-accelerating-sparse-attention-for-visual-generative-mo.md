@@ -23,9 +23,9 @@ key_results: 1.25× end-to-end and 1.40× attention speedup over Ulysses/Ring At
   sequence parallel methods for DiT inference with sparse attention on average
 models_evaluated: []
 observations:
-  balance: Sparse imbalance ratio quantifies per-head and per-block sparsity variation
-    that creates unequal work across SP workers; dual-level partitioning achieves
-    near-perfect balance at both granularities.
+  balance: DiT sparsity swings per head and per denoising step — some heads stay dense
+    while others are 90% sparse — so the sequence-parallel rank holding dense heads
+    runs far longer while the rest sit idle.
   skip: DiT block-wise sparse attention produces irregular dense blocks unevenly across
     heads; db-SP routes blocks to workers by actual sparsity pattern rather than naive
     head or sequence splitting.

@@ -21,9 +21,9 @@ key_results: Up to 3× training throughput vs. Megatron-LM and DeepSpeed on repr
   heterogeneous GPU cluster scenarios
 models_evaluated: []
 observations:
-  balance: Pipeline-Efficient ZeRO DP assigns model parameters across pipeline stages
-    without replication, ensuring slower GPUs do not bottleneck training through balanced
-    compute assignment.
+  balance: In a mixed-generation GPU cluster, an even split of layers across pipeline
+    stages makes the slowest GPU set the step time, so every faster GPU idles at each
+    pipeline bubble.
   fuse: Pipeline-Efficient ZeRO DP avoids the extra all-reduce traffic of sharded
     data parallelism with pipeline parallelism and also avoids replicating parameters
     across data-parallel ranks.

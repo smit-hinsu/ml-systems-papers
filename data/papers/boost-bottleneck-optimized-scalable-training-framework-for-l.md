@@ -25,8 +25,6 @@ key_results: BOOST achieves 1.46-1.91x speedup over full-rank baselines and 1.87
 models_evaluated:
 - Low-rank bottleneck LLMs
 observations:
-  balance: Online-RMSNorm and linear layer grouping keep GPU utilization high by eliminating
-    idle bubbles introduced by bottleneck architecture's uneven operator sizes.
   fuse: Bottleneck-aware tensor parallelism splits low-rank factors across devices
     to avoid the excessive cross-device communication of naively applied 3D parallelism.
 official_category: ''
@@ -38,7 +36,6 @@ organizations:
 presentation_type: oral
 principles:
 - fuse
-- balance
 problem: Low-rank bottleneck architectures scale poorly under standard 3D tensor parallelism,
   causing excessive communication overhead and low GPU utilization.
 project_url: ''

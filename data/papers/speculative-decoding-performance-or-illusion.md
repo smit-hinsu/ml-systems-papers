@@ -27,6 +27,9 @@ observations:
   cache: Theoretical speedup analysis reveals verification by the target model dominates
     total execution time, exposing draft generation cost as not the limiting factor
     in production SD settings.
+  measure: SD speedups are reported from research prototypes at tiny batches; nobody
+    had checked what survives inside production vLLM once continuous batching is already
+    saturating the GPU.
   speculate: At large batch sizes, continuous batching fully utilizes the GPU; the
     latency speculation was meant to hide is already absorbed, leaving token verification
     overhead as pure cost.
@@ -40,6 +43,7 @@ principles:
 - balance
 - cache
 - speculate
+- measure
 problem: Speculative decoding speedup claims use research prototypes at small batches;
   production effectiveness on inference engines at scale is unknown.
 project_url: ''

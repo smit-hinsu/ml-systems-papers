@@ -22,7 +22,10 @@ indexed_date: '2026-05-25'
 key_results: Acela improves upgrade window utilization 1.25×, schedules 33% more upgrades,
   completes 41% more, and reduces cancellations 2.4× vs. Meta's existing scheduler
 models_evaluated: []
-observations: {}
+observations:
+  measure: Upgrade duration errors cost asymmetrically — guess low and machines overrun
+    the window into SLO violations, guess high and capacity sits idle — so symmetric
+    regression accuracy is the wrong target.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=l72e5oROLT
@@ -30,7 +33,8 @@ organizations:
 - Meta
 - University of Chicago
 presentation_type: oral
-principles: []
+principles:
+- measure
 problem: Software upgrades in datacenters stall due to poor duration predictions —
   overestimates waste maintenance windows and underestimates cause SLO violations.
 project_url: ''

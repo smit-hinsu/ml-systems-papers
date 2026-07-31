@@ -28,9 +28,6 @@ models_evaluated:
 - Qwen-7B
 - Qwen-14B
 observations:
-  balance: Drafter staleness under continual actor updates causes policy divergence;
-    evolving the drafter via knowledge distillation keeps it aligned with the current
-    actor, maintaining accept rates.
   cache: Dynamic SD configuration tuning avoids fixed-overhead speculative decoding
     at large batch sizes where drafting yields diminishing returns; configurations
     are tuned per-step.
@@ -49,7 +46,6 @@ organizations:
 presentation_type: oral
 principles:
 - cache
-- balance
 - speculate
 problem: Speculative decoding in RL training degrades at large batch sizes, suffers
   drafter staleness, and causes policy degradation from drafter-actor misalignment.

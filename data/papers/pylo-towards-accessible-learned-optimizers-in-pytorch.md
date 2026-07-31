@@ -21,17 +21,14 @@ indexed_date: '2026-05-25'
 key_results: CUDA-accelerated VeLO/fc_lopt throughput on ViT-B/16 increases from 49.73/39.36
   to 191.18/205.59 samples/sec; ~4x speedup over naive implementations.
 models_evaluated: []
-observations:
-  balance: Combining learned optimizers with LR schedules and weight decay substantially
-    improves convergence; prior JAX-based tools lacked this integration capability.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=M9V1n4KxSd
 optimization_type: []
 organizations:
 - Concordia University
 presentation_type: oral
-principles:
-- balance
+principles: []
 problem: State-of-the-art learned optimizers like VeLO are JAX-only and lack PyTorch
   interfaces, excluding ~70% of the ML community from using them at scale.
 project_url: ''

@@ -351,6 +351,11 @@ Orwell's six rules are the house style — full text in `docs/summarizing.md`, e
 - [ ] `balance` ≠ any distributed paper; `cache` ≠ any paper that uses caching; `pipeline` ≠ any parallel system
 - [ ] 2–4 principles typical; 1 is fine; 5+ usually means over-tagging
 
+**YAML gotcha — colon-space inside observation text**
+- [ ] Never write `word: ` (colon followed by a space) inside a plain-scalar observation.
+      YAML reads it as a nested mapping key and the frontmatter fails to parse. Rewrite the
+      phrase, or use an em dash. This has broken paper files twice during bulk edits.
+
 **`observations`** (≤ 200 chars each)
 - [ ] Captures the *motivating insight* about the problem — what the paper noticed that made the principle applicable
 - [ ] Describes the problem/situation, not the solution: "agent B idles waiting for A despite spare GPU capacity" ✓ vs. "we overlap prefill and decode" ✗

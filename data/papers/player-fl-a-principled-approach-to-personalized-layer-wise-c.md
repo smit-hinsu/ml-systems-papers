@@ -19,9 +19,6 @@ key_results: Competitive FL accuracy with 1-epoch split-point search vs. ad-hoc 
   FL baselines across diverse architectures and non-IID data splits
 models_evaluated: []
 observations:
-  balance: Federating only early generalizable layers avoids synchronizing task-specific
-    layers; this splits the parameter space so aggregation helps only where it improves,
-    not where it hurts.
   skip: A federation-sensitivity score after one epoch identifies layers safe to keep
     local; those layers skip federated synchronization entirely, cutting communication
     without full training runs.
@@ -32,7 +29,6 @@ organizations:
 - Columbia University
 presentation_type: oral
 principles:
-- balance
 - skip
 problem: Partial FL methods use ad-hoc heuristics for layer federation choice, causing
   inconsistent performance and client regressions on non-IID data.

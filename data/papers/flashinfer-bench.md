@@ -36,6 +36,9 @@ observations:
   fuse: Winning LLM-generated kernels are consistently fused attention or GEMM variants;
     the benchmark reveals that reducing HBM round-trips via fusion is the dominant
     lever agents converge on.
+  measure: Agents report kernel speedups on hand-picked shapes that never appear in
+    production serving traces, so nobody can tell whether a claimed win survives real
+    traffic or which agent is actually ahead.
   search-ai: Kernel performance is objectively measurable via latency on real hardware,
     making it a tractable target for LLM agents competing on a public leaderboard
 official_category: Research Papers
@@ -49,6 +52,7 @@ principles:
 - search-ai
 - cache
 - fuse
+- measure
 problem: AI-generated kernels lack a benchmark against production workloads and a
   mechanism to inject them into live systems, breaking the generation-deployment loop.
 project_url: ''

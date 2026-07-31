@@ -31,9 +31,6 @@ key_results: 2–15× higher synthetic data generation throughput under identica
   across multi-agent dialogue, web reasoning, and tool-use scenarios
 models_evaluated: []
 observations:
-  balance: Eliminating the central orchestrator removes the coordination bottleneck;
-    tasks progress independently through queues, keeping all workers busy without
-    a serializing scheduler.
   pipeline: Peer-to-peer message passing lets concurrent agentic workflows advance
     in parallel on Ray, overlapping LLM inference across tens of thousands of tasks
     simultaneously.
@@ -47,7 +44,6 @@ organizations:
 - Meta
 presentation_type: oral
 principles:
-- balance
 - pipeline
 - simplify
 problem: Centralized orchestrators in multi-agent synthetic data pipelines create

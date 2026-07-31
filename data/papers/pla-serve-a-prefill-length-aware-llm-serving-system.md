@@ -29,9 +29,6 @@ models_evaluated:
 - Qwen2.5-14B
 - Qwen2.5-32B
 observations:
-  balance: Mixing compute-bound long and memory-bound short prefills in one batch
-    leaves GPU idle after short requests finish; dedicated queues keep each batch's
-    computation homogeneous.
   cache: CUDA Graph plans for power-of-two length-bucket short prefills reuse compiled
     graphs across requests, eliminating kernel launch overhead and JIT compilation
     per request.
@@ -43,7 +40,6 @@ organizations:
 - University of Illinois Urbana-Champaign
 presentation_type: oral
 principles:
-- balance
 - cache
 problem: Batching short and long prompts together causes long requests to delay short
   ones, inflating TTFT for the majority of real-world workloads.

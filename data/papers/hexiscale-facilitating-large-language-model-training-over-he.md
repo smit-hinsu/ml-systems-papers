@@ -24,9 +24,8 @@ key_results: 1.5×–2.4× higher throughput vs. heterogeneous baselines; simila
 models_evaluated:
 - LLMs (7B to 30B)
 observations:
-  balance: HexiScale's hierarchical partitioner assigns computation slices proportional
-    to each GPU's FLOPS and memory, preventing weaker GPUs from becoming bottlenecks
-    that stall the training iteration.
+  balance: Equal-size parallelism partitions on mixed GPU generations let the weakest
+    device set the step time; every faster GPU waits at the sync point for it.
   pipeline: Asymmetric tensor and pipeline parallelism partitions allow work-stealing
     across heterogeneous tiers so that faster GPUs do not idle while slower ones finish
     their unequal slices.

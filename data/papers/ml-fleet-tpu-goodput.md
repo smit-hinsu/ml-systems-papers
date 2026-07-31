@@ -33,6 +33,9 @@ observations:
   pipeline: Comm-compute overlap in production 500B-param training reached 72% FLOPS
     utilization on 1024 TPUs, a 1.38× improvement, validating that this technique
     is the highest-leverage program goodput lever
+  measure: MFU collapses scheduling, runtime, and program efficiency into a single
+    ratio, so a fleet waste figure never says whether the fix belongs to the scheduler,
+    the framework, or the model code.
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=y31QSL9yMG
 optimization_type: []
@@ -42,6 +45,7 @@ presentation_type: oral
 principles:
 - balance
 - pipeline
+- measure
 problem: MFU cannot separate whether TPU fleet inefficiency comes from scheduling,
   runtime failures, or program inefficiency, making optimization non-actionable.
 project_url: ''

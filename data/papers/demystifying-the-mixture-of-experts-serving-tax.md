@@ -25,6 +25,9 @@ observations:
   fuse: Expert weight loads dominate MoE serving overhead; strategies
     that reduce expert memory traffic (replication, caching, fine-grained routing)
     directly shrink the serving gap to dense models.
+  measure: MoE serves 2–3× slower than a FLOP-equivalent dense model, but the causes
+    — expert weight loads, all-to-all, imbalance — land differently in prefill and
+    decode, so the aggregate gap misleads.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=lELxqcgrsN
@@ -35,6 +38,7 @@ presentation_type: oral
 principles:
 - balance
 - fuse
+- measure
 problem: MoE incurs 2–3× serving overhead vs. FLOP-equivalent dense, but sources differ
   by phase and parallelism strategy, blocking targeted optimization.
 project_url: ''

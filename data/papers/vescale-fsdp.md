@@ -30,9 +30,6 @@ observations:
   pipeline: AllGather and ReduceScatter are overlapped with forward/backward
     compute via structure-aware scheduling, hiding collective latency behind local
     computation at each FSDP unit boundary.
-  balance: RaggedShard accommodates varying shard sizes arising from block-wise
-    quantization or non-uniform layer dimensions, preventing the padding waste that
-    fixed-stride sharding incurs
   fuse: veScale-FSDP eliminates the extra memcpy PyTorch FSDP needs
     for contiguous parameter layout before AllGather; structure-aware planning further
     reduces calls by fusing collectives at block granularity.
@@ -45,7 +42,6 @@ presentation_type: oral
 principles:
 - fuse
 - pipeline
-- balance
 problem: FSDP requires flat parameter sharding, making it incompatible with block-wise
   quantization, Shampoo/Muon optimizers, and per-module parallelism strategies.
 project_url: ''

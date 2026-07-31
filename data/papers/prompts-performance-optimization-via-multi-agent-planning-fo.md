@@ -22,9 +22,6 @@ key_results: Top recommendation matched production config in 87.5% of cases; up 
   434% perf improvement across 8 workloads on 2–512 TPU chips.
 models_evaluated: []
 observations:
-  balance: Analyzer Agent diagnoses bottlenecks by synthesizing profiler data; Proposal
-    Agent generates sharding configs that eliminate idle compute from tensor/pipeline
-    parallelism imbalance.
   search-ai: Multi-agent RAG framework identifies expert-validated sharding configs
     within top-3 recommendations in a single invocation across 8 real LLM workloads
     on TPU clusters.
@@ -36,7 +33,6 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
-- balance
 problem: Optimizing LLM training/serving sharding configs on large TPU clusters requires
   deep expertise or expensive black-box search.
 project_url: ''

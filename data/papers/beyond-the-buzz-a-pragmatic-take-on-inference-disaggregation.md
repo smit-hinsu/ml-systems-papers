@@ -45,6 +45,9 @@ observations:
   pipeline: Phase specialization improves Pareto only when prefill dominates; for
     generation-heavy traffic, KV-transfer and scheduling overhead of disaggregation
     exceeds the gain from independent batching.
+  measure: Teams adopted disaggregation on reputation, yet whether it beats co-located
+    serving flips with model size, context length, and traffic mix, and no sweep had
+    covered that space.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=NqC5tcBsa0
 optimization_type: []
@@ -54,6 +57,7 @@ presentation_type: oral
 principles:
 - pipeline
 - balance
+- measure
 problem: In monolithic LLM serving, long prefill requests block decode batches causing
   head-of-line latency spikes, but disaggregation gains vary widely by workload.
 project_url: ''

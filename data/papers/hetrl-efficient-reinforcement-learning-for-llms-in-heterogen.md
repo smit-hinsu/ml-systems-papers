@@ -25,9 +25,9 @@ key_results: Up to 9.17× throughput vs. Ray on heterogeneous GPU clusters in 20
   GPU-hour evaluation
 models_evaluated: []
 observations:
-  balance: HetRL's joint optimization assigns actor, critic, and rollout stages to
-    GPU tiers by matching capacity to workload, preventing fast GPUs from idling while
-    slow tiers are saturated.
+  balance: GPU tiers differ in speed, but schedulers hand every tier the same share
+    of actor, critic, and rollout work, so fast GPUs finish and idle while slow tiers
+    still grind.
   pipeline: The hybrid scheduler identifies independent RL stages that run concurrently
     across GPU types, shrinking iteration time beyond what serial actor-critic-rollout
     execution allows.

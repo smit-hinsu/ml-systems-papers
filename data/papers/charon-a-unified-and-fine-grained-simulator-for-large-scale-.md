@@ -23,14 +23,18 @@ key_results: Prediction error under 5.35% across models and configurations; unde
   3.74% for large-scale GPU cluster training; discovered a higher-throughput inference
   config
 models_evaluated: []
-observations: {}
+observations:
+  measure: Testing one tensor/pipeline parallelism split costs a full cluster run,
+    so teams settle on an expert guess and never learn what the untried points in
+    the space would have delivered.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=19O6GAS7Su
 optimization_type: []
 organizations:
 - ByteDance
 presentation_type: oral
-principles: []
+principles:
+- measure
 problem: Exploring parallelism and optimization design spaces for large-scale LLM
   training/inference requires expensive empirical runs that are prohibitively slow.
 project_url: ''

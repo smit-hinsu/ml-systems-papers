@@ -29,9 +29,6 @@ key_results: 2.37× more concurrent users on Meta Quest Pro at 5.7–6.5% higher
   loss and ~9% energy overhead vs. local reconstruction baseline
 models_evaluated: []
 observations:
-  balance: Offloading reconstruction from VR headset to local network devices distributes
-    compute, allowing the headset to support more concurrent avatars than its on-device
-    capacity allows.
   fuse: HP keeps high-energy DCT components on-device and offloads only low-energy
     components, minimizing data transferred to untrusted devices while preserving
     reconstruction quality.
@@ -47,7 +44,6 @@ organizations:
 presentation_type: oral
 principles:
 - fuse
-- balance
 problem: Multi-user VR avatar reconstruction on headsets limits concurrent users;
   offloading to local untrusted devices risks leaking sensitive facial expression
   data.

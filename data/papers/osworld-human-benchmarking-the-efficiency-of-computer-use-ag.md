@@ -18,14 +18,18 @@ indexed_date: '2026-05-25'
 key_results: Best agents take 2.7–4.3× more steps than humans; planning/reflection
   model calls dominate latency; per-step latency grows 3× as context accumulates
 models_evaluated: []
-observations: {}
+observations:
+  measure: Computer-use agents are ranked on task success alone, with no reference
+    for how many steps a task should take, so nobody notices an agent burning 4× the
+    human's steps or where its minutes go.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=0Cp8l6cvyq
 optimization_type: []
 organizations:
 - UC San Diego
 presentation_type: oral
-principles: []
+principles:
+- measure
 problem: Computer-use agents achieve high benchmark accuracy but are unusable in practice
   due to end-to-end latency tens of minutes for tasks humans complete in minutes.
 project_url: ''

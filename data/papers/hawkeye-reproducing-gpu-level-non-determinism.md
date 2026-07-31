@@ -23,6 +23,9 @@ key_results: Hawkeye enables perfect CPU reproduction of NVIDIA Tensor Core matm
 models_evaluated:
 - ML model training and inference (FP16, BF16, FP8)
 observations:
+  measure: An auditor rerunning a model gets different bits than the owner reported
+    and cannot separate fraud from Tensor Core accumulation order, which NVIDIA
+    documents nowhere.
   search-ai: Systematic tests of rounding direction, subnormal handling, and accumulation
     order on Tensor Cores enable perfect CPU reproduction of GPU matrix multiplications
     for auditing.
@@ -35,6 +38,7 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
+- measure
 problem: GPU arithmetic non-determinism prevents verifiable reproduction of ML training
   and inference, blocking trustworthy third-party auditing of AI workloads.
 project_url: ''

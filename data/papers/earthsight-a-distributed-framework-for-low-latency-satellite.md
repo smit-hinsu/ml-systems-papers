@@ -19,9 +19,6 @@ key_results: 1.9× lower compute time per image; 90th-percentile end-to-end late
   51→21 minutes vs. per-satellite independent inference baseline in satellite simulator
 models_evaluated: []
 observations:
-  balance: Ground-station scheduler aggregates requests and distributes compute budgets
-    across the constellation, preventing hotspot satellites from wasting cycles while
-    others remain idle.
   cache: Shared backbone multi-task inference amortizes feature extraction across
     multiple vision tasks per satellite pass, so the same backbone activations serve
     N tasks rather than running N separate models.
@@ -36,7 +33,6 @@ organizations:
 presentation_type: oral
 principles:
 - skip
-- balance
 - cache
 problem: Satellite constellation intelligence is bottlenecked by redundant onboard
   inference across satellites and tasks, wasting scarce compute and downlink bandwidth.

@@ -22,10 +22,7 @@ indexed_date: '2026-05-25'
 key_results: 4.6× speedup over OPA (prior best protocol) for 100k-dimensional updates
   from 100k 5G clients; eliminates local masking and homomorphic encryption overhead
 models_evaluated: []
-observations:
-  balance: DisAgg's optimal tradeoff selection distributes aggregation load across
-    the Aggregator committee, preventing the server bottleneck that limits throughput
-    in centralized secure aggregation.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=H0BLKrOgik
 optimization_type: []
@@ -33,8 +30,7 @@ organizations:
 - Samsung
 - Pragma IoT
 presentation_type: oral
-principles:
-- balance
+principles: []
 problem: Secure FL aggregation requires many communication rounds or expensive homomorphic
   encryption, making practical large-scale deployment too slow.
 project_url: ''

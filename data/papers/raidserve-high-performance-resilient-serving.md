@@ -20,9 +20,9 @@ indexed_date: '2026-05-25'
 key_results: 'Up to 2× throughput and 100× faster recovery vs. standard fault-handling on 8×H100 DGX under multiple GPU failures'
 models_evaluated: []
 observations:
-  balance: Cyclic KVCache Placement and Hybrid Attention eliminate compute
-    and memory imbalance after GPU failures; Fine-Grained Load-Aware Routing dynamically
-    rebalances requests to avoid stragglers.
+  balance: A GPU failure leaves survivors holding uneven KV cache and attention work,
+    so the overloaded rank becomes a straggler the rest of the TP group waits on every
+    step.
   cache: Proactive KVCache backup and on-demand weight recovery avoid
     expensive KVCache recomputation after GPU failures, a key cost of standard fault
     handling.

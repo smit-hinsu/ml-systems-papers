@@ -22,9 +22,6 @@ key_results: 22.7× speedup on single GPU vs CPU baseline; projected up to 74× 
   with multi-GPU for datasets too large for CPU to complete
 models_evaluated: []
 observations:
-  balance: Multi-GPU sharding distributes nearest-neighbor construction and graph
-    optimization across devices, eliminating single-GPU memory wall at hundreds-of-GB
-    scale.
   tier: Out-of-core strategy partitions the dataset across GPU HBM and host DRAM,
     staging tiles through high-bandwidth GPU memory to avoid CPU bottleneck on large
     embeddings.
@@ -37,7 +34,6 @@ organizations:
 presentation_type: oral
 principles:
 - tier
-- balance
 problem: UMAP on tens to hundreds of GB of vectors is intractable on CPU (hours to
   days), blocking interactive exploratory workflows at massive scale.
 project_url: ''

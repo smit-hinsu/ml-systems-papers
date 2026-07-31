@@ -26,9 +26,9 @@ key_results: Up to 1.9× training throughput over Megatron-LM and 1.35× over ex
   load-balancing methods at 512K context length on 512 H200 GPUs
 models_evaluated: []
 observations:
-  balance: At 512K context, softmax(QKᵀ)V grows quadratically vs. near-linear for
-    other ops; DistCA dispatches CA-tasks to dedicated attention servers, equalizing
-    load and eliminating DP/PP stragglers.
+  balance: At 512K context, softmax(QKᵀ)V grows quadratically while other ops grow
+    linearly, so ranks holding longer attention shards become stragglers that stall
+    every DP and PP group at each sync point.
   fuse: Rebatching CA-tasks at attention servers creates dense fused batches that
     sustain high kernel utilization, avoiding the low utilization of scattered small
     attention shards processed independently.

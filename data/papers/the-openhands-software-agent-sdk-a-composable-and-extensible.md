@@ -28,9 +28,6 @@ key_results: V1 SDK substantially reduces system-attributable failures vs. V0 wi
   negligible event-sourcing overhead in production deployment.
 models_evaluated: []
 observations:
-  balance: Model-agnostic multi-LLM routing distributes agent workload across providers,
-    preventing single-backend overload and maintaining throughput under variable model
-    availability.
   pipeline: Seamless local-to-remote execution portability lets agents offload sandboxed
     tasks to remote instances, parallelizing agent execution with local orchestration.
 official_category: ''
@@ -40,7 +37,6 @@ organizations:
 - Carnegie Mellon University
 presentation_type: oral
 principles:
-- balance
 - pipeline
 problem: Production software agents need sandboxed execution, flexible tool composition,
   multi-LLM routing, and lifecycle control that existing SDKs lack.

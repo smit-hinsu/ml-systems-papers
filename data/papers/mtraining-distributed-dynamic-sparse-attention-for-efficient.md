@@ -25,9 +25,9 @@ models_evaluated:
 - Qwen2.5-3B
 - Llama-3.1-8B
 observations:
-  balance: Balanced sparse ring attention partitions tokens so each worker gets equal
-    compute load despite variable patterns; hierarchical ring attention reduces cross-node
-    communication at 512K context.
+  balance: Dynamic sparsity gives each ring-attention worker a different count of active
+    attention blocks, so the worker holding the densest slice sets the step time while
+    the rest idle.
   skip: Dynamic sparse attention skips computation for unimportant token pairs; a
     distributed index approximation makes sparsity patterns available across ring-attention
     workers without full synchronization.

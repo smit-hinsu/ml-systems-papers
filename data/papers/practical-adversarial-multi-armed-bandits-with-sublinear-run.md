@@ -24,10 +24,7 @@ key_results: QBL reduces per-iteration cost from O(k) to O(m log k), outperformi
   prior bandit methods in time and quality on database physical design with 1000s
   of arms
 models_evaluated: []
-observations:
-  balance: QBL's priority queue limits update operations to the top-m arms at each
-    step, keeping per-iteration work O(m log k) instead of O(k) and preventing the
-    compute from scaling linearly with the arm count.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=lfHvcstuo2
@@ -36,8 +33,7 @@ organizations:
 - University of Southern Denmark
 - University of Melbourne
 presentation_type: oral
-principles:
-- balance
+principles: []
 problem: Adversarial multi-armed bandit algorithms with many arms have O(k) per-iteration
   cost, impractical for large-arm settings like database physical design tuning.
 project_url: ''

@@ -24,6 +24,9 @@ observations:
   balance: Single-tenant cluster shows use shifting from large to mid-scale jobs as
     the project matures; few large jobs account for most GPU time while small jobs
     dominate count — classic HPC pattern.
+  measure: Published GPU cluster traces come from multi-tenant clouds where many teams'
+    jobs mix; how one LLM project's demand shifts over its lifetime had never been
+    watched in isolation.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=n7o6C3p3wk
@@ -32,6 +35,7 @@ organizations:
 presentation_type: oral
 principles:
 - balance
+- measure
 problem: Characterizing real-world GPU cluster utilization under a single unified
   LLM development project to understand workload dynamics at scale.
 project_url: ''

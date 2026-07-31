@@ -34,9 +34,6 @@ key_results: Catur reduces average resource defect by 34.2%–50.0% vs. default 
   heuristics, evaluated on 100 million VM production traces.
 models_evaluated: []
 observations:
-  balance: RL-based NUMA placement learns from 100M VM production traces
-    to assign VMs to NUMA nodes that minimize remote memory access, reducing average
-    resource defect by up to 50% vs. heuristic policies.
   search-ai: Reinforcement learning optimizes a measurable objective (NUMA resource
     defect rate) on production workloads, with drift-aware continuous training adapting
     to evolving VM placement patterns.
@@ -47,7 +44,6 @@ organizations:
 - Microsoft Research
 presentation_type: oral
 principles:
-- balance
 - search-ai
 problem: Poor VM NUMA placement causes up to 30% performance degradation from remote
   memory access; optimal placement at scale is intractable with heuristics.

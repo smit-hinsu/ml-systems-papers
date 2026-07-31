@@ -29,6 +29,9 @@ observations:
   balance: Simulation over millions of (TP/PP/EP/CP) configs identifies
     Pareto splits; manual configs commonly leave one dimension memory-saturated while
     another dimension idles.
+  measure: Hardware, parallelism degrees, and runtime policy multiply into millions
+    of candidate deployments for one Llama model; testing them on production GPUs
+    costs more than any of them wins back.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=gEbKQeIdxB
@@ -38,6 +41,7 @@ presentation_type: oral
 principles:
 - balance
 - cache
+- measure
 problem: No framework exists to navigate hardware, parallelism, and runtime choices
   to find throughput-maximizing configs under strict latency SLOs at scale.
 project_url: ''
