@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
-arxiv_date: ''
+arxiv_date: 2026-01
+arxiv_url: https://arxiv.org/abs/2601.19672
 authors:
 - Waris Gill
 - Ahmad Humayun
@@ -24,15 +24,15 @@ models_evaluated:
 - Qwen
 - SmolLM
 observations:
-  skip: Transformer architectures concentrate task-specific signals in
-    later blocks; ProToken selects only those layers for attribution, reducing computation
-    vs. full-model attribution.
-  cache: Gradient-based relevance weighting filters irrelevant neuron
-    activations, focusing attribution on neurons that directly influence each token
-    generation rather than scoring all activations.
+  cache: Gradient-based relevance weighting filters irrelevant neuron activations,
+    focusing attribution on neurons that directly influence each token generation
+    rather than scoring all activations.
+  skip: Transformer architectures concentrate task-specific signals in later blocks;
+    ProToken selects only those layers for attribution, reducing computation vs. full-model
+    attribution.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=8WXUjbFr0Z
+optimization_type: []
 organizations:
 - Virginia Tech
 - University of Minnesota

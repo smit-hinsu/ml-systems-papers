@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2507.05411'
+arxiv_date: 2025-07
+arxiv_url: https://arxiv.org/abs/2507.05411
 authors:
 - Mark Lee
 - Chang Lan
@@ -62,8 +62,8 @@ observations:
     the backend (TPU, GPU, CPU) requires no changes to model code — the same config
     runs unmodified on any supported hardware.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=41x11EB3bc
+optimization_type: []
 organizations:
 - Apple
 presentation_type: oral

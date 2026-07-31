@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2409.01143'
+arxiv_date: 2024-09
+arxiv_url: https://arxiv.org/abs/2409.01143
 authors:
 - Ran Yan
 - Youhe Jiang
@@ -31,8 +31,8 @@ observations:
     across heterogeneous tiers so that faster GPUs do not idle while slower ones finish
     their unequal slices.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=KgcqSNio0U
+optimization_type: []
 organizations:
 - Hong Kong University of Science and Technology
 - Peking University

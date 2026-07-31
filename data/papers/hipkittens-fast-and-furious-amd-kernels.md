@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.08083'
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.08083
 authors:
 - William Hu
 - Drew Wadsworth
@@ -35,8 +35,8 @@ observations:
     data reuse patterns that compiler auto-vectorization misses for attention and
     GEMM kernels on AMD hardware.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=xxSSrndQrI
+optimization_type: []
 organizations:
 - Stanford University
 - AMD

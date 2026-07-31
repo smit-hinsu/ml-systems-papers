@@ -35,8 +35,8 @@ observations:
     slow-fast kernel pairs; each iteration distills insights into an optimization
     memory, improving NKIBench scores across iterations.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=SBS4NJHYjZ
+optimization_type: []
 organizations:
 - Stanford University
 - Amazon

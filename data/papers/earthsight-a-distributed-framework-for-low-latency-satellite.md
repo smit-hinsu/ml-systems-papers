@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.10834'
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.10834
 authors:
 - Ansel Erol
 - Seungjun Lee
@@ -29,8 +29,8 @@ observations:
     estimates, skipping full inference on frames below query thresholds to save onboard
     compute for high-priority imagery.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=c3O6DnhUYm
+optimization_type: []
 organizations:
 - Georgia Tech
 presentation_type: oral

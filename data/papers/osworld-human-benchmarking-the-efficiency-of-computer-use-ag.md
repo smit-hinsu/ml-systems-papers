@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2506.16042'
+arxiv_date: 2025-06
+arxiv_url: https://arxiv.org/abs/2506.16042
 authors:
 - Reyna Abhyankar
 - Qi Qi
@@ -20,8 +20,8 @@ key_results: Best agents take 2.7–4.3× more steps than humans; planning/refle
 models_evaluated: []
 observations: {}
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=0Cp8l6cvyq
+optimization_type: []
 organizations:
 - UC San Diego
 presentation_type: oral

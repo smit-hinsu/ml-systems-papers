@@ -1,54 +1,60 @@
 ---
-slug: flashattention-4-algorithm-and-kernel-pipelining-co-design-f
-title: "FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling"
+agentic_models: []
+arxiv_date: 2026-03
+arxiv_url: https://arxiv.org/abs/2603.05451
 authors:
 - Ted Zadouri
 - Markus Hoehnerbach
 - Jay Shah
 - Vijay Thakkar
 - Tri Dao
-organizations:
-- Princeton University
-- RWTH Aachen University
-- Colfax International
-- NVIDIA
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3759
-optimization_type: []
-openreview_url: https://openreview.net/forum?id=mN5RtvuYl3
-arxiv_url: 'https://arxiv.org/abs/2603.05451'
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: research
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - ml-kernels
 - llm-serving
 hardware:
 - NVIDIA B200
 - NVIDIA GB200
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: FlashAttention-4 achieves 1613 TFLOPs/s (71% utilization) on B200 BF16,
+  1.3x over cuDNN 9.13 and 2.7x over Triton.
 models_evaluated:
 - Transformer attention (BF16)
-agentic_models: []
-topics:
-- kernel-fusion
+observations:
+  fuse: Tensor memory acceleration and 2-CTA MMA mode cut shared memory traffic and
+    eliminate atomic adds in the backward pass.
+  pipeline: Fully asynchronous MMA pipelines with larger tile sizes overlap tensor
+    core compute with memory operations, exploiting B200's doubled MMA throughput.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=mN5RtvuYl3
+optimization_type: []
+organizations:
+- Princeton University
+- RWTH Aachen University
+- Colfax International
+- NVIDIA
+presentation_type: oral
 principles:
 - pipeline
 - fuse
-observations:
-  pipeline: "Fully asynchronous MMA pipelines with larger tile sizes overlap tensor core compute with memory operations, exploiting B200's doubled MMA throughput."
-  fuse: "Tensor memory acceleration and 2-CTA MMA mode cut shared memory traffic and eliminate atomic adds in the backward pass."
-problem: "Blackwell GPUs double tensor core throughput but other units scale slower, making Hopper-era attention kernels bottlenecked by non-matmul ops on B200."
-key_results: "FlashAttention-4 achieves 1613 TFLOPs/s (71% utilization) on B200 BF16, 1.3x over cuDNN 9.13 and 2.7x over Triton."
+problem: Blackwell GPUs double tensor core throughput but other units scale slower,
+  making Hopper-era attention kernels bottlenecked by non-matmul ops on B200.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: ''
+slug: flashattention-4-algorithm-and-kernel-pipelining-co-design-f
+status: draft
+title: 'FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric
+  Hardware Scaling'
+topics:
+- kernel-fusion
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3759
 ---
 
 ## Key Contributions

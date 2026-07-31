@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2605.11517'
+arxiv_date: 2026-05
+arxiv_url: https://arxiv.org/abs/2605.11517
 authors:
 - Jaeyong Song
 - Seongyeon Park
@@ -30,8 +31,8 @@ observations:
     and bypass mechanisms tuned to full-graph GNN's unique cross-partition access
     patterns.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=8SNPzGRldN
+optimization_type: []
 organizations:
 - Seoul National University
 presentation_type: oral

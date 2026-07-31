@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2511.02302'
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.02302
 authors:
 - Fengjuan Wang
 - Zhiyi Su
@@ -28,11 +29,11 @@ observations:
     error from the FP8-store→BF16-compute round-trip; single-format FP8 paths reduce
     noise across MoE.
   simplify: FP8 MoE training maintained a BF16-compatible dataflow with 12 Q/DQ conversion
-    boundaries; the conversion overhead eroded most of FP8's speedup, so removing 10 of
-    12 casts yields 21% throughput gain.
+    boundaries; the conversion overhead eroded most of FP8's speedup, so removing
+    10 of 12 casts yields 21% throughput gain.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=wyH60Su6G7
+optimization_type: []
 organizations:
 - Zhejiang Lab
 presentation_type: oral

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2605.21603'
-arxiv_date: ''
+arxiv_date: 2026-05
+arxiv_url: https://arxiv.org/abs/2605.21603
 authors:
 - Yi Pan
 - Yile Gu
@@ -23,27 +23,27 @@ domain:
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'
-key_results: Up to 1.29× throughput vs. unmodified baseline across 6 ML systems
-  (including FlashAttention and vLLM) with minimal per-system code changes
+key_results: Up to 1.29× throughput vs. unmodified baseline across 6 ML systems (including
+  FlashAttention and vLLM) with minimal per-system code changes
 models_evaluated: []
 observations:
+  cache: DynaFlow's custom memory manager eliminates copy overheads from async control/data-flow
+    that naive async execution introduces as redundant intermediate buffers between
+    concurrent operators.
   pipeline: DynaFlow's scheduler overlaps memory-bound and compute-bound operators
-    without model-specific code, achieving up to 1.29× throughput across 6 ML
-    systems including vLLM and FlashAttention.
-  cache: DynaFlow's custom memory manager eliminates copy overheads from async
-    control/data-flow that naive async execution introduces as redundant intermediate
-    buffers between concurrent operators.
+    without model-specific code, achieving up to 1.29× throughput across 6 ML systems
+    including vLLM and FlashAttention.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=i0yqC9954S
+optimization_type: []
 organizations:
 - University of Washington
 presentation_type: oral
 principles:
 - pipeline
 - cache
-problem: Adding intra-device parallelism to ML frameworks requires invasive,
-  model-specific code rewrites that don't generalize across architectures or hardware.
+problem: Adding intra-device parallelism to ML frameworks requires invasive, model-specific
+  code rewrites that don't generalize across architectures or hardware.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

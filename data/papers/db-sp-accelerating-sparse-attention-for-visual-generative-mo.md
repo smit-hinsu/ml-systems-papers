@@ -55,6 +55,10 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3798
 ---
 
+## Background
+
+Diffusion Transformers (DiTs) use sparse attention at high resolution to avoid quadratic cost — skipping attention between image patches unlikely to interact. Unlike text models where sparsity is roughly uniform, DiT sparsity varies dramatically across heads and denoising steps: some heads are dense, others 90% sparse. Sequence parallelism splits attention work across GPUs by head or sequence dimension, but applied to uneven sparse patterns it creates severe load imbalance where GPUs assigned dense heads do far more work.
+
 ## Key Contributions
 
 - **Sparse imbalance ratio**: formal metric that quantifies workload imbalance arising from uneven sparsity across attention heads and blocks when sequence parallelism is applied to DiT models

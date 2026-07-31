@@ -1,46 +1,51 @@
 ---
-slug: hawkeye-reproducing-gpu-level-non-determinism
-title: "Hawkeye: Reproducing GPU-Level Non-Determinism"
+agentic_models: []
+arxiv_date: 2026-03
+arxiv_url: https://arxiv.org/abs/2603.20421
 authors:
 - Erez Badash
 - Dan Boneh
 - Ilan Komargodski
 - Megha Srivastava
-organizations:
-- Stanford University
-- Duplex
-venue: mlsys-2026
-venue_url: https://mlsys.org/virtual/2026/oral/3829
-optimization_type: []
-openreview_url: https://openreview.net/forum?id=JnmgsTFQQv
-arxiv_url: ''
-presentation_type: oral
-official_category: ''
 award: ''
-status: draft
-reading_status: want-to-read
-research_or_industry: research
-indexed_by: smithinsu
-indexed_date: '2026-05-24'
 citations: null
 citations_updated: ''
 code_url: ''
-project_url: ''
-slides_url: ''
 domain:
 - observability
 hardware:
 - NVIDIA GPU (Ampere, Hopper, Lovelace)
+indexed_by: smithinsu
+indexed_date: '2026-05-24'
+key_results: Hawkeye enables perfect CPU reproduction of NVIDIA Tensor Core matmul
+  across Ampere, Hopper, and Lovelace for FP16, BF16, and FP8 without precision loss.
 models_evaluated:
 - ML model training and inference (FP16, BF16, FP8)
-agentic_models: []
-topics: []
+observations:
+  search-ai: Systematic tests of rounding direction, subnormal handling, and accumulation
+    order on Tensor Cores enable perfect CPU reproduction of GPU matrix multiplications
+    for auditing.
+official_category: ''
+openreview_url: https://openreview.net/forum?id=JnmgsTFQQv
+optimization_type: []
+organizations:
+- Stanford University
+- Duplex
+presentation_type: oral
 principles:
 - search-ai
-observations:
-  search-ai: "Systematic tests of rounding direction, subnormal handling, and accumulation order on Tensor Cores enable perfect CPU reproduction of GPU matrix multiplications for auditing."
-problem: "GPU arithmetic non-determinism prevents verifiable reproduction of ML training and inference, blocking trustworthy third-party auditing of AI workloads."
-key_results: "Hawkeye enables perfect CPU reproduction of NVIDIA Tensor Core matmul across Ampere, Hopper, and Lovelace for FP16, BF16, and FP8 without precision loss."
+problem: GPU arithmetic non-determinism prevents verifiable reproduction of ML training
+  and inference, blocking trustworthy third-party auditing of AI workloads.
+project_url: ''
+reading_status: want-to-read
+research_or_industry: research
+slides_url: ''
+slug: hawkeye-reproducing-gpu-level-non-determinism
+status: draft
+title: 'Hawkeye: Reproducing GPU-Level Non-Determinism'
+topics: []
+venue: mlsys-2026
+venue_url: https://mlsys.org/virtual/2026/oral/3829
 ---
 
 ## Background

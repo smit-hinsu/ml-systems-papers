@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: ''
+arxiv_date: 2025-12
+arxiv_url: https://arxiv.org/abs/2512.07993
 authors:
 - Jiayi Tian
 - Seyedarmin Azizi
@@ -36,8 +36,8 @@ observations:
     entirely from KV cache, skipping both eviction and generation for redundant reasoning
     steps.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=0EsV9SIm8p
+optimization_type: []
 organizations:
 - University of Southern California
 - Intel Labs

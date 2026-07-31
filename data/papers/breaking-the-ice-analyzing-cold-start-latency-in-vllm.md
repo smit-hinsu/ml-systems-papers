@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_date: 2026-06
+arxiv_url: https://arxiv.org/abs/2606.07362
 authors:
 - Huzaifa Shaaban Kabakibo
 - Animesh Trivedi
@@ -25,8 +26,8 @@ observations:
   cache: Cold start is predominantly CPU-bound across 6 identified phases; the analytical
     model pinpoints which steps can be parallelized or cached to reduce startup.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=eoEobeKTNZ
+optimization_type: []
 organizations:
 - University of Paderborn
 presentation_type: oral

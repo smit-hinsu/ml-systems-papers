@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: ''
+arxiv_date: 2026-04
+arxiv_url: https://arxiv.org/abs/2604.15590
 authors:
 - Kim Hammar
 award: ''
@@ -18,8 +18,8 @@ key_results: Near-optimal RL policies across 4 security use cases in emulated op
 models_evaluated: []
 observations: {}
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=QGuRWjFsnm
+optimization_type: []
 organizations:
 - KTH Royal Institute of Technology
 presentation_type: oral

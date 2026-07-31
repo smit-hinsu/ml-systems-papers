@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2026-03
 arxiv_url: https://arxiv.org/abs/2603.28768
 authors:
 - Adrian Zhao
@@ -26,18 +27,18 @@ models_evaluated:
 - DeepSeek-R1-671B
 - Kimi-K2-1000B
 observations:
-  skip: Per-layer MoE load skew follows a heavy-tail distribution; CRAFT
-    skips replication for the majority of low-skew layers, targeting only the sparse
-    tail where imbalance exceeds replication cost.
-  balance: MoE load is skewed per-layer — one expert can get 10× average
-    load while others are balanced; uniform replication wastes HBM on low-skew layers
-    that gain nothing from it.
-  tier: Reducing total replicas via fine-grained allocation frees
-    GPU HBM for a larger KV cache, which improves decode throughput enough to offset
-    the slightly lower expert load balance.
+  balance: MoE load is skewed per-layer — one expert can get 10× average load while
+    others are balanced; uniform replication wastes HBM on low-skew layers that gain
+    nothing from it.
+  skip: Per-layer MoE load skew follows a heavy-tail distribution; CRAFT skips replication
+    for the majority of low-skew layers, targeting only the sparse tail where imbalance
+    exceeds replication cost.
+  tier: Reducing total replicas via fine-grained allocation frees GPU HBM for a larger
+    KV cache, which improves decode throughput enough to offset the slightly lower
+    expert load balance.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=zdRvzU9ZCe
+optimization_type: []
 organizations:
 - University of Toronto
 - Amazon

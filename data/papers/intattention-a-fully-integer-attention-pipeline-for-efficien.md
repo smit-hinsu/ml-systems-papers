@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.21513'
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.21513
 authors:
 - Wanli Zhong
 - Haibo Feng
@@ -30,14 +30,15 @@ observations:
   quantize: All attention operations — Q/K/V projection and softmax — run in INT8/INT4
     without dequantization; the fully integer pipeline eliminates format-conversion
     overhead at every boundary.
+  simplify: The float-domain softmax detour inserted to enable INT8 attention consumes
+    65% of latency — the conversion stage costs more than the quantized compute it
+    enables.
   tier: A 32-entry integer LUT for softmax fits entirely in L1 cache, eliminating
     repeated FP transcendental computation and replacing it with integer table lookups
     at negligible memory cost.
-  simplify: The float-domain softmax detour inserted to enable INT8 attention consumes
-    65% of latency — the conversion stage costs more than the quantized compute it enables.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=CPCRITwAaP
+optimization_type: []
 organizations:
 - Southern University of Science and Technology
 presentation_type: oral

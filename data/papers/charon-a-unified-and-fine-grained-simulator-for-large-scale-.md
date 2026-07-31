@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2605.17164'
+arxiv_date: 2026-05
+arxiv_url: https://arxiv.org/abs/2605.17164
 authors:
 - Mengtian Yang
 - Zhekun Zhang
@@ -25,8 +25,8 @@ key_results: Prediction error under 5.35% across models and configurations; unde
 models_evaluated: []
 observations: {}
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=19O6GAS7Su
+optimization_type: []
 organizations:
 - ByteDance
 presentation_type: oral

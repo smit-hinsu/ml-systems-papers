@@ -19,9 +19,6 @@ key_results: Best LLM-generated optimizer achieves 72.4% improvement over human-
   baselines on 4 apps (GEMM, convolution, hotspot, dedispersion) across 6 GPUs.
 models_evaluated: []
 observations:
-  balance: LLM-generated optimizers with problem-specific knowledge navigate irregular
-    auto-tuning spaces more efficiently than generic evolutionary or surrogate methods,
-    reducing wasted evaluations.
   search-ai: LLMs synthesize and refine auto-tuning search algorithms using application-
     and search-space descriptions; performance vs. near-optimal configurations is
     the verifiable signal driving improvement.
@@ -34,7 +31,6 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
-- balance
 problem: Auto-tuning search spaces are vast and irregular; manually designed optimizers
   miss hardware-specific structure, leaving significant performance on the table.
 project_url: ''

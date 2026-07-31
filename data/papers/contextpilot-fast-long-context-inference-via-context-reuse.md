@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.03475'
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.03475
 authors:
 - Yinsicheng Jiang
 - Yeqi Huang
@@ -30,8 +30,8 @@ observations:
     enabling safe KV-cache sharing where prior approaches required full recomputation
     to maintain accuracy.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=RnKvDy1jv2
+optimization_type: []
 organizations:
 - University of Edinburgh
 presentation_type: oral

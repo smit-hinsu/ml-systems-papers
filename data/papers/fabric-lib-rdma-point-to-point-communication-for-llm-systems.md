@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2025-10
 arxiv_url: https://arxiv.org/abs/2510.27656
 authors:
 - Nandor Licker
@@ -24,15 +25,14 @@ key_results: 400 Gbps peak on ConnectX-7 and AWS EFA; RL weight updates for tril
   models in 1.3 s; MoE decode latency matches DeepEP on ConnectX-7.
 models_evaluated: []
 observations:
-  pipeline: KvCache transfers for disaggregated inference are issued
-    layer-by-layer so RDMA operations are pipelined with computation on the GPU, hiding
-    transfer latency behind prefill processing.
-  fuse: Paging writes at 64 KiB granularity achieves 364–396 Gbps;
-    coarser writes waste bandwidth on padding while finer granularity increases doorbell
-    overhead.
+  fuse: Paging writes at 64 KiB granularity achieves 364–396 Gbps; coarser writes
+    waste bandwidth on padding while finer granularity increases doorbell overhead.
+  pipeline: KvCache transfers for disaggregated inference are issued layer-by-layer
+    so RDMA operations are pipelined with computation on the GPU, hiding transfer
+    latency behind prefill processing.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=SjVa05wEiY
+optimization_type: []
 organizations:
 - Perplexity AI
 presentation_type: oral

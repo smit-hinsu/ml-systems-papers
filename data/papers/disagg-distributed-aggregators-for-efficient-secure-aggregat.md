@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2605.13708'
+arxiv_date: 2026-05
+arxiv_url: https://arxiv.org/abs/2605.13708
 authors:
 - Haaris Mehmood
 - Giorgos Tatsis
@@ -27,8 +27,8 @@ observations:
     the Aggregator committee, preventing the server bottleneck that limits throughput
     in centralized secure aggregation.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=H0BLKrOgik
+optimization_type: []
 organizations:
 - Samsung
 - Pragma IoT

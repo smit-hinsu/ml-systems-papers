@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: ''
+arxiv_date: 2025-10
+arxiv_url: https://arxiv.org/abs/2510.18121
 authors:
 - Yonghao Zhuang
 - Junda Chen
@@ -36,8 +36,8 @@ observations:
     devices; attention servers process CA-task batches while hosts proceed with non-attention
     ops, eliminating idle time.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=oIonqkc8hM
+optimization_type: []
 organizations:
 - Carnegie Mellon University
 - UC Berkeley

@@ -8,8 +8,8 @@ authors:
 - Samuel Williams
 - Costin Iancu
 award: ''
-citations: 0
-citations_updated: '2026-05-24'
+citations: null
+citations_updated: ''
 code_url: https://github.com/pike-project/pike
 domain:
 - ml-kernels

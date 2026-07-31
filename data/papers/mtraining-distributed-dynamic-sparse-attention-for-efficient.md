@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2510.18830'
+arxiv_date: 2025-10
+arxiv_url: https://arxiv.org/abs/2510.18830
 authors:
 - Wenxuan Li
 - Chengruidong Zhang
@@ -32,8 +32,8 @@ observations:
     distributed index approximation makes sparsity patterns available across ring-attention
     workers without full synchronization.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=h6SD2zgwGq
+optimization_type: []
 organizations:
 - Microsoft
 - University of Cambridge

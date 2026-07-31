@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2601.00227'
+arxiv_date: 2026-01
+arxiv_url: https://arxiv.org/abs/2601.00227
 authors:
 - Shanli Xing
 - Vivian Zhai
@@ -16,8 +17,8 @@ authors:
 - Luis Ceze
 - Tianqi Chen
 award: ''
-citations: 0
-citations_updated: '2026-05-24'
+citations: null
+citations_updated: ''
 code_url: ''
 domain:
 - ml-kernels
@@ -29,18 +30,17 @@ key_results: FlashInfer Trace schema + leaderboard + apply() injection into SGLa
   multiple LLM agents evaluated across 3 kernel classes (attention, GEMM, activation).
 models_evaluated: []
 observations:
-  search-ai: Kernel performance is objectively measurable via latency on
-    real hardware, making it a tractable target for LLM agents competing on a public
-    leaderboard
-  cache: Dynamic kernel substitution via apply() lets a winning kernel
-    immediately replace the default in SGLang/vLLM without rewriting application code
-    or re-running benchmarks
-  fuse: Winning LLM-generated kernels are consistently fused attention
-    or GEMM variants; the benchmark reveals that reducing HBM round-trips via fusion
-    is the dominant lever agents converge on.
+  cache: Dynamic kernel substitution via apply() lets a winning kernel immediately
+    replace the default in SGLang/vLLM without rewriting application code or re-running
+    benchmarks
+  fuse: Winning LLM-generated kernels are consistently fused attention or GEMM variants;
+    the benchmark reveals that reducing HBM round-trips via fusion is the dominant
+    lever agents converge on.
+  search-ai: Kernel performance is objectively measurable via latency on real hardware,
+    making it a tractable target for LLM agents competing on a public leaderboard
 official_category: Research Papers
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=IyryZno8Hh
+optimization_type: []
 organizations:
 - University of Washington
 - Carnegie Mellon University

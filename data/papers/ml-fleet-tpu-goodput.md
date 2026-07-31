@@ -13,8 +13,8 @@ authors:
 - Naveen Kumar
 - Vijay Janapa Reddi
 award: ''
-citations: 8
-citations_updated: '2026-05-24'
+citations: null
+citations_updated: ''
 code_url: ''
 domain:
 - fleet-efficiency

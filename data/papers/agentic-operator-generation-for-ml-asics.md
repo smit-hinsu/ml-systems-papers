@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2512.10977'
+arxiv_date: 2025-12
+arxiv_url: https://arxiv.org/abs/2512.10977
 authors:
 - Alec Hammond
 - Aram Markosyan
@@ -44,8 +44,8 @@ observations:
     passing 20,000+ correctness tests provides the verifiable signal guiding generation
     and enabling overnight backend creation.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=O3Bx0nNGnW
+optimization_type: []
 organizations:
 - Meta
 presentation_type: oral

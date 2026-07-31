@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2603.24916'
+arxiv_date: 2026-03
+arxiv_url: https://arxiv.org/abs/2603.24916
 authors:
 - Yassien Shaalan
 award: ''
@@ -24,8 +24,8 @@ observations:
     only a tiny shared generator and compact codes live in MCU flash, exploiting the
     MCU's severe flash/SRAM hierarchy.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=NrDa5Fu10D
+optimization_type: []
 organizations:
 - Independent Researcher
 presentation_type: oral

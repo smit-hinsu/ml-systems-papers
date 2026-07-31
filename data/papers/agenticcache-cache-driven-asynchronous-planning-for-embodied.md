@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2604.24039'
+arxiv_date: 2026-04
+arxiv_url: https://arxiv.org/abs/2604.24039
 authors:
 - Hojoon Kim
 - Yuheng Wu
@@ -26,8 +26,8 @@ observations:
     plans while the agent executes, hiding LLM inference latency behind task execution
     rather than blocking each planning step.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=UfABxFoSXH
+optimization_type: []
 organizations:
 - Harvard University
 presentation_type: oral

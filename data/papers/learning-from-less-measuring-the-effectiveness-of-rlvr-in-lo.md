@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: ''
+arxiv_date: 2026-04
+arxiv_url: https://arxiv.org/abs/2604.18381
 authors:
 - Justin Bauer
 - Thomas Walshe
@@ -31,8 +31,8 @@ observations:
     answers let RLVR train on objectively checkable problems, enabling scaling law
     studies without human annotation.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=fV4t4kYvgi
+optimization_type: []
 organizations:
 - Snorkel AI
 - University of Wisconsin-Madison

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2305.14135'
+arxiv_date: 2023-05
+arxiv_url: https://arxiv.org/abs/2305.14135
 authors:
 - Tianhong Li
 - Vibhaalakshmi Sivaraman
@@ -28,8 +28,8 @@ observations:
   skip: Generation is conditioned on what was actually received; the model focuses
     compute on the missing regions rather than reprocessing the entire frame.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=GaBGzA7fpe
+optimization_type: []
 organizations:
 - MIT
 presentation_type: oral

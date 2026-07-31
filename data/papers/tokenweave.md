@@ -7,8 +7,8 @@ authors:
 - Nipun Kwatra
 - Ramachandran Ramjee
 award: ''
-citations: 0
-citations_updated: '2026-05-24'
+citations: null
+citations_updated: ''
 code_url: https://github.com/microsoft/tokenweave
 domain:
 - llm-serving

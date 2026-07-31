@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2605.00831'
+arxiv_date: 2026-05
+arxiv_url: https://arxiv.org/abs/2605.00831
 authors:
 - Shakya Jayakody
 - Youpeng Zhao
@@ -26,8 +27,8 @@ observations:
   tier: Parity shards are stored in host memory instead of GPU memory, protecting
     the KV cache at minimal GPU memory cost.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=xKjYiUgeOK
+optimization_type: []
 organizations:
 - University of Central Florida
 presentation_type: oral

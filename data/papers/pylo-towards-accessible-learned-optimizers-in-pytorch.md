@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: ''
+arxiv_date: 2025-06
+arxiv_url: https://arxiv.org/abs/2506.10315
 authors:
 - Paul Janson
 - Benjamin Thérien
@@ -25,8 +25,8 @@ observations:
   balance: Combining learned optimizers with LR schedules and weight decay substantially
     improves convergence; prior JAX-based tools lacked this integration capability.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=M9V1n4KxSd
+optimization_type: []
 organizations:
 - Concordia University
 presentation_type: oral

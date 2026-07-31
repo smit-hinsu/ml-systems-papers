@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2601.20755'
+arxiv_date: 2026-01
+arxiv_url: https://arxiv.org/abs/2601.20755
 authors:
 - Bohua Zou
 - Debayan Roy
@@ -25,8 +25,8 @@ key_results: Less than 4% runtime overhead while providing operator-level profil
 models_evaluated: []
 observations: {}
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=tYHWS7YPof
+optimization_type: []
 organizations:
 - Huawei
 - Technical University of Munich

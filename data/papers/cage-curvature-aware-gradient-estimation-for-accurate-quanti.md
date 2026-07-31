@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_date: 2025-10
+arxiv_url: https://arxiv.org/abs/2510.18784
 authors:
 - Soroush Tabesh
 - Mher Safaryan
@@ -26,8 +27,8 @@ observations:
     statistics; the correction enables W3A3 models to match W4A4 accuracy without
     extra training passes.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=Fubm1TtWeo
+optimization_type: []
 organizations:
 - Institute of Science and Technology Austria (ISTA)
 presentation_type: oral

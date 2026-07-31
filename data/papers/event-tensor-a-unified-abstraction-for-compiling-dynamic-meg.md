@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2604.13327'
+arxiv_date: 2026-04
+arxiv_url: https://arxiv.org/abs/2604.13327
 authors:
 - Hongyi Jin
 - Bohan Hou
@@ -47,8 +48,8 @@ observations:
     task dependencies, enabling static and dynamic scheduling to overlap independent
     ops.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=PJqFhAbUHa
+optimization_type: []
 organizations:
 - Carnegie Mellon University
 - NVIDIA
@@ -75,6 +76,10 @@ topics:
 venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3815
 ---
+
+## Background
+
+A megakernel handles an entire forward pass as one persistent GPU kernel, eliminating launch overhead and keeping intermediate tensors in registers instead of HBM. Megakernels work well for static models, but LLM inference is dynamic: sequence lengths vary per request, speculative decoding produces data-dependent token counts, and MoE routing selects experts at runtime. Existing megakernel compilers assume shapes are fixed at compile time and break when a runtime decision changes a downstream tensor's shape.
 
 ## Key Contributions
 

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2512.12476'
+arxiv_date: 2025-12
+arxiv_url: https://arxiv.org/abs/2512.12476
 authors:
 - Yongjun He
 - Shuai Zhang
@@ -32,8 +32,8 @@ observations:
     across GPU types, shrinking iteration time beyond what serial actor-critic-rollout
     execution allows.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=LRLyuaz1W7
+optimization_type: []
 organizations:
 - ETH Zurich
 - Amazon

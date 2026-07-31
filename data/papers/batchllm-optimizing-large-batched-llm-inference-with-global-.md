@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2412.03594'
+arxiv_date: 2024-12
+arxiv_url: https://arxiv.org/abs/2412.03594
 authors:
 - Zhen Zheng
 - Xin Ji
@@ -32,8 +32,8 @@ observations:
     by fitting more decode tokens into each forward pass iteration without exceeding
     KV cache memory limits.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=IuVHde07l6
+optimization_type: []
 organizations:
 - Microsoft
 presentation_type: oral

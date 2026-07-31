@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2603.26438'
+arxiv_date: 2026-03
+arxiv_url: https://arxiv.org/abs/2603.26438
 authors:
 - Luca Colagrande
 - Lorenzo Leone
@@ -29,8 +29,8 @@ observations:
     and reduction complete in the network fabric while cores continue computing, eliminating
     stalls on large meshes.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=VDuS8N9RCx
+optimization_type: []
 organizations:
 - ETH Zurich
 presentation_type: oral

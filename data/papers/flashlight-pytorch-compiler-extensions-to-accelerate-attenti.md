@@ -35,8 +35,8 @@ observations:
     like stable softmax into single-pass online algorithms, keeping partial results
     in registers.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=lboOMA8XWr
+optimization_type: []
 organizations:
 - UT Austin
 - Georgia Tech

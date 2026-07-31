@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2502.08829'
+arxiv_date: 2025-02
+arxiv_url: https://arxiv.org/abs/2502.08829
 authors:
 - Ahmed Elhussein
 - Florent Pollet
@@ -26,8 +26,8 @@ observations:
     local; those layers skip federated synchronization entirely, cutting communication
     without full training runs.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=QBUy1HdKrZ
+optimization_type: []
 organizations:
 - Columbia University
 presentation_type: oral

@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2604.26334'
+arxiv_date: 2026-04
+arxiv_url: https://arxiv.org/abs/2604.26334
 authors:
 - Aditya Ukarande
 - Deep Shekhar
@@ -29,8 +30,8 @@ observations:
   tier: Sub-layer sharding with prioritized VRAM placement puts hot tensors on GPU
     and offloads cold tensors to CPU, maximizing effective throughput.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=VKqQYg6JPb
+optimization_type: []
 organizations:
 - NVIDIA
 presentation_type: oral

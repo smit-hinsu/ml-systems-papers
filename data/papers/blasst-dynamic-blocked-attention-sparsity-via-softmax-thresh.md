@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2025-12
 arxiv_url: https://arxiv.org/abs/2512.12087
 authors:
 - Jiayi Yuan
@@ -45,18 +46,18 @@ models_evaluated:
 - Qwen3-30B
 - DeepSeek-R1
 observations:
-  skip: At 74% average sparsity across Llama-3.1 and Qwen3 long-context
-    benchmarks, most attention blocks contribute negligibly to output after softmax
-    normalization and can be skipped without accuracy loss.
-  fuse: Skipping negligible attention blocks eliminates value-block
-    HBM loads and the attention-value matmul; at 74% sparsity, bandwidth freed dominates
-    the speedup more than compute reduction.
+  fuse: Skipping negligible attention blocks eliminates value-block HBM loads and
+    the attention-value matmul; at 74% sparsity, bandwidth freed dominates the speedup
+    more than compute reduction.
   simplify: Prior sparse attention needs a training or profiling pass to predict skippable
     blocks, yet the online-softmax loop already computes the running max that answers
     the question for free.
+  skip: At 74% average sparsity across Llama-3.1 and Qwen3 long-context benchmarks,
+    most attention blocks contribute negligibly to output after softmax normalization
+    and can be skipped without accuracy loss.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=6INSBXTQ4x
+optimization_type: []
 organizations:
 - Rice University
 - UC Davis

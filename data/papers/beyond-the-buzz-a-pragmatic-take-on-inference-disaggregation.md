@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2025-06
 arxiv_url: https://arxiv.org/abs/2506.05508
 authors:
 - Tiyasa Mitra
@@ -38,15 +39,15 @@ models_evaluated:
 - Llama-3.1-405B
 - DeepSeek-R1
 observations:
-  balance: The optimal context-to-generation GPU ratio varies significantly
-    with model size and traffic pattern; static ratios leave either prefill or decode
-    GPUs underutilized without elastic scaling.
-  pipeline: Phase specialization improves Pareto only when prefill
-    dominates; for generation-heavy traffic, KV-transfer and scheduling overhead of
-    disaggregation exceeds the gain from independent batching.
+  balance: The optimal context-to-generation GPU ratio varies significantly with model
+    size and traffic pattern; static ratios leave either prefill or decode GPUs underutilized
+    without elastic scaling.
+  pipeline: Phase specialization improves Pareto only when prefill dominates; for
+    generation-heavy traffic, KV-transfer and scheduling overhead of disaggregation
+    exceeds the gain from independent batching.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=NqC5tcBsa0
+optimization_type: []
 organizations:
 - NVIDIA
 presentation_type: oral

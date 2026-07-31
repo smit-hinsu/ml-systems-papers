@@ -37,8 +37,8 @@ observations:
     proposals; multiple positions are finalized simultaneously, amortizing sequential
     AR overhead over a full sequence segment.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=eB8yjR6alL
+optimization_type: []
 organizations:
 - UC Berkeley
 - Snowflake

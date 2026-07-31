@@ -1,5 +1,6 @@
 ---
 agentic_models: []
+arxiv_date: 2025-11
 arxiv_url: https://arxiv.org/abs/2511.13841
 authors:
 - Zelei Shao
@@ -40,8 +41,8 @@ observations:
     high acceptance rates on rare tokens close the gap between distribution-naive
     speculation and optimal throughput.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=kMeqqPBjSl
+optimization_type: []
 organizations:
 - University of Illinois Urbana-Champaign
 - UC San Diego

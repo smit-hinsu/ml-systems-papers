@@ -1,7 +1,7 @@
 ---
 agentic_models: []
-arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.13940'
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.13940
 authors:
 - Stuart H. Sul
 - Simran Arora
@@ -28,12 +28,12 @@ observations:
   pipeline: Eight core primitives express compute-communication overlap for multi-GPU
     kernels; a unified template ensures hardware resources are scheduled to hide interconnect
     latency behind active computation.
-  simplify: Every workload (TP, SP, EP) had its own ad-hoc overlap kernel; finding that
-    all share 8 underlying primitives let a single template outperform the specialized code
-    by up to 4×.
+  simplify: Every workload (TP, SP, EP) had its own ad-hoc overlap kernel; finding
+    that all share 8 underlying primitives let a single template outperform the specialized
+    code by up to 4×.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=Cv5e5uRXFb
+optimization_type: []
 organizations:
 - Stanford University
 presentation_type: oral

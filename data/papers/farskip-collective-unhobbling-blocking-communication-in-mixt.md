@@ -1,6 +1,7 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_date: 2025-11
+arxiv_url: https://arxiv.org/abs/2511.11505
 authors:
 - Yonatan Dukler
 - Guihong Li
@@ -28,8 +29,8 @@ observations:
   pipeline: Skip connections let later-layer compute begin before all-to-all MoE routing
     completes, achieving 97.3% communication-computation overlap during prefill.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=ruOpvLzsGV
+optimization_type: []
 organizations:
 - AMD
 presentation_type: oral
