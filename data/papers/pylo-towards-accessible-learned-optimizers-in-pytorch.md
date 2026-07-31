@@ -10,8 +10,8 @@ authors:
 - Abhinav Moudgil
 - Eugene Belilovsky
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: https://github.com/Belilovsky-Lab/pylo
 domain:
 - llm-training

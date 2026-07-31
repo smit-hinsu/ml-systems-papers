@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2601.11580'
+arxiv_url: https://arxiv.org/abs/2601.11580
 authors:
 - Xiaoxuan Liu
 - Jiaxiang Yu
@@ -9,8 +9,8 @@ authors:
 - Ion Stoica
 - Alvin Cheung
 award: ''
-citations: null
-citations_updated: ''
+citations: 12
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -31,8 +31,8 @@ observations:
     latency speculation was meant to hide is already absorbed, leaving token verification
     overhead as pure cost.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=fzkqtezFEi
+optimization_type: []
 organizations:
 - UC Berkeley
 presentation_type: oral

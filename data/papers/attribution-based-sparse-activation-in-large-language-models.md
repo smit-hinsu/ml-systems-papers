@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2406.06562'
+arxiv_url: https://arxiv.org/abs/2406.06562
 authors:
 - Jifeng Song
 - Xiangyu Yin
@@ -10,8 +10,8 @@ authors:
 - Weichen Liu
 - Wei Gao
 award: ''
-citations: null
-citations_updated: ''
+citations: 5
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -29,8 +29,8 @@ observations:
     70% neuron deactivation with <5% accuracy loss enables 35% latency and 40% memory
     reduction without model retraining.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=gJFigZeb5D
+optimization_type: []
 organizations:
 - University of Pittsburgh
 - Huazhong University of Science and Technology

@@ -1,0 +1,812 @@
+{
+  "3750": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3750",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "StreamDiffusionV2: A Streaming System for Dynamic and Interactive Video Generation"
+  },
+  "3786": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3786",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "LEANN: A Low-Storage Overhead Vector Index"
+  },
+  "3854": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3854",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "BLASST: Dynamic BLocked Attention Sparsity via Softmax Thresholding"
+  },
+  "3768": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3768",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ExecuTorch - A Unified PyTorch Solution to Run ML Models On-Device"
+  },
+  "3865": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3865",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "OSWorld-Human: Benchmarking the Efficiency of Computer-Use Agents"
+  },
+  "3855": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3855",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "VeriMoA: A Mixture-of-Agents Framework for Spec-to-HDL Generation"
+  },
+  "3835": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3835",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "When Enough is Enough: Rank-Aware Early Termination for Vector Search"
+  },
+  "3823": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3823",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Optimizing PyTorch Inference with LLM-Based Multi-Agent Systems"
+  },
+  "3753": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3753",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Matrix: Peer-to-Peer Multi-Agent Synthetic Data Generation Framework"
+  },
+  "3810": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3810",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ContextPilot: Fast Long-Context Inference via Context Reuse"
+  },
+  "3798": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3798",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "db-SP: Accelerating Sparse Attention for Visual Generative Models with Dual-Balanced Sequence Parallelism"
+  },
+  "3773": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3773",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "SwiftGS: Algorithm and System Co-Optimization for Fast 3D Gaussian Splatting on GPUs"
+  },
+  "3756": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3756",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "TriInfer: Hybrid EPD Disaggregation for Efficient Multimodal Large Language Model Inference"
+  },
+  "3751": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3751",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "TiDAR: Think in Diffusion, Talk in Autoregression"
+  },
+  "3863": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3863",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Hippocampus: An Efficient and Scalable Memory Module for Agentic AI"
+  },
+  "3806": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3806",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "AgenticCache: Cache-Driven Asynchronous Planning for Embodied AI Agents"
+  },
+  "3796": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3796",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "TeleRAG: Efficient Retrieval-Augmented Generation Inference with Lookahead Retrieval"
+  },
+  "3760": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3760",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FlashAgents: Accelerating Multi-Agent LLM Systems via Streaming Prefill Overlap"
+  },
+  "3738": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3738",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Ontology-Guided Long-Term Agent Memory for Conversational RAG"
+  },
+  "3842": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3842",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Stream2LLM: Overlap Context Streaming and Prefill for Reduced Time-to-First-Token"
+  },
+  "3809": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3809",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "SuperInfer: SLO-Aware Rotary Scheduling and Memory Management for LLM Inference on Superchips"
+  },
+  "3787": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3787",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "PLA-Serve: A Prefill-Length-Aware LLM Serving System"
+  },
+  "3744": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3744",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "TokenWeave: Efficient Compute-Communication Overlap for Distributed LLM Inference"
+  },
+  "3732": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3732",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "From Tokens to Layers: Redefining Stall-Free Scheduling for MoE Serving with Layered Prefill"
+  },
+  "3811": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3811",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "G-HEMP: FAST MULTI-GPU PRIVATE INFERENCE FOR LARGE-SCALE GCNS WITH HOMOMORPHIC ENCRYPTION"
+  },
+  "3812": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3812",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "CSLE: A Reinforcement Learning Platform for Autonomous Security Management"
+  },
+  "3801": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3801",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Privatar: Scalable Privacy-preserving Multi-user VR via Secure Offloading"
+  },
+  "3793": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3793",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ZK-APEX: ZERO-KNOWLEDGE APPROXIMATE PERSONALIZED UNLEARNING WITH EXECUTABLE PROOFS"
+  },
+  "3741": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3741",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Blueprint, Bootstrap, and Bridge: A Security Look at NVIDIA GPU Confidential Computing"
+  },
+  "3739": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3739",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Toward Principled LLM Safety Testing: Solving the Jailbreak Oracle Problem"
+  },
+  "3857": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3857",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "SONAR: Benchmarking Topology and Collaboration in Decentralized Learning"
+  },
+  "3850": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3850",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ProToken: Token-Level Attribution for Federated Large Language Models"
+  },
+  "3840": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3840",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FLoRIST: Singular Value Thresholding for Efficient and Accurate Federated Fine-Tuning of Large Language Models"
+  },
+  "3837": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3837",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "DisAgg: Distributed Aggregators for Efficient Secure Aggregation"
+  },
+  "3813": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3813",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "PLayer-FL: A Principled Approach to Personalized Layer-wise Cross-Silo Federated Learning"
+  },
+  "3803": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3803",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Zero redundancy distributed learning with differential privacy"
+  },
+  "3849": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3849",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "BEAM: Joint Resource\u2013Power Optimization for Energy-Efficient LLM Inference under SLO contraints"
+  },
+  "3816": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3816",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "MorphServe: Efficient and Workload-Aware LLM Serving via Runtime Quantized Layer Swapping and KV Cache Resizing"
+  },
+  "3795": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3795",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "BOute: Cost-Efficient LLM Serving with Heterogeneous LLMs and GPUs via Multi-Objective Bayesian Optimization"
+  },
+  "3788": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3788",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Locality-Aware Beam Scheduling for Efficient Test-Time Compute with a Consumer-grade GPU"
+  },
+  "3784": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3784",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Breaking the Ice: Analyzing Cold Start Latency in vLLM"
+  },
+  "3769": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3769",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FaaScale: Unlocking Fast LLM Scaling for Serverless Inference"
+  },
+  "3830": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3830",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "BOOST: BOttleneck-Optimized Scalable Training Framework for Low-Rank Large Language Models"
+  },
+  "3822": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3822",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Unleashing Scalable Context Parallelism for Foundation Models Pre-Training via FCP"
+  },
+  "3800": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3800",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ProTrain: Efficient LLM Training via Automatic Memory Management"
+  },
+  "3775": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3775",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "MTraining: Distributed Dynamic Sparse Attention for Efficient Ultra-Long Context Training"
+  },
+  "3767": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3767",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "NEST: Network- and Memory-Aware Device Placement for Distributed Deep Learning"
+  },
+  "3754": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3754",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Efficient Long-Context Language Model Training by Core Attention Disaggregation"
+  },
+  "3864": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3864",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "SkipKV: Selective Skipping of KV Generation and Storage for Efficient Inference with Large Reasoning Models"
+  },
+  "3844": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3844",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "OPKV: A High-Throughput Plugin-Driven Framework for Recallable Sparsity in Paged KV Cache Systems"
+  },
+  "3838": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3838",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FlexiCache: Leveraging Temporal Stability of Attention Heads for Efficient KV Cache Management"
+  },
+  "3794": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3794",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "MAC-Attention: a Match--Amend--Complete scheme for fast and accurate attention computation"
+  },
+  "3747": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3747",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Using Span Queries to Optimize Cache and Attention Locality"
+  },
+  "3746": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3746",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost"
+  },
+  "3832": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3832",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FlashInfer-Bench: Building the Virtuous Cycle for AI-driven LLM Systems"
+  },
+  "3777": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3777",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Virtual Machine NUMA Placement at Scale: Learning the Norm, Shielding the Tail"
+  },
+  "3772": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3772",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "When Machine Learning Isn\u2019t Sure: Building Resilient ML-Based Computer Systems by Embracing Uncertainty"
+  },
+  "3762": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3762",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Practical Adversarial Multi-Armed Bandits with Sublinear Runtime"
+  },
+  "3761": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3761",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Unified LLM Model for Power, Performance, and Area Prediction from Hardware Code"
+  },
+  "3748": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3748",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Automated Algorithm Design for Auto-Tuning Optimizers"
+  },
+  "3856": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3856",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "RaidServe: High-performance Resilient Serving"
+  },
+  "3807": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3807",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "fabric-lib: RDMA Point-to-Point Communication for LLM Systems"
+  },
+  "3764": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3764",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Demystifying the Mixture of Experts Serving Tax"
+  },
+  "3743": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3743",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FarSkip-Collective: Unhobbling Blocking Communication in Mixture of Experts Models"
+  },
+  "3736": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3736",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "GhostServe: A Lightweight Checkpointing System in the Shadow for Fault-Tolerant LLM Serving"
+  },
+  "3731": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3731",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "CRAFT: Fine-Grained Cost-Aware Expert Replication For Efficient Mixture-of-Experts Serving"
+  },
+  "3836": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3836",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ReSpec: Towards Optimizing Speculative Decoding in Reinforcement Learning Systems"
+  },
+  "3825": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3825",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "HetRL: Efficient Reinforcement Learning for LLMs in Heterogeneous Environments"
+  },
+  "3824": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3824",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Pylo: Towards Accessible Learned Optimizers in PyTorch"
+  },
+  "3783": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3783",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Learning from Less: Measuring the Effectiveness of RLVR in Low Data and Compute Regimes"
+  },
+  "3776": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3776",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FlexTrain: Scalable Hybrid-Parallel Training with Elastic Resource Utilization and Consistent Accuracy"
+  },
+  "3766": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3766",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Beat the long tail: Distribution-Aware Speculative Decoding for RL Training"
+  },
+  "3859": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3859",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Zorse: Optimizing LLM Training Efficiency on Heterogeneous GPU Clusters"
+  },
+  "3851": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3851",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "GriNNder: Breaking the Memory Capacity Wall in Full-Graph GNN Training with Storage Offloading"
+  },
+  "3828": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3828",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "HexiScale: Facilitating Large Language Model Training over Heterogeneous Hardware"
+  },
+  "3804": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3804",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "A Lightweight High-Throughput Collective-Capable NoC for Large-Scale ML Accelerators"
+  },
+  "3790": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3790",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "DreamDDP: Accelerating Low-Bandwidth Geo-Distributed LLM Training with Layer-wise Partial Synchronization"
+  },
+  "3737": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3737",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FP8-Flow-MoE: A Casting-Free FP8 Recipe without Double Quantization Error"
+  },
+  "3841": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3841",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "CAGE: Curvature-Aware Gradient Estimation For Accurate Quantization-Aware Training"
+  },
+  "3820": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3820",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Shannonic: Efficient Entropy-Optimal Compression for ML Workloads"
+  },
+  "3818": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3818",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Once-for-All Channel Mixers (HyperTinyPW): Generative Compression for TinyML"
+  },
+  "3805": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3805",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "MixLLM: LLM Quantization with Global Mixed-precision between Output-features and Highly-efficient System Design"
+  },
+  "3770": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3770",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Search Your Block Floating Point Scales!"
+  },
+  "3853": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3853",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ADR: AN AGENTIC DETECTION SYSTEMFORENTERPRISE AGENTIC AI SECURITY"
+  },
+  "3843": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3843",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "PROMPTS: PeRformance Optimization via Multi-Agent Planning for LLM Training and Serving"
+  },
+  "3817": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3817",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Agentic Operator Generation for ML ASICs"
+  },
+  "3765": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3765",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Cost-aware Duration Prediction for Software Upgrades in Datacenters"
+  },
+  "3749": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3749",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "The OpenHands Software Agent SDK: A Composable and Extensible Foundation for Production Agents"
+  },
+  "3833": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3833",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "BatchLLM: Optimizing Large Batched LLM Inference with Global Prefix Sharing and Throughput-oriented Token Batching"
+  },
+  "3789": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3789",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "PRISM: Parametrically Refactor Inference for Speculative Decoding Draft Models"
+  },
+  "3785": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3785",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "CDLM: Consistency Diffusion Language Models for Faster Sampling"
+  },
+  "3782": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3782",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Speculative Decoding: Performance or Illusion?"
+  },
+  "3755": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3755",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "SpecDiff-2: Scaling Diffusion Drafter Alignment For Faster Speculative Decoding"
+  },
+  "3733": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3733",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Accelerating Large-Scale Reasoning Model Inference with Sparse Self-Speculative Decoding"
+  },
+  "3834": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3834",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "SHIP: SRAM-Based Huge Inference Pipelines for Fast LLM Serving"
+  },
+  "3819": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3819",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Beyond the Buzz: A Pragmatic Take on Inference Disaggregation"
+  },
+  "3780": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3780",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Optimizing Deployment Configurations for LLM Inference"
+  },
+  "3752": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3752",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Meeting SLOs, Slashing Hours: Automated Enterprise LLM Optimization with OptiKIT"
+  },
+  "3745": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3745",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Scaling Up Large Language Models Serving Systems for Semantic Job Search"
+  },
+  "3846": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3846",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "HELIOS : Adaptive Model And Early-Exit Selection for Efficient LLM Inference Serving"
+  },
+  "3848": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3848",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "IntAttention: A Fully Integer Attention Pipeline for Efficient Edge Inference"
+  },
+  "3839": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3839",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "REPARO: LOSS-RESILIENT GENERATIVE CODEC FOR VIDEO CONFERENCING"
+  },
+  "3814": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3814",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Rethinking DVFS for Mobile LLMs: Unified Energy-Aware Scheduling with CORE"
+  },
+  "3792": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3792",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "EarthSight: A Distributed Framework for Low-Latency Satellite Intelligence"
+  },
+  "3862": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3862",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Sparing Strategies to Minimize Reliability Impact On Large Training Jobs"
+  },
+  "3860": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3860",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "veScale-FSDP: Flexible and High-Performance FSDP at Scale"
+  },
+  "3858": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3858",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "AXLearn: Modular, Hardware-Agnostic Large Model Training"
+  },
+  "3831": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3831",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "GUARD: SCALABLE STRAGGLER DETECTION AND NODE HEALTH MANAGEMENT FOR LARGE-SCALE TRAINING"
+  },
+  "3826": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3826",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "MoEBlaze: Breaking the Memory Wall for Efficient MoE Training on Modern GPUs"
+  },
+  "3821": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3821",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FreeScale: Distributed Training for Sequence Recommendation Models with Minimal Scaling Cost"
+  },
+  "3847": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3847",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Massive-Scale Out-Of-Core UMAP on the GPU"
+  },
+  "3861": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3861",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Charon: A Unified and Fine-Grained Simulator for Large-Scale LLM Training and Inference"
+  },
+  "3829": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3829",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Hawkeye: Reproducing GPU-Level Non-Determinism"
+  },
+  "3799": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3799",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "DriftBench: Measuring and Predicting Infrastructure Drift in LLM Serving Systems"
+  },
+  "3791": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3791",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "PARROT: Persuasion and Agreement Robustness Rating of Output Truth \u2014 A Sycophancy Robustness Benchmark for LLMs"
+  },
+  "3827": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3827",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "XProf: An Open, Scalable, and Extensible Profiling System for the Modern ML Stack"
+  },
+  "3781": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3781",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "AIRS: Scaling Live Inference in Resource Constrained Environments"
+  },
+  "3758": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3758",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "SAKURAONE: An Open Ethernet\u2013Based AI HPC System and Its Observed Workload Dynamics in a Single-Tenant LLM Development Environment"
+  },
+  "3742": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3742",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "MLCommons Chakra: Advancing Performance Benchmarking and Co-design using Standardized Execution Traces"
+  },
+  "3740": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3740",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ProfInfer: An eBPF-based Fine-Grained LLM Inference Profiler"
+  },
+  "3734": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3734",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Machine Learning Fleet Efficiency: Improving TPU Systems at Scale with ML Productivity Goodput"
+  },
+  "3845": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3845",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ParallelKittens: Systematic and Practical Simplification of Multi-GPU AI Kernels"
+  },
+  "3815": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3815",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Event Tensor: A Unified Abstraction for Compiling Dynamic Megakernel"
+  },
+  "3808": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3808",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "AccelOpt: A Self-Improving LLM Agentic System for AI Accelerator Kernel Optimization"
+  },
+  "3771": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3771",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "DynaFlow: Transparent and Flexible Intra-Device Parallelism via Programmable Operator Scheduling"
+  },
+  "3757": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3757",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "ApproxMLIR : Accuracy-Aware Compiler for Compound ML System"
+  },
+  "3735": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3735",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "HipKittens: Fast and Furious AMD Kernels"
+  },
+  "3852": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3852",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Dataflow Is All You Need"
+  },
+  "3802": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3802",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Efficient, VRAM-Constrained xLM Inference on Clients"
+  },
+  "3778": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3778",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Wave: A Symbolic Python DSL And Compiler for High-Performance Machine Learning"
+  },
+  "3774": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3774",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "CATWILD: Compiler Autotuning for TPU workloads in the Wild"
+  },
+  "3797": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3797",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Spira: Exploiting Voxel Data Structural Properties for Efficient Sparse Convolution in Point Cloud Networks"
+  },
+  "3779": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3779",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Attribution-based Sparse Activation in Large Language Models"
+  },
+  "3763": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3763",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "Flashlight: PyTorch Compiler Extensions to Accelerate Attention Variants"
+  },
+  "3759": {
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3759",
+    "openreview_id": "",
+    "slides_url": "",
+    "title_from_page": "FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling"
+  }
+}

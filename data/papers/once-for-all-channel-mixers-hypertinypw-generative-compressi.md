@@ -5,8 +5,8 @@ arxiv_url: https://arxiv.org/abs/2603.24916
 authors:
 - Yassien Shaalan
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - edge-inference

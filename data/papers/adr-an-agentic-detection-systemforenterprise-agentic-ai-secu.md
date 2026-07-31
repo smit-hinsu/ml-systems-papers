@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2605.17380'
+arxiv_url: https://arxiv.org/abs/2605.17380
 authors:
 - Chenning Li
 - Pan Hu
@@ -16,8 +16,8 @@ authors:
 - KK Sriramadhesikan
 - Ming Zhang
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - agentic-inference
@@ -36,8 +36,8 @@ observations:
     to the LLM detector; each tier is independently optimized — sensor for throughput,
     LLM for semantic reasoning quality.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=7B91Naeszw
+optimization_type: []
 organizations:
 - Uber
 - MIT

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.23113'
+arxiv_url: https://arxiv.org/abs/2511.23113
 authors:
 - Siqi Chen
 - Ke Hong
@@ -11,8 +11,8 @@ authors:
 - Xudong Zhang
 - Yu Wang
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -30,8 +30,8 @@ observations:
     heads; db-SP routes blocks to workers by actual sparsity pattern rather than naive
     head or sequence splitting.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=XgKteNxNe0
+optimization_type: []
 organizations:
 - Tsinghua University
 presentation_type: oral

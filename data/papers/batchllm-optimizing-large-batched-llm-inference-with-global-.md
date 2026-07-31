@@ -10,8 +10,8 @@ authors:
 - Chuanjie Liu
 - Gang Peng
 award: ''
-citations: null
-citations_updated: ''
+citations: 42
+citations_updated: '2026-07-31'
 code_url: https://github.com/microsoft/MixLLM/tree/batchllm_vllm_064
 domain:
 - llm-serving

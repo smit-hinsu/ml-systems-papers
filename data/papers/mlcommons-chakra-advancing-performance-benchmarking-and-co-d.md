@@ -3,8 +3,8 @@ agentic_models: []
 arxiv_url: https://arxiv.org/abs/2305.14516
 authors: []
 award: ''
-citations: null
-citations_updated: ''
+citations: 35
+citations_updated: '2026-07-31'
 code_url: https://github.com/mlcommons/chakra
 domain:
 - observability
@@ -20,12 +20,12 @@ models_evaluated:
 - Mixtral-8x22B
 - Mixtral-8x7B
 observations:
-  cache: A captured Chakra ET replays across simulated hardware configurations
-    without re-running the original training job, amortizing measurement cost across
-    the design space.
+  cache: A captured Chakra ET replays across simulated hardware configurations without
+    re-running the original training job, amortizing measurement cost across the design
+    space.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=s2WcSv2Hzt
+optimization_type: []
 organizations:
 - Meta
 - NVIDIA

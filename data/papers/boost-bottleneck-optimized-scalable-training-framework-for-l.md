@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2512.12131'
+arxiv_url: https://arxiv.org/abs/2512.12131
 authors:
 - Zhengyang Wang
 - Ziyue Liu
@@ -11,8 +11,8 @@ authors:
 - Franck Cappello
 - Zheng Zhang
 award: ''
-citations: null
-citations_updated: ''
+citations: 3
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-training
@@ -30,8 +30,8 @@ observations:
   fuse: Bottleneck-aware tensor parallelism splits low-rank factors across devices
     to avoid the excessive cross-device communication of naively applied 3D parallelism.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=JhN5hldx4V
+optimization_type: []
 organizations:
 - UC Santa Barbara
 - Argonne National Laboratory

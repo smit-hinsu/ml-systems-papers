@@ -206,7 +206,11 @@ def main():
     index = build_index(papers, principles, domains, topics, venues)
 
     def sorted_by_count(registry, paper_index):
-        return dict(sorted(registry.items(),
+        # Registry entries nothing is tagged with are dropped rather than shown as
+        # empty categories — an unused slug is taxonomy bookkeeping, not something a
+        # reader can browse into.
+        used = {slug: item for slug, item in registry.items() if paper_index.get(slug)}
+        return dict(sorted(used.items(),
                            key=lambda kv: len(paper_index.get(kv[0], [])),
                            reverse=True))
 

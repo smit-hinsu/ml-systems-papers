@@ -1,0 +1,280 @@
+[
+  {
+    "slug": "mac-attention-a-match-amend-complete-scheme-for-fast-and-acc",
+    "title": "MAC-Attention: a Match--Amend--Complete scheme for fast and accurate attention computation",
+    "authors": [
+      "Jinghan Yao",
+      "Sam Jacobs",
+      "Walid Krichene",
+      "Masahiro Tanaka",
+      "Dhabaleswar Panda"
+    ],
+    "abstract": "Long-context decoding in LLMs is IO-bound: each token re-reads an ever-growing KV cache. Prior accelerations cut bytes via compression (lowering fidelity) or selection/eviction (restricting what remains accessible), which can degrade delayed recall and long-form generation. We introduce MAC-Attention, a fidelity and access-preserving alternative that accelerates decode by reusing prior attention computations for semantically similar recent queries. It starts with a match stage that performs pre-RoPE L2 matching over a short local window; an amend stage rectifies the reused attention by recomputing a small band near the match boundary; and a complete stage fuses the rectified results with a fresh attention computed on the KV tail, via a numerically stable merge. On a match hit, the compute and bandwidth complexity is constant regardless of the context length. The method is model-agnostic, and composes with IO-aware kernels, paged-KV managers, and MQA/GQA. Across LongBench v2 (120K), RULER (120K), and LongGenBench (16K continuous generation), MAC-Attention reduces KV accesses by up to 99%, cuts token generation latency by over 60% at 128K, and achieves over 14.3x attention-phase speedups (up to 2.6x end-to-end), while maintaining full-attention quality. By reusing computation rather than compressing or discarding tokens, MAC-Attention delivers long-context inference that is both fast and faithful. Code is available.",
+    "openreview_url": "https://openreview.net/forum?id=b6HBRCejb7",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3794"
+  },
+  {
+    "slug": "massive-scale-out-of-core-umap-on-the-gpu",
+    "title": "Massive-Scale Out-Of-Core UMAP on the GPU",
+    "authors": [
+      "Jinsol Park",
+      "Corey Nolet",
+      "Edward Raff",
+      "Tim Oates",
+      "Akira Naruse"
+    ],
+    "abstract": "The Uniform Manifold Approximation and Projection (UMAP) algorithm has become a widely popular technique to reduce the dimensionality of a set of vectors, both for visualization and as a pre-processing step for follow-on machine learning tasks. UMAP is often an integral part of iterative and exploratory workflows, but the heavy amount of compute and memory required makes scaling to tens or even hundreds of gigabytes of vectors intractable on the CPU, often taking several hours to days to complete. In this paper, we show how we improved UMAP while unlocking performance that permits interactive analysis, even at massive-scale, by introducing an out-of-core strategy with optional multi-GPU support. We observe 22.7x speedup using a single GPU on smaller data scales where CPU baseline runs to completion, and project up to 74x speedup using multiple GPUs on a single node at larger scales where CPU was not able to complete by extrapolating measured scaling behavior.",
+    "openreview_url": "https://openreview.net/forum?id=CR35IJQD2J",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3847"
+  },
+  {
+    "slug": "matrix-peer-to-peer-multi-agent-synthetic-data-generation-fr",
+    "title": "Matrix: Peer-to-Peer Multi-Agent Synthetic Data Generation Framework",
+    "authors": [
+      "Dong Wang",
+      "Yang Li",
+      "Ansong Ni",
+      "Ching-Feng Yeh",
+      "Youssef Emad",
+      "Xinjie Lei",
+      "Liam Robbins",
+      "Karthik Padthe",
+      "Hu Xu",
+      "Xian Li",
+      "Asli Celikyilmaz",
+      "Ramya Raghavendra",
+      "LIFEI HUANG",
+      "Carole-Jean Wu",
+      "Shang-Wen Li"
+    ],
+    "abstract": "Synthetic data has become increasingly important for training large language models, especially when real data is scarce, expensive, or privacy-sensitive. Many such generation tasks require coordinated multi-agent workflows, where specialized agents collaborate to produce data that is higher quality, more diverse, and structurally richer. However, existing frameworks for multi-agent synthesis often depend on a centralized orchestrator, creating scalability bottlenecks, or are hardcoded for specific domains, limiting flexibility. We present \\textbf{Matrix}, a decentralized framework that represents both control and data flow as serialized messages passed through distributed queues. This peer-to-peer design eliminates the central orchestrator. Each task progresses independently through lightweight agents, while compute-intensive operations, such as LLM inference or containerized environments, are handled by distributed services. Built on Ray, Matrix scales to tens of thousands of concurrent agentic workflows and provides a modular, configurable design that enables easy adaptation to a wide range of data generation workflows. We evaluate Matrix across diverse synthesis scenarios, such as multi-agent collaborative dialogue, web-based reasoning data extraction, and tool-use trajectory generation in customer service environments. In all cases, Matrix achieves $2$--$15\\times$ higher data generation throughput under identical hardware resources, without compromising output quality.",
+    "openreview_url": "https://openreview.net/forum?id=ok96wGyPdI",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3753"
+  },
+  {
+    "slug": "meeting-slos-slashing-hours-automated-enterprise-llm-optimiz",
+    "title": "Meeting SLOs, Slashing Hours: Automated Enterprise LLM Optimization with OptiKIT",
+    "authors": [
+      "Nicholas Santavas",
+      "Kareem Eissa",
+      "Patrycja Cieplicka",
+      "Piotr Florek",
+      "Matteo Nulli",
+      "Stefan Vasilev",
+      "Seyyed Hadi Hashemi",
+      "Antonios Gasteratos",
+      "Shahram Khadivi"
+    ],
+    "abstract": "Enterprise LLM deployment faces a critical scalability challenge: organizations must optimize models systematically to scale AI initiatives within constrained compute budgets, yet the specialized expertise required for manual optimization remains a niche and scarce skillset. This challenge is particularly evident in managing GPU utilization across heterogeneous infrastructure while enabling teams with diverse workloads and limited LLM optimization experience to deploy models efficiently. We present OPTIKIT, a distributed LLM optimization framework that democratizes model compression and tuning by automating complex optimization workflows for non-expert teams. OPTIKIT provides dynamic resource allocation, staged pipeline execution with automatic cleanup, and seamless enterprise integration. In production, it delivers more than 2\u00d7 GPU throughput improvement while empowering application teams to achieve consistent performance improvements without deep LLM optimization expertise. We share both the platform design and key engineering insights into resource allocation algorithms, pipeline orchestration, and integration patterns that enable large-scale, production-grade democratization of model optimization. Finally, we open-source the system to enable external contributions and broader reproducibility.",
+    "openreview_url": "https://openreview.net/forum?id=om4H7AI2hc",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3752"
+  },
+  {
+    "slug": "mixllm-llm-quantization-with-global-mixed-precision-between-",
+    "title": "MixLLM: LLM Quantization with Global Mixed-precision between Output-features and Highly-efficient System Design",
+    "authors": [
+      "Zhen Zheng",
+      "Xiaonan Song",
+      "Chuanjie Liu"
+    ],
+    "abstract": "Quantization has become one of the most effective methodologies to compress LLMs into smaller size.\nHowever, the existing quantization solutions still show limitations of either non-negligible accuracy drop or low system efficiency.\nIn this paper, we propose MixLLM that explores the optimization space of mixed-precision quantization between output features, based on the insight that different features matter differently in the model.\nMixLLM identifies the important output features in the global view rather than within each single layer,\neffectively assigning larger bit-width to output features that need it the most to achieve high accuracy and low memory usage.\nWe present the sweet spot of quantization configuration of algorithm-system co-design with high accuracy and system efficiency.\nTo address the system challenge, we design the two-step dequantization to make use of the Tensor Core easily and fast data type conversion to reduce dequantization overhead, and present the software pipeline to overlap the memory access, dequantization and the MatMul to the best.\nExtensive experiments show that with only 10\\% more bits, the perplexity increase can be reduced from about 0.5 in SOTA to within 0.2 for Llama 3.1 70B, while MMLU-Pro loss can be reduced from 1.92 to 0.99 over the SOTA of three popular models.\nBesides its superior accuracy, MixLLM also achieves state-of-the-art system efficiency.\nCode is released at [https://github.com/microsoft/MixLLM](https://github.com/microsoft/MixLLM).",
+    "openreview_url": "https://openreview.net/forum?id=VBbMRQ4VOc",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3805"
+  },
+  {
+    "slug": "morphserve-efficient-and-workload-aware-llm-serving-via-runt",
+    "title": "MorphServe: Efficient and Workload-Aware LLM Serving via Runtime Quantized Layer Swapping and KV Cache Resizing",
+    "authors": [
+      "Zhaoyuan Su",
+      "Zeyu Zhang",
+      "Tingfeng Lan",
+      "Zirui Wang",
+      "Haiying Shen",
+      "Juncheng Yang",
+      "Yue Cheng"
+    ],
+    "abstract": "Efficiently serving large language models (LLMs) under dynamic and bursty workloads remains a key challenge for real-world deployment. Existing serving frameworks and static model compression techniques fail to adapt to workload fluctuations, leading to either service-level objective (SLO) violations under full-precision serving or persistent accuracy degradation with static quantization. To deal with these issues, we present MorphServe, a dynamic, workload-aware LLM serving framework based on morphological adaptation. MorphServe introduces two asynchronous, token-level runtime mechanisms: quantized layer swapping, which selectively replaces less impactful layers with quantized alternatives during high-load periods, and pressure-aware KV cache resizing, which repurposes the freed memory to dynamically expand KV cache capacity. These mechanisms enable state-preserving transitions that jointly coordinate weight precision and KV capacity at runtime. Extensive experiments on Vicuna and Llama family models with real-world workloads demonstrate that MorphServe reduces average SLO violations by 92.45% and improves P95 TTFT by 2.2\u00d7\u20133.9\u00d7 over full-precision serving, without compromising generation quality. Compared to planning-based quantization methods, MorphServe reduces average accuracy degradation by 41.3%, and lowers P95 TTFT by up to 2.4\u00d7 over KV cache compression while maintaining higher generation quality. These results establish MorphServe as a practical and elastic solution that effectively navigates the accuracy\u2013efficiency Pareto frontier under dynamic LLM serving workloads.",
+    "openreview_url": "https://openreview.net/forum?id=PDu13oOl4G",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3816"
+  },
+  {
+    "slug": "mtraining-distributed-dynamic-sparse-attention-for-efficient",
+    "title": "MTraining: Distributed Dynamic Sparse Attention for Efficient Ultra-Long Context Training",
+    "authors": [
+      "Wenxuan Li",
+      "Chengruidong Zhang",
+      "Huiqiang Jiang",
+      "Yucheng Li",
+      "Yuqing Yang",
+      "Lili Qiu"
+    ],
+    "abstract": "The adoption of long context windows has become a standard feature in Large Language Models (LLMs), as extended contexts significantly enhance their capacity for complex reasoning and broaden their applicability across diverse scenarios. Dynamic sparse attention is a promising approach for reducing the computational cost of long-context training. However, efficiently training LLMs with dynamic sparse attention on ultra-long contexts, especially in distributed settings, remains a significant challenge, largely due to worker- and step-level imbalance. This paper introduces MTraining, a novel distributed methodology leveraging dynamic sparse attention to enable efficient training for LLMs with ultra-long contexts. Specifically, MTraining integrates three key components: a distributed sparse index approximating algorithm, balanced sparse ring attention, and hierarchical sparse ring attention. These components are designed to synergistically address the computational imbalance and communication overheads inherent in dynamic sparse attention mechanisms during training LLMs with extensive context lengths. We demonstrate the efficacy of MTraining mainly by training Qwen2.5-3B and Llama-3.1-8B, successfully expanding its context window from 32K/128K to 512K tokens on a cluster of 32$\\times$ A100 GPUs. Our evaluations on a comprehensive suite of downstream tasks, including RULER, PG-19, InfiniteBench, and NIAH, reveal that MTraining achieves up to a 6x higher training throughput while preserving model accuracy. The core code is available at https://github.com/microsoft/MInference/tree/main/mtraining.",
+    "openreview_url": "https://openreview.net/forum?id=h6SD2zgwGq",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3775"
+  },
+  {
+    "slug": "nest-network-and-memory-aware-device-placement-for-distribut",
+    "title": "NEST: Network- and Memory-Aware Device Placement for Distributed Deep Learning",
+    "authors": [
+      "Irene Wang",
+      "Vishnu Varma Venkata",
+      "Arvind Krishnamurthy",
+      "Divya Mahajan"
+    ],
+    "abstract": "The growing scale of deep learning demands distributed training frameworks that jointly reason about parallelism, memory, and network topology. Prior works often rely on heuristic or topology-agnostic search, handling communication and memory separately. Without per-device memory awareness, these methods typically ensure feasibility post hoc by sharding parameters and activations across many devices, increasing synchronization, inflating communication, and underutilizing compute\u2014limiting scalability and efficiency on real datacenter networks. We present NEST, a network-, compute-, and memory-aware device placement framework that unifies model parallelism, topology modeling, and memory feasibility via structured dynamic programming (DP). NEST\u2019s DP operates on operator graphs annotated with intra-layer parallelism configurations (tensor, expert, sequence, context), explicit allreduce latencies across hierarchical or arbitrary networks, and memory/compute profiles. By composing these with pipeline, data, and ZeRO partitioning, NEST defines a principled search space for hybrid strategies while jointly optimizing co-location, network latency, and memory feasibility. Evaluations across diverse hardware and networks show NEST achieves up to 2.43x higher throughput, better memory efficiency, and improved scalability over state-of-the-art baselines, providing a foundation for co-designing parallelization strategies and datacenter interconnects for next-generation AI infrastructure. The source code of NEST is available at: https://github.com/scai-tech/Nest",
+    "openreview_url": "https://openreview.net/forum?id=jpIoO2zSKA",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3767"
+  },
+  {
+    "slug": "once-for-all-channel-mixers-hypertinypw-generative-compressi",
+    "title": "Once-for-All Channel Mixers (HyperTinyPW): Generative Compression for TinyML",
+    "authors": [
+      "Yassien Shaalan"
+    ],
+    "abstract": "Neural networks on microcontrollers are constrained\nby kilobytes of flash/SRAM, where 1\u00d71\npointwise (PW) mixers often dominate memory\neven after INT8 quantization. We present\nHYPERTINYPW, a compression-as-generation\nmethod that replaces most stored PW weights\nwith generated weights: a shared micro-MLP\nsynthesizes PW kernels once at load time from\ntiny per-layer codes, caches them, and executes\nthem with standard integer operators. This preserves\ncommodity MCU runtimes and incurs only\na one-off synthesis cost; steady-state inference\nmatches INT8 separable CNNs. Sharing a latent\nbasis across layers removes cross-layer redundancy,\nwhile keeping PW1 in INT8 stabilizes\nearly, morphology-sensitive mixing. We also introduce\nTinyML-faithful packed-byte accounting\n(generator, heads/factorization, codes, kept PW1,\nbackbone) and a unified evaluation protocol with\nvalidation-tuned thresholds and bootstrap CIs. On\nthree ECG benchmarks (Apnea-ECG, PTB-XL,\nMIT-BIH), HYPERTINYPW improves the macro-\nF1\u2013vs.\u2013flash Pareto: at \u223c225 kB it achieves neariso\nperformance to a \u223c1.4MB CNN while being\n6.31\u00d7 smaller (84.15% fewer bytes), retaining\n\u226595% of large-model macro-F1. Beyond ECG,\nHYPERTINYPW transfers to TinyML audio: on\nSpeech Commands keyword spotting it reaches\n96.2% test accuracy (98.2% best validation), supporting\nthat generate-and-cache channel mixing\napplies broadly to embedded sensing workloads\nwhere repeated linear mixers dominate memory.",
+    "openreview_url": "https://openreview.net/forum?id=NrDa5Fu10D",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3818"
+  },
+  {
+    "slug": "ontology-guided-long-term-agent-memory-for-conversational-ra",
+    "title": "Ontology-Guided Long-Term Agent Memory for Conversational RAG",
+    "authors": [
+      "Shuang Cao",
+      "Rui Li"
+    ],
+    "abstract": "Retrieval-augmented generation (RAG) enables LLMs to ground responses in external knowledge, but long-term,\nmulti-session conversations still suffer from implicit recall failures: when current user queries lack lexical overlap\nwith earlier facts (e.g., preferences), standard dense retrieval and long-context prompting often miss the most\nrelevant memories. We present a dialogue-aware RAG system that jointly addresses what to store and how to\nretrieve under constraints. Our design extracts durable user facts into a lightweight memory graph, enriches\nqueries with conversational cues, performs hybrid retrieval, and uses a budget-aware router to balance quality\nand serving cost. On our Implicit Preference Recall benchmark, the system lifts Recall@10 to 0.70 (vs. 0.58 for\ndense-only) and improves nDCG@10 from 0.41 to 0.51. The system also reduces cross-modality disagreement by\n47% and achieves a 81% cost reduction compared to long-context methods.",
+    "openreview_url": "https://openreview.net/forum?id=wpZHLPz4N0",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3738"
+  },
+  {
+    "slug": "opkv-a-high-throughput-plugin-driven-framework-for-recallabl",
+    "title": "OPKV: A High-Throughput Plugin-Driven Framework for Recallable Sparsity in Paged KV Cache Systems",
+    "authors": [
+      "Huazheng Lao",
+      "Xiaofeng Li",
+      "Rui Xu",
+      "Long Chen",
+      "Xia Zhu",
+      "Jinquan Zhang"
+    ],
+    "abstract": "Long-context large language model (LLM) inference faces severe KV cache inflation, making GPU memory a key bottleneck. Existing recallable sparsity methods mitigate memory pressure by offloading non-critical key\u2013value (KV) pairs to CPU memory and recalling them on demand, they are intrusive to KV cache management in the existing inference frameworks and fail to cope with the linearly increasing recall overhead under high batches. To address these limitations, we propose OPKV, a high-throughput plugin-driven framework that seamlessly integrates recallable sparsity into paged KV cache systems and performs unified recall optimization.  OPKV introduces a plugin interface that decouples sparsity logic from model and cache management, and applies object reaggregation and hot page hit algorithms to reduce the recall overhead based on the observation of spatial discreteness and temporal locality in critical KV selection. In addition, a local intra-iteration metadata manager is implemented to perform millisecond-level page retrieval and cache eviction. The experimental results show that OPKV helps the SoTA methods attain 1.3 - 1.8x higher decoding throughput under different batches.",
+    "openreview_url": "https://openreview.net/forum?id=EB5bgzv4qA",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3844"
+  },
+  {
+    "slug": "osworld-human-benchmarking-the-efficiency-of-computer-use-ag",
+    "title": "OSWorld-Human: Benchmarking the Efficiency of Computer-Use Agents",
+    "authors": [
+      "Reyna Abhyankar",
+      "Qi Qi",
+      "Yiying Zhang"
+    ],
+    "abstract": "Generative AI is being leveraged to solve a variety of computer-use tasks involving desktop applications. State-of-\nthe-art systems have focused solely on improving accuracy on leading benchmarks. However, these systems are\npractically unusable due to extremely high end-to-end latency (e.g. tens of minutes) for tasks that typically take\nhumans just a few minutes to complete. To understand the cause behind this and to guide future developments of\ncomputer agents, we conduct the first study on the temporal performance of computer-use agents on OSWorld,\nthe flagship benchmark in computer-use AI. We find that large model calls for planning, reflection, and judging\naccount for most of the overall latency, and as an agent uses more steps to complete a task, each successive\nstep can take 3\u00d7 longer than steps at the beginning of a task. We then construct **OSWorld-Human**, a manually\nannotated version of the original OSWorld dataset that contains a human-determined trajectory for each task. We\nevaluate 16 agents on their efficiency using **OSWorld-Human** and found that even the best agents take **2.7\u22124.3\u00d7**\nmore steps than necessary.",
+    "openreview_url": "https://openreview.net/forum?id=0Cp8l6cvyq",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3865"
+  },
+  {
+    "slug": "parallelkittens-systematic-and-practical-simplification-of-m",
+    "title": "ParallelKittens: Systematic and Practical Simplification of Multi-GPU AI Kernels",
+    "authors": [
+      "Stuart H. Sul",
+      "Simran Arora",
+      "Benjamin F. Spector",
+      "Christopher R\u00e9"
+    ],
+    "abstract": "Inter-GPU communication has become a major bottleneck for modern AI workloads as models scale and improvements in hardware compute throughput outpace improvements in interconnect bandwidth. Existing systems mitigate this through compute-communication overlap but often fail to meet theoretical peak performance across heterogeneous workloads and new accelerators. Instead of operator-specific techniques, we ask whether a small set of simple, reusable principles can systematically guide the design of optimal multi-GPU kernels. We present ParallelKittens (PK), a minimal CUDA framework that drastically simplifies the development of overlapped multi-GPU kernels. PK extends the ThunderKittens framework and embodies the principles of multi-GPU kernel design through eight core primitives and a unified programming template, derived from a comprehensive analysis of the factors that govern multi-GPU performance\u2014data-transfer mechanisms, resource scheduling, and design overheads. We validate PK on both Hopper and Blackwell architectures. With fewer than 50 lines of device code, PK achieves up to $2.33\\times$ speedup for data- and tensor-parallel workloads, $4.08\\times$ for sequence-parallel workloads, and $1.22\\times$ for expert-parallel workloads.",
+    "openreview_url": "https://openreview.net/forum?id=Cv5e5uRXFb",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3845"
+  },
+  {
+    "slug": "parrot-persuasion-and-agreement-robustness-rating-of-output-",
+    "title": "PARROT: Persuasion and Agreement Robustness Rating of Output Truth \u2014 A Sycophancy Robustness Benchmark for LLMs",
+    "authors": [
+      "Yusuf \u00c7elebi",
+      "\u00d6zay Ezerceli",
+      "Mahmoud El Hussieni"
+    ],
+    "abstract": "This study presents PARROT (Persuasion and Agreement Robustness Rating of Output Truth), a robustness-focused framework designed to measure the degradation in accuracy that occurs under social pressure exerted on users through authority and persuasion in large language models (LLMs) the phenomenon of sycophancy (excessive conformity). PARROT (i) isolates causal effects by comparing the neutral version of the same question with an authoritatively false version using a double-blind evaluation, (ii) quantifies confidence shifts toward the correct and imposed false responses using log-likelihood-based calibration tracking, and (iii) systematically classifies failure modes (e.g., robust correct, sycophantic agreement, reinforced error, stubborn error, self-correction, etc.) using an eight-state behavioral taxonomy. We evaluated 22 models using 1,302 MMLU-style multiple-choice questions across 13 domains and domain-specific authority templates. Findings show marked heterogeneity: advanced models (e.g., GPT-5, GPT-4.1, Claude Sonnet 4.5) exhibit low \u201cfollow rates\u201d ($\\leq11\\%$, GPT-5: 4\\%) and minimal accuracy loss, while older/smaller models show severe epistemic collapse (GPT-4: 80\\%, Qwen 2.5-1.5B: 94\\%). The danger is not limited to response changes; weak models reduce confidence in the correct response while increasing confidence in the imposed incorrect response. While international law and global knowledge at the domain level exhibit high fragility, elementary mathematics is relatively resilient. Consequently, we argue that the goal of \u201cresistance to overfitting pressure\u201d should be addressed as a primary objective alongside accuracy, harm avoidance, and privacy for safe deployment in the real world.",
+    "openreview_url": "https://openreview.net/forum?id=cU2wiOnfm5",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3791"
+  },
+  {
+    "slug": "player-fl-a-principled-approach-to-personalized-layer-wise-c",
+    "title": "PLayer-FL: A Principled Approach to Personalized Layer-wise Cross-Silo Federated Learning",
+    "authors": [
+      "Ahmed Elhussein",
+      "Florent Pollet",
+      "Gamze G\u00fcrsoy"
+    ],
+    "abstract": "Federated learning (FL) with non-IID data often degrades client performance below local training baselines. Partial FL addresses this by federating only early layers that learn transferable features, but existing methods rely on ad-hoc, architecture-specific heuristics. We first conduct a systematic analysis of layer-wise generalization dynamics in FL, revealing an early-emerging transition between generalizable (safe-to-federate) and task-specific (should-remain-local) layers. Building on this, we introduce Principled Layer-wise Federated Learning (PLayer-FL), which aims to deliver the benefits of federation more robustly. PLayer-FL computes a novel federation-sensitivity metric efficiently after a single training epoch to choose the optimal split point for a given task. Inspired by model pruning, the metric quantifies each layer\u2019s robustness to aggregation and highlights where federation shifts from beneficial to detrimental. We show that this metric correlates strongly with established generalization measures across diverse architectures. Crucially, experiments demonstrate that PLayer-FL achieves consistently competitive performance across a wide range of tasks while distributing gains more equitably and reducing client-side regressions relative to baselines.",
+    "openreview_url": "https://openreview.net/forum?id=QBUy1HdKrZ",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3813"
+  },
+  {
+    "slug": "practical-adversarial-multi-armed-bandits-with-sublinear-run",
+    "title": "Practical Adversarial Multi-Armed Bandits with Sublinear Runtime",
+    "authors": [
+      "Kasper Overgaard Mortensen",
+      "Ama Bembua Bainson",
+      "Mathias Ravn Tversted",
+      "Kristoffer Strube Gr\u00e6m",
+      "Renata Borovica-Gajic",
+      "Andrea Paudice",
+      "Davide Mottin",
+      "Panagiotis Karras"
+    ],
+    "abstract": "We study the Multi-Armed Bandit problem in nonstationary adversarial environments, where the identity of the optimal arm can change over time due to shifts in the loss sequence. Motivated by applications such as physical design tuning in database systems, we focus on settings with a very large number of arms and seek practical algorithms with sublinear runtime. Our main contribution is a novel algorithm, Queuing Behind the Leader (QBL), which achieves a per-iteration complexity of O(m log k), where m is the number of arms selected at each step. QBL combines limited update operations via a priority queue, a constant sampling overhead, and a balanced exploration strategy. We evaluate QBL extensively on state-of-the-art benchmarks and demonstrate that it consistently outperforms existing methods in both time and solution quality.",
+    "openreview_url": "https://openreview.net/forum?id=lfHvcstuo2",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3762"
+  },
+  {
+    "slug": "prism-parametrically-refactor-inference-for-speculative-deco",
+    "title": "PRISM: Parametrically Refactor Inference for Speculative Decoding Draft Models",
+    "authors": [
+      "Xuliang Wang",
+      "Yuetao Chen",
+      "Maochan Zhen",
+      "Fang Liu",
+      "Xinzhou Zheng",
+      "Xingwu Liu",
+      "Hong Xu",
+      "Ming Li"
+    ],
+    "abstract": "Large Language Models (LLMs), constrained by their auto-regressive nature, suffer from slow decoding. Speculative decoding methods have emerged as a promising solution to accelerate LLM decoding, attracting attention from both systems and AI research communities. Recently, the pursuit of better draft quality has driven a trend toward parametrically larger draft models, which inevitably introduces substantial computational overhead. While existing work attempts to balance the trade-off between prediction accuracy and compute latency, we address this fundamental dilemma through architectural innovation.\n\nWe propose PRISM, which disaggregates the computation of each predictive step across different parameter sets, refactoring the computational pathways of draft models to successfully decouple model capacity from inference cost. Through extensive experiments, we demonstrate that PRISM outperforms all existing draft architectures, achieving exceptional acceptance lengths while maintaining minimal draft latency for superior end-to-end speedup. We also re-examine scaling laws with PRISM, revealing that PRISM scales more effectively with expanding data volumes than other draft architectures. Through rigorous and fair comparison, we show that PRISM boosts the decoding throughput of an already highly optimized inference engine by more than 2.6\u00d7.",
+    "openreview_url": "https://openreview.net/forum?id=cvU2HuuxEf",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3789"
+  },
+  {
+    "slug": "privatar-scalable-privacy-preserving-multi-user-vr-via-secur",
+    "title": "Privatar: Scalable Privacy-preserving Multi-user VR via Secure Offloading",
+    "authors": [
+      "Jianming Tong",
+      "Hanshen Xiao",
+      "Krishna Kumar Nair",
+      "Hao Kang",
+      "Ashish Sirasao",
+      "Ziqi Zhang",
+      "G. Edward Suh",
+      "Tushar Krishna"
+    ],
+    "abstract": "Multi-user virtual reality (VR) applications such as football and concert experiences rely on real-time avatar reconstruction to enable immersive interaction. However, rendering avatars for numerous participants on each headset incurs prohibitive computational overhead, fundamentally limiting scalability. This work introduces a framework, Privatar, to offload avatar reconstruction from headset to untrusted devices within the same local network while safeguarding sensitive facial features against adversaries capable of intercepting offloaded data.\n\nPrivatar builds on the insight that \"domain-specific knowledge of avatar reconstruction enables provably private offloading at minimal cost\". (1) _System level_. We observe avatar reconstruction is frequency-domain decomposable via block-wise DCT with negligible quality drop, and propose Horizontal Partitioning (HP) to keep the most energy frequency components on-device and offloads only low-energy components. HP offloads local computation while reducing information leakage to low-energy subsets only. (2) _Privacy level_. For _individually_ offloaded, _multi-dimensional_ signals without aggregation, worst-case local Differential Privacy requires prohibitive noise, ruining utility. We observe users\u2019 expression statistical distribution are _slowly changing over time and trackable online_, and hence propose Distribution-Aware Minimal Perturbation (DAMP). DAMP minimizes noise based on each user\u2019s expression distribution to significantly reduce its effects on utility and accuracy, retaining formal privacy guarantee. Combined, HP provides empirical privacy protection against expression identification attack. And DAMP further augments it to offer a formal guarantee against arbitrary adversaries.\n\nOn a Meta Quest Pro, Privatar supports up to 2.37$\\times$ more concurrent users at 5.7$\\sim$6.5% higher reconstruction loss and $\\sim$9% energy overhead, providing a better throughout-loss Pareto frontier over SotA quantization, sparsity, and local reconstruction baseline. Privatar further provides both provable privacy guarantee and stays robust against both empirical attack and NN-based Expression Identification Attack, proving its resilience in practice. Our code is open-sourced at https://github.com/georgia-tech-synergy-lab/Privatar.",
+    "openreview_url": "https://openreview.net/forum?id=WjJfnNhY65",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3801"
+  },
+  {
+    "slug": "profinfer-an-ebpf-based-fine-grained-llm-inference-profiler",
+    "title": "ProfInfer: An eBPF-based Fine-Grained LLM Inference Profiler",
+    "authors": [
+      "Bohua Zou",
+      "Debayan Roy",
+      "Dhimankumar Yogesh Airao",
+      "Weihao Xu",
+      "Binqi Sun",
+      "Yutao Liu",
+      "Haibo Chen"
+    ],
+    "abstract": "As large language models (LLMs) move from research to production, understanding how inference engines behave in real time has become both essential and elusive. Unlike general-purpose engines such as ONNX Runtime, today\u2019s LLM inference systems offer little operator-level visibility, leaving developers blind to where time and resources go. Even basic questions\u2014is this workload memory-bound or compute-bound?\u2014often remain unanswered.\nTo close this gap, we develop a fine-grained, non-intrusive profiling framework for modern LLM inference engines, with a specific focus on resource-constrained edge devices, exemplified by llama.cpp but applicable to similar runtime architectures. Built on extended Berkeley Packet Filter (eBPF) technology, our system dynamically attaches probes to runtime functions across multiple layers\u2014without modifying or recompiling the source. It transforms collected traces into rich visualizations of operators, graphs, timelines, and hardware counter trends, exposing how dense inference, Mixture-of-Experts routing, and operator offloading behave in practice.\nWith less than 4% runtime overhead and high profiling fidelity, our framework makes LLM inference both transparent and diagnosable, turning performance profiling into a practical tool for optimization, scheduling, and resource-aware deployment.",
+    "openreview_url": "https://openreview.net/forum?id=tYHWS7YPof",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3740"
+  }
+]

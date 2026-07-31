@@ -13,8 +13,8 @@ authors:
 - Min Ni
 - Shen Li
 award: ''
-citations: null
-citations_updated: ''
+citations: 3
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - recs-models
@@ -27,18 +27,18 @@ key_results: Up to 6.2× speedup and 4× activation memory reduction vs. MegaBlo
   baseline on H100; SwiGLU MoE gets 2×–6.2× speedup, SiLU gets 1.4×–3.7×
 models_evaluated: []
 observations:
-  skip: Top-k routing activates only 1–4 of the 4–16 experts per token;
-    compact index structures exploit this sparsity to skip materializing unused routing
-    buffers entirely, cutting ~94GB HBM use.
-  tier: SwiGLU fusion combines dual first-layer projections and
-    activation epilogue into a single kernel, eliminating intermediate global memory
-    writes and keeping activations in registers/shared memory
-  fuse: Conventional MoE routing materializes ~94GB permutation buffers
-    in HBM; four compact index structures replace these with index-only tensors, eliminating
-    most permutation traffic.
+  fuse: Conventional MoE routing materializes ~94GB permutation buffers in HBM; four
+    compact index structures replace these with index-only tensors, eliminating most
+    permutation traffic.
+  skip: Top-k routing activates only 1–4 of the 4–16 experts per token; compact index
+    structures exploit this sparsity to skip materializing unused routing buffers
+    entirely, cutting ~94GB HBM use.
+  tier: SwiGLU fusion combines dual first-layer projections and activation epilogue
+    into a single kernel, eliminating intermediate global memory writes and keeping
+    activations in registers/shared memory
 official_category: Research Papers
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=L8qKfWWkry
+optimization_type: []
 organizations:
 - Meta
 presentation_type: oral

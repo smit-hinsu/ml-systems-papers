@@ -1,0 +1,356 @@
+[
+  {
+    "slug": "cdlm-consistency-diffusion-language-models-for-faster-sampli",
+    "title": "CDLM: Consistency Diffusion Language Models for Faster Sampling",
+    "authors": [
+      "Minseo Kim",
+      "Chenfeng Xu",
+      "Coleman Hooper",
+      "Harman Singh",
+      "Ben Athiwaratkun",
+      "Ce Zhang",
+      "Kurt Keutzer",
+      "Amir Gholami"
+    ],
+    "abstract": "Diffusion Language Models (DLMs) offer a promising parallel generation paradigm but suffer from slow inference due to numerous refinement steps and the inability to use standard KV caching. We introduce CDLM (Consistency Diffusion Language Models), a training-based acceleration method that simultaneously tackles both bottlenecks. CDLM integrates consistency modeling to drastically reduce the number of required sampling steps by enabling multi-token finalization. Furthermore, we enforce a block-wise causal attention mask during fine-tuning, making the model fully compatible with KV caching. Experiments show CDLM achieves 3.6\u00d7-14.5\u00d7 lower latency while maintaining competitive accuracy on math and coding tasks. The full training and evaluation code is available at https://github.com/SqueezeAILab/CDLM.",
+    "openreview_url": "https://openreview.net/forum?id=eB8yjR6alL",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3785"
+  },
+  {
+    "slug": "charon-a-unified-and-fine-grained-simulator-for-large-scale-",
+    "title": "Charon: A Unified and Fine-Grained Simulator for Large-Scale LLM Training and Inference",
+    "authors": [
+      "Mengtian Yang",
+      "Zhekun Zhang",
+      "Mingheng Wu",
+      "Jianwen Yan",
+      "Hanshi Sun",
+      "Li-wen Chang"
+    ],
+    "abstract": "Deploying large-scale LLM training and inference with optimal performance is exceptionally challenging due to a complex design space of parallelism strategies, system optimizations, and hardware configurations. Accurate and rapid performance simulation is critical for guiding optimization efforts and system studies by validating \u201cwhat-if\u201d hypotheses. To address this, we introduce Charon, a unified, modular, and fine-grained simulator for accurately predicting LLM performance. Experiments show Charon achieves high accuracy across different models and configurations, with an overall prediction error consistently under 5.35%, and even under 3.74% for training with a large-scale GPU cluster. In a practical inference deployment case, Charon discovered a configuration that improved system throughput over an engineering-tuned baseline, demonstrating its significant real-world value.",
+    "openreview_url": "https://openreview.net/forum?id=19O6GAS7Su",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3861"
+  },
+  {
+    "slug": "contextpilot-fast-long-context-inference-via-context-reuse",
+    "title": "ContextPilot: Fast Long-Context Inference via Context Reuse",
+    "authors": [
+      "Yinsicheng Jiang",
+      "Yeqi Huang",
+      "Liang Cheng",
+      "Cheng Deng",
+      "Xuan Sun",
+      "Luo Mai"
+    ],
+    "abstract": "AI applications increasingly depend on long-context inference, where LLMs consume substantial context to support stronger reasoning. Common examples include retrieval-augmented generation, agent memory layers, and multi-agent orchestration. As input contexts get longer, prefill latency becomes the main bottleneck. Yet today\u2019s prefill acceleration techniques face a trade-off: they either preserve reasoning quality but deliver little KV-cache reuse, or improve reuse at the cost of degraded reasoning quality. \n\nWe present ContextPilot, a system that accelerates prefill by introducing context reuse as a new mechanism for faster long-context inference. ContextPilot introduces a context index to identify overlapping context blocks across LLM interactions (e.g., across users and turns). It further proposes context alignment and de-duplication techniques to maximize KV-cache reuse. To preserve reasoning quality under reuse, it introduces succinct context annotations that prevent quality degradation. Finally, ContextPilot is built around a modular architecture with a clean interface that integrates with existing inference engines. Extensive evaluation shows that ContextPilot reduces LLM prefill latency by up to 3X compared to state-of-the-art methods while preserving reasoning quality. At longer context lengths, it can even improve reasoning quality. ContextPilot is open-sourced at: https://github.com/EfficientContext/ContextPilot.",
+    "openreview_url": "https://openreview.net/forum?id=RnKvDy1jv2",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3810"
+  },
+  {
+    "slug": "cost-aware-duration-prediction-for-software-upgrades-in-data",
+    "title": "Cost-aware Duration Prediction for Software Upgrades in Datacenters",
+    "authors": [
+      "Yi Ding",
+      "Aijia Gao",
+      "Thibaud Ryden",
+      "Michal Sedlak",
+      "Essam Ewaisha",
+      "Igor Marnat",
+      "Henry Hoffmann"
+    ],
+    "abstract": "Software upgrades are critical to maintaining server reliability in datacenters. While job duration prediction and scheduling have been extensively studied, the unique challenges posed by software upgrades remain largely under-explored. This paper presents the first in-depth investigation into software upgrade scheduling at datacenter scale. We begin by characterizing various types of upgrades and then frame the scheduling task as a constrained optimization problem. To address this problem, we introduce Acela, a cost-aware duration prediction framework designed to improve upgrade scheduling efficiency and throughput while meeting service-level objectives (SLOs). Acela accounts for asymmetric misprediction costs, strategically selects the best predictive models, and mitigates straggler-induced overestimations. Evaluations on Meta's production datacenter systems demonstrate that Acela significantly outperforms the existing upgrade scheduler by improving upgrade window utilization by 1.25x, increasing the number of scheduled and completed upgrades by 33% and 41%, and reducing cancellation rates by 2.4x. The code and data sets will be released after paper acceptance.",
+    "openreview_url": "https://openreview.net/forum?id=l72e5oROLT",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3765"
+  },
+  {
+    "slug": "csle-a-reinforcement-learning-platform-for-autonomous-securi",
+    "title": "CSLE: A Reinforcement Learning Platform for Autonomous Security Management",
+    "authors": [
+      "Kim Hammar"
+    ],
+    "abstract": "Reinforcement learning is a promising approach to autonomous and adaptive security management in networked systems. However, current reinforcement learning solutions for security management are mostly limited to simulation environments and it is unclear how they generalize to operational systems. In this paper, we address this limitation by presenting CSLE: a reinforcement learning platform for autonomous security management that enables experimentation under realistic conditions. Conceptually, CSLE encompasses two systems. First, it includes an emulation system that replicates key components of the target system in a virtualized environment. We use this system to gather measurements and logs, based on which we identify a system model, such as a Markov decision process. Second, it includes a simulation system where security strategies are efficiently learned through simulations of the system model. The learned strategies are then evaluated and refined in the emulation system to close the gap between theoretical and operational performance. We demonstrate CSLE through four use cases: flow control, replication control, segmentation control, and recovery control. Through these use cases, we show that CSLE enables near-optimal security management in an environment that approximates an operational system.",
+    "openreview_url": "https://openreview.net/forum?id=QGuRWjFsnm",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3812"
+  },
+  {
+    "slug": "dataflow-is-all-you-need",
+    "title": "Dataflow Is All You Need",
+    "authors": [
+      "Darshan Gandhi",
+      "Pushkar Nandkar",
+      "David Koeplinger",
+      "Nasim Farahini",
+      "Romy Tsoupidi",
+      "Samuel Rydh",
+      "Matheen Musaddiq",
+      "Tuowen Zhao",
+      "Reid Goodbar",
+      "Nathan Sheeley",
+      "Leon Zhang",
+      "Matthew Shaffer",
+      "John Long",
+      "Han Wang",
+      "Angela Wang",
+      "Arjun Sabnis",
+      "Joshua Brot",
+      "Yun Du",
+      "Hakan Zeffer",
+      "Mingran Wang",
+      "Raghu Prabhakar"
+    ],
+    "abstract": "The autoregressive decode phase of token generation is often a major performance bottleneck in modern AI workflows due to its memory-bandwidth-bound characteristics, which are amplified by powerful open-source models with large context windows and techniques such as chain-of-thought reasoning. Popular GPU architectures extract as little as 21\\% of the available memory bandwidth from loading weights and KV caches, as the scope of asynchronous execution is limited by CPU scheduling overheads, kernel synchronization overheads, and inadequate compute-communication overlap. While prior work attempts to address these overheads with kernel fusion and asynchronous execution on GPUs, they mostly focus on a single GPU and do not generalize across different model architectures. We argue that to truly mitigate these overheads, $\\textit{Dataflow Is All You Need}$. In this paper, we chronicle a co-design approach to achieve peak decoding performance on a dataflow architecture -- the SambaNova SN40 Reconfigurable Dataflow Unit (RDU), substantiated by three key dataflow enabled optimizations -- $\\textit{KernelLooping}$, $\\textit{BatchStreaming}$, and $\\textit{ScheduleOffloading}$ -- that generalize to models that are small, large, dense, MoEs, or hybrids, and that use different attention mechanisms. Collectively, these optimizations deliver more than $\\textbf{75}$\\% of the theoretical peak roofline performance for a wide range of popular open-source models and demonstrate a speedup of more than $\\textbf{6$\\times$}$ when using popular speculative decoding techniques. Finally, we show that speculative decoding is $\\textbf{1.7$\\times$}$ faster on 16 SN40 ~chips than on a DGX H100 despite both systems having comparable HBM bandwidth. The techniques described in this paper and the models used in the evaluation are deployed in a production AI inference cloud at $\\href{}{cloud.sambanova.ai}$.",
+    "openreview_url": "https://openreview.net/forum?id=7wOOhxkuN8",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3852"
+  },
+  {
+    "slug": "db-sp-accelerating-sparse-attention-for-visual-generative-mo",
+    "title": "db-SP: Accelerating Sparse Attention for Visual Generative Models with Dual-Balanced Sequence Parallelism",
+    "authors": [
+      "Siqi Chen",
+      "Ke Hong",
+      "Tianchen Zhao",
+      "Ruiqi Xie",
+      "Zhenhua Zhu",
+      "Xudong Zhang",
+      "Yu Wang"
+    ],
+    "abstract": "Scaling Diffusion Transformer (DiT) inference via sequence parallelism is critical for reducing latency in visual generation, but is severely hampered by workload imbalance when applied to models employing block-wise sparse attention. The imbalance stems from the inherent variation in sparsity across attention heads and the irregular distribution of dense blocks within the sparse mask, when sequence parallelism is applied along the head dimension (as in Ulysses) or the block dimension (as in Ring Attention). In this paper, we formalize a \\textit{sparse imbalance ratio} to quantify the imbalance, and propose \\textit{db}-SP, a sparsity-aware sequence parallelism technique that tackles the challenge. \\textit{db}-SP contains a dual-level partitioning approach that achieves near-perfect workload balance at both the head and block levels with negligible overhead. Furthermore, to handle the evolving sparsity patterns across denoising steps and layers, \\textit{db}-SP dynamically determines the parallel degrees for the head and block dimensions at runtime. Experimental results demonstrate that \\nickname delivers an end-to-end speedup of 1.25\u00d7 and an attention-specific speedup of 1.40\u00d7 over state-of-the-art sequence parallel methods on average.",
+    "openreview_url": "https://openreview.net/forum?id=XgKteNxNe0",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3798"
+  },
+  {
+    "slug": "disagg-distributed-aggregators-for-efficient-secure-aggregat",
+    "title": "DisAgg: Distributed Aggregators for Efficient Secure Aggregation",
+    "authors": [
+      "Haaris Mehmood",
+      "Giorgos Tatsis",
+      "Dimitrios Alexopoulos",
+      "Karthikeyan Saravanan",
+      "Jie Xu",
+      "Anastasios Drosou",
+      "Mete Ozay"
+    ],
+    "abstract": "Federated learning enables collaborative model training across distributed clients, yet vanilla FL exposes client updates to the central server.  Secure\u2011aggregation schemes protect privacy against an honest\u2011but\u2011curious server, but existing approaches often suffer from many communication rounds, heavy public\u2011key operations, or difficulty handling client dropouts.  Recent methods like One\u2011Shot Private Aggregation (OPA) cut rounds to a single server interaction per FL iteration, yet they impose substantial cryptographic and computational overhead on both server and clients. We propose a new protocol called DisAgg that leverages a small committee of clients called *Aggregators* to perform the aggregation itself: each client secret\u2011shares its update vector to Aggregators, which locally compute partial sums and return only aggregated shares for server\u2011side reconstruction.  This design eliminates local masking and expensive homomorphic encryption, reducing endpoint computation while preserving privacy against a curious server and a limited fraction of colluding clients.  By leveraging optimal trade-offs between communication and computation costs, DisAgg processes 100k-dimensional update vectors from 100k 5G clients with a 4.6x speedup compared to OPA, the previous best protocol.",
+    "openreview_url": "https://openreview.net/forum?id=H0BLKrOgik",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3837"
+  },
+  {
+    "slug": "dreamddp-accelerating-low-bandwidth-geo-distributed-llm-trai",
+    "title": "DreamDDP: Accelerating Low-Bandwidth Geo-Distributed LLM Training with Layer-wise Partial Synchronization",
+    "authors": [
+      "zhenheng Tang",
+      "Zichen TANG",
+      "Junlin Huang",
+      "Xinglin Pan",
+      "Rudan Yan",
+      "Yuxin Wang",
+      "Amelie Chi Zhou",
+      "Shaohuai Shi",
+      "Xiaowen Chu",
+      "Bo Li"
+    ],
+    "abstract": "Scaling up training large language models (LLMs) in computing and data perspectives motivates distributed training across different geo-distributed data centers. Communication in geo-distributed data parallel training (DDP) with stochastic gradient descent (S-SGD) is the main bottleneck in low-bandwidth environments. Recent studies have successfully applied Local SGD to mitigate the communication overhead and geo-distributedly pre-train LLMs. However, we identify that the strict model synchronization mechanism in Local SGD prevents overlapping communication and computation, which makes the system lose opportunities to overlap communication and computation.\nTo overcome this limitation, we expand the design space of local SGD by layer-wisely decoupling model synchronization. In each iteration, only partial layers are synchronized instead of the entire model after a specific number of iterations.   Leveraging this methodology, we introduce DreamDDP, a training framework to accelerate low-bandwidth distributed training with three key innovations: (1) partial local SGD with theoretical assurances of convergence rates comparable to S-SGD; (2) overlapping parameter synchronization with computation without extra GPU memory occupation; (3) identifying and exploiting three properties to schedule communication and computation based on fine-grained layer-wise profiling to reduce training time. Empirical evaluations conducted on 32 GPUs using prominent deep learning models, including ResNet-18, ResNet-50, GPT-2, and Llama-2, demonstrate that DreamDDP enhances the convergence properties of Local SGD (and Adam) and achieves speedups ranging from $1.49\\times$ to $3.91\\times$ over leading baseline methods.",
+    "openreview_url": "https://openreview.net/forum?id=cnvw0mbZQp",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3790"
+  },
+  {
+    "slug": "driftbench-measuring-and-predicting-infrastructure-drift-in-",
+    "title": "DriftBench: Measuring and Predicting Infrastructure Drift in LLM Serving Systems",
+    "authors": [
+      "Gianluigi Vitale"
+    ],
+    "abstract": "Production LLM deployments lack systematic methods to assess output consistency risks when infrastructure changes. We present DriftBench, a measurement and prediction framework comprising 236,985 prompt-response pairs across 105 configurations spanning 5 models, 4 GPU platforms, 3 frameworks, 3 precisions. We develop the Portability Risk Index (PRI), achieving held-out-dimension generalization of $R^2$=0.909 for unseen hardware and $R^2$=0.763 for unseen precision ($R^2$ ranges up to 1.0; higher is better). We discover a fundamental dichotomy: hardware/precision changes exhibit systematic drift ($R^2 \\geq 0.76$) enabling predict-once deployment, while framework/model changes show idiosyncratic drift ($R^2 < 0.48$) requiring re-measurement. Production validation blocked a high-drift upgrade where 23.85\\% of safety prompts flipped between safe and unsafe classifications (nearly 1 in 4 answers changed from safe to unsafe or unsafe to safe), demonstrating operational value. Our contribution is measurement and risk assessment; we do not propose drift mitigation techniques, as this remains an open challenge for future work.",
+    "openreview_url": "https://openreview.net/forum?id=Xfzzp6grRP",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3799"
+  },
+  {
+    "slug": "dynaflow-transparent-and-flexible-intra-device-parallelism-v",
+    "title": "DynaFlow: Transparent and Flexible Intra-Device Parallelism via Programmable Operator Scheduling",
+    "authors": [
+      "Yi Pan",
+      "Yile Gu",
+      "Jinbin Luo",
+      "Yibo Wu",
+      "Ziren Wang",
+      "Hongtao Zhang",
+      "Ziyi Xu",
+      "Shengkai Lin",
+      "Baris Kasikci",
+      "Stephanie Wang"
+    ],
+    "abstract": "Intra-device parallelism addresses resource under-utilization in ML inference and training by overlapping the execution of operators with different resource usage. \nHowever, its wide adoption is hindered by a fundamental conflict with the static, sequential programming model of existing frameworks.\nIntegrating these strategies requires invasive, model-specific code overhauls, representing an intractable engineering cost.\nThis is further amplified by the high sensitivity of strategies to execution contexts (e.g., workload, model architecture, hardware), forcing developers to implement and maintain multiple specialized solutions.\nTo address this, we propose DynaFlow, a framework that enables the transparent and flexible integration of intra-device parallelism by decoupling the logical model definition from the physical execution schedule.\nDynaFlow introduces a flexible frontend with annotations for graph partitioning and a programmable interface for defining custom intra-device parallelism strategies.\nIts efficient backend manages complex control/data-flow asynchronously, uses custom memory management to eliminate copy overheads, and preserves compatibility with optimizations like CUDA Graphs and TorchInductor.\nWe demonstrate that DynaFlow can integrate representative parallelism strategies into 6 state-of-the-art ML systems with minimal code changes, achieving up to a 1.29x throughput improvement.\nDynaFlow is publicly available at https://github.com/uw-syfi/DynaFlow.",
+    "openreview_url": "https://openreview.net/forum?id=i0yqC9954S",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3771"
+  },
+  {
+    "slug": "earthsight-a-distributed-framework-for-low-latency-satellite",
+    "title": "EarthSight: A Distributed Framework for Low-Latency Satellite Intelligence",
+    "authors": [
+      "Ansel Erol",
+      "Seungjun Lee",
+      "Divya Mahajan"
+    ],
+    "abstract": "Low-latency delivery of satellite imagery is essential for time-critical applications such as disaster response, intelligence, and infrastructure monitoring. However, traditional pipelines rely on downlinking all captured images before analysis, introducing delays of hours to days due to restricted communication bandwidth. To address these bottlenecks, emerging systems perform onboard machine learning to prioritize which images to transmit. However, these solutions typically treat each satellite as an isolated compute node, limiting scalability and efficiency. Redundant inference across satellites and tasks further strains onboard power and compute costs, constraining mission scope and responsiveness. We present EarthSight, a distributed runtime framework that redefines satellite image intelligence as a distributed decision problem between orbit and ground. EarthSight introduces three core innovations: (1) multi-task inference on satellites using shared backbones to amortize computation across multiple vision tasks; (2) ground-station query scheduler that aggregates user requests, predicts priorities, and assigns compute budgets to incoming imagery; and (3) dynamic filter ordering, which integrates model selectivity, accuracy, and execution cost to reject low-value images early and conserve resources. EarthSight leverages global context from ground stations and resource-aware adaptive decisions in orbit to enable constellations to perform scalable, low-latency image analysis within strict downlink bandwidth and onboard power budgets. Evaluations using a prior established satellite simulator show that EarthSight reduces average compute time per image by 1.9x and lowers 90th percentile end-to-end latency from first contact to delivery from 51 to 21 minutes compared to the state-of-the-art baseline.",
+    "openreview_url": "https://openreview.net/forum?id=c3O6DnhUYm",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3792"
+  },
+  {
+    "slug": "efficient-long-context-language-model-training-by-core-atten",
+    "title": "Efficient Long-Context Language Model Training by Core Attention Disaggregation",
+    "authors": [
+      "Yonghao Zhuang",
+      "Junda Chen",
+      "Bo Pang",
+      "Yi Gu",
+      "Yibo Zhu",
+      "Yimin Jiang",
+      "Ion Stoica",
+      "Hao Zhang",
+      "Eric P. Xing"
+    ],
+    "abstract": "We present core attention disaggregation (CAD), a technique that improves long-context LLM training by disaggregating the core attention (CA) -- the parameter-free $\\mathrm{softmax}(\\mathbf{QK}^{\\top})\\mathbf{V}$ computation -- and schedules it on an independent pool of resources. Existing systems co-locate core attention with other components. At long context, the quadratic growth of CA computation and near-linear growth of the rest create load imbalance -- hence stragglers across data and pipeline groups.\nCAD is enabled by two key observations: (i) \\emph{statelessness}: CA has no trainable parameters and minimal transient state, so balancing reduces to scheduling compute-bound tasks; and (ii) \\emph{composability}: modern attention kernels sustain high utilization on fused batches of arbitrary-length token-level shards. \nCAD dynamically partitions the core attention computation into token-level tasks (CA-tasks), and dispatches them to a pool of devices specialized for CA computation (attention servers). It then rebatches CA-tasks to equalize CA compute across attention servers without loss of kernel efficiency.\nWe have implemented CAD in a system called DistCA with a ping-pong scheme to completely overlap communication with compute, and in-place attention servers to improve memory utilization. \nScaling to 512 H200 GPUs and 512K context length, DistCA eliminates DP/PP stragglers, achieves near-perfect compute and memory balance, and improves end-to-end training throughput by up to 1.9\u00d7 over Megatron-LM and 1.35\u00d7 over existing load-balancing methods",
+    "openreview_url": "https://openreview.net/forum?id=oIonqkc8hM",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3754"
+  },
+  {
+    "slug": "efficient-vram-constrained-xlm-inference-on-clients",
+    "title": "Efficient, VRAM-Constrained xLM Inference on Clients",
+    "authors": [
+      "Aditya Ukarande",
+      "Deep Shekhar",
+      "Marc Blackstein",
+      "Ram Rangan"
+    ],
+    "abstract": "To usher in the next round of client AI innovation, there is an urgent need to enable efficient, lossless inference of high-accuracy large language models (LLMs) and vision language models (VLMs), jointly referred to as xLMs, on client systems. This means efficient support for: a) interactive as well as batch modes, b) high-resolution VLM inference, c) dense and mixture-of-experts (MoE) LLMs, and d) adapting to system conditions (CPU thread count, CPU-GPU interconnect bandwidth, and video memory (VRAM) budget) and inference conditions (phase of execution and context size). While recent CPU-GPU hybrid scheduling techniques show promise, to the best of our knowledge, no single product handles all of the above.\n\nIn this paper, we address this problem with *pipelined sharding*, a novel, benchmark-profile-guided CPU-GPU hybrid scheduling technique to achieve efficient, VRAM-constrained inference for both dense and mixture-of-experts (MoE) LLMs. Using a combination of model sharding at the sub-layer level, CPU offloading, pipelined copy-compute, and prioritized tensor placement in VRAM, it optimizes both time-to-first-token (TTFT) and tokens per second (TPS) metrics, while flexibly adapting to system and inference conditions. For efficient, high-accuracy\nVLM inference, we combine pipelined sharding with a llama.cpp implementation of three well-understood prior ideas (jointly called *VLMOpt*), namely, vision tensor CPU offloading, flash attention, and vision and language model VRAM overlap avoidance.\n\nThese enhancements are targeted at improving client xLM inference in future releases of two important NVIDIA products - the In-Game Inferencing software development kit (IGI SDK) and the Cosmos-Reason1 (CR1) physical AI reasoning VLM. Highlights from our rigorous evaluation spanning multiple models and client systems include: for interactive use, TTFT improves by up to 6.7$\\times$ and TPS by up to 30$\\times$ for LLMs, and CR1 inference\u2019s VRAM demand is down by 10$\\times$, while in batched mode, throughput improves by up to 8.2$\\times$, all compared to their respective aggressive baselines.",
+    "openreview_url": "https://openreview.net/forum?id=VKqQYg6JPb",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3802"
+  },
+  {
+    "slug": "event-tensor-a-unified-abstraction-for-compiling-dynamic-meg",
+    "title": "Event Tensor: A Unified Abstraction for Compiling Dynamic Megakernel",
+    "authors": [
+      "Hongyi Jin",
+      "Bohan Hou",
+      "Guanjie Wang",
+      "Ruihang Lai",
+      "Jinqi Chen",
+      "Zihao Ye",
+      "Yaxing Cai",
+      "Yixin Dong",
+      "Xinhao Cheng",
+      "Zhihao Zhang",
+      "Yilong Zhao",
+      "Yingyi Huang",
+      "Lijie Yang",
+      "Jinchen Jiang",
+      "Gabriele Oliaro",
+      "Jianan Ji",
+      "Xupeng Miao",
+      "Vinod Grover",
+      "Todd C. Mowry",
+      "Zhihao Jia",
+      "Tianqi Chen"
+    ],
+    "abstract": "Modern GPU workloads, especially large language model (LLM) inference, suffer from kernel launch overheads and coarse synchronization that limit inter-kernel parallelism. Recent megakernel techniques fuse multiple operators into a single persistent kernel to eliminate launch gaps and expose inter-kernel parallelism, but struggle to handle dynamic shapes and data-dependent computation in real workloads. We present Event Tensor, a unified compiler abstraction for dynamic megakernels. Event Tensor encodes dependencies between tiled tasks, and enables first-class support for both shape and data-dependent dynamism. Built atop this abstraction, our Event Tensor Compiler (ETC) applies static and dynamic scheduling transformations to generate high-performance persistent kernels. Evaluations show that ETC achieves state-of-the-art LLM serving latency while significantly reducing system warmup overhead.",
+    "openreview_url": "https://openreview.net/forum?id=PJqFhAbUHa",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3815"
+  },
+  {
+    "slug": "executorch-a-unified-pytorch-solution-to-run-ml-models-on-de",
+    "title": "ExecuTorch - A Unified PyTorch Solution to Run ML Models On-Device",
+    "authors": [
+      "Mergen Nachin",
+      "Digant Desai",
+      "Stephen Jia",
+      "Chen Lai",
+      "Mengwei Liu",
+      "Jacob Szwejbka",
+      "Raziel Alvarez",
+      "RJ Ascani",
+      "Dave Bort",
+      "Manuel Candales",
+      "Andrew Caples",
+      "Yanan Cao",
+      "Zhengxu Chen",
+      "Soumith Chintala",
+      "Gregory Comer",
+      "Tanvir Islam",
+      "Songhao Jia",
+      "Tarun Karuturi",
+      "Jack Khuu",
+      "Abhinay Kukkadapu",
+      "Tugsbayasgalan Manlaibaatar",
+      "Andrew Or",
+      "Kimish Patel",
+      "Siddartha Pothapragada",
+      "Lucy Qiu",
+      "Supriya Rao",
+      "Orion Reblitz-Richardson",
+      "Max Ren",
+      "Scott Roy",
+      "Anthony Shoumikhin",
+      "Scott Wolchok",
+      "Guang Yang",
+      "Angela Yi",
+      "Martin Yuan",
+      "Hansong Zhang",
+      "Jack Zhang",
+      "Jerry Zhang",
+      "Shunting Zhang",
+      "Cagatay Bilgin"
+    ],
+    "abstract": "Local execution of AI on edge devices is critical for privacy, low latency, and offline operation. However, deploying models on diverse hardware remains fragmented, often requiring model conversion or complete implementation outside the PyTorch ecosystem where the model was originally authored. We introduce ExecuTorch, a unified PyTorch-native deployment framework for edge AI. ExecuTorch enables seamless deployment of machine learning models across heterogeneous compute environments. It scales from completely embedded microcontrollers to complex system-on-chips (SoCs) with dedicated accelerators, powering devices ranging from wearables and smartphones to large compute clusters. ExecuTorch preserves PyTorch semantics while allowing customization, support for optimizations like quantization, and pluggable execution ''backends''. These features together enable fast experimentation, allowing researchers to validate deployment behavior entirely within PyTorch, bridging the gap between research and production.",
+    "openreview_url": "https://openreview.net/forum?id=jmE5nwC9kb",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3768"
+  },
+  {
+    "slug": "faascale-unlocking-fast-llm-scaling-for-serverless-inference",
+    "title": "FaaScale: Unlocking Fast LLM Scaling for Serverless Inference",
+    "authors": [
+      "Minchen Yu",
+      "Rui Yang",
+      "Chaobo Jia",
+      "Zhaoyuan Su",
+      "Sheng Yao",
+      "Tingfeng Lan",
+      "Yuchen Yang",
+      "Zirui Wang",
+      "Yue Cheng",
+      "Wei Wang",
+      "Ao Wang",
+      "Ruichuan Chen"
+    ],
+    "abstract": "Serverless computing is an attractive paradigm for cloud-based large language model (LLM) inference, but scaling LLMs on demand remains a major challenge due to high data transfer cost. We present FaaScale, a serverless LLM system that enables fast and resource-efficient model scaling. The key idea is a co-design principle\u2014pipelined multicast inference\u2014which synergizes multicast with dynamic, cross-node pipeline-parallel execution during model transfer. FaaScale implements this design through PipeCast, a model scaling scheme that adaptively multicasts model blocks and dynamically forms inference pipelines on the fly. Coupled with efficient memory management across GPU and host memory, FaaScale handles bursty LLM inference workloads\neffectively, achieving up to 5\u00d7 lower tail time-to-first-token latency and 31.3% cost reduction on real-world LLM traces.",
+    "openreview_url": "https://openreview.net/forum?id=jgL8LuOVyT",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3769"
+  },
+  {
+    "slug": "farskip-collective-unhobbling-blocking-communication-in-mixt",
+    "title": "FarSkip-Collective: Unhobbling Blocking Communication in Mixture of Experts Models",
+    "authors": [
+      "Yonatan Dukler",
+      "Guihong Li",
+      "Deval Shah",
+      "Jiang Liu",
+      "Vikram Appia",
+      "Emad Barsoum"
+    ],
+    "abstract": "Blocking communication presents a major hurdle in running MoEs efficiently in distributed settings. To address this, we present FarSkip-Collective which modifies the architecture of modern models to enable overlapping of their computation with communication. Our approach modifies the architecture to skip connections in the model and it is unclear a priori whether the modified model architecture can remain as capable, especially for large state-of-the-art models and while modifying all of the model layers. \nWe answer this question in the affirmative and fully convert a series of state-of-the-art models varying from 16B to 109B parameters to enable overlapping of their communication while achieving accuracy that is comparable with their original open-source releases. For example, we convert Llama 4 Scout (109B) via self-distillation and achieve average accuracy within 1% of its instruction tuned release averaged over a wide range of downstream evaluations. \nIn addition to demonstrating retained accuracy of the large modified models, we realize the benefits of FarSkip-Collective through optimized implementations that explicitly overlap communication with computation, accelerating both training and inference in existing frameworks.\nFor inference, we demonstrate 32.6% speedup in Time To First Token when serving a converted DeepSeek-V3 architecture with expert parallelism in SGLang and achieve 97.3% communication-computation overlap during the prefill stage. \nDuring training, our approach enables 88.9% communication overlap of the all-to-all communication collectives when pre-training DeepSeek-V3 MoE layers with expert parallelism.",
+    "openreview_url": "https://openreview.net/forum?id=ruOpvLzsGV",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3743"
+  },
+  {
+    "slug": "flashattention-4-algorithm-and-kernel-pipelining-co-design-f",
+    "title": "FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling",
+    "authors": [
+      "Ted Zadouri",
+      "Markus Hoehnerbach",
+      "Jay Shah",
+      "Vijay Thakkar",
+      "Tri Dao"
+    ],
+    "abstract": "Attention, as a core layer of the ubiquitous Transformer architecture, is the bottleneck for large language models and long-context applications.\nWhile optimized attention for Hopper GPUs through asynchronous execution and warp specialization, it primarily targets the H100 architecture.\nThe AI industry has rapidly transitioned to deploying Blackwell-based systems such as the B200 and GB200, which exhibit fundamentally different performance characteristics due to asymmetric hardware scaling: tensor core throughput doubles while other functional units (shared memory bandwidth, exponential units) scale more slowly or remain unchanged.\nWe develop several techniques to address these shifting bottlenecks on Blackwell GPUs: (1) redesigned pipelines that exploit fully asynchronous MMA operations and larger tile sizes, (2) software-emulated exponential and conditional softmax rescaling that reduces non-matmul operations, and (3) leveraging tensor memory and the 2-CTA MMA mode to reduce shared memory traffic and atomic adds in the backward pass.\nWe demonstrate that our method, FlashAttention-4, achieves up to 1.3$\\times$ speedup over cuDNN 9.13 and 2.7$\\times$ over Triton on B200 GPUs with BF16, reaching up to 1613 TFLOPs/s (71\\% utilization).\nBeyond algorithmic innovations, we implement FlashAttention-4 entirely in CuTe-DSL embedded in Python, achieving 20-30$\\times$ faster compile times compared to traditional C++ template-based approaches while maintaining full expressivity.",
+    "openreview_url": "https://openreview.net/forum?id=mN5RtvuYl3",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3759"
+  }
+]

@@ -2,7 +2,7 @@
 agentic_models:
 - Multiple LLM backbones (GPT-4, smaller models)
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2510.27617'
+arxiv_url: https://arxiv.org/abs/2510.27617
 authors:
 - Heng Ping
 - Arijit Bhattacharjee
@@ -16,8 +16,8 @@ authors:
 - Nesreen Ahmed
 - Paul Bogdan
 award: ''
-citations: null
-citations_updated: ''
+citations: 12
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - agentic-inference
@@ -35,8 +35,8 @@ observations:
     selection optimizes a verifiable objective (HDL correctness) by exploring diverse
     solution paths and selecting the best.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=5wgZXJ0kWA
+optimization_type: []
 organizations:
 - University of Southern California
 - Iowa State University

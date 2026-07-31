@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2506.08276'
+arxiv_url: https://arxiv.org/abs/2506.08276
 authors:
 - Yichuan Wang
 - Zhifei Li
@@ -17,8 +17,8 @@ authors:
 - Matei Zaharia
 - Joseph Gonzalez
 award: ''
-citations: null
-citations_updated: ''
+citations: 8
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - agentic-inference
@@ -36,8 +36,8 @@ observations:
     original storage and enabling deployment on personal devices or large-scale systems
     without embedding storage.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=e8Dp5QkFxP
+optimization_type: []
 organizations:
 - UC Berkeley
 - Amazon

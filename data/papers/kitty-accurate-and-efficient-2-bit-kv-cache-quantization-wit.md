@@ -19,8 +19,8 @@ authors:
 - Zhen Zheng
 - Shuaiwen Leon Song
 award: ''
-citations: null
-citations_updated: ''
+citations: 5
+citations_updated: '2026-07-31'
 code_url: https://github.com/Summer-Summer/Kitty
 domain:
 - llm-serving

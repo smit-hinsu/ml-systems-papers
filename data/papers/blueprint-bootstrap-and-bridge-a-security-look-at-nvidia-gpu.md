@@ -11,8 +11,8 @@ authors:
 - Shixuan Zhao
 - Zhiqiang Lin
 award: ''
-citations: null
-citations_updated: ''
+citations: 3
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - observability
@@ -26,8 +26,8 @@ models_evaluated:
 - AI workloads under GPU-CC
 observations: {}
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=t9RDCO1aL7
+optimization_type: []
 organizations:
 - IBM Research
 - Ohio State University

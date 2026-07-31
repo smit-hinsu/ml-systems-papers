@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.02749'
+arxiv_url: https://arxiv.org/abs/2511.02749
 authors:
 - Paul Castro
 - Nick Mitchell
@@ -10,8 +10,8 @@ authors:
 - Mudhakar Srivatsa
 - Antoni Viros-i-Martin
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -29,8 +29,8 @@ observations:
     hits first in the attention order, maximizing prefix cache reuse and minimizing
     cache misses.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=qcGGSXpFcM
+optimization_type: []
 organizations:
 - IBM Research
 presentation_type: oral

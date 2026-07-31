@@ -14,8 +14,8 @@ authors:
 - Baris Kasikci
 - Stephanie Wang
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-07-31'
 code_url: https://github.com/uw-syfi/DynaFlow
 domain:
 - llm-serving

@@ -1,0 +1,299 @@
+[
+  {
+    "slug": "flashlight-pytorch-compiler-extensions-to-accelerate-attenti",
+    "title": "Flashlight: PyTorch Compiler Extensions to Accelerate Attention Variants",
+    "authors": [
+      "Bozhi You",
+      "Irene Wang",
+      "Zelal Su Mustafaoglu",
+      "Abhinav Jangda",
+      "Ang\u00e9lica Moreira",
+      "Roshan Dathathri",
+      "Divya Mahajan",
+      "Keshav Pingali"
+    ],
+    "abstract": "Attention is a fundamental building block of large language models (LLMs), so there have been many efforts to implement it efficiently. For example, FlashAttention leverages tiling and kernel fusion to optimize attention. Recently, a number of variants of attention have been introduced to enhance model quality or efficiency. Supporting them efficiently remains difficult since they usually require specialized kernels or hand-tuned implementations. FlexAttention recently addressed part of this gap by using static programming templates to support FlashAttention-like kernels for a subset of attention variants.\n\nIn this paper, we introduce Flashlight, a compiler-native framework within the PyTorch ecosystem that automatically generates fused, FlashAttention-style kernels for arbitrary attention-based programs, without relying on static templates or predefined kernel specializations. Flashlight leverages PyTorch\u2019s compilation workflow to fuse and tile attention computations transparently, enabling efficient execution for diverse attention patterns. Not only does it support all variants expressible in the FlexAttention model but it also handles more general, data-dependent attention formulations that are beyond the capabilities of FlexAttention.\n\nOur results show that Flashlight produces kernels with competitive or superior performance to FlexAttention, while offering the flexibility of native PyTorch code, enabling developers to rapidly explore  new attention models without sacrificing performance.",
+    "openreview_url": "https://openreview.net/forum?id=lboOMA8XWr",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3763"
+  },
+  {
+    "slug": "flexicache-leveraging-temporal-stability-of-attention-heads-",
+    "title": "FlexiCache: Leveraging Temporal Stability of Attention Heads for Efficient KV Cache Management",
+    "authors": [
+      "Nazmul Takbir",
+      "HamidReza Alikhani Koshkak",
+      "Nikil Dutt",
+      "Sangeetha Abdu Jyothi"
+    ],
+    "abstract": "Large Language Model (LLM) serving is increasingly constrained by the growing size of the key-value (KV) cache, which scales with both context length and generation length. Prior work shows that attention is dominated by a small subset of critical tokens, yet existing systems struggle to exploit this efficiently without degrading accuracy, especially in long generation. We make a key observation: the temporal stability of these critical tokens varies significantly across KV heads. Some heads consistently focus on the same tokens, while others shift frequently. Building on this insight, we introduce FlexiCache, a hierarchical KV-cache management system that leverages the temporal stability of KV heads to reduce GPU memory usage and computation overhead, while preserving model accuracy. FlexiCache classifies KV heads as stable or unstable: it retains all KV-cache pages from unstable heads in GPU memory, whereas for stable heads, it keeps only the top-K pages on the GPU and offloads the rest to host memory. By exploiting temporal stability, FlexiCache performs periodic reranking for stable heads to fetch newly promoted top pages. Implemented atop vLLM, FlexiCache reduces GPU memory footprint for long-context requests by up to 70%, improves offline serving throughput by 1.38\u20131.55\u00d7, and lowers online token latency by 1.6\u20132.1\u00d7, all while maintaining accuracy in long-context, long-generation scenarios.",
+    "openreview_url": "https://openreview.net/forum?id=GgX6dPJx9M",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3838"
+  },
+  {
+    "slug": "flextrain-scalable-hybrid-parallel-training-with-elastic-res",
+    "title": "FlexTrain: Scalable Hybrid-Parallel Training with Elastic Resource Utilization and Consistent Accuracy",
+    "authors": [
+      "Weilin Cai",
+      "Diandian Gu",
+      "Baoquan Zhong",
+      "Jun Wang",
+      "Zhuolin Zheng",
+      "Gaohong Liu",
+      "Jiang Kaihua",
+      "Shuguang Wang",
+      "Wencong Xiao",
+      "Jiayi Huang"
+    ],
+    "abstract": "Large language model (LLM) training has become a critical workload in shared GPU clusters. However, our observations reveal that these clusters suffer from significant underutilization. To address this inefficiency, various elastic training techniques have been developed to dynamically adjust GPU allocations to harness idle resources. Despite their potential, these methods have seen limited deployment in production environments due to three major challenges: accuracy inconsistency, excessive profiling overhead, and limited flexibility.\nIn this paper, we propose FlexTrain, an elastic training system that achieves consistent model accuracy, high training efficiency, and effective resource utilization.\nFlexTrain prioritizes adjustments to the pipeline parallelism (PP) degree to preserve deterministic computation and maintain accuracy consistency, while also supporting data parallelism (DP) scaling to further enhance throughput under relaxed consistency requirements.\nIt generates optimal PP schedules, predicts training performance under different configurations, and makes scaling decisions based on job submission intervals, scaling overhead, and expected throughput gains.\nEvaluation results show that FlexTrain can achieve up to 1.73$\\times$ speedup for elastic jobs while preserving consistent accuracy, and up to 2.27$\\times$ when accuracy consistency is relaxed, compared to conventional non-elastic scheduling strategy.",
+    "openreview_url": "https://openreview.net/forum?id=h2yhNcbwSL",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3776"
+  },
+  {
+    "slug": "florist-singular-value-thresholding-for-efficient-and-accura",
+    "title": "FLoRIST: Singular Value Thresholding for Efficient and Accurate Federated Fine-Tuning of Large Language Models",
+    "authors": [
+      "Hariharan Ramesh",
+      "Jyotikrishna Dass"
+    ],
+    "abstract": "Integrating Low-Rank Adaptation (LoRA) into federated learning offers a promising solution for parameter-efficient fine-tuning of Large Language Models (LLMs) without sharing local data. However, several methods designed for federated LoRA present significant challenges in balancing communication efficiency, model accuracy, and computational cost, particularly among heterogeneous clients. These methods either rely on simplistic averaging of local adapters, which introduces aggregation noise, require transmitting large stacked local adapters, leading to poor communication efficiency, or necessitate reconstructing memory-dense global weight-update matrix and performing computationally expensive decomposition to design client-specific low-rank adapters. In this work, we propose FLoRIST, a federated fine-tuning framework that achieves mathematically accurate aggregation without incurring high communication or computational overhead. Instead of constructing the full global weight-update matrix at the server, FLoRIST employs an efficient decomposition pipeline by performing singular value decomposition on stacked local adapters separately. This approach operates within a compact intermediate space to represent the accumulated information from local LoRAs. We introduce tunable singular value thresholding for server-side optimal rank selection to construct a pair of global low-rank adapters shared by all clients. Extensive empirical evaluations across multiple datasets and LLMs demonstrate that FLoRIST consistently strikes the best balance between superior communication efficiency and competitive performance in both homogeneous and heterogeneous setups.",
+    "openreview_url": "https://openreview.net/forum?id=GTZRs756YJ",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3840"
+  },
+  {
+    "slug": "fp8-flow-moe-a-casting-free-fp8-recipe-without-double-quanti",
+    "title": "FP8-Flow-MoE: A Casting-Free FP8 Recipe without Double Quantization Error",
+    "authors": [
+      "Fengjuan Wang",
+      "Zhiyi Su",
+      "Xingzhu Hu",
+      "Cheng Wang",
+      "Mou Sun"
+    ],
+    "abstract": "Training large Mixture-of-Experts (MoE) models remains computationally prohibitive due to their extreme compute and memory demands. Although low-precision training promises to accelerate computation and reduce memory footprint, existing implementations still rely on BF16-dominated dataflows with frequent quantize\u2013dequantize (Q/DQ) conversions. These redundant casts erode much of FP8\u2019s theoretical efficiency. However, naively removing these casts by keeping dataflows entirely in FP8 introduces double quantization error: tensors quantized along different dimensions accumulate inconsistent scaling factors, degrading numerical stability.\n\nWe propose FP8-Flow-MoE, an FP8 training recipe featuring a quantization-consistent FP8-centric dataflow with a scaling-aware transpose and fused FP8 operators that streamline computation and eliminate explicit cast operations from 12 to 2. Evaluations on a 671B-parameter MoE model demonstrate up to 21\\% higher throughput and 16.5 GB lower memory usage per GPU compared to BF16 and na\u00efve FP8 baselines, while maintaining stable convergence. We provide a plug-and-play FP8 recipe compatible with TransformerEngine and Megatron-LM, with the reference implementation available at \\href{https://github.com/021ai/FP8-FLOW-MOE-AE}{our GitHub repository}.",
+    "openreview_url": "https://openreview.net/forum?id=wyH60Su6G7",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3737"
+  },
+  {
+    "slug": "g-hemp-fast-multi-gpu-private-inference-for-large-scale-gcns",
+    "title": "G-HEMP: FAST MULTI-GPU PRIVATE INFERENCE FOR LARGE-SCALE GCNS WITH HOMOMORPHIC ENCRYPTION",
+    "authors": [
+      "Ran Ran",
+      "Zhaoting Gong",
+      "Zhaowei Li",
+      "Xianting Lu",
+      "Jiajia Li",
+      "Wujie Wen"
+    ],
+    "abstract": "Homomorphic Encryption (HE) offers a promising solution for privacy-preserving Graph Convolutional Network\n(GCN) inference in untrusted cloud environments by enabling computation directly on encrypted data. This\ncapability is particularly valuable in domains such as recommendation systems, financial analysis, and bioinfor-\nmatics, where data confidentiality is paramount. However, applying HE to large-scale GCN inference introduces\nsubstantial computational and memory overhead, severely limiting scalability and runtime efficiency. While prior\nworks focusing on algorithmic improvements have demonstrated feasibility on CPUs, these approaches struggle\nto scale effectively on GPUs due to excessive memory consumption and redundant computation. In this work,\nwe present G-HEMP, the first framework that leverages multi-GPU systems to accelerate large-scale private\nGCN inference. G-HEMP introduces two key innovations: (i) a block-diagonal parallel packing scheme that\neliminates redundant data replication in encrypted adjacency matrices, reducing the number of HE operations\nand achieving up to 4.41\u00d7 speedup over conventional feature-wise packing under single GPU environment; and\n(ii) a multi-GPU workload partitioning strategy that halves per-GPU peak memory usage on a 4-GPU system\nand achieves up to 3.88\u00d7 latency improvement. Compared to the limb-level-partitioning-based approach in\nCinnamon\u2013the state-of-the-art encrypted computation parallelization method, G-HEMP further attains up to\n3.13\u00d7 gain owing to our superior multi-device partition policy. Overall, G-HEMP is model-agnostic and scales\nseamlessly with graph size and GPU count, enabling efficient and practical privacy-preserving GCN inference on\nmodern heterogeneous environments.",
+    "openreview_url": "https://openreview.net/forum?id=RSTrFSPIMy",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3811"
+  },
+  {
+    "slug": "ghostserve-a-lightweight-checkpointing-system-in-the-shadow-",
+    "title": "GhostServe: A Lightweight Checkpointing System in the Shadow for Fault-Tolerant LLM Serving",
+    "authors": [
+      "Shakya Jayakody",
+      "Youpeng Zhao",
+      "Chinmay Dhanraj Nehate",
+      "Jun Wang"
+    ],
+    "abstract": "The rise of million-token, agent-based applications has placed unprecedented demands on large language model (LLM) inference services. \nThe long-running nature of these tasks increases their susceptibility to hardware and software faults, leading to costly job failures, wasted resources, and degraded user experience.\nThe stateful key-value (KV) cache, which grows with the sequence length, presents a central challenge as it is a critical and vulnerable component in distributed serving systems.\nIn this work, we propose **GhostServe**, a novel checkpointing solution to facilitate fault-tolerant LLM serving.\nSpecifically, GhostServe protects the streaming KV cache *in the shadow* by applying erasure coding to generate and store the parity shards in host memory.\nIn the event of device failures, GhostServe enables fast reconstruction of the lost KV cache, allowing the inference process to resume seamlessly without costly full recomputation or state replication.\nEvaluations demonstrate that GhostServe reduces checkpointing latency by up to 2.7x and recovery latency by 2.1x for a single batch, and 1.2x median response latency compared to existing methods, in the presence of system failures, paving the way for high-availability and cost-effective LLM serving at scale.",
+    "openreview_url": "https://openreview.net/forum?id=xKjYiUgeOK",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3736"
+  },
+  {
+    "slug": "grinnder-breaking-the-memory-capacity-wall-in-full-graph-gnn",
+    "title": "GriNNder: Breaking the Memory Capacity Wall in Full-Graph GNN Training with Storage Offloading",
+    "authors": [
+      "Jaeyong Song",
+      "Seongyeon Park",
+      "Hongsun Jang",
+      "Jaewon Jung",
+      "Hunseong Lim",
+      "Junguk Hong",
+      "Jinho Lee"
+    ],
+    "abstract": "Full-graph training of graph neural networks (GNNs) is widely used as it enables direct validation of algorithmic improvements by preserving complete neighborhood information. \nHowever, it typically requires multiple GPUs or servers, incurring substantial hardware and inter-device communication costs.\nWhile existing single-server methods reduce infrastructure requirements, they remain constrained by GPU and host memory capacity as graph sizes increase.\nTo address this limitation, we introduce **GriNNder**, which is the first work to leverage storage devices to enable full-graph training even with limited memory.\nBecause modern NVMe SSDs offer multi-terabyte capacities and bandwidths exceeding 10 GB/s, they provide an appealing option when memory resources are scarce.\nYet, directly applying storage-based methods from other domains fails to address the unique access patterns and data dependencies in full-graph GNN training.\nGriNNder tackles these challenges by *structured storage offloading (SSO)*, a framework that manages the GPU-host-storage hierarchy through coordinated *cache*, *(re)gather*, and *bypass* mechanisms.\nTo realize the framework, we devise (i) a partition-wise caching strategy for host memory that exploits the observation on cross-partition dependencies, (ii) a regathering strategy for gradient computation that eliminates redundant storage operations, and (iii) a lightweight partitioning scheme that mitigates the memory requirements of existing graph partitioners.\nIn experiments performed over various models and datasets, GriNNder achieves up to 9.78$\\times$ speedup over state-of-the-art baselines and throughput comparable to distributed systems, enabling previously infeasible large-scale full-graph training even on a single GPU.",
+    "openreview_url": "https://openreview.net/forum?id=8SNPzGRldN",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3851"
+  },
+  {
+    "slug": "hawkeye-reproducing-gpu-level-non-determinism",
+    "title": "Hawkeye: Reproducing GPU-Level Non-Determinism",
+    "authors": [
+      "Erez Badash",
+      "Dan Boneh",
+      "Ilan Komargodski",
+      "Megha Srivastava"
+    ],
+    "abstract": "We present Hawkeye, a system for analyzing and reproducing GPU-level arithmetic operations. Using our framework, anyone can re-execute on a CPU the exact matrix multiplication operations underlying a machine learning model training or inference workflow that was executed on an NVIDIA GPU, without any precision loss. This is in stark contrast to prior approaches to verifiable machine learning, which either introduce significant computation overhead to the original model owner, or suffer from non-robustness and quality degradation. The main technical contribution of Hawkeye is a systematic sequence of carefully crafted tests that study rounding direction, subnormal number handling, and order of (non-associative) accumulation during matrix multiplication on NVIDIA\u2019s Tensor Cores. We test and evaluate our framework on multiple NVIDIA GPU architectures ( Ampere, Hopper, and Lovelace) and precision types (FP16, BFP16, FP8). In all test cases, Hawkeye enables perfect reproduction of matrix multiplication on a CPU, paving the way for efficient and trustworthy third-party auditing of ML model training and inference.",
+    "openreview_url": "https://openreview.net/forum?id=JnmgsTFQQv",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3829"
+  },
+  {
+    "slug": "helios-adaptive-model-and-early-exit-selection-for-efficient",
+    "title": "HELIOS : Adaptive Model And Early-Exit Selection for Efficient LLM Inference Serving",
+    "authors": [
+      "Avinash Kumar",
+      "Shashank Nag",
+      "Jason Clemons",
+      "Lizy K. John",
+      "Poulami Das"
+    ],
+    "abstract": "Early-Exit Large Language Models (EE-LLMs) enable high throughput inference by allowing tokens to exit early at intermediate layers. However, their throughput is limited by the computational and memory savings. Existing EE-LLM frameworks rely on a single model and therefore, their token generation latencies are bottlenecked by tokens that do not exit early and traverse additional layers. Moreover, early exits are only known at runtime and depend on the request. Therefore, these frameworks load the weights of all model layers even though large portions remain unused when tokens exit early. The lack of memory savings limit us from scaling the batch sizes. \n\nWe propose $\\textit{HELIOS}$, a framework that improves both token generation latency and batch sizes to\nenable high-throughput in EE-LLMs. HELIOS exploits two insights. $\\textit{First}$, early exits are often complementary across models, tokens that do not exit early on one model often take an early-exit on another. HELIOS employs multiple models and dynamically switches between them to collectively maximize the number of tokens that exit early, and minimize token generation latencies. $\\textit{Second}$, even when a predicted token does not exit early due to poor confidence, it often remains unchanged even after additional layer traversal. HELIOS greedily allows such tokens to exit early and only loads the weights of the most likely to be used layers, yielding memory savings which is then re-purposed to increase batch sizes. HELIOS employs real-time profiling to accurately identify the early-exit distributions, and adaptively switches between models by tracking tokens in real-time to minimize the performance degradation caused by greedy model loading and exiting. Our evaluations show that HELIOS achieves $1.48\\times$ higher throughput and $15.14\\times$ larger batch size compared to existing EE-LLM frameworks.",
+    "openreview_url": "https://openreview.net/forum?id=CV52m9NJFK",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3846"
+  },
+  {
+    "slug": "hetrl-efficient-reinforcement-learning-for-llms-in-heterogen",
+    "title": "HetRL: Efficient Reinforcement Learning for LLMs in Heterogeneous Environments",
+    "authors": [
+      "Yongjun He",
+      "Shuai Zhang",
+      "Jiading Gai",
+      "Xiyuan Zhang",
+      "Boran Han",
+      "Bernie Wang",
+      "Huzefa Rangwala",
+      "George Karypis"
+    ],
+    "abstract": "As large language models (LLMs) continue to scale and new GPUs are released even more frequently, there is an increasing demand for LLM post-training in heterogeneous environments to fully leverage underutilized mid-range or previous-generation GPUs and alleviate the shortage of homogeneous high-end GPUs within a single availability zone.\nHowever, achieving high-performance reinforcement learning (RL) training for LLMs on such computing resources remains challenging, as the workflow involves multiple models and tasks with complex computational and data dependencies.\nIn this paper, we present HetRL, a distributed system for efficient RL training in infrastructures with heterogeneous GPUs and networks.\nHetRL formulates RL training scheduling in heterogeneous environments as a constrained joint optimization problem and provides two complementary approaches for addressing this problem: (1) a hybrid scheduling algorithm that efficiently identifies near-optimal solutions, and (2) an integer linear programming (ILP)-based scheduling algorithm that obtains optimal solutions, enabling flexible trade-offs between solution optimality and efficiency.\nOur extensive evaluation, consuming 20,000 GPU-hours, shows that HetRL achieves up to 9.17$\\times$ the throughput of state-of-the-art systems, and 3.17$\\times$ on average, across a wide range of workloads and settings.",
+    "openreview_url": "https://openreview.net/forum?id=LRLyuaz1W7",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3825"
+  },
+  {
+    "slug": "hexiscale-facilitating-large-language-model-training-over-he",
+    "title": "HexiScale: Facilitating Large Language Model Training over Heterogeneous Hardware",
+    "authors": [
+      "Ran Yan",
+      "Youhe Jiang",
+      "Xiaonan Nie",
+      "Fangcheng Fu",
+      "Bin Cui",
+      "Binhang Yuan"
+    ],
+    "abstract": "Training large language models (LLMs) is a computationally intensive task, which is typically conducted in data centers with homogeneous high-performance GPUs. In this paper, we explore an alternative approach by deploying training computations across heterogeneous GPUs to enable better flexibility and efficiency for heterogeneous resource utilization. Toward this end, we propose a novel system, HexiScale, that can flexibly support asymmetric partition of training computations in the scope of data-, pipeline-, and tensor model parallelism. We further formalize the allocation of asymmetric partitioned training computations over a set of heterogeneous GPUs as a constrained optimization problem and propose an efficient hierarchical graph partitioning algorithm. Our approach effectively allocates training computations across heterogeneous GPUs, fully leveraging the available computational power. We compare the performance of HexiScale with state-of-the-art homogeneous and heterogeneous training systems. When training LLMs at different scales (from 7B to 30B), empirical results demonstrate that: (**i**) compared to state-of-the-art homogeneous baselines running over homogeneous GPUs, HexiScale achieves *similar* performance when running over heterogeneous GPUs with the *same* theoretical FLOPS; (**ii**) compared to state-of-the-art heterogeneous baselines running on the same heterogeneous clusters, HexiScale delivers $1.5\\times$ to $2.4\\times$ higher throughput.",
+    "openreview_url": "https://openreview.net/forum?id=KgcqSNio0U",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3828"
+  },
+  {
+    "slug": "hipkittens-fast-and-furious-amd-kernels",
+    "title": "HipKittens: Fast and Furious AMD Kernels",
+    "authors": [
+      "William Hu",
+      "Drew Wadsworth",
+      "Sean Siddens",
+      "Stanley Winata",
+      "Daniel Y. Fu",
+      "Ryan Swann",
+      "Muhammad Osama",
+      "Christopher R\u00e9",
+      "Simran Arora"
+    ],
+    "abstract": "AMD GPUs offer state-of-the-art compute and memory bandwidth; however, peak performance AMD kernels are\nwritten in raw assembly. To address the difficulty of mapping AI algorithms to hardware, recent work proposes\nC++ embedded and PyTorch-inspired domain-specific languages like ThunderKittens (TK) to simplify high\nperformance AI kernel development on NVIDIA hardware. We explore the extent to which such primitives \u2014 for\nexplicit tile-based programming with optimized memory accesses and fine-grained asynchronous execution across\nworkers \u2014 are NVIDIA-specific or general. We provide the first detailed study of the programming primitives that\nlead to performant AMD AI kernels, and we encapsulate these insights in the HipKittens (HK) programming\nframework. We find that tile-based abstractions used in prior DSLs generalize to AMD GPUs, however we need to\nrethink the algorithms that instantiate these abstractions for AMD. We validate the HK primitives across CDNA3\nand CDNA4 AMD platforms. In evaluations, HK kernels compete with AMD\u2019s hand-optimized assembly kernels\nfor GEMMs and attention, and consistently outperform compiler baselines. Moreover, assembly is difficult to\nscale to the breadth of AI workloads; reflecting this, in some settings HK outperforms all available baselines by\n$1.2 \u2212 2.4\\times$ ($d = 64$ attention, GQA non-causal backwards, memory-bound kernels). HK demonstrates a portable tile-based\nprogramming model that abstracts over hardware-specific implementation details. These findings help pave the way\nfor a single, tile-based software layer for high-performance AI kernels across GPU vendors. HipKittens has been\nproductionalized in AITER and is released at: https://github.com/HazyResearch/HipKittens.",
+    "openreview_url": "https://openreview.net/forum?id=xxSSrndQrI",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3735"
+  },
+  {
+    "slug": "hippocampus-an-efficient-and-scalable-memory-module-for-agen",
+    "title": "Hippocampus: An Efficient and Scalable Memory Module for Agentic AI",
+    "authors": [
+      "Yi Li",
+      "Lianjie Cao",
+      "Faraz Ahmed",
+      "Puneet Sharma",
+      "Bingzhe Li"
+    ],
+    "abstract": "Agentic AI systems require persistent memory to store user-specific histories beyond the limited context window of LLMs. Existing memory systems rely on the dense vector databases, knowledge-graph traversal, or hybrids, which incur high retrieval latency and poor storage scalability. \nWe introduce HIPPOCAMPUS, an agentic memory management system that uses compact binary signatures for semantic search and lossless token-ID streams for exact content reconstruction. Its core is a Dynamic Wavelet Matrix (DWM) that compresses and co-indexes\nboth streams to support ultra-fast search in the compressed domain, thus avoiding costly dense-vector or graph computations. For a fixed tokenizer vocabulary, the storage footprint of this design grows linearly with memory size, making it suitable for long-horizon agentic deployments. Empirically, across LoCoMo and LongMemEval, HIPPOCAMPUS achieves end-to-end retrieval latency that is comparable to or lower than the evaluated agentic memory baselines, with 1.1X\u201331.5X speedups over the evaluated baselines, and reduces per-query token footprint by 1.1X\u201314.5X, while maintaining competitive task accuracy.",
+    "openreview_url": "https://openreview.net/forum?id=0sUYZh9D4a",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3863"
+  },
+  {
+    "slug": "intattention-a-fully-integer-attention-pipeline-for-efficien",
+    "title": "IntAttention: A Fully Integer Attention Pipeline for Efficient Edge Inference",
+    "authors": [
+      "Wanli Zhong",
+      "Haibo Feng",
+      "Zirui Zhou",
+      "Hanyang Peng",
+      "Shiqi Yu"
+    ],
+    "abstract": "Deploying Transformer models on edge devices is limited by latency and energy budgets. While INT8 quantization effectively accelerates the primary matrix multiplications, it exposes the softmax-related path as the dominant bottleneck. This stage incurs a costly dequantize -> softmax -> requantize detour, which can account for up to 65% of total attention latency and disrupts the end-to-end integer dataflow critical for edge hardware efficiency. To address this limitation, we present IntAttention, the first fully integer attention pipeline that serves as a training-free drop-in replacement. At the core of our approach lies IndexSoftmax, a hardware-friendly operator that replaces floating-point exponentials entirely within the integer domain. IntAttention integrates sparsity-aware clipping, a 32-entry lookup table approximation, and direct integer normalization, thereby eliminating datatype conversion overhead along the attention path. Experiments on Armv8 CPUs show that our method achieves up to 3.7x speedup and 61% energy reduction over FP16 baselines, and up to 2.0x speedup over conventional INT8 attention pipelines. Across diverse language and vision models, as well as additional reasoning and long-context evaluations, IntAttention maintains strong overall fidelity and demonstrates a more favorable trade-off than existing LUT-based softmax approximations. Code is available at: https://github.com/WanliZhong/IntAttention",
+    "openreview_url": "https://openreview.net/forum?id=CPCRITwAaP",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3848"
+  },
+  {
+    "slug": "kitty-accurate-and-efficient-2-bit-kv-cache-quantization-wit",
+    "title": "Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost",
+    "authors": [
+      "Haojun Xia",
+      "Xiaoxia Wu",
+      "Jisen Li",
+      "Tsai-chuan Wu",
+      "Junxiong Wang",
+      "Jue WANG",
+      "Chenxi Li",
+      "Aman Singhal",
+      "Alay Dilipbhai Shah",
+      "Alpay Ariyak",
+      "Donglin Zhuang",
+      "Zhongzhu Zhou",
+      "Ben Athiwaratkun",
+      "Zhen Zheng",
+      "Shuaiwen Leon Song"
+    ],
+    "abstract": "The KV cache is a dominant memory bottleneck for LLM inference. While 4-bit KV quantization preserves accuracy, 2-bit often degrades it, especially on long-context reasoning. We close this gap via an algorithm\u2013system co-design for mixed-precision KV caching: Kitty.\nOn the algorithm side, extensive experiments show that Dynamic Channel-wise Precision Boost \u2014 which ranks Key-cache channels by sensitivity and keeps only a small fraction at higher precision \u2014 maintains near-zero drop in accuracy while approaching 2-bit memory.\nOn the system side, the primary challenge lies in managing these dynamic 4-bit channel boosts without compromising memory efficiency or the execution speed of attention layers. Kitty addresses this through a hardware-aware memory layout and highly optimized system designs, ensuring that our on-the-fly KV quantization incurs negligible runtime overhead while maximizing memory footprint reduction.\nThis synergistic design allows Kitty to unlock the full potential of 2-bit quantization without sacrificing real-time inference throughput.\nSpecifically, Kitty addresses these issues by decomposing each mixed-precision Key page into two tensors with unified 2-bit precision.\nBased on this, Kitty provides a page-centric KV layout, Triton-compatible page dequantization kernels, and a lightweight runtime pipeline that reduces and amortizes the runtime overhead.\nAcross seven tasks and two model families (Qwen3, LLaMA3), Kitty cuts KV memory by nearly $8\\times$ with negligible accuracy loss, enabling up to $8\\times$ larger batches and $2.1\\times$\u2013$4.1\\times$ higher throughput under the same memory budget.\nWe release the full implementation of Kitty at https://github.com/Summer-Summer/Kitty.",
+    "openreview_url": "https://openreview.net/forum?id=r3mQiuYKIN",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3746"
+  },
+  {
+    "slug": "leann-a-low-storage-overhead-vector-index",
+    "title": "LEANN: A Low-Storage Overhead Vector Index",
+    "authors": [
+      "Yichuan Wang",
+      "Zhifei Li",
+      "Shu Liu",
+      "Yongji Wu",
+      "Ziming Mao",
+      "Yilong Zhao",
+      "Xiao Yan",
+      "Zhiying Xu",
+      "Yang Zhou",
+      "Ion Stoica",
+      "Sewon Min",
+      "Matei Zaharia",
+      "Joseph Gonzalez"
+    ],
+    "abstract": "Embedding-based vector search underpins many important applications, such as recommendation and retrieval-augmented generation (RAG). It relies on vector indices to enable efficient search. However, these indices require storing high-dimensional embeddings and large index metadata, whose total size can be several times larger than the original data (e.g., text chunks). Such high storage overhead makes it difficult, or even impractical, to deploy vector search on personal devices or large-scale datasets. To tackle this problem, we propose LEANN, a storage-efficient index for vector search that recomputes embeddings on the fly instead of storing them, and compresses state-of-the-art proximity graph indices while preserving search accuracy. LEANN delivers high-quality vector search while using only a fraction of the storage (e.g., 5% of the original data) and supporting storage-efficient index construction and updates. On real-world benchmarks, LEANN reduces index size by up to 50\u00d7 compared with conventional indices, while maintaining SOTA accuracy and comparable latency for RAG applications.",
+    "openreview_url": "https://openreview.net/forum?id=e8Dp5QkFxP",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3786"
+  },
+  {
+    "slug": "learning-from-less-measuring-the-effectiveness-of-rlvr-in-lo",
+    "title": "Learning from Less: Measuring the Effectiveness of RLVR in Low Data and Compute Regimes",
+    "authors": [
+      "Justin Bauer",
+      "Thomas Walshe",
+      "Derek Pham",
+      "Harit Vishwakarma",
+      "Armin Parchami",
+      "Frederic Sala",
+      "Paroma Varma"
+    ],
+    "abstract": "Fine-tuning Large Language Models (LLMs) typically relies on large quantities of high-quality annotated data, or questions with well-defined ground truth answers in the case of Reinforcement Learning with Verifiable Rewards (RLVR). While previous work has explored the benefits to model reasoning capabilities by scaling both data and compute used for RLVR, these results lack applicability in many real-world settings where annotated data and accessible compute may be scarce. In this work, we present a comprehensive empirical study of open-source Small Language Model (SLM) performance after RLVR in low data regimes. Across three novel datasets covering number counting problems, graph reasoning, and spatial reasoning, we characterize how model performance scales with dataset size, diversity, and complexity. We demonstrate that (1) procedural datasets allow for fine-grained evaluation and training dataset development with controllable properties (size, diversity, and complexity), (2) under RLVR, models trained on lower complexity tasks can generalize to higher complexity tasks, and (3) training on mixed complexity datasets is associated with the greatest benefits in low data regimes, providing up to 5\u00d7 sample efficiency versus training on easy tasks. These findings inspire future work on the development of data scaling laws for RLVR and the use of procedural data generators to further understand effective data development for efficient LLM fine-tuning.",
+    "openreview_url": "https://openreview.net/forum?id=fV4t4kYvgi",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3783"
+  },
+  {
+    "slug": "locality-aware-beam-scheduling-for-efficient-test-time-compu",
+    "title": "Locality-Aware Beam Scheduling for Efficient Test-Time Compute with a Consumer-grade GPU",
+    "authors": [
+      "Hsing-Ti Wang",
+      "Hung-Tso Shiao",
+      "Chia-Lin Yang"
+    ],
+    "abstract": "Large Language Models (LLMs) are central to modern NLP applications, yet their deployment on consumer-grade GPUs is limited by limited memory capacity and bandwidth. In typical single-batch inference on local devices, the key\u2013value (KV) cache occupies only a small fraction of total memory, so prior studies have largely focused on model weights. The rise of test-time compute (TTC), however, introduces a new bottleneck: the rapidly expanding KV cache. In TTC methods such as step-wise beam search, concurrent decoding paths cause KV cache size and transfer costs to scale with exploration space, resulting in severe I/O stalls on consumer-grade GPUs. We identify two complementary forms of data locality in TTC workloads. Inter-token locality occurs within each decoding step, as consecutive tokens in the same beam access nearly identical KV cache data. Inter-beam locality arises across decoding steps, as beams that share common prefixes reuse overlapping KV segments. Building on these observations, we propose Locality-Aware Beam Scheduling, which exploits these locality patterns to reduce redundant KV cache transfers. It also employs balanced grouping with prefetching to overlap data movement with computation. Evaluated on OPT-6.7B, LLaMA-2-7B, and Qwen-7B, our method reduces KV cache transfer volume by over 95\\% and achieves consistent end-to-end speedups of 3.39\u00d7\u20139.72\u00d7, 3.60\u00d7\u20138.74\u00d7, and 4.17\u00d7\u20137.99\u00d7, respectively, compared to layer-wise offloading.",
+    "openreview_url": "https://openreview.net/forum?id=dTo8jAXm9K",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3788"
+  }
+]

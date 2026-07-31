@@ -12,8 +12,8 @@ authors:
 - Yida Wang
 - Nandita Vijaykumar
 award: ''
-citations: null
-citations_updated: ''
+citations: 2
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving

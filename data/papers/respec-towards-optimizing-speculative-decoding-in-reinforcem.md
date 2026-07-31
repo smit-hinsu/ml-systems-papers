@@ -13,8 +13,8 @@ authors:
 - Siyuan Feng
 - Tianwei Zhang
 award: ''
-citations: null
-citations_updated: ''
+citations: 13
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - rl-training
@@ -38,8 +38,8 @@ observations:
     shift; keeping drafter and target in sync prevents acceptance rate collapse as
     the target model changes during RL training.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=HhDSxs7x2R
+optimization_type: []
 organizations:
 - Nanyang Technological University
 - Tsinghua University

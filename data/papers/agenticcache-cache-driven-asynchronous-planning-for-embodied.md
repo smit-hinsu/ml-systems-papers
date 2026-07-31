@@ -7,8 +7,8 @@ authors:
 - Yuheng Wu
 - Thierry Tambe
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: https://github.com/hojoonleokim/MLSys26_AgenticCache
 domain:
 - agentic-inference

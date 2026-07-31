@@ -10,8 +10,8 @@ authors:
 - Vikram Appia
 - Emad Barsoum
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving

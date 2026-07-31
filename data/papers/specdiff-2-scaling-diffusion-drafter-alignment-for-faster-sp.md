@@ -1,15 +1,15 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.00606'
+arxiv_url: https://arxiv.org/abs/2511.00606
 authors:
 - Jameson Sandler
 - Jacob Christopher
 - Tom Hartvigsen
 - Ferdinando Fioretto
 award: ''
-citations: null
-citations_updated: ''
+citations: 15
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -30,8 +30,8 @@ observations:
     higher alignment raises acceptance rates, making the parallel diffusion pass a
     reliable speculative proposal.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=o42VU86ZsV
+optimization_type: []
 organizations:
 - University of Virginia
 presentation_type: oral

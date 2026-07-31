@@ -14,8 +14,8 @@ authors:
 - Massoud Pedram
 - Souvik Kundu
 award: ''
-citations: null
-citations_updated: ''
+citations: 3
+citations_updated: '2026-07-31'
 code_url: https://github.com/TTTTTTris/SkipKV
 domain:
 - llm-serving

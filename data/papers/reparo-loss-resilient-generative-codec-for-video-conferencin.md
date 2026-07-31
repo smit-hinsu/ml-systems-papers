@@ -10,8 +10,8 @@ authors:
 - Mohammad Alizadeh
 - Dina Katabi
 award: ''
-citations: null
-citations_updated: ''
+citations: 21
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - edge-inference

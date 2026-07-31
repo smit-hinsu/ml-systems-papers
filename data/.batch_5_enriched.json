@@ -1,0 +1,306 @@
+[
+  {
+    "slug": "prompts-performance-optimization-via-multi-agent-planning-fo",
+    "title": "PROMPTS: PeRformance Optimization via Multi-Agent Planning for LLM Training and Serving",
+    "authors": [
+      "Yuran Ding",
+      "Ruobing Han",
+      "Xiaofan Zhang",
+      "Xinwei Chen"
+    ],
+    "abstract": "Optimizing large-language model (LLM) training and serving on large-scale distributed systems is a significant challenge. This difficulty stems from the rapidly evolving LLM landscape, the requirement for deep domain expertise, and the need for workload-specific optimization strategies. Existing methods rely on either handcrafted optimization performed by human experts, which is tedious and time-consuming, or resource-intensive black-box searches, which lack the extensibility to keep pace with evolving models and hardware. To address this, we introduce **PROMPTS**, a novel multi-agent framework that complements traditional search methods with expert-informed reasoning to deliver system-level optimization with much fewer shots. Key components of the proposed framework include an *Analyzer Agent* that diagnoses performance bottlenecks by synthesizing profiler data and a *Proposal Agent* that leverages a knowledge base to generate optimized sharding configurations with detailed justifications through retrieval-augmented generation (RAG).\n\nExperimental results across eight real-world LLM workloads have demonstrated that PROMPTS can provide valid reasoning and accurate recommendations by considering LLM workload characteristics and backend hardware features, delivering performance improvements of up to **434%**. These workloads spanned LLMs with Mixture-of-Experts (MoE) and dense models, system configurations from 2-TPU chips to 512-chip systems with 2D/3D Torus interconnects, and the full LLM lifecycle including pre-training, post-training, and serving.\n\nTo validate our agent's system optimization proposals, we benchmarked them against production configurations that were previously optimized by experts, either through extensive manual analysis or automated black-box searches. In every case, our agent independently identified this expert-validated solution within its top three recommendations from a **single invocation**. Furthermore, the agent's top-ranked recommendation matched the production solution in **87.5%** of cases, demonstrating its ability to not only find optimized configurations but also to correctly prioritize the optimization candidates.",
+    "openreview_url": "https://openreview.net/forum?id=FTOfgVHcZn",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3843"
+  },
+  {
+    "slug": "protoken-token-level-attribution-for-federated-large-languag",
+    "title": "ProToken: Token-Level Attribution for Federated Large Language Models",
+    "authors": [
+      "Waris Gill",
+      "Ahmad Humayun",
+      "Ali Anwar",
+      "Muhammad Ali Gulzar"
+    ],
+    "abstract": "Federated Learning (FL) enables collaborative training of Large Language Models (LLMs) across distributed data sources while preserving privacy. However, when federated LLMs are deployed in critical applications, it remains unclear which client(s) contributed to specific generated responses, hindering debugging, malicious client identification, fair reward allocation, and trust verification.\nWe present ProToken, a novel Provenance methodology for Token-level attribution in federated LLMs that addresses client attribution during autoregressive text generation while maintaining FL privacy constraints. ProToken leverages two key insights to enable provenance at each token: (1) transformer architectures concentrate task-specific signals in later blocks, enabling strategic layer selection for computational tractability, and (2) gradient-based relevance weighting filters out irrelevant neural activations, focusing attribution on neurons that directly influence token generation. We evaluate ProToken across 16 configurations spanning four LLM architectures (Gemma, Llama, Qwen, SmolLM) and four domains (medical, financial, mathematical, coding). ProToken achieves 98.62% average attribution accuracy in correctly localizing responsible client(s), and maintains high accuracy when the number of clients are scaled, validating its practical viability for real-world deployment settings.",
+    "openreview_url": "https://openreview.net/forum?id=8WXUjbFr0Z",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3850"
+  },
+  {
+    "slug": "protrain-efficient-llm-training-via-automatic-memory-managem",
+    "title": "ProTrain: Efficient LLM Training via Automatic Memory Management",
+    "authors": [
+      "Hanmei Yang",
+      "Jin Zhou",
+      "Yao Fu",
+      "Xiaoqun Wang",
+      "Ramine Roane",
+      "Hui Guan",
+      "Tongping Liu"
+    ],
+    "abstract": "Memory pressure has emerged as a dominant constraint in scaling the training of large language models (LLMs), particularly in resource-constrained environments. While modern frameworks incorporate various memory-saving techniques, they often expose low-level configuration knobs that require manual tuning and specialized system expertise. This not only adds engineering overhead but also risks suboptimal hardware utilization when misconfigured.\nThis paper introduces ProTrain, a novel training system that automatically tailors memory management policies to the model architecture and underlying hardware resources, eliminating the need for manual intervention. The core of ProTrain is its automated memory management that abstracts complex memory management strategies into a few tunable configuration parameters, allowing searches for optimal parameter settings using cost models. ProTrain is equipped with a runtime profiler that provides precise estimates of latency, memory usage, and I/O bandwidth to build high-fidelity cost models. \nProTrain does not change the training algorithm and thus does not compromise accuracy. Experiments show that ProTrain improves training throughput by 1.43$\\times$ to 2.71$\\times$ compared to the state-of-the-art training systems.",
+    "openreview_url": "https://openreview.net/forum?id=XDkOn0iTiH",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3800"
+  },
+  {
+    "slug": "pylo-towards-accessible-learned-optimizers-in-pytorch",
+    "title": "Pylo: Towards Accessible Learned Optimizers in PyTorch",
+    "authors": [
+      "Paul Janson",
+      "Benjamin Th\u00e9rien",
+      "Quentin Anthony",
+      "Xiaolong Huang",
+      "Abhinav Moudgil",
+      "Eugene Belilovsky"
+    ],
+    "abstract": "Learned optimizers have been an active research topic over the past decade, with increasing progress toward practical, general-purpose optimizers that can serve as drop-in replacements for widely used methods like Adam. However, recent advances such as VeLO, which was meta-trained for 4000 TPU-months, remain largely inaccessible to the broader community, in part due to their reliance on JAX and the absence of user-friendly packages for independently using the optimizers after meta-training. To address this gap, we introduce PyLO, a PyTorch-based library that brings learned optimizers to the remaining \u2248 70% of machine learning community via the familiar torch.optim.Optimizer interface. Unlike prior work focused on limited-scale academic tasks, our\nemphasis is on applying learned optimization to real-world large-scale pre-training tasks. Our systems contribution includes CUDA-accelerated implementations of the small fc lopt(Metz et al.,  2022a) and VeLO(Metz et al., 2022b) learned optimizers, achieving substantial performance gains, with training throughput on ViT-B/16 (batch size 32) increasing from 39.36 and 49.73 to 205.59 and 191.18 samples per second, respectively. PyLO has the versatility that allows us to easily combine learned optimizers with existing optimization tools such as learning rate schedules and weight decay. When doing so, we discover that learned optimizers can substantially benefit from it. Our code is available at https://github.com/Belilovsky-Lab/pylo",
+    "openreview_url": "https://openreview.net/forum?id=M9V1n4KxSd",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3824"
+  },
+  {
+    "slug": "raidserve-high-performance-resilient-serving",
+    "title": "RaidServe: High-performance Resilient Serving",
+    "authors": [
+      "Ziyi Xu",
+      "Zhiqiang Xie",
+      "Swapnil Gandhi",
+      "Christos Kozyrakis"
+    ],
+    "abstract": "Tensor parallelism (TP) enables large language models (LLMs) to scale inference efficiently across multiple GPUs, but its tight coupling makes systems fragile: a single GPU failure can halt execution, trigger costly KVCache recomputation, and introduce long-term compute and memory imbalance. We present RaidServe , a fault-tolerant TP serving system that sustains high performance under irregular GPU availability. RaidServe introduces three techniques to balance computation and memory across GPUs: (1) Cyclic KVCache Placement for even memory utilization, (2) Hybrid Attention combining tensor- and data-parallel attention to eliminate stragglers, and (3) Fine-Grained Load-Aware Routing to dynamically balance requests. It further employs proactive KVCache backup and on-demand weight recovery to avoid expensive recomputation and redundant data transfers. Implemented in a lightweight serving engine compatible with existing infrastructures, RaidServe achieves up to 2\u00d7 higher throughput and two orders of magnitude faster recovery than standard fault-handling methods on an 8\u00d7H100 DGX system, maintaining strong performance even with multiple GPU failures.",
+    "openreview_url": "https://openreview.net/forum?id=5pl9fdbEkq",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3856"
+  },
+  {
+    "slug": "reparo-loss-resilient-generative-codec-for-video-conferencin",
+    "title": "REPARO: LOSS-RESILIENT GENERATIVE CODEC FOR VIDEO CONFERENCING",
+    "authors": [
+      "Tianhong Li",
+      "Vibhaalakshmi Sivaraman",
+      "Pantea Karimi",
+      "Lijie Fan",
+      "Mohammad Alizadeh",
+      "Dina Katabi"
+    ],
+    "abstract": "Packet loss during video conferencing often results in poor quality and video freezing. Retransmitting lost packets is often impractical due to the need for real-time playback, and using Forward Error Correction (FEC) for packet recovery is challenging due to the unpredictable and bursty nature of Internet losses. Excessive redundancy leads to inefficiency and wasted bandwidth, while insufficient redundancy results in undecodable frames, causing video freezes and quality degradation in subsequent frames.\n\nWe introduce Reparo \u2014 a loss-resilient video conferencing framework based on generative deep learning models to address these issues. Our approach generates missing information when a frame or part of a frame is lost. This generation is conditioned on the data received thus far, considering the model's understanding of how people and objects appear and interact within the visual realm. Experimental results, using publicly available video conferencing datasets, show that Reparo outperforms state-of-the-art FEC-based video conferencing solutions in terms of both video quality (measured through PSNR, SSIM, and LPIPS) and the occurrence of video freezes.",
+    "openreview_url": "https://openreview.net/forum?id=GaBGzA7fpe",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3839"
+  },
+  {
+    "slug": "respec-towards-optimizing-speculative-decoding-in-reinforcem",
+    "title": "ReSpec: Towards Optimizing Speculative Decoding in Reinforcement Learning Systems",
+    "authors": [
+      "Qiaoling Chen",
+      "Zijun Liu",
+      "Peng Sun",
+      "Shenggui Li",
+      "Guoteng Wang",
+      "Ziming Liu",
+      "Yonggang Wen",
+      "Siyuan Feng",
+      "Tianwei Zhang"
+    ],
+    "abstract": "Adapting large language models (LLMs) via reinforcement learning (RL) is often bottlenecked by the generation stage, which can consume over 75% of the training time. Speculative decoding (SD) accelerates autoregressive generation in serving systems, but its behavior under RL training remains largely unexplored. We identify three critical gaps that hinder the na\u00efve integration of SD into RL systems: diminishing speedups at large batch sizes, drafter staleness under continual actor updates, and drafter-induced policy degradation. \n\nTo address these gaps, we present ReSpec, a system that adapts SD to RL through three complementary mechanisms: dynamically tuning SD configurations, evolving the drafter via knowledge distillation, and weighting updates by rollout rewards. On Qwen models (3B\u201314B), ReSpec achieves up to 4.5x speedup while preserving reward convergence and training stability, providing a practical solution for efficient RL-based LLM adaptation.",
+    "openreview_url": "https://openreview.net/forum?id=HhDSxs7x2R",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3836"
+  },
+  {
+    "slug": "rethinking-dvfs-for-mobile-llms-unified-energy-aware-schedul",
+    "title": "Rethinking DVFS for Mobile LLMs: Unified Energy-Aware Scheduling with CORE",
+    "authors": [
+      "Zongpu Zhang",
+      "Pranab Dash",
+      "Qiang Xu",
+      "Y. Charlie Hu",
+      "Jian Li",
+      "Haibing Guan"
+    ],
+    "abstract": "Despite the rapid adoption of large language models (LLMs) in mobile applications, deploying them efficiently on resource-constrained devices remains challenging due to limited compute, memory, and energy constraints. In this paper, we first evaluate the energy efficiency of state-of-the-art mobile LLM frameworks across multiple models and uncover a key inefficiency: the default governors make independent decisions which can result in 23.0\u201340.4% longer latency or 5.0\u201316.6% higher energy use compared to optimal frequency combinations. We then conduct an in-depth analysis to reveal the root cause\u2013the lack of cross-resource coordination of these governors during prefilling and decoding. Building on these findings, we present CORE, a unified, energy-aware governor that jointly coordinates CPU, GPU, and memory frequencies for mobile LLM inference. Experiments across diverse LLMs show that CORE reduces time-to-first-token by 8.5-17.7% and time-per-token by 27.8-39.6% on average, without increasing energy per token.",
+    "openreview_url": "https://openreview.net/forum?id=PSyHQ8kVUT",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3814"
+  },
+  {
+    "slug": "sakuraone-an-open-ethernetbased-ai-hpc-system-and-its-observ",
+    "title": "SAKURAONE: An Open Ethernet\u2013Based AI HPC System and Its Observed Workload Dynamics in a Single-Tenant LLM Development Environment",
+    "authors": [
+      "Fumikazu KONISHI",
+      "Yuuki Tsubouchi",
+      "Hirofumi Tsuruta"
+    ],
+    "abstract": "SAKURAONE is a managed high performance computing (HPC) cluster developed and operated by the SAKURA Internet Research Center. It builds on the KOKARYOKU PHY bare metal GPU platform and is optimized for advanced workloads, including large language model (LLM) training. In ISC 2025 TOP500, SAKURAONE is ranked 49th by HPL and is the only top 100 system that uses a fully open networking stack\u2014800 GbE with SONiC\u2014demonstrating the scalability of vendor-neutral technology. Measured performance is 33.95 PFLOP/s (HPL Rmax), 396.295 TFLOP/s (HPCG), and 339.86 PFLOP/s on HPL-MxP with FP8. The system consists of 100 nodes, each with eight NVIDIA H100 GPUs and a 2 PB all-flash Lustre file system, interconnected via a rail-optimized 800 GbE leaf\u2013spine fabric with RoCEv2. Through exclusive use by a single research project, we observed the characteristics of development-related jobs. Consistent with previous HPC studies, small-scale jobs dominated in number, while a few large-scale jobs accounted for most GPU resource time. As the project progressed, resource use shifted from large-scale to mid-scale jobs, reflecting a transition from initial large-scale training to iterative refinement. These observations illustrate the real-world utilization dynamics of GPU clusters under unified project workloads.",
+    "openreview_url": "https://openreview.net/forum?id=n7o6C3p3wk",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3758"
+  },
+  {
+    "slug": "scaling-up-large-language-models-serving-systems-for-semanti",
+    "title": "Scaling Up Large Language Models Serving Systems for Semantic Job Search",
+    "authors": [
+      "Kayhan Behdin",
+      "Qingquan Song",
+      "Sriram Vasudevan",
+      "Jian Sheng",
+      "Xiaojing Ma",
+      "Z Zhou",
+      "Chuanrui Zhu",
+      "Guoyao Li",
+      "Chanh Nguyen",
+      "Sayan Ghosh",
+      "Hejian Sang",
+      "Ata Fatahi",
+      "Sundara Raman Ramachandran",
+      "Xiaoqing Wang",
+      "Qing Lan",
+      "Vinay Y S",
+      "Qi Guo",
+      "Caleb Johnson",
+      "Zhipeng Wang",
+      "Fedor Borisyuk"
+    ],
+    "abstract": "Large Language Models (LLMs) have demonstrated impressive quality when applied to predictive tasks such as relevance ranking and semantic search. However, deployment of such LLMs remains prohibitively expensive for industry applications with strict latency and throughput requirements. In this work, we present lessons and efficiency insights from developing a purely text-based decoder-only Small Language Model (SLM) for a semantic search application at LinkedIn. Particularly, we discuss model compression techniques such as pruning that allow us to reduce the model size by up to 40% while maintaining the accuracy. Additionally, we present context compression techniques that allow us to reduce the input context length by more than 10x with minimal loss of accuracy. Finally, we present practical lessons from optimizing the serving infrastructure for deploying such a system on GPUs at scale, serving millions of requests per second. Taken together, this allows us to increase our system\u2019s throughput by 10x in a real-world deployment, while meeting our quality bar.",
+    "openreview_url": "https://openreview.net/forum?id=re82zZczHj",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3745"
+  },
+  {
+    "slug": "search-your-block-floating-point-scales",
+    "title": "Search Your Block Floating Point Scales!",
+    "authors": [
+      "Tanmaey Gupta",
+      "Hayden Prairie",
+      "Shirley Wu",
+      "Reyna Abhyankar",
+      "Qingyang Wu",
+      "Austin Silveria",
+      "Pragaash Ponnusamy",
+      "Jue Wang",
+      "Ben Athiwaratkun",
+      "Leon Song",
+      "Tri Dao",
+      "Daniel Y. Fu",
+      "Chris De Sa"
+    ],
+    "abstract": "Quantization has emerged as a standard technique for accelerating inference for generative models by enabling faster low-precision computations and reduced memory transfers. Recently, GPU accelerators have added first-class support for microscaling Block Floating Point (BFP) formats. Standard BFP algorithms use a fixed scale based on the maximum magnitude of the block. We observe that this scale choice can be suboptimal with respect to quantization errors. In this work, we propose ScaleSearch, an alternative strategy for selecting these scale factors: using a fine-grained search leveraging the mantissa bits in microscaling formats to minimize the quantization error for the given distribution. ScaleSearch can be integrated with existing quantization methods such as Post Training Quantization and low precision attention, and is shown to improve their performance. Additionally, we introduce ScaleSearchAttention, an accelerated NVFP4-based attention algorithm, which uses ScaleSearch and adapted prior techniques to ensure near-0 performance loss for causal language modeling. Experiments show that ScaleSearch reduces quantization error by 27% for NVFP4 and improves language model PTQ by up to 15 points for MATH500 (Qwen3-8B), while ScaleSearchAttention im- proves Wikitext-2 PPL by upto 0.77 points for Llama 3.1 70B. The proposed methods closely match baseline performance while providing quantization accuracy improvements.",
+    "openreview_url": "https://openreview.net/forum?id=innqECyZPK",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3770"
+  },
+  {
+    "slug": "shannonic-efficient-entropy-optimal-compression-for-ml-workl",
+    "title": "Shannonic: Efficient Entropy-Optimal Compression for ML Workloads",
+    "authors": [
+      "Kareem Ibrahim",
+      "Mohammadjavad Maheronnaghsh",
+      "Andreas Moshovos"
+    ],
+    "abstract": "We present Shannonic, a lossless compression method for machine learning tensors that achieves near-entropy-optimal compression, minimal state footprint, and high throughput.  Shannonic uses an off-line pre-processing step to partition the tensor value space into optimally selected subranges and generates encoding/decoding tables that encode each value as a (range index, offset) pair where the range is entropy encoded using the asymmetric numeral systems (ANS) method. We formally prove and empirically show that Shannonic achieves higher compression efficiency than standard ANS. For a variety of 8b-quantized models, Shannonic's codec uses just 530B of state and achieves coding efficiency within 1\\% of the Shannon limit. Shannonic enables 1.3-3.1$\\times$ faster federated learning over bandwidth-constrained networks and 29-32\\% latency reduction in edge-cloud LLM inference.",
+    "openreview_url": "https://openreview.net/forum?id=NhMxI0GbB8",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3820"
+  },
+  {
+    "slug": "skipkv-selective-skipping-of-kv-generation-and-storage-for-e",
+    "title": "SkipKV: Selective Skipping of KV Generation and Storage for Efficient Inference with Large Reasoning Models",
+    "authors": [
+      "Jiayi Tian",
+      "Seyedarmin Azizi",
+      "Yequan Zhao",
+      "Erfan Baghaei Potraghloo",
+      "Sean McPherson",
+      "Sharath Nittur Sridhar",
+      "Zhengyang Wang",
+      "Zheng Zhang",
+      "Massoud Pedram",
+      "Souvik Kundu"
+    ],
+    "abstract": "Large reasoning models (LRMs) often incur significant key-value (KV) cache overhead, due to their linear growth with the verbose chain-of-thought (CoT) reasoning. This incurs both memory overhead and throughput bottlenecks, limiting efficient deployment. To reduce KV cache size during inference, we first investigate the effectiveness of existing KV cache eviction methods for CoT reasoning. Interestingly, we find that due to unstable token-wise scoring and reduced effective KV budget caused by padding, state-of-the-art (SoTA) eviction methods fail to maintain accuracy in multi-batch settings. Additionally, these methods often generate longer sequences than the original model without eviction, as semantic-unaware token-wise eviction leads to repeated revalidation during reasoning. To address these issues, we present \\textbf{SkipKV}, a \\textbf{\\textit{training-free}} KV compression method that performs selective \\textit{eviction} and \\textit{generation}, operating at a coarse-grained, sentence-level sequence removal for efficient CoT reasoning. In specific, it introduces a \\textit{sentence-scoring metric} to identify and remove highly similar sentences while maintaining semantic coherence. To suppress redundant generation, SkipKV dynamically adjusts a steering vector to update the hidden activation states during inference, enforcing the LRM to generate concise responses. Extensive evaluations on multiple reasoning benchmarks demonstrate that SkipKV achieves up to $\\mathbf{26.7}\\%$ higher accuracy compared to baseline methods, at a similar compression budget. Additionally, compared to SoTA, SkipKV yields up to $\\mathbf{1.6}\\times$ shorter generation length while improving throughput by up to $\\mathbf{1.7}\\times$. Our code is released at: \\href{https://github.com/TTTTTTris/SkipKV}{https://github.com/TTTTTTris/SkipKV}.",
+    "openreview_url": "https://openreview.net/forum?id=0EsV9SIm8p",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3864"
+  },
+  {
+    "slug": "sonar-benchmarking-topology-and-collaboration-in-decentraliz",
+    "title": "SONAR: Benchmarking Topology and Collaboration in Decentralized Learning",
+    "authors": [
+      "Joyce Yuan",
+      "Yichuan Shi",
+      "Abhishek Singh",
+      "Rishi Sharma",
+      "Ramesh Raskar",
+      "Jonas Blanc",
+      "Martin Jaggi"
+    ],
+    "abstract": "Decentralized machine learning relies on peer-to-peer communication, yet the role of network topology in shaping learning dynamics remains poorly understood due to the lack of controlled, reproducible evaluation frameworks. We present \\textbf{SONAR}, a modular framework for topology-aware decentralized learning that unifies communication, topology management, and fine-grained telemetry, enabling end-to-end measurement of performance, communication, robustness, and privacy under consistent conditions. Using SONAR, we show that topology is a first-class systems variable whose impact amplifies with scale and data heterogeneity. We find that sparse, structured topologies (e.g., rings and tori) can achieve comparable or superior accuracy to dense graphs at substantially lower communication cost under circumstances, revealing a clear efficiency frontier. We further identify and provide insights on collaborator collapse, a systematic failure mode in adaptive collaboration, where similarity-based neighbor selection reduces diversity and degrades generalization. By exposing topology as a controllable and measurable dimension, SONAR enables systematic, reproducible evaluation of decentralized learning and provides practical guidance for designing efficient and robust collaborative systems.",
+    "openreview_url": "https://openreview.net/forum?id=4Bqg7Xyk5t",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3857"
+  },
+  {
+    "slug": "sparing-strategies-to-minimize-reliability-impact-on-large-t",
+    "title": "Sparing Strategies to Minimize Reliability Impact On Large Training Jobs",
+    "authors": [
+      "Kevin Quirk",
+      "Matthew Lennie",
+      "Ehsan K. Ardestani",
+      "Satyajeet Singh Ahuja",
+      "Matthew Bergeron",
+      "Andrew Grier",
+      "Zhaodong Wang",
+      "Mustafa Ozdal",
+      "Xu Zhang",
+      "Abhinav Triguna",
+      "Ying Zhang",
+      "Mathew Oldham",
+      "Chunqiang Tang"
+    ],
+    "abstract": "Training large language models (LLMs) on Meta\u2019s AI clusters requires running long, distributed jobs that are\nvulnerable to hardware failures. To maintain high availability and efficiency, production systems use sparing, i.e.,\npre-allocating spare compute resources that can replace failed components. However, choosing the optimal sparing\nstrategy-including compute block size, number of spare blocks, and spare GPU trays\u2014is complex and directly\nimpacts cluster performance. We present an analytical framework with closed-form expressions to guide sparing\nstrategy decisions, making practical, first-order recommendations for production environments. We also develop a\nsimulation component to cross-validate the analytical model. Applied in Meta\u2019s hyperscale infrastructure, this\nmodel helps engineers optimize fault tolerance, minimize downtime, and maximize goodput during LLM training.\nOur real-world use case demonstrates how the framework informs robust, cost-effective design choices critical to\nMeta\u2019s AI operations.",
+    "openreview_url": "https://openreview.net/forum?id=18jPgte2tM",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3862"
+  },
+  {
+    "slug": "specdiff-2-scaling-diffusion-drafter-alignment-for-faster-sp",
+    "title": "SpecDiff-2: Scaling Diffusion Drafter Alignment For Faster Speculative Decoding",
+    "authors": [
+      "Jameson Sandler",
+      "Jacob Christopher",
+      "Tom Hartvigsen",
+      "Ferdinando Fioretto"
+    ],
+    "abstract": "Speculative decoding has become the standard approach for accelerating Large Language Model (LLM) inference. It exploits a lossless draft-then-verify procedure to circumvent the latency of autoregressive decoding, achieving impressive speed-ups.\n    Yet, current speculative decoding approaches remain limited by two fundamental bottlenecks: \\textbf{(1)} the autoregressive dependency during drafting which limits parallelism, and \\textbf{(2)} frequent rejections of draft tokens caused by misalignment between the draft and verify models. \n    This paper proposes \\emph{SpecDiff-2}, a novel framework to jointly address these two bottlenecks. It leverages discrete diffusion as a non-autoregressive drafter to address bottleneck (1) and develops novel techniques to calibrate discrete diffusion drafters with autoregressive verifiers, addressing bottleneck (2). Experimental results across a comprehensive benchmark suite show that \\emph{SpecDiff-2} achieves a new state-of-the-art across reasoning, coding, and mathematical benchmarks, improving tokens-per-second by up to an average of $+55\\%$ over previous baselines and obtaining up to $5.5\\times$ average speed-up over standard decoding, without any loss of accuracy.",
+    "openreview_url": "https://openreview.net/forum?id=o42VU86ZsV",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3755"
+  },
+  {
+    "slug": "speculative-decoding-performance-or-illusion",
+    "title": "Speculative Decoding: Performance or Illusion?",
+    "authors": [
+      "Xiaoxuan Liu",
+      "Jiaxiang Yu",
+      "Jongseok Park",
+      "Ion Stoica",
+      "Alvin Cheung"
+    ],
+    "abstract": "Speculative decoding (SD) has become a popular technique to accelerate Large Language Model (LLM) inference, yet its real-world effectiveness remains unclear as prior evaluations rely on research prototypes and unrealistically small batch sizes. We present, to our knowledge, the first systematic study of SD on a production-grade and widely deployed inference engine (vLLM), covering multiple SD variants ($n$-gram, EAGLE/EAGLE-3, Draft-Model, Multi-Token Prediction) across diverse workloads, model scales, and batch sizes. We analyze key factors governing SD performance, and quantify a theoretical upper bound on SD speedup. Our results show that verification by the target model dominates the execution, while acceptance length varies markedly across output token positions, requests, and datasets. Comparing measured performance with theoretical bounds reveals substantial gaps between observed and theoretical upper bounds, and we leverage this observation to highlight new research opportunities that our study opens up in improving SD.",
+    "openreview_url": "https://openreview.net/forum?id=fzkqtezFEi",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3782"
+  },
+  {
+    "slug": "spira-exploiting-voxel-data-structural-properties-for-effici",
+    "title": "Spira: Exploiting Voxel Data Structural Properties for Efficient Sparse Convolution in Point Cloud Networks",
+    "authors": [
+      "Dionysios Adamopoulos",
+      "Anastasia Poulopoulou",
+      "Georgios Goumas",
+      "Christina Giannoula"
+    ],
+    "abstract": "Sparse Convolution (SpC) powers 3D point cloud networks widely used in autonomous driving and augmented/virtual reality. SpC builds a kernel map that stores mappings between input voxel coordinates, output coordinates,\nand weight offsets, then uses this map to compute feature vectors for output coordinates. Our work identifies\nthree key properties of voxel coordinates: they are integer-valued, bounded within a limited spatial range, and\ngeometrically continuous, i.e., neighboring voxels on the same object surface are highly likely to exist at small\nspatial offsets from each other. Prior SpC engines do not fully exploit these properties and suffer from high\npre-processing and post-processing overheads during kernel map construction. To this end, we design Spira, the\nfirst voxel-property-aware SpC engine for GPUs. Spira proposes (i) a high-performance one-shot search algorithm\nthat builds the kernel map with no pre-processing and high data locality, (ii) an effective packed-native processing\nscheme that accesses packed voxel coordinates at low cost, (iii) a flexible dual-dataflow execution mechanism\nthat efficiently computes output feature vectors by adapting to layer characteristics, and (iv) a network-wide\nparallelization strategy that builds kernel maps for all SpC layers concurrently at network start. Our evaluation\nshows that Spira significantly outperforms prior state-of-the-art SpC engines by 1.68\u00d7 on average and up to 3.04\u00d7\nfor end-to-end inference, and by 2.11\u00d7 on average and up to 3.44\u00d7 for layer-wise execution across diverse layer\nconfigurations. The source code of Spira is freely available at https://github.com/SPIN-Research-Group/Spira.",
+    "openreview_url": "https://openreview.net/forum?id=YQMilw805Q",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3797"
+  },
+  {
+    "slug": "stream2llm-overlap-context-streaming-and-prefill-for-reduced",
+    "title": "Stream2LLM: Overlap Context Streaming and Prefill for Reduced Time-to-First-Token",
+    "authors": [
+      "Rajveer Bachkaniwala",
+      "Chengqi Luo",
+      "Richard So",
+      "Divya Mahajan",
+      "Kexin Rong"
+    ],
+    "abstract": "Context retrieval systems for LLM inference face a critical challenge: high retrieval latency creates a fundamental tension between waiting for complete context (poor time-to-first-token) and proceeding without it (reduced quality). Streaming context incrementally--overlapping retrieval with inference--can mitigate this latency, but doing so with concurrent requests introduces new challenges: requests contend for GPU compute and memory, and scheduling must adapt to dynamic context arrivals.\n\nWe present **Stream2LLM**, a streaming-aware LLM serving system for concurrent prefill-decode disaggregated deployments.\nStream2LLM introduces adaptive scheduling and preemption for two distinct retrieval patterns: **append-mode** (progressive context accumulation) and **update-mode** (iterative refinement with cache invalidation).\nIt decouples scheduling decisions from resource acquisition, enabling flexible preemption strategies guided by hardware-specific cost models, and uses longest common prefix matching to minimize redundant computation when input changes dynamically.\n\nTo evaluate Stream2LLM, we collect two large-scale, real-world streaming workloads based on web crawling and approximate nearest neighbor search.\nOur evaluation demonstrates that streaming architecture delivers up to 11$\\times$ TTFT improvements, with cost-aware scheduling providing critical benefits under memory pressure, all while maintaining throughput parity with non-streaming baselines.\n\nCode: https://github.com/rajveerb/stream2llm/tree/mlsys_artifact",
+    "openreview_url": "https://openreview.net/forum?id=FuRo7Ur5Ib",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3842"
+  }
+]

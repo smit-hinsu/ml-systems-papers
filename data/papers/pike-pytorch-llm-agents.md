@@ -8,8 +8,8 @@ authors:
 - Samuel Williams
 - Costin Iancu
 award: ''
-citations: null
-citations_updated: ''
+citations: 4
+citations_updated: '2026-07-31'
 code_url: https://github.com/pike-project/pike
 domain:
 - ml-kernels
@@ -25,15 +25,15 @@ models_evaluated:
 - Llama-3
 - Mamba-2
 observations:
-  search-ai: Kernel correctness and latency are objectively measurable,
-    enabling an exploit-heavy strategy that beats torch.compile by 1.85× on H100 without
-    hand-crafted heuristics.
-  fuse: Agents self-discovered FP16 + fused flash attention, monolithic
-    kernel fusion eliminating HBM round-trips between ops, and operation reordering
-    to shrink tensor sizes before heavy compute.
+  fuse: Agents self-discovered FP16 + fused flash attention, monolithic kernel fusion
+    eliminating HBM round-trips between ops, and operation reordering to shrink tensor
+    sizes before heavy compute.
+  search-ai: Kernel correctness and latency are objectively measurable, enabling an
+    exploit-heavy strategy that beats torch.compile by 1.85× on H100 without hand-crafted
+    heuristics.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=MJxhiX3sSd
+optimization_type: []
 organizations:
 - Lawrence Berkeley National Laboratory
 presentation_type: oral

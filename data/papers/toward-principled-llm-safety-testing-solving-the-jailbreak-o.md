@@ -1,15 +1,15 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2506.17299'
+arxiv_url: https://arxiv.org/abs/2506.17299
 authors:
 - Shuyi Lin
 - Anshuman Suri
 - Alina Oprea
 - Cheng Tan
 award: ''
-citations: null
-citations_updated: ''
+citations: 4
+citations_updated: '2026-07-31'
 code_url: https://github.com/shuyilinn/BOA
 domain:
 - llm-serving
@@ -27,8 +27,8 @@ observations:
     on promising low-probability paths, skipping unpromising branches and reducing
     exponential search space.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=vr3Rrg6Xnm
+optimization_type: []
 organizations:
 - Northeastern University
 presentation_type: oral

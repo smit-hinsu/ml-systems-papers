@@ -1,13 +1,13 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2602.10729'
+arxiv_url: https://arxiv.org/abs/2602.10729
 authors:
 - Youhe Jiang
 - Fangcheng Fu
 - Eiko Yoneki
 award: ''
-citations: null
-citations_updated: ''
+citations: 6
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -26,8 +26,8 @@ observations:
   cache: MOBO jointly searches routing strategy and model deployment config, avoiding
     the sub-optimality of tuning each independently.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=ZVQb92umqX
+optimization_type: []
 organizations:
 - University of Cambridge
 - Shanghai Jiao Tong University

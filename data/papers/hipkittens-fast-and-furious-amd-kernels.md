@@ -13,8 +13,8 @@ authors:
 - Christopher Ré
 - Simran Arora
 award: ''
-citations: null
-citations_updated: ''
+citations: 2
+citations_updated: '2026-07-31'
 code_url: https://github.com/HazyResearch/HipKittens
 domain:
 - ml-kernels

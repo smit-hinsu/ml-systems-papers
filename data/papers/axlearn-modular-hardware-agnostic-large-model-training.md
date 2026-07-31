@@ -43,8 +43,8 @@ authors:
 - Cheng Leong
 - Ruoming Pang
 award: ''
-citations: null
-citations_updated: ''
+citations: 4
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-training

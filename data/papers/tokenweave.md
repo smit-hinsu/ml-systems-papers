@@ -7,8 +7,8 @@ authors:
 - Nipun Kwatra
 - Ramachandran Ramjee
 award: ''
-citations: null
-citations_updated: ''
+citations: 17
+citations_updated: '2026-07-31'
 code_url: https://github.com/microsoft/tokenweave
 domain:
 - llm-serving
@@ -24,15 +24,15 @@ models_evaluated:
 - Qwen2.5-72B
 - Mixtral-8x22B
 observations:
-  pipeline: Wave-aware token splitting partitions batches so communication
-    and compute waves align, preventing the wave quantization penalty that defeats
-    naive decomposition strategies at small batch sizes
-  fuse: RMSNorm after ReduceScatter (on 1/N of tensor) halves HBM
-    reads; combining with Multimem eliminates an intermediate HBM write, achieving
-    1.34×–1.39× single-layer speedup.
+  fuse: RMSNorm after ReduceScatter (on 1/N of tensor) halves HBM reads; combining
+    with Multimem eliminates an intermediate HBM write, achieving 1.34×–1.39× single-layer
+    speedup.
+  pipeline: Wave-aware token splitting partitions batches so communication and compute
+    waves align, preventing the wave quantization penalty that defeats naive decomposition
+    strategies at small batch sizes
 official_category: Research Papers
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=rh2Ylffkq6
+optimization_type: []
 organizations:
 - Microsoft
 presentation_type: oral

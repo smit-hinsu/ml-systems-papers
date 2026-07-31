@@ -1,0 +1,310 @@
+[
+  {
+    "slug": "beat-the-long-tail-distribution-aware-speculative-decoding-f",
+    "title": "Beat the long tail: Distribution-Aware Speculative Decoding for RL Training",
+    "authors": [
+      "Zelei Shao",
+      "Vikranth Srivatsa",
+      "Sanjana Srivastava",
+      "Qingyang Wu",
+      "Alpay Ariyak",
+      "Xiaoxia wu",
+      "Ameen Patel",
+      "Jue Wang",
+      "Percy Liang",
+      "Tri Dao",
+      "Ce Zhang",
+      "Yiying Zhang",
+      "Ben Athiwaratkun",
+      "Chenfeng Xu",
+      "Junxiong Wang"
+    ],
+    "abstract": "Reinforcement learning(RL) post-training has become essential for aligning large language models (LLMs), yet its efficiency is increasingly constrained by the rollout phase, where long trajectories are generated token by token. We identify a major bottleneck:the long-tail distribution of rollout lengths, where a small fraction of long generations dominates wall clock time and a complementary opportunity; the availability of historical rollouts that reveal stable prompt level patterns across training epochs. Motivated by these observations, we propose DAS, a Distribution Aware Speculative decoding framework that accelerates RL rollouts without altering model outputs. DAS integrates two key ideas: an adaptive, nonparametric drafter built from recent rollouts using an incrementally maintained suffix tree, and a length aware speculation policy that allocates more aggressive draft budgets to long trajectories that dominate makespan. This design exploits rollout history to sustain acceptance while balancing base and token level costs during decoding. Experiments on math and code reasoning tasks show that DAS reduces rollout time up to 50% while preserving identical training curves, demonstrating that distribution-aware speculative decoding can significantly accelerate RL post training without compromising learning quality.",
+    "openreview_url": "https://openreview.net/forum?id=kMeqqPBjSl",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3766"
+  },
+  {
+    "slug": "blueprint-bootstrap-and-bridge-a-security-look-at-nvidia-gpu",
+    "title": "Blueprint, Bootstrap, and Bridge: A Security Look at NVIDIA GPU Confidential Computing",
+    "authors": [
+      "Zhongshu Gu",
+      "Enriquillo Valdez",
+      "Salman Ahmed",
+      "Julian James Stephen",
+      "Michael Le",
+      "Hani Jamjoom",
+      "Shixuan Zhao",
+      "Zhiqiang Lin"
+    ],
+    "abstract": "NVIDIA GPU Confidential Computing (GPU-CC) aims to provide secure execution for AI workloads. For end users, enabling GPU-CC is seamless and requires no modifications to existing applications. However, this ease of adoption relies on a proprietary and highly complex system that is difficult to inspect, creating challenges for researchers seeking to understand its architecture and security landscape. In this work, we provide a security look at GPU-CC by reconstructing a coherent view of the system. We first examine the system\u2019s blueprint, focusing on the specialized architectural engines that support its security mechanisms. We then analyze the bootstrap process, which coordinates hardware and software components to establish these protections. Finally, we conduct targeted experiments to assess whether, under the GPU-CC threat model, data transfers along different paths remain protected across the bridge between trusted CPU and GPU domains. We responsibly disclosed all security findings presented in this paper to the NVIDIA Product Security Incident Response Team (PSIRT).",
+    "openreview_url": "https://openreview.net/forum?id=t9RDCO1aL7",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3741"
+  },
+  {
+    "slug": "boost-bottleneck-optimized-scalable-training-framework-for-l",
+    "title": "BOOST: BOttleneck-Optimized Scalable Training Framework for Low-Rank Large Language Models",
+    "authors": [
+      "Zhengyang Wang",
+      "Ziyue Liu",
+      "Ruijie Zhang",
+      "Avinash Maurya",
+      "Bogdan Nicolae",
+      "Paul Hovland",
+      "Franck Cappello",
+      "Zheng Zhang"
+    ],
+    "abstract": "The scale of transformer model pre-training is constrained by the increasing computation and communication cost. Low-rank bottleneck architectures offer a promising solution to significantly reduce the training time and memory footprint with minimum impact on accuracy. Despite algorithmic efficiency, bottleneck architectures scale poorly under standard tensor parallelism. Simply applying 3D parallelism designed for full-rank\nmethods leads to excessive communication and poor GPU utilization. To address this limitation, we propose BOOST, an efficient training framework tailored for large-scale low-rank bottleneck architectures. BOOST introduces a novel Bottleneck-aware Tensor Parallelism, and combines optimizations such as online-RMSNorm, linear layer grouping, and low-rank activation checkpointing to achieve end-to-end training speedup. Evaluations on different low-rank bottleneck architectures demonstrate that BOOST achieves 1.46\u20131.91$\\times$ speedup over full-rank model baselines and 1.87\u20132.27$\\times$ speedup over low-rank model with naively integrated 3D parallelism, with improved GPU utilization and reduced communication overhead.",
+    "openreview_url": "https://openreview.net/forum?id=JhN5hldx4V",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3830"
+  },
+  {
+    "slug": "boute-cost-efficient-llm-serving-with-heterogeneous-llms-and",
+    "title": "BOute: Cost-Efficient LLM Serving with Heterogeneous LLMs and GPUs via Multi-Objective Bayesian Optimization",
+    "authors": [
+      "Youhe Jiang",
+      "Fangcheng Fu",
+      "Eiko Yoneki"
+    ],
+    "abstract": "The rapid growth of large language model (LLM) deployments has made cost-efficient serving systems essential. Recent efforts to enhance system cost-efficiency adopt two main perspectives: (\\textbf{\\underline{i}}) An \\textit{algorithmic} perspective that exploits heterogeneous model capabilities to route simpler queries to lower-cost models and complex queries to higher-cost models (i.e., heterogeneous query routing); and (\\textbf{\\underline{ii}}) a \\textit{systems} perspective that utilizes heterogeneous GPU resources as cost-effective alternatives to homogeneous high-end GPUs (i.e., heterogeneous model deployment). However, algorithm-system co-design for cost-efficient LLM serving necessitates sophisticated management: (\\textbf{\\underline{i}}) Determining optimal query routing strategies under latency and quality requirements, (\\textbf{\\underline{ii}}) configuring model deployment across heterogeneous GPUs with appropriate resource allocation and parallelism strategies, and (\\textbf{\\underline{iii}}) co-optimizing routing and deployment decisions to maximize overall system performance. To address these challenges, we present BOute, a \\textit{quality-aware scheduling system} that jointly exploits heterogeneous model and GPU capabilities for cost-efficient LLM serving. BOute employs a \\textit{multi-objective Bayesian optimization (MOBO) framework} to co-optimize the routing strategy and model deployment, thereby maximizing the cost-efficiency of the serving system while guaranteeing response quality. Evaluation results demonstrate that \\sys outperforms state-of-the-art LLM serving systems by up to 157\\% and 59\\% on average under \\textit{identical} cost budgets and quality requirements, or reducing serving costs by 15\\%-61\\% (38\\% on average) while maintaining the \\textit{same} performance targets, validating its effectiveness in achieving cost-efficient LLM serving.",
+    "openreview_url": "https://openreview.net/forum?id=ZVQb92umqX",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3795"
+  },
+  {
+    "slug": "breaking-the-ice-analyzing-cold-start-latency-in-vllm",
+    "title": "Breaking the Ice: Analyzing Cold Start Latency in vLLM",
+    "authors": [
+      "Huzaifa Shaaban Kabakibo",
+      "Animesh Trivedi",
+      "Lin Wang"
+    ],
+    "abstract": "As scalable inference services become popular, the cold start latency of an inference engine becomes important. Today, vLLM has evolved into the de-facto inference engine of choice for many inference workloads.\nAlthough popular, due to its complexity and rapid evolution, there has not been a systematic study on the startup latency of its engine.\nWith major architectural innovations under it (e.g., the `V1` API, introduction of `torch.compile`), in this paper, we present the first detailed performance characterization of vLLM startup latency. We break down the startup process into six foundational steps and demonstrate that this process is predominantly CPU-bound. Each step exhibits consistent and interpretable scaling trends with respect to model- and system-level parameters, enabling fine-grained attribution of latency sources.\nBuilding on these insights, we develop a lightweight analytical model that accurately predicts vLLM's startup latency for a given hardware configuration, providing actionable guidance for resource planning in large-scale inference environments.\nAll our benchmarking datasets, analysis tools, and prediction scripts are open-sourced at: https://github.com/upb-cn/vllm-startup-profiler",
+    "openreview_url": "https://openreview.net/forum?id=eoEobeKTNZ",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3784"
+  },
+  {
+    "slug": "cage-curvature-aware-gradient-estimation-for-accurate-quanti",
+    "title": "CAGE: Curvature-Aware Gradient Estimation For Accurate Quantization-Aware Training",
+    "authors": [
+      "Soroush Tabesh",
+      "Mher Safaryan",
+      "Andrei Panferov",
+      "Alexandra Volkova",
+      "Dan Alistarh"
+    ],
+    "abstract": "Despite significant work on low-bit quantization-aware training (QAT), there is still an accuracy gap between such techniques and native training. To address this, we introduce CAGE (Curvature-Aware Gradient Estimation), a new QAT method that augments the straight-through estimator (STE) gradient with a curvature-aware correction designed to counteract the loss increase induced by quantization. CAGE is derived from a multi-objective view of QAT that balances loss minimization with adherence to quantization constraints, yielding a principled correction term that depends on local curvature information.  On the theoretical side, we introduce the notion of Pareto-optimal solutions for quantized optimization, and establish that CAGE yields strong convergence guarantees in the smooth non-convex setting.\nIn terms of implementation, our approach is optimizer-agnostic, but we provide a highly-efficient implementation that leverages Adam statistics. \nCAGE significantly improves upon the prior state-of-the-art methods in terms of accuracy, for similar computational cost: for QAT fine-tuning, it halves the compression accuracy loss relative to the prior best method, while for QAT pre-training of Llama models, its accuracy for 3-bit weights-and-activations (W3A3) matches that of 4-bit training (W4A4) with the prior best method (QuEST).",
+    "openreview_url": "https://openreview.net/forum?id=Fubm1TtWeo",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3841"
+  },
+  {
+    "slug": "efficient-vram-constrained-xlm-inference-on-clients",
+    "title": "Efficient, VRAM-Constrained xLM Inference on Clients",
+    "authors": [
+      "Aditya Ukarande",
+      "Deep Shekhar",
+      "Marc Blackstein",
+      "Ram Rangan"
+    ],
+    "abstract": "To usher in the next round of client AI innovation, there is an urgent need to enable efficient, lossless inference of high-accuracy large language models (LLMs) and vision language models (VLMs), jointly referred to as xLMs, on client systems. This means efficient support for: a) interactive as well as batch modes, b) high-resolution VLM inference, c) dense and mixture-of-experts (MoE) LLMs, and d) adapting to system conditions (CPU thread count, CPU-GPU interconnect bandwidth, and video memory (VRAM) budget) and inference conditions (phase of execution and context size). While recent CPU-GPU hybrid scheduling techniques show promise, to the best of our knowledge, no single product handles all of the above.\n\nIn this paper, we address this problem with *pipelined sharding*, a novel, benchmark-profile-guided CPU-GPU hybrid scheduling technique to achieve efficient, VRAM-constrained inference for both dense and mixture-of-experts (MoE) LLMs. Using a combination of model sharding at the sub-layer level, CPU offloading, pipelined copy-compute, and prioritized tensor placement in VRAM, it optimizes both time-to-first-token (TTFT) and tokens per second (TPS) metrics, while flexibly adapting to system and inference conditions. For efficient, high-accuracy\nVLM inference, we combine pipelined sharding with a llama.cpp implementation of three well-understood prior ideas (jointly called *VLMOpt*), namely, vision tensor CPU offloading, flash attention, and vision and language model VRAM overlap avoidance.\n\nThese enhancements are targeted at improving client xLM inference in future releases of two important NVIDIA products - the In-Game Inferencing software development kit (IGI SDK) and the Cosmos-Reason1 (CR1) physical AI reasoning VLM. Highlights from our rigorous evaluation spanning multiple models and client systems include: for interactive use, TTFT improves by up to 6.7$\\times$ and TPS by up to 30$\\times$ for LLMs, and CR1 inference\u2019s VRAM demand is down by 10$\\times$, while in batched mode, throughput improves by up to 8.2$\\times$, all compared to their respective aggressive baselines.",
+    "openreview_url": "https://openreview.net/forum?id=VKqQYg6JPb",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3802"
+  },
+  {
+    "slug": "event-tensor-a-unified-abstraction-for-compiling-dynamic-meg",
+    "title": "Event Tensor: A Unified Abstraction for Compiling Dynamic Megakernel",
+    "authors": [
+      "Hongyi Jin",
+      "Bohan Hou",
+      "Guanjie Wang",
+      "Ruihang Lai",
+      "Jinqi Chen",
+      "Zihao Ye",
+      "Yaxing Cai",
+      "Yixin Dong",
+      "Xinhao Cheng",
+      "Zhihao Zhang",
+      "Yilong Zhao",
+      "Yingyi Huang",
+      "Lijie Yang",
+      "Jinchen Jiang",
+      "Gabriele Oliaro",
+      "Jianan Ji",
+      "Xupeng Miao",
+      "Vinod Grover",
+      "Todd C. Mowry",
+      "Zhihao Jia",
+      "Tianqi Chen"
+    ],
+    "abstract": "Modern GPU workloads, especially large language model (LLM) inference, suffer from kernel launch overheads and coarse synchronization that limit inter-kernel parallelism. Recent megakernel techniques fuse multiple operators into a single persistent kernel to eliminate launch gaps and expose inter-kernel parallelism, but struggle to handle dynamic shapes and data-dependent computation in real workloads. We present Event Tensor, a unified compiler abstraction for dynamic megakernels. Event Tensor encodes dependencies between tiled tasks, and enables first-class support for both shape and data-dependent dynamism. Built atop this abstraction, our Event Tensor Compiler (ETC) applies static and dynamic scheduling transformations to generate high-performance persistent kernels. Evaluations show that ETC achieves state-of-the-art LLM serving latency while significantly reducing system warmup overhead.",
+    "openreview_url": "https://openreview.net/forum?id=PJqFhAbUHa",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3815"
+  },
+  {
+    "slug": "executorch-a-unified-pytorch-solution-to-run-ml-models-on-de",
+    "title": "ExecuTorch - A Unified PyTorch Solution to Run ML Models On-Device",
+    "authors": [
+      "Mergen Nachin",
+      "Digant Desai",
+      "Stephen Jia",
+      "Chen Lai",
+      "Mengwei Liu",
+      "Jacob Szwejbka",
+      "Raziel Alvarez",
+      "RJ Ascani",
+      "Dave Bort",
+      "Manuel Candales",
+      "Andrew Caples",
+      "Yanan Cao",
+      "Zhengxu Chen",
+      "Soumith Chintala",
+      "Gregory Comer",
+      "Tanvir Islam",
+      "Songhao Jia",
+      "Tarun Karuturi",
+      "Jack Khuu",
+      "Abhinay Kukkadapu",
+      "Tugsbayasgalan Manlaibaatar",
+      "Andrew Or",
+      "Kimish Patel",
+      "Siddartha Pothapragada",
+      "Lucy Qiu",
+      "Supriya Rao",
+      "Orion Reblitz-Richardson",
+      "Max Ren",
+      "Scott Roy",
+      "Anthony Shoumikhin",
+      "Scott Wolchok",
+      "Guang Yang",
+      "Angela Yi",
+      "Martin Yuan",
+      "Hansong Zhang",
+      "Jack Zhang",
+      "Jerry Zhang",
+      "Shunting Zhang",
+      "Cagatay Bilgin"
+    ],
+    "abstract": "Local execution of AI on edge devices is critical for privacy, low latency, and offline operation. However, deploying models on diverse hardware remains fragmented, often requiring model conversion or complete implementation outside the PyTorch ecosystem where the model was originally authored. We introduce ExecuTorch, a unified PyTorch-native deployment framework for edge AI. ExecuTorch enables seamless deployment of machine learning models across heterogeneous compute environments. It scales from completely embedded microcontrollers to complex system-on-chips (SoCs) with dedicated accelerators, powering devices ranging from wearables and smartphones to large compute clusters. ExecuTorch preserves PyTorch semantics while allowing customization, support for optimizations like quantization, and pluggable execution ''backends''. These features together enable fast experimentation, allowing researchers to validate deployment behavior entirely within PyTorch, bridging the gap between research and production.",
+    "openreview_url": "https://openreview.net/forum?id=jmE5nwC9kb",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3768"
+  },
+  {
+    "slug": "faascale-unlocking-fast-llm-scaling-for-serverless-inference",
+    "title": "FaaScale: Unlocking Fast LLM Scaling for Serverless Inference",
+    "authors": [
+      "Minchen Yu",
+      "Rui Yang",
+      "Chaobo Jia",
+      "Zhaoyuan Su",
+      "Sheng Yao",
+      "Tingfeng Lan",
+      "Yuchen Yang",
+      "Zirui Wang",
+      "Yue Cheng",
+      "Wei Wang",
+      "Ao Wang",
+      "Ruichuan Chen"
+    ],
+    "abstract": "Serverless computing is an attractive paradigm for cloud-based large language model (LLM) inference, but scaling LLMs on demand remains a major challenge due to high data transfer cost. We present FaaScale, a serverless LLM system that enables fast and resource-efficient model scaling. The key idea is a co-design principle\u2014pipelined multicast inference\u2014which synergizes multicast with dynamic, cross-node pipeline-parallel execution during model transfer. FaaScale implements this design through PipeCast, a model scaling scheme that adaptively multicasts model blocks and dynamically forms inference pipelines on the fly. Coupled with efficient memory management across GPU and host memory, FaaScale handles bursty LLM inference workloads\neffectively, achieving up to 5\u00d7 lower tail time-to-first-token latency and 31.3% cost reduction on real-world LLM traces.",
+    "openreview_url": "https://openreview.net/forum?id=jgL8LuOVyT",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3769"
+  },
+  {
+    "slug": "farskip-collective-unhobbling-blocking-communication-in-mixt",
+    "title": "FarSkip-Collective: Unhobbling Blocking Communication in Mixture of Experts Models",
+    "authors": [
+      "Yonatan Dukler",
+      "Guihong Li",
+      "Deval Shah",
+      "Jiang Liu",
+      "Vikram Appia",
+      "Emad Barsoum"
+    ],
+    "abstract": "Blocking communication presents a major hurdle in running MoEs efficiently in distributed settings. To address this, we present FarSkip-Collective which modifies the architecture of modern models to enable overlapping of their computation with communication. Our approach modifies the architecture to skip connections in the model and it is unclear a priori whether the modified model architecture can remain as capable, especially for large state-of-the-art models and while modifying all of the model layers. \nWe answer this question in the affirmative and fully convert a series of state-of-the-art models varying from 16B to 109B parameters to enable overlapping of their communication while achieving accuracy that is comparable with their original open-source releases. For example, we convert Llama 4 Scout (109B) via self-distillation and achieve average accuracy within 1% of its instruction tuned release averaged over a wide range of downstream evaluations. \nIn addition to demonstrating retained accuracy of the large modified models, we realize the benefits of FarSkip-Collective through optimized implementations that explicitly overlap communication with computation, accelerating both training and inference in existing frameworks.\nFor inference, we demonstrate 32.6% speedup in Time To First Token when serving a converted DeepSeek-V3 architecture with expert parallelism in SGLang and achieve 97.3% communication-computation overlap during the prefill stage. \nDuring training, our approach enables 88.9% communication overlap of the all-to-all communication collectives when pre-training DeepSeek-V3 MoE layers with expert parallelism.",
+    "openreview_url": "https://openreview.net/forum?id=ruOpvLzsGV",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3743"
+  },
+  {
+    "slug": "flashattention-4-algorithm-and-kernel-pipelining-co-design-f",
+    "title": "FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling",
+    "authors": [
+      "Ted Zadouri",
+      "Markus Hoehnerbach",
+      "Jay Shah",
+      "Vijay Thakkar",
+      "Tri Dao"
+    ],
+    "abstract": "Attention, as a core layer of the ubiquitous Transformer architecture, is the bottleneck for large language models and long-context applications.\nWhile optimized attention for Hopper GPUs through asynchronous execution and warp specialization, it primarily targets the H100 architecture.\nThe AI industry has rapidly transitioned to deploying Blackwell-based systems such as the B200 and GB200, which exhibit fundamentally different performance characteristics due to asymmetric hardware scaling: tensor core throughput doubles while other functional units (shared memory bandwidth, exponential units) scale more slowly or remain unchanged.\nWe develop several techniques to address these shifting bottlenecks on Blackwell GPUs: (1) redesigned pipelines that exploit fully asynchronous MMA operations and larger tile sizes, (2) software-emulated exponential and conditional softmax rescaling that reduces non-matmul operations, and (3) leveraging tensor memory and the 2-CTA MMA mode to reduce shared memory traffic and atomic adds in the backward pass.\nWe demonstrate that our method, FlashAttention-4, achieves up to 1.3$\\times$ speedup over cuDNN 9.13 and 2.7$\\times$ over Triton on B200 GPUs with BF16, reaching up to 1613 TFLOPs/s (71\\% utilization).\nBeyond algorithmic innovations, we implement FlashAttention-4 entirely in CuTe-DSL embedded in Python, achieving 20-30$\\times$ faster compile times compared to traditional C++ template-based approaches while maintaining full expressivity.",
+    "openreview_url": "https://openreview.net/forum?id=mN5RtvuYl3",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3759"
+  },
+  {
+    "slug": "fp8-flow-moe-a-casting-free-fp8-recipe-without-double-quanti",
+    "title": "FP8-Flow-MoE: A Casting-Free FP8 Recipe without Double Quantization Error",
+    "authors": [
+      "Fengjuan Wang",
+      "Zhiyi Su",
+      "Xingzhu Hu",
+      "Cheng Wang",
+      "Mou Sun"
+    ],
+    "abstract": "Training large Mixture-of-Experts (MoE) models remains computationally prohibitive due to their extreme compute and memory demands. Although low-precision training promises to accelerate computation and reduce memory footprint, existing implementations still rely on BF16-dominated dataflows with frequent quantize\u2013dequantize (Q/DQ) conversions. These redundant casts erode much of FP8\u2019s theoretical efficiency. However, naively removing these casts by keeping dataflows entirely in FP8 introduces double quantization error: tensors quantized along different dimensions accumulate inconsistent scaling factors, degrading numerical stability.\n\nWe propose FP8-Flow-MoE, an FP8 training recipe featuring a quantization-consistent FP8-centric dataflow with a scaling-aware transpose and fused FP8 operators that streamline computation and eliminate explicit cast operations from 12 to 2. Evaluations on a 671B-parameter MoE model demonstrate up to 21\\% higher throughput and 16.5 GB lower memory usage per GPU compared to BF16 and na\u00efve FP8 baselines, while maintaining stable convergence. We provide a plug-and-play FP8 recipe compatible with TransformerEngine and Megatron-LM, with the reference implementation available at \\href{https://github.com/021ai/FP8-FLOW-MOE-AE}{our GitHub repository}.",
+    "openreview_url": "https://openreview.net/forum?id=wyH60Su6G7",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3737"
+  },
+  {
+    "slug": "g-hemp-fast-multi-gpu-private-inference-for-large-scale-gcns",
+    "title": "G-HEMP: FAST MULTI-GPU PRIVATE INFERENCE FOR LARGE-SCALE GCNS WITH HOMOMORPHIC ENCRYPTION",
+    "authors": [
+      "Ran Ran",
+      "Zhaoting Gong",
+      "Zhaowei Li",
+      "Xianting Lu",
+      "Jiajia Li",
+      "Wujie Wen"
+    ],
+    "abstract": "Homomorphic Encryption (HE) offers a promising solution for privacy-preserving Graph Convolutional Network\n(GCN) inference in untrusted cloud environments by enabling computation directly on encrypted data. This\ncapability is particularly valuable in domains such as recommendation systems, financial analysis, and bioinfor-\nmatics, where data confidentiality is paramount. However, applying HE to large-scale GCN inference introduces\nsubstantial computational and memory overhead, severely limiting scalability and runtime efficiency. While prior\nworks focusing on algorithmic improvements have demonstrated feasibility on CPUs, these approaches struggle\nto scale effectively on GPUs due to excessive memory consumption and redundant computation. In this work,\nwe present G-HEMP, the first framework that leverages multi-GPU systems to accelerate large-scale private\nGCN inference. G-HEMP introduces two key innovations: (i) a block-diagonal parallel packing scheme that\neliminates redundant data replication in encrypted adjacency matrices, reducing the number of HE operations\nand achieving up to 4.41\u00d7 speedup over conventional feature-wise packing under single GPU environment; and\n(ii) a multi-GPU workload partitioning strategy that halves per-GPU peak memory usage on a 4-GPU system\nand achieves up to 3.88\u00d7 latency improvement. Compared to the limb-level-partitioning-based approach in\nCinnamon\u2013the state-of-the-art encrypted computation parallelization method, G-HEMP further attains up to\n3.13\u00d7 gain owing to our superior multi-device partition policy. Overall, G-HEMP is model-agnostic and scales\nseamlessly with graph size and GPU count, enabling efficient and practical privacy-preserving GCN inference on\nmodern heterogeneous environments.",
+    "openreview_url": "https://openreview.net/forum?id=RSTrFSPIMy",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3811"
+  },
+  {
+    "slug": "ghostserve-a-lightweight-checkpointing-system-in-the-shadow-",
+    "title": "GhostServe: A Lightweight Checkpointing System in the Shadow for Fault-Tolerant LLM Serving",
+    "authors": [
+      "Shakya Jayakody",
+      "Youpeng Zhao",
+      "Chinmay Dhanraj Nehate",
+      "Jun Wang"
+    ],
+    "abstract": "The rise of million-token, agent-based applications has placed unprecedented demands on large language model (LLM) inference services. \nThe long-running nature of these tasks increases their susceptibility to hardware and software faults, leading to costly job failures, wasted resources, and degraded user experience.\nThe stateful key-value (KV) cache, which grows with the sequence length, presents a central challenge as it is a critical and vulnerable component in distributed serving systems.\nIn this work, we propose **GhostServe**, a novel checkpointing solution to facilitate fault-tolerant LLM serving.\nSpecifically, GhostServe protects the streaming KV cache *in the shadow* by applying erasure coding to generate and store the parity shards in host memory.\nIn the event of device failures, GhostServe enables fast reconstruction of the lost KV cache, allowing the inference process to resume seamlessly without costly full recomputation or state replication.\nEvaluations demonstrate that GhostServe reduces checkpointing latency by up to 2.7x and recovery latency by 2.1x for a single batch, and 1.2x median response latency compared to existing methods, in the presence of system failures, paving the way for high-availability and cost-effective LLM serving at scale.",
+    "openreview_url": "https://openreview.net/forum?id=xKjYiUgeOK",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3736"
+  },
+  {
+    "slug": "grinnder-breaking-the-memory-capacity-wall-in-full-graph-gnn",
+    "title": "GriNNder: Breaking the Memory Capacity Wall in Full-Graph GNN Training with Storage Offloading",
+    "authors": [
+      "Jaeyong Song",
+      "Seongyeon Park",
+      "Hongsun Jang",
+      "Jaewon Jung",
+      "Hunseong Lim",
+      "Junguk Hong",
+      "Jinho Lee"
+    ],
+    "abstract": "Full-graph training of graph neural networks (GNNs) is widely used as it enables direct validation of algorithmic improvements by preserving complete neighborhood information. \nHowever, it typically requires multiple GPUs or servers, incurring substantial hardware and inter-device communication costs.\nWhile existing single-server methods reduce infrastructure requirements, they remain constrained by GPU and host memory capacity as graph sizes increase.\nTo address this limitation, we introduce **GriNNder**, which is the first work to leverage storage devices to enable full-graph training even with limited memory.\nBecause modern NVMe SSDs offer multi-terabyte capacities and bandwidths exceeding 10 GB/s, they provide an appealing option when memory resources are scarce.\nYet, directly applying storage-based methods from other domains fails to address the unique access patterns and data dependencies in full-graph GNN training.\nGriNNder tackles these challenges by *structured storage offloading (SSO)*, a framework that manages the GPU-host-storage hierarchy through coordinated *cache*, *(re)gather*, and *bypass* mechanisms.\nTo realize the framework, we devise (i) a partition-wise caching strategy for host memory that exploits the observation on cross-partition dependencies, (ii) a regathering strategy for gradient computation that eliminates redundant storage operations, and (iii) a lightweight partitioning scheme that mitigates the memory requirements of existing graph partitioners.\nIn experiments performed over various models and datasets, GriNNder achieves up to 9.78$\\times$ speedup over state-of-the-art baselines and throughput comparable to distributed systems, enabling previously infeasible large-scale full-graph training even on a single GPU.",
+    "openreview_url": "https://openreview.net/forum?id=8SNPzGRldN",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3851"
+  },
+  {
+    "slug": "hawkeye-reproducing-gpu-level-non-determinism",
+    "title": "Hawkeye: Reproducing GPU-Level Non-Determinism",
+    "authors": [
+      "Erez Badash",
+      "Dan Boneh",
+      "Ilan Komargodski",
+      "Megha Srivastava"
+    ],
+    "abstract": "We present Hawkeye, a system for analyzing and reproducing GPU-level arithmetic operations. Using our framework, anyone can re-execute on a CPU the exact matrix multiplication operations underlying a machine learning model training or inference workflow that was executed on an NVIDIA GPU, without any precision loss. This is in stark contrast to prior approaches to verifiable machine learning, which either introduce significant computation overhead to the original model owner, or suffer from non-robustness and quality degradation. The main technical contribution of Hawkeye is a systematic sequence of carefully crafted tests that study rounding direction, subnormal number handling, and order of (non-associative) accumulation during matrix multiplication on NVIDIA\u2019s Tensor Cores. We test and evaluate our framework on multiple NVIDIA GPU architectures ( Ampere, Hopper, and Lovelace) and precision types (FP16, BFP16, FP8). In all test cases, Hawkeye enables perfect reproduction of matrix multiplication on a CPU, paving the way for efficient and trustworthy third-party auditing of ML model training and inference.",
+    "openreview_url": "https://openreview.net/forum?id=JnmgsTFQQv",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3829"
+  }
+]

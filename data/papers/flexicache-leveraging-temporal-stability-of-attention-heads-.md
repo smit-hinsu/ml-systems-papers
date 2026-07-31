@@ -8,8 +8,8 @@ authors:
 - Nikil Dutt
 - Sangeetha Abdu Jyothi
 award: ''
-citations: null
-citations_updated: ''
+citations: 3
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving

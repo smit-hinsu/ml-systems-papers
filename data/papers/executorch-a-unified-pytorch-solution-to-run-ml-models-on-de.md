@@ -42,8 +42,8 @@ authors:
 - Shunting Zhang
 - Cagatay Bilgin
 award: ''
-citations: null
-citations_updated: ''
+citations: 3
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -64,8 +64,8 @@ observations:
   tier: Static memory planning for microcontroller targets eliminates dynamic allocations
     and maximizes SRAM reuse across operators at inference time.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=jmE5nwC9kb
+optimization_type: []
 organizations:
 - Meta
 presentation_type: oral

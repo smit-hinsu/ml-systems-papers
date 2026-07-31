@@ -7,8 +7,8 @@ authors:
 - Niki van Stein
 - Ben van Werkhoven
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - ml-compilers
@@ -23,8 +23,8 @@ observations:
     and search-space descriptions; performance vs. near-optimal configurations is
     the verifiable signal driving improvement.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=qKlHJCbY6m
+optimization_type: []
 organizations:
 - Leiden University
 - Netherlands eScience Center

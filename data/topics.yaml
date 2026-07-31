@@ -5,10 +5,12 @@
 tensor-parallelism:
   label: "Tensor Parallelism"
   category: distributed
+  description: "Splitting individual layers across devices so each holds a slice of the weights"
 
 pipeline-parallelism:
   label: "Pipeline Parallelism"
   category: distributed
+  description: "Assigning consecutive model stages to different devices and streaming microbatches through"
 
 fsdp-zero:
   label: "FSDP / ZeRO"
@@ -18,32 +20,39 @@ fsdp-zero:
 communication-overlap:
   label: "Compute-Communication Overlap"
   category: distributed
+  description: "Hiding collective communication behind computation so neither waits on the other"
 
 all-reduce:
   label: "AllReduce"
   category: distributed
+  description: "Summing gradients or activations across all devices and returning the result to each"
 
 # --- Memory ---
 kv-cache:
   label: "KV Cache"
   category: memory
+  description: "Storing attention keys and values so past tokens are not recomputed each decode step"
 
 prefix-caching:
   label: "Prefix Caching / RadixAttention"
   category: memory
+  description: "Reusing the KV state of a shared prompt prefix across requests that start the same way"
 
 quantization:
   label: "Quantization"
   category: memory
+  description: "Storing weights or activations at lower numeric precision to cut memory and bandwidth"
 
 cpu-offload:
   label: "CPU Offload"
   category: memory
+  description: "Moving cold tensors to host memory to free device memory for the active working set"
 
 # --- Efficiency ---
 kernel-fusion:
   label: "Kernel Fusion"
   category: efficiency
+  description: "Merging adjacent operators into one kernel to avoid round-trips through memory"
 
 attention-kernels:
   label: "Attention Kernels"
@@ -53,36 +62,44 @@ attention-kernels:
 speculative-decoding:
   label: "Speculative Decoding"
   category: efficiency
+  description: "Drafting several tokens cheaply, then verifying them in a single target-model pass"
 
 sparse-attention:
   label: "Sparse Attention"
   category: efficiency
+  description: "Skipping attention over token blocks that contribute little to the output"
 
 continuous-batching:
   label: "Continuous Batching"
   category: efficiency
+  description: "Admitting and retiring requests mid-batch so the GPU never waits for a batch to drain"
 
 # --- Architecture ---
 moe:
   label: "Mixture-of-Experts (MoE)"
   category: architecture
+  description: "Routing each token to a few experts so capacity grows without proportional compute"
 
 expert-parallelism:
   label: "Expert Parallelism"
   category: architecture
+  description: "Spreading MoE experts across devices and all-to-all routing tokens to them"
 
 # --- Serving ---
 streaming:
   label: "Token Streaming"
   category: serving
+  description: "Emitting tokens as they are produced rather than waiting for the full response"
 
 prefill-decode-disaggregation:
   label: "Prefill-Decode Disaggregation"
   category: serving
+  description: "Running compute-bound prefill and memory-bound decode on separate pools"
 
 scheduling:
   label: "Request / Job Scheduling"
   category: serving
+  description: "Deciding which request or job runs next, and where, under latency and capacity limits"
 
 # --- Memory ---
 memory-management:
@@ -105,10 +122,12 @@ interconnect:
 profiling:
   label: "Profiling / Tracing"
   category: observability
+  description: "Collecting operator- and hardware-level traces to locate where time actually goes"
 
 benchmarking:
   label: "Benchmarking"
   category: observability
+  description: "Measuring systems against a fixed workload so results can be compared"
 
 # --- Storage ---
 storage:
@@ -120,7 +139,9 @@ storage:
 llm-code-generation:
   label: "LLM-based Code / Kernel Generation"
   category: automation
+  description: "Using language models to write and iterate on kernels or operator code"
 
 autotuning:
   label: "Autotuning"
   category: automation
+  description: "Searching a configuration space automatically instead of hand-tuning parameters"

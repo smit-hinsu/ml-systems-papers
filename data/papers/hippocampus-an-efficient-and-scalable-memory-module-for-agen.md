@@ -9,8 +9,8 @@ authors:
 - Puneet Sharma
 - Bingzhe Li
 award: ''
-citations: null
-citations_updated: ''
+citations: 2
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - agentic-inference

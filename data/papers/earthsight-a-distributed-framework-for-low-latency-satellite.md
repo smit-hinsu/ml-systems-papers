@@ -7,8 +7,8 @@ authors:
 - Seungjun Lee
 - Divya Mahajan
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - fleet-efficiency

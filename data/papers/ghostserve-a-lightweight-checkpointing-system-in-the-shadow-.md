@@ -8,8 +8,8 @@ authors:
 - Chinmay Dhanraj Nehate
 - Jun Wang
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving

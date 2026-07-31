@@ -10,8 +10,8 @@ authors:
 - Bin Cui
 - Binhang Yuan
 award: ''
-citations: null
-citations_updated: ''
+citations: 14
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-training

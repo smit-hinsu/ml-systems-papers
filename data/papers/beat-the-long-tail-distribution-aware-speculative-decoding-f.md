@@ -19,8 +19,8 @@ authors:
 - Chenfeng Xu
 - Junxiong Wang
 award: ''
-citations: null
-citations_updated: ''
+citations: 9
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - rl-training

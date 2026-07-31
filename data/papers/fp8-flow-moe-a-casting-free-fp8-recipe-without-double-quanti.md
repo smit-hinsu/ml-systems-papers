@@ -9,8 +9,8 @@ authors:
 - Cheng Wang
 - Mou Sun
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: https://github.com/021ai/FP8-FLOW-MOE-AE
 domain:
 - llm-training

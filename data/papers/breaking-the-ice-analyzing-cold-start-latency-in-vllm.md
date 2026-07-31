@@ -7,8 +7,8 @@ authors:
 - Animesh Trivedi
 - Lin Wang
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: https://github.com/upb-cn/vllm-startup-profiler
 domain:
 - llm-serving

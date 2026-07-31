@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2604.00235'
+arxiv_url: https://arxiv.org/abs/2604.00235
 authors:
 - Jinghan Yao
 - Sam Jacobs
@@ -9,8 +9,8 @@ authors:
 - Masahiro Tanaka
 - Dhabaleswar Panda
 award: ''
-citations: null
-citations_updated: ''
+citations: 1
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -27,8 +27,8 @@ observations:
   tier: Amend stage recomputes only a small band near the match boundary in SRAM rather
     than re-reading the full KV cache from HBM, keeping memory traffic O(1) on hit.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=b6HBRCejb7
+optimization_type: []
 organizations:
 - Ohio State University
 - Microsoft

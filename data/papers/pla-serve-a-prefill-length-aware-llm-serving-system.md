@@ -13,8 +13,8 @@ authors:
 - Chun Jason Xue
 - Qirong Ho
 award: ''
-citations: null
-citations_updated: ''
+citations: 2
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -29,15 +29,15 @@ models_evaluated:
 - Qwen2.5-14B
 - Qwen2.5-32B
 observations:
-  cache: CUDA Graph plans for power-of-two length-bucket short prefills
-    reuse compiled graphs across requests, eliminating kernel launch overhead and
-    JIT compilation per request.
-  balance: Mixing compute-bound long and memory-bound short prefills in
-    one batch leaves GPU idle after short requests finish; dedicated queues keep each
-    batch's computation homogeneous.
+  balance: Mixing compute-bound long and memory-bound short prefills in one batch
+    leaves GPU idle after short requests finish; dedicated queues keep each batch's
+    computation homogeneous.
+  cache: CUDA Graph plans for power-of-two length-bucket short prefills reuse compiled
+    graphs across requests, eliminating kernel launch overhead and JIT compilation
+    per request.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=dzjCkSEDyG
+optimization_type: []
 organizations:
 - Carnegie Mellon University
 - University of Illinois Urbana-Champaign

@@ -17,8 +17,8 @@ authors:
 - Song Han
 - Ion Stoica
 award: ''
-citations: null
-citations_updated: ''
+citations: 4
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -42,8 +42,8 @@ observations:
   tier: Dynamic KV-cache offloads chunks to host memory asynchronously overlapped
     with GPU compute, bounding peak GPU memory use without stalling inference.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=yeqrwcWjPu
+optimization_type: []
 organizations:
 - MIT
 - UC Berkeley

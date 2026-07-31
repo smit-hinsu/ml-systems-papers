@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2511.08923'
+arxiv_url: https://arxiv.org/abs/2511.08923
 authors:
 - Jingyu Liu
 - Xin Dong
@@ -11,8 +11,8 @@ authors:
 - Ce Zhang
 - Pavlo Molchanov
 award: ''
-citations: null
-citations_updated: ''
+citations: 33
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-serving
@@ -26,15 +26,15 @@ observations:
   pipeline: Diffusion drafting generates multiple tokens in parallel within a single
     forward pass using structured attention masks, filling GPU compute that is idle
     during sequential AR token generation
+  simplify: A separate drafter must be trained, served, and kept aligned with the
+    target, and verification costs a second forward pass — upkeep that buys only parallelism
+    one model could supply itself.
   speculate: Diffusion generates candidate token proposals across all positions in
     parallel; the AR phase verifies and commits only accepted positions, hiding full-sequence
     generation behind one pass.
-  simplify: A separate drafter must be trained, served, and kept aligned with the
-    target, and verification costs a second forward pass — upkeep that buys only
-    parallelism one model could supply itself.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=onfxEjoE4L
+optimization_type: []
 organizations:
 - University of Chicago
 - Harvard University

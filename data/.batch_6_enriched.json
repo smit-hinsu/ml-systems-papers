@@ -1,0 +1,312 @@
+[
+  {
+    "slug": "streamdiffusionv2-a-streaming-system-for-dynamic-and-interac",
+    "title": "StreamDiffusionV2: A Streaming System for Dynamic and Interactive Video Generation",
+    "authors": [
+      "Tianrui Feng",
+      "Zhi Li",
+      "Shuo Yang",
+      "Haocheng Xi",
+      "Muyang Li",
+      "Xiuyu Li",
+      "Lvmin Zhang",
+      "Keting Yang",
+      "Kelly Peng",
+      "Song Han",
+      "Maneesh Agrawala",
+      "Kurt Keutzer",
+      "Akio Kodaira",
+      "Chenfeng Xu"
+    ],
+    "abstract": "Generative models are reshaping the live-streaming industry by redefining how content is created, styled, and delivered. Previous image-based streaming diffusion models have powered efficient and creative live streaming products but has hit limits on temporal consistency due to the foundation of image-based designs.\nRecent advances in video diffusion have markedly improved temporal consistency and sampling efficiency for offline generation. However, offline generation systems primarily optimize throughput by batching large workloads. In contrast, live online streaming operates under strict service-level objectives (SLOs): time-to-first-frame must be minimal, and every frame must meet a per-frame deadline with low jitter. Besides, scalable multi-GPU serving for real-time streams remains largely unresolved so far. To address this, we present \\textbf{StreamDiffusionV2}, a \\emph{training-free} pipeline for interactive live streaming with video diffusion models. StreamDiffusionV2 integrates an SLO-aware batching scheduler and a block scheduler, together with a sink-token\u2013guided rolling KV cache, a motion-aware noise controller, and other system-level optimizations. Moreover, we introduce a scalable pipeline orchestration that parallelizes the diffusion process across denoising steps and network layers, achieving near-linear FPS scaling without violating latency guarantees. The system scales seamlessly across heterogeneous GPU environments and supports flexible denoising steps (e.g., 1\u20134), enabling both ultra-low-latency and higher-quality modes. Without TensorRT or quantization, StreamDiffusionV2 renders the first frame within 0.5s and attains 58.28 FPS with a 14B-parameter model and 64.52 FPS with a 1.3B-parameter model on four H100 GPUs. Even when increasing denoising steps to improve quality, it sustains 31.62 FPS (14B) and 61.58 FPS (1.3B), making state-of-the-art generative live streaming practical and accessible\u2014from individual creators to enterprise-scale platforms.",
+    "openreview_url": "https://openreview.net/forum?id=p9WALNBvc6",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3750"
+  },
+  {
+    "slug": "superinfer-slo-aware-rotary-scheduling-and-memory-management",
+    "title": "SuperInfer: SLO-Aware Rotary Scheduling and Memory Management for LLM Inference on Superchips",
+    "authors": [
+      "Jiahuan Yu",
+      "Mingtao Hu",
+      "Zichao Lin",
+      "Minjia Zhang"
+    ],
+    "abstract": "Large Language Model (LLM) serving faces a fundamental tension between stringent latency Service Level Objectives (SLOs) and limited GPU memory capacity. When high request rates exhaust the KV cache budget, existing LLM inference systems often suffer severe head-of-line (HOL) blocking. While prior work explored PCIe-based offloading, these approaches cannot sustain responsiveness under high request rates, often failing to meet tight Time-To-First-Token (TTFT) and Time-Between-Tokens (TBT) SLOs. We present SuperInfer, a high-performance LLM inference system designed for emerging Superchips (e.g., NVIDIA GH200) with tightly coupled GPU-CPU architecture via NVLink-C2C. SuperInfer introduces RotaSched, the first proactive, SLO-aware rotary scheduler that rotates requests to maintain responsiveness on Superchips, and DuplexKV, a high-performance rotation engine that enables full-duplex transfer over NVLink-C2C. Evaluations on GH200 using various models and datasets show that SuperInfer improves TTFT SLO attainment rates by up to 74.7% while maintaining comparable TBT and throughput compared to state-of-the-art systems, demonstrating that SLO-aware scheduling and memory co-design unlocks the full potential of Superchips for responsive LLM serving. Code is available in https://github.com/Supercomputing-System-AI-Lab/SuperInfer.",
+    "openreview_url": "https://openreview.net/forum?id=RuslSHdIHa",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3809"
+  },
+  {
+    "slug": "swiftgs-algorithm-and-system-co-optimization-for-fast-3d-gau",
+    "title": "SwiftGS: Algorithm and System Co-Optimization for Fast 3D Gaussian Splatting on GPUs",
+    "authors": [
+      "Lingjun Gao",
+      "Zhican Wang",
+      "Zhiwen Mo",
+      "Hongxiang Fan"
+    ],
+    "abstract": "Recent advances in 3D Gaussian Splatting (3DGS) have enabled high-quality and efficient novel view synthesis, demonstrating great potential in real-world applications such as robotic perception and digital-twin construction. \nHowever, 3DGS requires processing up to millions of Gaussians in parallel, imposing significant computational and memory demands that limit its deployment on resource-constrained platforms.\nThrough systematic profiling and analysis, this paper identifies several redundancy at both the algorithmic and system implementation levels.\nThese insights motivate us to explore several novel optimizations, including adaptive early sorting, GPU-efficient axis-shared rasterization, and dynamic thresholding.\nUnlike prior work that focuses only on either algorithmic improvements or systems optimization, our approach explores a joint algorithm and system co-optimization to push the performance limits of 3DGS on GPUs.\nComprehensive evaluation demonstrates that our co-optimization approach, named \\textit{Flash3DGS} achieves a speed-up of up to $1.41 \\times$ with negligible algorithmic performance drop in rendering image quality compared with the \\textit{gsplat} baseline.\nImportantly, our co-optimization is orthogonal to most existing 3DGS acceleration methods, allowing for synergistic performance gains when used in combination.\nWe plan to release our code publicly upon paper acceptance to support reproducibility and future research.",
+    "openreview_url": "https://openreview.net/forum?id=i05mMLR9BX",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3773"
+  },
+  {
+    "slug": "telerag-efficient-retrieval-augmented-generation-inference-w",
+    "title": "TeleRAG: Efficient Retrieval-Augmented Generation Inference with Lookahead Retrieval",
+    "authors": [
+      "Chien-Yu Lin",
+      "Keisuke Kamahori",
+      "Yiyu Liu",
+      "Xiaoxiang Shi",
+      "Madhav Kashyap",
+      "Yile Gu",
+      "Rulin Shao",
+      "Zihao Ye",
+      "Kan Zhu",
+      "Rohan Kadekodi",
+      "Stephanie Wang",
+      "Arvind Krishnamurthy",
+      "Luis Ceze",
+      "Baris Kasikci"
+    ],
+    "abstract": "Retrieval-augmented generation (RAG) extends large language models (LLMs) with external data sources to enhance factual correctness and domain coverage.\nModern RAG pipelines rely on large datastores, creating a significant system challenge: achieving high throughput and low latency is difficult, especially when GPU memory is limited.\nTo address these challenges, we propose TeleRAG, an efficient inference system that reduces latency and improves throughput with minimal GPU memory requirements.\nThe core innovation of TeleRAG is *lookahead retrieval*, a prefetching mechanism that predicts required data and transfers them from CPU to GPU in parallel with LLM generation.\nIn addition, TeleRAG adopts a prefetching scheduler and a cache-aware scheduler to support efficient multi-GPU inference with minimal overhead.\nEvaluations show TeleRAG achieves up to a 1.98$\\times$ average end-to-end latency reduction (single-query) and 1.83$\\times$ higher average throughput (batched), as well as good scalability in throughput. This confirms the practical utility of TeleRAG for faster and more memory-efficient deployments of RAG applications.",
+    "openreview_url": "https://openreview.net/forum?id=YsOyCpMUYD",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3796"
+  },
+  {
+    "slug": "the-openhands-software-agent-sdk-a-composable-and-extensible",
+    "title": "The OpenHands Software Agent SDK: A Composable and Extensible Foundation for Production Agents",
+    "authors": [
+      "Xingyao Wang",
+      "Simon Rosenberg",
+      "Juan Michelini",
+      "Calvin Smith",
+      "Hoang H. Tran",
+      "Engel Nyst",
+      "Rohit Malhotra",
+      "Xuhui Zhou",
+      "Valerie Chen",
+      "Robert Brennan",
+      "Graham Neubig"
+    ],
+    "abstract": "Agents are now used widely in the process of software development, but building production-ready software engineering agents is a complex task. Deploying software agents effectively requires flexibility in implementation and experimentation, reliable and secure execution, and interfaces for users to interact with agents. In this paper, we present the OpenHands Software Agent SDK, a toolkit for implementing software development agents that satisfy these desiderata. This toolkit is a complete architectural redesign of the agent components of the popular OpenHands framework for software development agents.\n\nTo achieve flexibility, we design a simple interface for implementing agents that requires only a few lines of code in the default case, but is easily extensible to more complex full-featured agents with features such as custom tools, memory management, and more. For security and reliability, it delivers seamless local-to-remote execution portability, integrated REST/WebSocket services. For interaction with human users, it can connect directly to a variety of interfaces, such as visual workspaces (VS Code, VNC, browser), command-line interfaces, and APIs. Compared with existing SDKs from OpenAI, Claude and Google, OpenHands uniquely integrates native\nsandboxed execution, lifecycle control, model-agnostic multi-LLM routing, and built-in security analysis. We validate the architecture empirically: production deployment data shows that V1 substantially reduces system-attributable failures over V0 with negligible event-sourcing overhead, and evaluations across multiple models and benchmarks demonstrate strong agent performance. Put together, these elements allow the OpenHands Software Agent SDK to provide a practical foundation for prototyping, unlocking new classes of custom applications, and reliably deploying agents at scale.",
+    "openreview_url": "https://openreview.net/forum?id=pzVmWs6yGq",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3749"
+  },
+  {
+    "slug": "toward-principled-llm-safety-testing-solving-the-jailbreak-o",
+    "title": "Toward Principled LLM Safety Testing: Solving the Jailbreak Oracle Problem",
+    "authors": [
+      "Shuyi Lin",
+      "Anshuman Suri",
+      "Alina Oprea",
+      "Cheng Tan"
+    ],
+    "abstract": "As large language models (LLMs) become increasingly deployed in safety-critical applications, the lack of systematic methods to assess their vulnerability to jailbreak attacks presents a critical security gap. We introduce the \\emph{jailbreak oracle problem}: given a model, prompt, and decoding strategy, determine whether a jailbreak response can be generated with likelihood exceeding a specified threshold. This formalization enables a principled study of jailbreak vulnerabilities. Answering the jailbreak oracle problem poses significant computational challenges, as the search space grows exponentially with response length. We present BOA, the first system designed for efficiently solving the jailbreak oracle problem. BOA employs a two-phase search strategy: (1) breadth-first sampling to identify easily accessible jailbreaks, followed by (2) depth-first priority search guided by fine-grained safety scores to systematically explore promising yet low-probability paths. BOA enables rigorous security assessments including systematic defense evaluation, standardized comparison of red team attacks, and model certification under extreme adversarial conditions. Code is available at [https://github.com/shuyilinn/BOA/tree/mlsys2026ae](https://github.com/shuyilinn/BOA/tree/mlsys2026ae).",
+    "openreview_url": "https://openreview.net/forum?id=vr3Rrg6Xnm",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3739"
+  },
+  {
+    "slug": "triinfer-hybrid-epd-disaggregation-for-efficient-multimodal-",
+    "title": "TriInfer: Hybrid EPD Disaggregation for Efficient Multimodal Large Language Model Inference",
+    "authors": [
+      "Xianzhe Dong",
+      "Tongxuan Liu",
+      "Yuting Zeng",
+      "Weizhe Huang",
+      "Xiaoyang Zhao",
+      "Siyu Wu",
+      "Liangyu Liu",
+      "Yang Liu",
+      "Yu Wu",
+      "Hailong Yang",
+      "Ke Zhang",
+      "Jing Li"
+    ],
+    "abstract": "Existing MLLM inference systems are typically designed based on the architecture of language models, coupling image processing and language processing. This design struggles to accommodate the heterogeneous demands of different stages in terms of computational resources, memory access patterns, and service-level objectives (SLOs), leading to low resource utilization and high request latency, ultimately failing to meet the service requirements of diverse inference scenarios. To address these challenges, we propose TriInfer, an efficient MLLM inference system that adopts a Hybrid Encode-Prefill-Decode (EPD) Disaggregation architecture. By scheduling the three stages \u2014 encode, prefill, and decode \u2014 onto separate heterogeneous inference instances, the system flexibly reallocates resources across stages, significantly reducing idle computation, alleviating resource bottlenecks, and improving overall system throughput and scalability. In addition, TriInfer supports a stage-level batching strategy that enhances load balancing, enables parallel execution of visual and language models, and further\noptimizes inference performance. Experiments under real multimodal inference workloads demonstrate that TriInfer can achieve up to 3.7\u00d7 higher inference throughput compared to state-of-the-art systems (e.g., vLLM, SGLang) while meeting the 90th percentile request SLO.The source code of TriInfer will be released at https://github.com/dongxianzhe/triinfer.",
+    "openreview_url": "https://openreview.net/forum?id=nNovi8fvGN",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3756"
+  },
+  {
+    "slug": "unified-llm-model-for-power-performance-and-area-prediction-",
+    "title": "Unified LLM Model for Power, Performance, and Area Prediction from Hardware Code",
+    "authors": [
+      "Armin Abdollahi",
+      "Mehdi Kamal",
+      "Massoud Pedram"
+    ],
+    "abstract": "We present RocketPPA, a unified LLM-based model that predicts power, performance, and area for Verilog designs across technology nodes and optimization styles. The approach combines a large language model backbone with mixture-of-experts regression and low-rank adaptation for parameter efficiency. To improve generalization, we introduce a contrastive learning framework that encourages semantically similar designs to cluster in embedding space, providing an inductive bias that reflects the structure of the hardware design space. Trained on 15nm and 45nm nodes with area- and delay-optimized flows, the model achieves 9.4 percentage point improvement in pass rate at ten percent tolerance over prior methods, with approximately 20$\\times$ higher throughput (0.12 seconds per design). Ablations show contrastive learning contributes 2.5 points to accuracy, while leave-one-regime-out experiments demonstrate robust cross-regime generalization with minimal degradation. These results validate that combining supervised and contrastive objectives enables rapid, accurate PPA prediction across nodes and optimization styles.",
+    "openreview_url": "https://openreview.net/forum?id=lpO7kxiayb",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3761"
+  },
+  {
+    "slug": "unleashing-scalable-context-parallelism-for-foundation-model",
+    "title": "Unleashing Scalable Context Parallelism for Foundation Models Pre-Training via FCP",
+    "authors": [
+      "Yilong Zhao",
+      "Xiaonan Nie",
+      "Kan Zhu",
+      "Shuang Ma",
+      "Zhichao Lai",
+      "Hongxiang Hao",
+      "Yang Zhou",
+      "Baris Kasikci",
+      "Ion Stoica"
+    ],
+    "abstract": "Context parallelism (CP) has been widely adopted to support the growing context length in foundation model pretraining. However, existing designs fail to handle the large variation in sequence length from training datasets, resulting in suboptimal performance. These methods often over-shard short sequences, leading to compute inefficiency and excessive communication, or process long and short sequences separately without proper bin-packing, causing workload imbalance. In this paper, we propose FCP, a flexible context parallelism paradigm that shards and schedules sequences at block-level granularity. Instead of relying on rigid communication topologies such as ring, FCP enables arbitrary peer-to-peer communication, allowing flexible placement of sequence blocks across workers. By bin-packing blocks from both short and long sequences, FCP achieves both high compute efficiency and balanced workload distribution. Extensive evaluations show that FCP attains near-linear scalability on up to $256\\times$ NVIDIA GPUs, with $1.13\\times$\u2013$2.21\\times$ improvement in the attention MFU.",
+    "openreview_url": "https://openreview.net/forum?id=MPVycRsIn6",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3822"
+  },
+  {
+    "slug": "using-span-queries-to-optimize-cache-and-attention-locality",
+    "title": "Using Span Queries to Optimize Cache and Attention Locality",
+    "authors": [
+      "Paul Castro",
+      "Nick Mitchell",
+      "Nathan Ordonez",
+      "Thomas Parnell",
+      "Mudhakar Srivatsa",
+      "Antoni Viros-i-Martin"
+    ],
+    "abstract": "Clients are evolving beyond chat completion, and now include a variety of innovative inference-time scaling and deep reasoning techniques. At the same time, inference servers remain heavily optimized for chat completion and thus largely use linear KV cache strategies. Prior work has shown that large improvements to KV cache hit rate are possible if inference servers evolve towards these more non-linear use cases. However, they offer solutions that are also optimized for a single use case, RAG. In this paper, we demonstrate that chat, RAG,inference-time scaling, and agentic workloads can be expressed as special cases of a more general structure, the span query. The critical distinction that had been assumed by prior work lies in whether the order of the inputs matted. Do they commute? In chat, they do not. In RAG, they often do. A span query is an expression tree of inference calls, linked together with commutativity constraints. We describe span query syntax and semantics. We show how they can be automatically optimized to improve KV cache locality. We show how a small change to vLLM (affecting only 492 lines) can enable high-performance execution of span queries. Using this stack, we demonstrate that span queries can achieve 10-20x reductions in TTFT for two distinct non-chat use cases. Finally, we show that span queries can also be optimized to improve attention locality, so as to avoid the so-called lost-in-the-middle problem. We demonstrate that an attention-optimized span query on a 2b parameter model vastly outperforms the accuracy of a stock inference server using an 8b model.",
+    "openreview_url": "https://openreview.net/forum?id=qcGGSXpFcM",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3747"
+  },
+  {
+    "slug": "verimoa-a-mixture-of-agents-framework-for-spec-to-hdl-genera",
+    "title": "VeriMoA: A Mixture-of-Agents Framework for Spec-to-HDL Generation",
+    "authors": [
+      "Heng Ping",
+      "Arijit Bhattacharjee",
+      "Peiyu Zhang",
+      "Shixuan Li",
+      "Wei Yang",
+      "Anzhe Cheng",
+      "Xiaole Zhang",
+      "Jesse Thomason",
+      "Ali Jannesari",
+      "Nesreen Ahmed",
+      "Paul Bogdan"
+    ],
+    "abstract": "Automation of Register Transfer Level (RTL) design can help developers meet increasing computational demands. Large Language Models (LLMs) show promise for Hardware Description Language (HDL) generation, but face challenges due to limited parametric knowledge and domain-specific constraints. While prompt engineering and fine-tuning have limitations in knowledge coverage and training costs, multi-agent architectures offer a training-free paradigm to enhance reasoning through collaborative generation. However, current multi-agent approaches suffer from two critical deficiencies: susceptibility to noise propagation and constrained reasoning space exploration. We propose \\textbf{VeriMoA}, a training-free mixture-of-agents (MoA) framework with two synergistic innovations. First, a \\textbf{quality-guided caching mechanism} to maintain all intermediate HDL outputs and enables quality-based ranking and selection across the entire generation process, encouraging knowledge accumulation over layers of reasoning. Second, a \\textbf{multi-path generation strategy} that leverages C++ and Python as intermediate representations, decomposing specification-to-HDL translation into two-stage processes that exploit LLM fluency in high-resource languages while promoting solution diversity. Comprehensive experiments on VerilogEval 2.0 and RTLLM 2.0 benchmarks demonstrate that \\ourtool achieves 15--30\\% improvements in Pass@1 across diverse LLM backbones, especially enabling smaller models to match larger models and fine-tuned alternatives without requiring costly training.",
+    "openreview_url": "https://openreview.net/forum?id=5wgZXJ0kWA",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3855"
+  },
+  {
+    "slug": "virtual-machine-numa-placement-at-scale-learning-the-norm-sh",
+    "title": "Virtual Machine NUMA Placement at Scale: Learning the Norm, Shielding the Tail",
+    "authors": [
+      "Yibo Zhao",
+      "Tianyuan Wu",
+      "Hui Xue",
+      "Qi Chen",
+      "Zhenhua Han",
+      "Zikai Xu",
+      "Yuntai Chang",
+      "Rui Gao",
+      "Steve Deng",
+      "Ray Jui-Hao Chiang",
+      "Mingxia Li",
+      "Yuqing Yang",
+      "Cheng Tan",
+      "Fan Yang",
+      "Peng Cheng",
+      "Yongqiang Xiong",
+      "Lili Qiu",
+      "Lidong Zhou"
+    ],
+    "abstract": "In modern data centers, servers organize memory and CPUs into Non-Uniform Memory Access (NUMA) nodes,\nwhere unequal memory-to-CPU proximity leads to varying memory latency. Hypervisors must carefully place\nVirtual Machines (VMs) to reduce remote memory access. Poor placements can lead to significant performance\ndegradation\u2014sometimes up to 30%. However, achieving optimal placement at scale is challenging due to the\nlarge number of VM configurations, diverse NUMA structures, and evolving workload patterns. We present\nCatur, a NUMA placement system designed for large-scale cloud environments. Catur leverages reinforcement\nlearning to learn from production data. Moreover, to address real-world challenges, Catur integrates several techniques: robust action space design to prevent model collapse, reward shaping to address learning inefficiency,\ndrift-aware continuous training for evolving workload patterns, and speculative shielding to mitigate VM performance anomalies. Evaluations on production traces with 100 million VMs demonstrate that Catur reduces\naverage resource defect by 34.2%\u201350.0% compared to state-of-the-art hypervisor policies.",
+    "openreview_url": "https://openreview.net/forum?id=guCUThRvX5",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3777"
+  },
+  {
+    "slug": "wave-a-symbolic-python-dsl-and-compiler-for-high-performance",
+    "title": "Wave: A Symbolic Python DSL And Compiler for High-Performance Machine Learning",
+    "authors": [
+      "Harsh Menon",
+      "Oleksandr Zinenko",
+      "Gaurav Verma",
+      "Stanley Winata",
+      "Ivan Butygin",
+      "Nithin Meganathan",
+      "Sanket Pandit",
+      "William Hatch",
+      "Surya Jasper",
+      "Megan Kuo",
+      "Sahil Faizal",
+      "Ashay Rane",
+      "Aurore De Spirlet",
+      "Martin Paul L\u00fccke"
+    ],
+    "abstract": "Modern ML models demand ever-greater compute, prompting hardware vendors to add specialized matrix cores to their GPUs. While these units unlock high throughput, they impose intricate programming models and addressing schemes that are difficult to manage by hand. This paper introduces Wave, a Python-embedded DSL for kernel authoring that automates these complex address computations and lets authors focus on core computation. In experiments, it matches or surpasses the performance of state-of-the-art kernel DSLs and libraries.",
+    "openreview_url": "https://openreview.net/forum?id=gcXV1E8HRH",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3778"
+  },
+  {
+    "slug": "when-enough-is-enough-rank-aware-early-termination-for-vecto",
+    "title": "When Enough is Enough: Rank-Aware Early Termination for Vector Search",
+    "authors": [
+      "Jianan Lu",
+      "Asaf Cidon",
+      "Michael J. Freedman"
+    ],
+    "abstract": "Graph-based vector search underpins modern LLM applications such as retrieval-augmented generation (RAG), but its efficiency is increasingly constrained by disk I/O.\nExisting systems continue searching long after discovering the higher-ranked (i.e., most valuable) results for downstream applications.\nWe present Terminus, a rank-aware early termination mechanism that dynamically aligns I/O spending with application utility.\nTerminus models per-I/O search utility using a rank-weighted function and terminates once recent I/Os yield negligible utility gains. By adaptively terminating search based on rank-aware signals, Terminus improves recovery of top-ranked results that matter most for downstream tasks, achieving a better performance\u2013accuracy trade-off. It delivers up to 1.4\u00d7 higher throughput at the same accuracy target compared to existing early termination schemes, and up to 3.2\u00d7 higher throughput than a baseline without early termination, with minimal impact on RAG accuracy.",
+    "openreview_url": "https://openreview.net/forum?id=IFz0pROwF1",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3835"
+  },
+  {
+    "slug": "when-machine-learning-isnt-sure-building-resilient-ml-based-",
+    "title": "When Machine Learning Isn\u2019t Sure: Building Resilient ML-Based Computer Systems by Embracing Uncertainty",
+    "authors": [
+      "Varun Gohil",
+      "Nevena Stojkovic",
+      "Noman Bashir",
+      "Sundar Dev",
+      "Gaurang Upasani",
+      "David Lo",
+      "Parthasarathy Ranganathan",
+      "Christina Delimitrou"
+    ],
+    "abstract": "Machine learning (ML) models are increasingly used in computer systems but often suffer from poor generalizability, leading to costly failures on out-of-distribution (OOD) data. We propose an uncertainty-aware framework that improves system resilience by quantifying prediction uncertainty at runtime and rejecting unreliable outputs before they cause harm. When a prediction is uncertain, the system gracefully degrades to a safe fallback strategy. We evaluate the framework across three case studies, server provisioning, cluster management, and storage I/O admission, and find that the best uncertainty estimator is not universal but depends on how its properties align with each task\u2019s design and resource constraints. Similarly, the optimal fallback workflow (e.g., a lightweight and parallel vs. resource-intensive and sequential ) depends on task\u2019s runtime latency constraints. Together, these findings offer a practical path towards building more reliable ML-driven computer systems.",
+    "openreview_url": "https://openreview.net/forum?id=i0iOQL2MF5",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3772"
+  },
+  {
+    "slug": "zero-redundancy-distributed-learning-with-differential-priva",
+    "title": "Zero redundancy distributed learning with differential privacy",
+    "authors": [
+      "Zhiqi Bu",
+      "Justin Chiu",
+      "Ruixuan Liu",
+      "Sheng Zha",
+      "George Karypis"
+    ],
+    "abstract": "Deep learning using large models has achieved great success in a wide range of domains. However, training these models on billions of parameters is very challenging in terms of training speed, memory cost, and communication efficiency, especially under the privacy-preserving regime with differential privacy (DP). On the one hand, the efficiency of DP optimization is comparable to that of standard non-DP optimization on a single GPU, but existing DP distributed learning is significantly inefficient on multiple GPUs. On the other hand, the Zero Redundancy Optimizer (ZeRO) is a state-of-the-art solution to the standard distributed learning, which can be technically complicated to work compatibly with DP. In this work, we develop a new systematic solution, DP-ZeRO, (I) to scale up the trainable DP model size, e.g. to GPT-100B, (II) to obtain the same computation and communication efficiency as the standard ZeRO, and (III) to enable mixed-precision DP training. Our DP-ZeRO, like the standard ZeRO, has the potential to train models with arbitrary size and exhibits excellent training efficiency on large models. Code at \\url{https://github.com/awslabs/fast-differential-privacy}.",
+    "openreview_url": "https://openreview.net/forum?id=VGacNNZfgo",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3803"
+  },
+  {
+    "slug": "zk-apex-zero-knowledge-approximate-personalized-unlearning-w",
+    "title": "ZK-APEX: ZERO-KNOWLEDGE APPROXIMATE PERSONALIZED UNLEARNING WITH EXECUTABLE PROOFS",
+    "authors": [
+      "Mohammad M Maheri",
+      "Sunil Cotterill",
+      "Alex Davidson",
+      "Hamed Haddadi"
+    ],
+    "abstract": "Machine unlearning removes the influence of specified data from trained models to satisfy privacy, copyright, and safety requirements (e.g., the \u201cright to be forgotten\u201d). In practice, providers distribute a global model to edge devices, that each locally personalize the model based on their private data. \nHowever, since clients may ignore or falsify deletion requests, providers must verify correct unlearning for these distributed models, without accessing private parameters. This is particularly challenging for personalized models, which must forget designated samples without degrading local utility, while ensuring that verification remains efficient and scalable on resource-constrained edge devices.\n\nWe formalize personalized unlearning and develop a zero-shot approximate unlearning algorithm that works directly on the personalized model without retraining. Our novel method, ZK-APEX, combines provider-side sparse masking for targeted removal with client-side Group-OBS compensation computed from a block-wise empirical Fisher. This technique yields a curvature-aware update designed for low-overhead execution and proof generation. Using modern Halo2 ZK-SNARKs, we prove operator compliance by showing that the unlearned model exactly matches the committed output of the prescribed transformation, without revealing personalized model parameters or data.\n\nOn Vision Transformer (ViT) classification models, our approach recovers approximately 99\\% Top-1 personalization accuracy while enforcing effective forgetting. We further evaluate the unlearning algorithm on a generative model, OPT125M, trained on the CodeParrot code dataset, achieving $\\sim$70\\% recovery of original accuracy. ZK-SNARK proof generation for the ViT case completes in $\\approx$2 hours, which is more than $10^7\\times$ faster than retraining based verification, with peak memory under 0.7 GB and proof sizes about 400 MB. Together, these results establish the first verifiable personalized unlearning framework practical for deployment on resource constrained edge devices.",
+    "openreview_url": "https://openreview.net/forum?id=bLx6orLvQM",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3793"
+  },
+  {
+    "slug": "zorse-optimizing-llm-training-efficiency-on-heterogeneous-gp",
+    "title": "Zorse: Optimizing LLM Training Efficiency on Heterogeneous GPU Clusters",
+    "authors": [
+      "Runsheng Guo",
+      "Utkarsh Anand",
+      "Khuzaima Daudjee",
+      "Rathijit Sen"
+    ],
+    "abstract": "Large language models (LLMs) require vast amounts of GPU compute to train, but limited availability and high costs of GPUs make homogeneous clusters impractical for many organizations. Instead, assembling heterogeneous clusters by pooling together GPUs of different generations allows them to achieve higher aggregate compute and make use of all available GPUs. However, training on heterogeneous clusters presents significant challenges. The workload must be carefully partitioned such that GPUs in the cluster with limited compute, memory, or network bandwidth do not bottleneck the training process. Existing heterogeneous training systems cannot do so efficiently since they integrate data, pipeline, and tensor parallelism in a way that trades off communication for memory overhead. Combining vanilla data parallelism with pipeline parallelism is communication-efficient but results in high memory overhead from replicating model parameters. Alternatively, using sharded data parallelism or tensor parallelism reduces memory overhead but increases communication overhead when combined with pipeline parallelism. To address this problem, we designed Zorse, a system that uses Pipeline-Efficient ZeRO DP, a novel integration of pipeline parallelism and data parallelism that is both communication- and memory-efficient. Zorse uses a planner to automatically find an optimized training configuration from the vast search space of possibilities on heterogeneous clusters, and our evaluation shows that Zorse achieves up to 3\u00d7 higher training throughput than state-of-the-art systems across representative heterogeneous training scenarios.",
+    "openreview_url": "https://openreview.net/forum?id=40leuGH3iO",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3859"
+  }
+]

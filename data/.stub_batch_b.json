@@ -1,0 +1,282 @@
+[
+  {
+    "slug": "helios-adaptive-model-and-early-exit-selection-for-efficient",
+    "title": "HELIOS : Adaptive Model And Early-Exit Selection for Efficient LLM Inference Serving",
+    "authors": [
+      "Avinash Kumar",
+      "Shashank Nag",
+      "Jason Clemons",
+      "Lizy K. John",
+      "Poulami Das"
+    ],
+    "abstract": "Early-Exit Large Language Models (EE-LLMs) enable high throughput inference by allowing tokens to exit early at intermediate layers. However, their throughput is limited by the computational and memory savings. Existing EE-LLM frameworks rely on a single model and therefore, their token generation latencies are bottlenecked by tokens that do not exit early and traverse additional layers. Moreover, early exits are only known at runtime and depend on the request. Therefore, these frameworks load the weights of all model layers even though large portions remain unused when tokens exit early. The lack of memory savings limit us from scaling the batch sizes. \n\nWe propose $\\textit{HELIOS}$, a framework that improves both token generation latency and batch sizes to\nenable high-throughput in EE-LLMs. HELIOS exploits two insights. $\\textit{First}$, early exits are often complementary across models, tokens that do not exit early on one model often take an early-exit on another. HELIOS employs multiple models and dynamically switches between them to collectively maximize the number of tokens that exit early, and minimize token generation latencies. $\\textit{Second}$, even when a predicted token does not exit early due to poor confidence, it often remains unchanged even after additional layer traversal. HELIOS greedily allows such tokens to exit early and only loads the weights of the most likely to be used layers, yielding memory savings which is then re-purposed to increase batch sizes. HELIOS employs real-time profiling to accurately identify the early-exit distributions, and adaptively switches between models by tracking tokens in real-time to minimize the performance degradation caused by greedy model loading and exiting. Our evaluations show that HELIOS achieves $1.48\\times$ higher throughput and $15.14\\times$ larger batch size compared to existing EE-LLM frameworks.",
+    "openreview_url": "https://openreview.net/forum?id=CV52m9NJFK",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3846"
+  },
+  {
+    "slug": "hetrl-efficient-reinforcement-learning-for-llms-in-heterogen",
+    "title": "HetRL: Efficient Reinforcement Learning for LLMs in Heterogeneous Environments",
+    "authors": [
+      "Yongjun He",
+      "Shuai Zhang",
+      "Jiading Gai",
+      "Xiyuan Zhang",
+      "Boran Han",
+      "Bernie Wang",
+      "Huzefa Rangwala",
+      "George Karypis"
+    ],
+    "abstract": "As large language models (LLMs) continue to scale and new GPUs are released even more frequently, there is an increasing demand for LLM post-training in heterogeneous environments to fully leverage underutilized mid-range or previous-generation GPUs and alleviate the shortage of homogeneous high-end GPUs within a single availability zone.\nHowever, achieving high-performance reinforcement learning (RL) training for LLMs on such computing resources remains challenging, as the workflow involves multiple models and tasks with complex computational and data dependencies.\nIn this paper, we present HetRL, a distributed system for efficient RL training in infrastructures with heterogeneous GPUs and networks.\nHetRL formulates RL training scheduling in heterogeneous environments as a constrained joint optimization problem and provides two complementary approaches for addressing this problem: (1) a hybrid scheduling algorithm that efficiently identifies near-optimal solutions, and (2) an integer linear programming (ILP)-based scheduling algorithm that obtains optimal solutions, enabling flexible trade-offs between solution optimality and efficiency.\nOur extensive evaluation, consuming 20,000 GPU-hours, shows that HetRL achieves up to 9.17$\\times$ the throughput of state-of-the-art systems, and 3.17$\\times$ on average, across a wide range of workloads and settings.",
+    "openreview_url": "https://openreview.net/forum?id=LRLyuaz1W7",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3825"
+  },
+  {
+    "slug": "hexiscale-facilitating-large-language-model-training-over-he",
+    "title": "HexiScale: Facilitating Large Language Model Training over Heterogeneous Hardware",
+    "authors": [
+      "Ran Yan",
+      "Youhe Jiang",
+      "Xiaonan Nie",
+      "Fangcheng Fu",
+      "Bin Cui",
+      "Binhang Yuan"
+    ],
+    "abstract": "Training large language models (LLMs) is a computationally intensive task, which is typically conducted in data centers with homogeneous high-performance GPUs. In this paper, we explore an alternative approach by deploying training computations across heterogeneous GPUs to enable better flexibility and efficiency for heterogeneous resource utilization. Toward this end, we propose a novel system, HexiScale, that can flexibly support asymmetric partition of training computations in the scope of data-, pipeline-, and tensor model parallelism. We further formalize the allocation of asymmetric partitioned training computations over a set of heterogeneous GPUs as a constrained optimization problem and propose an efficient hierarchical graph partitioning algorithm. Our approach effectively allocates training computations across heterogeneous GPUs, fully leveraging the available computational power. We compare the performance of HexiScale with state-of-the-art homogeneous and heterogeneous training systems. When training LLMs at different scales (from 7B to 30B), empirical results demonstrate that: (**i**) compared to state-of-the-art homogeneous baselines running over homogeneous GPUs, HexiScale achieves *similar* performance when running over heterogeneous GPUs with the *same* theoretical FLOPS; (**ii**) compared to state-of-the-art heterogeneous baselines running on the same heterogeneous clusters, HexiScale delivers $1.5\\times$ to $2.4\\times$ higher throughput.",
+    "openreview_url": "https://openreview.net/forum?id=KgcqSNio0U",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3828"
+  },
+  {
+    "slug": "hipkittens-fast-and-furious-amd-kernels",
+    "title": "HipKittens: Fast and Furious AMD Kernels",
+    "authors": [
+      "William Hu",
+      "Drew Wadsworth",
+      "Sean Siddens",
+      "Stanley Winata",
+      "Daniel Y. Fu",
+      "Ryan Swann",
+      "Muhammad Osama",
+      "Christopher R\u00e9",
+      "Simran Arora"
+    ],
+    "abstract": "AMD GPUs offer state-of-the-art compute and memory bandwidth; however, peak performance AMD kernels are\nwritten in raw assembly. To address the difficulty of mapping AI algorithms to hardware, recent work proposes\nC++ embedded and PyTorch-inspired domain-specific languages like ThunderKittens (TK) to simplify high\nperformance AI kernel development on NVIDIA hardware. We explore the extent to which such primitives \u2014 for\nexplicit tile-based programming with optimized memory accesses and fine-grained asynchronous execution across\nworkers \u2014 are NVIDIA-specific or general. We provide the first detailed study of the programming primitives that\nlead to performant AMD AI kernels, and we encapsulate these insights in the HipKittens (HK) programming\nframework. We find that tile-based abstractions used in prior DSLs generalize to AMD GPUs, however we need to\nrethink the algorithms that instantiate these abstractions for AMD. We validate the HK primitives across CDNA3\nand CDNA4 AMD platforms. In evaluations, HK kernels compete with AMD\u2019s hand-optimized assembly kernels\nfor GEMMs and attention, and consistently outperform compiler baselines. Moreover, assembly is difficult to\nscale to the breadth of AI workloads; reflecting this, in some settings HK outperforms all available baselines by\n$1.2 \u2212 2.4\\times$ ($d = 64$ attention, GQA non-causal backwards, memory-bound kernels). HK demonstrates a portable tile-based\nprogramming model that abstracts over hardware-specific implementation details. These findings help pave the way\nfor a single, tile-based software layer for high-performance AI kernels across GPU vendors. HipKittens has been\nproductionalized in AITER and is released at: https://github.com/HazyResearch/HipKittens.",
+    "openreview_url": "https://openreview.net/forum?id=xxSSrndQrI",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3735"
+  },
+  {
+    "slug": "hippocampus-an-efficient-and-scalable-memory-module-for-agen",
+    "title": "Hippocampus: An Efficient and Scalable Memory Module for Agentic AI",
+    "authors": [
+      "Yi Li",
+      "Lianjie Cao",
+      "Faraz Ahmed",
+      "Puneet Sharma",
+      "Bingzhe Li"
+    ],
+    "abstract": "Agentic AI systems require persistent memory to store user-specific histories beyond the limited context window of LLMs. Existing memory systems rely on the dense vector databases, knowledge-graph traversal, or hybrids, which incur high retrieval latency and poor storage scalability. \nWe introduce HIPPOCAMPUS, an agentic memory management system that uses compact binary signatures for semantic search and lossless token-ID streams for exact content reconstruction. Its core is a Dynamic Wavelet Matrix (DWM) that compresses and co-indexes\nboth streams to support ultra-fast search in the compressed domain, thus avoiding costly dense-vector or graph computations. For a fixed tokenizer vocabulary, the storage footprint of this design grows linearly with memory size, making it suitable for long-horizon agentic deployments. Empirically, across LoCoMo and LongMemEval, HIPPOCAMPUS achieves end-to-end retrieval latency that is comparable to or lower than the evaluated agentic memory baselines, with 1.1X\u201331.5X speedups over the evaluated baselines, and reduces per-query token footprint by 1.1X\u201314.5X, while maintaining competitive task accuracy.",
+    "openreview_url": "https://openreview.net/forum?id=0sUYZh9D4a",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3863"
+  },
+  {
+    "slug": "intattention-a-fully-integer-attention-pipeline-for-efficien",
+    "title": "IntAttention: A Fully Integer Attention Pipeline for Efficient Edge Inference",
+    "authors": [
+      "Wanli Zhong",
+      "Haibo Feng",
+      "Zirui Zhou",
+      "Hanyang Peng",
+      "Shiqi Yu"
+    ],
+    "abstract": "Deploying Transformer models on edge devices is limited by latency and energy budgets. While INT8 quantization effectively accelerates the primary matrix multiplications, it exposes the softmax-related path as the dominant bottleneck. This stage incurs a costly dequantize -> softmax -> requantize detour, which can account for up to 65% of total attention latency and disrupts the end-to-end integer dataflow critical for edge hardware efficiency. To address this limitation, we present IntAttention, the first fully integer attention pipeline that serves as a training-free drop-in replacement. At the core of our approach lies IndexSoftmax, a hardware-friendly operator that replaces floating-point exponentials entirely within the integer domain. IntAttention integrates sparsity-aware clipping, a 32-entry lookup table approximation, and direct integer normalization, thereby eliminating datatype conversion overhead along the attention path. Experiments on Armv8 CPUs show that our method achieves up to 3.7x speedup and 61% energy reduction over FP16 baselines, and up to 2.0x speedup over conventional INT8 attention pipelines. Across diverse language and vision models, as well as additional reasoning and long-context evaluations, IntAttention maintains strong overall fidelity and demonstrates a more favorable trade-off than existing LUT-based softmax approximations. Code is available at: https://github.com/WanliZhong/IntAttention",
+    "openreview_url": "https://openreview.net/forum?id=CPCRITwAaP",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3848"
+  },
+  {
+    "slug": "kitty-accurate-and-efficient-2-bit-kv-cache-quantization-wit",
+    "title": "Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost",
+    "authors": [
+      "Haojun Xia",
+      "Xiaoxia Wu",
+      "Jisen Li",
+      "Tsai-chuan Wu",
+      "Junxiong Wang",
+      "Jue WANG",
+      "Chenxi Li",
+      "Aman Singhal",
+      "Alay Dilipbhai Shah",
+      "Alpay Ariyak",
+      "Donglin Zhuang",
+      "Zhongzhu Zhou",
+      "Ben Athiwaratkun",
+      "Zhen Zheng",
+      "Shuaiwen Leon Song"
+    ],
+    "abstract": "The KV cache is a dominant memory bottleneck for LLM inference. While 4-bit KV quantization preserves accuracy, 2-bit often degrades it, especially on long-context reasoning. We close this gap via an algorithm\u2013system co-design for mixed-precision KV caching: Kitty.\nOn the algorithm side, extensive experiments show that Dynamic Channel-wise Precision Boost \u2014 which ranks Key-cache channels by sensitivity and keeps only a small fraction at higher precision \u2014 maintains near-zero drop in accuracy while approaching 2-bit memory.\nOn the system side, the primary challenge lies in managing these dynamic 4-bit channel boosts without compromising memory efficiency or the execution speed of attention layers. Kitty addresses this through a hardware-aware memory layout and highly optimized system designs, ensuring that our on-the-fly KV quantization incurs negligible runtime overhead while maximizing memory footprint reduction.\nThis synergistic design allows Kitty to unlock the full potential of 2-bit quantization without sacrificing real-time inference throughput.\nSpecifically, Kitty addresses these issues by decomposing each mixed-precision Key page into two tensors with unified 2-bit precision.\nBased on this, Kitty provides a page-centric KV layout, Triton-compatible page dequantization kernels, and a lightweight runtime pipeline that reduces and amortizes the runtime overhead.\nAcross seven tasks and two model families (Qwen3, LLaMA3), Kitty cuts KV memory by nearly $8\\times$ with negligible accuracy loss, enabling up to $8\\times$ larger batches and $2.1\\times$\u2013$4.1\\times$ higher throughput under the same memory budget.\nWe release the full implementation of Kitty at https://github.com/Summer-Summer/Kitty.",
+    "openreview_url": "https://openreview.net/forum?id=r3mQiuYKIN",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3746"
+  },
+  {
+    "slug": "leann-a-low-storage-overhead-vector-index",
+    "title": "LEANN: A Low-Storage Overhead Vector Index",
+    "authors": [
+      "Yichuan Wang",
+      "Zhifei Li",
+      "Shu Liu",
+      "Yongji Wu",
+      "Ziming Mao",
+      "Yilong Zhao",
+      "Xiao Yan",
+      "Zhiying Xu",
+      "Yang Zhou",
+      "Ion Stoica",
+      "Sewon Min",
+      "Matei Zaharia",
+      "Joseph Gonzalez"
+    ],
+    "abstract": "Embedding-based vector search underpins many important applications, such as recommendation and retrieval-augmented generation (RAG). It relies on vector indices to enable efficient search. However, these indices require storing high-dimensional embeddings and large index metadata, whose total size can be several times larger than the original data (e.g., text chunks). Such high storage overhead makes it difficult, or even impractical, to deploy vector search on personal devices or large-scale datasets. To tackle this problem, we propose LEANN, a storage-efficient index for vector search that recomputes embeddings on the fly instead of storing them, and compresses state-of-the-art proximity graph indices while preserving search accuracy. LEANN delivers high-quality vector search while using only a fraction of the storage (e.g., 5% of the original data) and supporting storage-efficient index construction and updates. On real-world benchmarks, LEANN reduces index size by up to 50\u00d7 compared with conventional indices, while maintaining SOTA accuracy and comparable latency for RAG applications.",
+    "openreview_url": "https://openreview.net/forum?id=e8Dp5QkFxP",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3786"
+  },
+  {
+    "slug": "learning-from-less-measuring-the-effectiveness-of-rlvr-in-lo",
+    "title": "Learning from Less: Measuring the Effectiveness of RLVR in Low Data and Compute Regimes",
+    "authors": [
+      "Justin Bauer",
+      "Thomas Walshe",
+      "Derek Pham",
+      "Harit Vishwakarma",
+      "Armin Parchami",
+      "Frederic Sala",
+      "Paroma Varma"
+    ],
+    "abstract": "Fine-tuning Large Language Models (LLMs) typically relies on large quantities of high-quality annotated data, or questions with well-defined ground truth answers in the case of Reinforcement Learning with Verifiable Rewards (RLVR). While previous work has explored the benefits to model reasoning capabilities by scaling both data and compute used for RLVR, these results lack applicability in many real-world settings where annotated data and accessible compute may be scarce. In this work, we present a comprehensive empirical study of open-source Small Language Model (SLM) performance after RLVR in low data regimes. Across three novel datasets covering number counting problems, graph reasoning, and spatial reasoning, we characterize how model performance scales with dataset size, diversity, and complexity. We demonstrate that (1) procedural datasets allow for fine-grained evaluation and training dataset development with controllable properties (size, diversity, and complexity), (2) under RLVR, models trained on lower complexity tasks can generalize to higher complexity tasks, and (3) training on mixed complexity datasets is associated with the greatest benefits in low data regimes, providing up to 5\u00d7 sample efficiency versus training on easy tasks. These findings inspire future work on the development of data scaling laws for RLVR and the use of procedural data generators to further understand effective data development for efficient LLM fine-tuning.",
+    "openreview_url": "https://openreview.net/forum?id=fV4t4kYvgi",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3783"
+  },
+  {
+    "slug": "locality-aware-beam-scheduling-for-efficient-test-time-compu",
+    "title": "Locality-Aware Beam Scheduling for Efficient Test-Time Compute with a Consumer-grade GPU",
+    "authors": [
+      "Hsing-Ti Wang",
+      "Hung-Tso Shiao",
+      "Chia-Lin Yang"
+    ],
+    "abstract": "Large Language Models (LLMs) are central to modern NLP applications, yet their deployment on consumer-grade GPUs is limited by limited memory capacity and bandwidth. In typical single-batch inference on local devices, the key\u2013value (KV) cache occupies only a small fraction of total memory, so prior studies have largely focused on model weights. The rise of test-time compute (TTC), however, introduces a new bottleneck: the rapidly expanding KV cache. In TTC methods such as step-wise beam search, concurrent decoding paths cause KV cache size and transfer costs to scale with exploration space, resulting in severe I/O stalls on consumer-grade GPUs. We identify two complementary forms of data locality in TTC workloads. Inter-token locality occurs within each decoding step, as consecutive tokens in the same beam access nearly identical KV cache data. Inter-beam locality arises across decoding steps, as beams that share common prefixes reuse overlapping KV segments. Building on these observations, we propose Locality-Aware Beam Scheduling, which exploits these locality patterns to reduce redundant KV cache transfers. It also employs balanced grouping with prefetching to overlap data movement with computation. Evaluated on OPT-6.7B, LLaMA-2-7B, and Qwen-7B, our method reduces KV cache transfer volume by over 95\\% and achieves consistent end-to-end speedups of 3.39\u00d7\u20139.72\u00d7, 3.60\u00d7\u20138.74\u00d7, and 4.17\u00d7\u20137.99\u00d7, respectively, compared to layer-wise offloading.",
+    "openreview_url": "https://openreview.net/forum?id=dTo8jAXm9K",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3788"
+  },
+  {
+    "slug": "once-for-all-channel-mixers-hypertinypw-generative-compressi",
+    "title": "Once-for-All Channel Mixers (HyperTinyPW): Generative Compression for TinyML",
+    "authors": [
+      "Yassien Shaalan"
+    ],
+    "abstract": "Neural networks on microcontrollers are constrained\nby kilobytes of flash/SRAM, where 1\u00d71\npointwise (PW) mixers often dominate memory\neven after INT8 quantization. We present\nHYPERTINYPW, a compression-as-generation\nmethod that replaces most stored PW weights\nwith generated weights: a shared micro-MLP\nsynthesizes PW kernels once at load time from\ntiny per-layer codes, caches them, and executes\nthem with standard integer operators. This preserves\ncommodity MCU runtimes and incurs only\na one-off synthesis cost; steady-state inference\nmatches INT8 separable CNNs. Sharing a latent\nbasis across layers removes cross-layer redundancy,\nwhile keeping PW1 in INT8 stabilizes\nearly, morphology-sensitive mixing. We also introduce\nTinyML-faithful packed-byte accounting\n(generator, heads/factorization, codes, kept PW1,\nbackbone) and a unified evaluation protocol with\nvalidation-tuned thresholds and bootstrap CIs. On\nthree ECG benchmarks (Apnea-ECG, PTB-XL,\nMIT-BIH), HYPERTINYPW improves the macro-\nF1\u2013vs.\u2013flash Pareto: at \u223c225 kB it achieves neariso\nperformance to a \u223c1.4MB CNN while being\n6.31\u00d7 smaller (84.15% fewer bytes), retaining\n\u226595% of large-model macro-F1. Beyond ECG,\nHYPERTINYPW transfers to TinyML audio: on\nSpeech Commands keyword spotting it reaches\n96.2% test accuracy (98.2% best validation), supporting\nthat generate-and-cache channel mixing\napplies broadly to embedded sensing workloads\nwhere repeated linear mixers dominate memory.",
+    "openreview_url": "https://openreview.net/forum?id=NrDa5Fu10D",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3818"
+  },
+  {
+    "slug": "prism-parametrically-refactor-inference-for-speculative-deco",
+    "title": "PRISM: Parametrically Refactor Inference for Speculative Decoding Draft Models",
+    "authors": [
+      "Xuliang Wang",
+      "Yuetao Chen",
+      "Maochan Zhen",
+      "Fang Liu",
+      "Xinzhou Zheng",
+      "Xingwu Liu",
+      "Hong Xu",
+      "Ming Li"
+    ],
+    "abstract": "Large Language Models (LLMs), constrained by their auto-regressive nature, suffer from slow decoding. Speculative decoding methods have emerged as a promising solution to accelerate LLM decoding, attracting attention from both systems and AI research communities. Recently, the pursuit of better draft quality has driven a trend toward parametrically larger draft models, which inevitably introduces substantial computational overhead. While existing work attempts to balance the trade-off between prediction accuracy and compute latency, we address this fundamental dilemma through architectural innovation.\n\nWe propose PRISM, which disaggregates the computation of each predictive step across different parameter sets, refactoring the computational pathways of draft models to successfully decouple model capacity from inference cost. Through extensive experiments, we demonstrate that PRISM outperforms all existing draft architectures, achieving exceptional acceptance lengths while maintaining minimal draft latency for superior end-to-end speedup. We also re-examine scaling laws with PRISM, revealing that PRISM scales more effectively with expanding data volumes than other draft architectures. Through rigorous and fair comparison, we show that PRISM boosts the decoding throughput of an already highly optimized inference engine by more than 2.6\u00d7.",
+    "openreview_url": "https://openreview.net/forum?id=cvU2HuuxEf",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3789"
+  },
+  {
+    "slug": "privatar-scalable-privacy-preserving-multi-user-vr-via-secur",
+    "title": "Privatar: Scalable Privacy-preserving Multi-user VR via Secure Offloading",
+    "authors": [
+      "Jianming Tong",
+      "Hanshen Xiao",
+      "Krishna Kumar Nair",
+      "Hao Kang",
+      "Ashish Sirasao",
+      "Ziqi Zhang",
+      "G. Edward Suh",
+      "Tushar Krishna"
+    ],
+    "abstract": "Multi-user virtual reality (VR) applications such as football and concert experiences rely on real-time avatar reconstruction to enable immersive interaction. However, rendering avatars for numerous participants on each headset incurs prohibitive computational overhead, fundamentally limiting scalability. This work introduces a framework, Privatar, to offload avatar reconstruction from headset to untrusted devices within the same local network while safeguarding sensitive facial features against adversaries capable of intercepting offloaded data.\n\nPrivatar builds on the insight that \"domain-specific knowledge of avatar reconstruction enables provably private offloading at minimal cost\". (1) _System level_. We observe avatar reconstruction is frequency-domain decomposable via block-wise DCT with negligible quality drop, and propose Horizontal Partitioning (HP) to keep the most energy frequency components on-device and offloads only low-energy components. HP offloads local computation while reducing information leakage to low-energy subsets only. (2) _Privacy level_. For _individually_ offloaded, _multi-dimensional_ signals without aggregation, worst-case local Differential Privacy requires prohibitive noise, ruining utility. We observe users\u2019 expression statistical distribution are _slowly changing over time and trackable online_, and hence propose Distribution-Aware Minimal Perturbation (DAMP). DAMP minimizes noise based on each user\u2019s expression distribution to significantly reduce its effects on utility and accuracy, retaining formal privacy guarantee. Combined, HP provides empirical privacy protection against expression identification attack. And DAMP further augments it to offer a formal guarantee against arbitrary adversaries.\n\nOn a Meta Quest Pro, Privatar supports up to 2.37$\\times$ more concurrent users at 5.7$\\sim$6.5% higher reconstruction loss and $\\sim$9% energy overhead, providing a better throughout-loss Pareto frontier over SotA quantization, sparsity, and local reconstruction baseline. Privatar further provides both provable privacy guarantee and stays robust against both empirical attack and NN-based Expression Identification Attack, proving its resilience in practice. Our code is open-sourced at https://github.com/georgia-tech-synergy-lab/Privatar.",
+    "openreview_url": "https://openreview.net/forum?id=WjJfnNhY65",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3801"
+  },
+  {
+    "slug": "profinfer-an-ebpf-based-fine-grained-llm-inference-profiler",
+    "title": "ProfInfer: An eBPF-based Fine-Grained LLM Inference Profiler",
+    "authors": [
+      "Bohua Zou",
+      "Debayan Roy",
+      "Dhimankumar Yogesh Airao",
+      "Weihao Xu",
+      "Binqi Sun",
+      "Yutao Liu",
+      "Haibo Chen"
+    ],
+    "abstract": "As large language models (LLMs) move from research to production, understanding how inference engines behave in real time has become both essential and elusive. Unlike general-purpose engines such as ONNX Runtime, today\u2019s LLM inference systems offer little operator-level visibility, leaving developers blind to where time and resources go. Even basic questions\u2014is this workload memory-bound or compute-bound?\u2014often remain unanswered.\nTo close this gap, we develop a fine-grained, non-intrusive profiling framework for modern LLM inference engines, with a specific focus on resource-constrained edge devices, exemplified by llama.cpp but applicable to similar runtime architectures. Built on extended Berkeley Packet Filter (eBPF) technology, our system dynamically attaches probes to runtime functions across multiple layers\u2014without modifying or recompiling the source. It transforms collected traces into rich visualizations of operators, graphs, timelines, and hardware counter trends, exposing how dense inference, Mixture-of-Experts routing, and operator offloading behave in practice.\nWith less than 4% runtime overhead and high profiling fidelity, our framework makes LLM inference both transparent and diagnosable, turning performance profiling into a practical tool for optimization, scheduling, and resource-aware deployment.",
+    "openreview_url": "https://openreview.net/forum?id=tYHWS7YPof",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3740"
+  },
+  {
+    "slug": "specdiff-2-scaling-diffusion-drafter-alignment-for-faster-sp",
+    "title": "SpecDiff-2: Scaling Diffusion Drafter Alignment For Faster Speculative Decoding",
+    "authors": [
+      "Jameson Sandler",
+      "Jacob Christopher",
+      "Tom Hartvigsen",
+      "Ferdinando Fioretto"
+    ],
+    "abstract": "Speculative decoding has become the standard approach for accelerating Large Language Model (LLM) inference. It exploits a lossless draft-then-verify procedure to circumvent the latency of autoregressive decoding, achieving impressive speed-ups.\n    Yet, current speculative decoding approaches remain limited by two fundamental bottlenecks: \\textbf{(1)} the autoregressive dependency during drafting which limits parallelism, and \\textbf{(2)} frequent rejections of draft tokens caused by misalignment between the draft and verify models. \n    This paper proposes \\emph{SpecDiff-2}, a novel framework to jointly address these two bottlenecks. It leverages discrete diffusion as a non-autoregressive drafter to address bottleneck (1) and develops novel techniques to calibrate discrete diffusion drafters with autoregressive verifiers, addressing bottleneck (2). Experimental results across a comprehensive benchmark suite show that \\emph{SpecDiff-2} achieves a new state-of-the-art across reasoning, coding, and mathematical benchmarks, improving tokens-per-second by up to an average of $+55\\%$ over previous baselines and obtaining up to $5.5\\times$ average speed-up over standard decoding, without any loss of accuracy.",
+    "openreview_url": "https://openreview.net/forum?id=o42VU86ZsV",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3755"
+  },
+  {
+    "slug": "speculative-decoding-performance-or-illusion",
+    "title": "Speculative Decoding: Performance or Illusion?",
+    "authors": [
+      "Xiaoxuan Liu",
+      "Jiaxiang Yu",
+      "Jongseok Park",
+      "Ion Stoica",
+      "Alvin Cheung"
+    ],
+    "abstract": "Speculative decoding (SD) has become a popular technique to accelerate Large Language Model (LLM) inference, yet its real-world effectiveness remains unclear as prior evaluations rely on research prototypes and unrealistically small batch sizes. We present, to our knowledge, the first systematic study of SD on a production-grade and widely deployed inference engine (vLLM), covering multiple SD variants ($n$-gram, EAGLE/EAGLE-3, Draft-Model, Multi-Token Prediction) across diverse workloads, model scales, and batch sizes. We analyze key factors governing SD performance, and quantify a theoretical upper bound on SD speedup. Our results show that verification by the target model dominates the execution, while acceptance length varies markedly across output token positions, requests, and datasets. Comparing measured performance with theoretical bounds reveals substantial gaps between observed and theoretical upper bounds, and we leverage this observation to highlight new research opportunities that our study opens up in improving SD.",
+    "openreview_url": "https://openreview.net/forum?id=fzkqtezFEi",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3782"
+  },
+  {
+    "slug": "spira-exploiting-voxel-data-structural-properties-for-effici",
+    "title": "Spira: Exploiting Voxel Data Structural Properties for Efficient Sparse Convolution in Point Cloud Networks",
+    "authors": [
+      "Dionysios Adamopoulos",
+      "Anastasia Poulopoulou",
+      "Georgios Goumas",
+      "Christina Giannoula"
+    ],
+    "abstract": "Sparse Convolution (SpC) powers 3D point cloud networks widely used in autonomous driving and augmented/virtual reality. SpC builds a kernel map that stores mappings between input voxel coordinates, output coordinates,\nand weight offsets, then uses this map to compute feature vectors for output coordinates. Our work identifies\nthree key properties of voxel coordinates: they are integer-valued, bounded within a limited spatial range, and\ngeometrically continuous, i.e., neighboring voxels on the same object surface are highly likely to exist at small\nspatial offsets from each other. Prior SpC engines do not fully exploit these properties and suffer from high\npre-processing and post-processing overheads during kernel map construction. To this end, we design Spira, the\nfirst voxel-property-aware SpC engine for GPUs. Spira proposes (i) a high-performance one-shot search algorithm\nthat builds the kernel map with no pre-processing and high data locality, (ii) an effective packed-native processing\nscheme that accesses packed voxel coordinates at low cost, (iii) a flexible dual-dataflow execution mechanism\nthat efficiently computes output feature vectors by adapting to layer characteristics, and (iv) a network-wide\nparallelization strategy that builds kernel maps for all SpC layers concurrently at network start. Our evaluation\nshows that Spira significantly outperforms prior state-of-the-art SpC engines by 1.68\u00d7 on average and up to 3.04\u00d7\nfor end-to-end inference, and by 2.11\u00d7 on average and up to 3.44\u00d7 for layer-wise execution across diverse layer\nconfigurations. The source code of Spira is freely available at https://github.com/SPIN-Research-Group/Spira.",
+    "openreview_url": "https://openreview.net/forum?id=YQMilw805Q",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3797"
+  },
+  {
+    "slug": "stream2llm-overlap-context-streaming-and-prefill-for-reduced",
+    "title": "Stream2LLM: Overlap Context Streaming and Prefill for Reduced Time-to-First-Token",
+    "authors": [
+      "Rajveer Bachkaniwala",
+      "Chengqi Luo",
+      "Richard So",
+      "Divya Mahajan",
+      "Kexin Rong"
+    ],
+    "abstract": "Context retrieval systems for LLM inference face a critical challenge: high retrieval latency creates a fundamental tension between waiting for complete context (poor time-to-first-token) and proceeding without it (reduced quality). Streaming context incrementally--overlapping retrieval with inference--can mitigate this latency, but doing so with concurrent requests introduces new challenges: requests contend for GPU compute and memory, and scheduling must adapt to dynamic context arrivals.\n\nWe present **Stream2LLM**, a streaming-aware LLM serving system for concurrent prefill-decode disaggregated deployments.\nStream2LLM introduces adaptive scheduling and preemption for two distinct retrieval patterns: **append-mode** (progressive context accumulation) and **update-mode** (iterative refinement with cache invalidation).\nIt decouples scheduling decisions from resource acquisition, enabling flexible preemption strategies guided by hardware-specific cost models, and uses longest common prefix matching to minimize redundant computation when input changes dynamically.\n\nTo evaluate Stream2LLM, we collect two large-scale, real-world streaming workloads based on web crawling and approximate nearest neighbor search.\nOur evaluation demonstrates that streaming architecture delivers up to 11$\\times$ TTFT improvements, with cost-aware scheduling providing critical benefits under memory pressure, all while maintaining throughput parity with non-streaming baselines.\n\nCode: https://github.com/rajveerb/stream2llm/tree/mlsys_artifact",
+    "openreview_url": "https://openreview.net/forum?id=FuRo7Ur5Ib",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3842"
+  }
+]

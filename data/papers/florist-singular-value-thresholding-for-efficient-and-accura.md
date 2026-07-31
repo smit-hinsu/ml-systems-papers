@@ -6,8 +6,8 @@ authors:
 - Hariharan Ramesh
 - Jyotikrishna Dass
 award: ''
-citations: null
-citations_updated: ''
+citations: 3
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - llm-training
@@ -29,8 +29,8 @@ observations:
     matrices; FLoRIST-E achieves 3× lower communication than FFA-LoRA and 39× lower
     than FLoRA.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=GTZRs756YJ
+optimization_type: []
 organizations:
 - University of Arizona
 presentation_type: oral

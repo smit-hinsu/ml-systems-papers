@@ -25,8 +25,8 @@ authors:
 - Qunshu Zhang
 - Shen Li
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - recs-models
@@ -38,18 +38,17 @@ key_results: 90.3% reduction in computational bubbles on 256 H100 GPUs via load 
   + SM-free communication overlap for sequence recommendation model training at Meta
 models_evaluated: []
 observations:
-  balance: Variable-length user history sequences cause per-GPU compute
-    skew; reordering batches to equalize sequence-length sums before dispatch eliminates
-    the dominant straggler source
-  pipeline: Embedding AllGather is independent of dense MLP forward
-    pass; pipelining them hides collective latency behind compute without correctness
-    constraints
-  fuse: SM-Free communication uses DMA engines for embedding collectives
-    instead of streaming multiprocessors, eliminating resource contention and reducing
-    effective communication cost
+  balance: Variable-length user history sequences cause per-GPU compute skew; reordering
+    batches to equalize sequence-length sums before dispatch eliminates the dominant
+    straggler source
+  fuse: SM-Free communication uses DMA engines for embedding collectives instead of
+    streaming multiprocessors, eliminating resource contention and reducing effective
+    communication cost
+  pipeline: Embedding AllGather is independent of dense MLP forward pass; pipelining
+    them hides collective latency behind compute without correctness constraints
 official_category: Research Papers
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=MY0BIdK4hn
+optimization_type: []
 organizations:
 - Meta
 presentation_type: oral

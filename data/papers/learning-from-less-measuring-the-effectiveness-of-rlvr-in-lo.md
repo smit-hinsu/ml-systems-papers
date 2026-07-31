@@ -11,8 +11,8 @@ authors:
 - Frederic Sala
 - Paroma Varma
 award: ''
-citations: null
-citations_updated: ''
+citations: 0
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - rl-training

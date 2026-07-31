@@ -13,8 +13,8 @@ authors:
 - Naveen Kumar
 - Vijay Janapa Reddi
 award: ''
-citations: null
-citations_updated: ''
+citations: 5
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - fleet-efficiency
@@ -27,15 +27,15 @@ key_results: MPG decomposes fleet waste into scheduling, runtime, and program la
   comm-compute overlap achieves 1.38× throughput at 72% FLOPS on 1024 TPUs.
 models_evaluated: []
 observations:
-  balance: Scheduling goodput (>95% in Google's fleet) proves work allocation
-    is balanced; unequal utilization at the program and runtime layers — not job scheduling
-    — is where compute actually goes to waste.
-  pipeline: Comm-compute overlap in production 500B-param training
-    reached 72% FLOPS utilization on 1024 TPUs, a 1.38× improvement, validating that
-    this technique is the highest-leverage program goodput lever
+  balance: Scheduling goodput (>95% in Google's fleet) proves work allocation is balanced;
+    unequal utilization at the program and runtime layers — not job scheduling — is
+    where compute actually goes to waste.
+  pipeline: Comm-compute overlap in production 500B-param training reached 72% FLOPS
+    utilization on 1024 TPUs, a 1.38× improvement, validating that this technique
+    is the highest-leverage program goodput lever
 official_category: Research Papers
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=y31QSL9yMG
+optimization_type: []
 organizations:
 - Google
 presentation_type: oral

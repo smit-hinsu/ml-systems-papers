@@ -1,7 +1,8 @@
 ---
-agentic_models: []
-arxiv_url: 'https://arxiv.org/abs/2511.03690'
+agentic_models:
+- Multiple LLM backends (model-agnostic routing)
 arxiv_date: ''
+arxiv_url: https://arxiv.org/abs/2511.03690
 authors:
 - Xingyao Wang
 - Simon Rosenberg
@@ -15,8 +16,8 @@ authors:
 - Robert Brennan
 - Graham Neubig
 award: ''
-citations: null
-citations_updated: ''
+citations: 28
+citations_updated: '2026-07-31'
 code_url: https://github.com/All-Hands-AI/OpenHands
 domain:
 - agentic-inference
@@ -26,18 +27,15 @@ indexed_date: '2026-05-25'
 key_results: V1 SDK substantially reduces system-attributable failures vs. V0 with
   negligible event-sourcing overhead in production deployment.
 models_evaluated: []
-agentic_models:
-- Multiple LLM backends (model-agnostic routing)
 observations:
-  balance: Model-agnostic multi-LLM routing distributes agent workload
-    across providers, preventing single-backend overload and maintaining throughput
-    under variable model availability.
-  pipeline: Seamless local-to-remote execution portability lets agents
-    offload sandboxed tasks to remote instances, parallelizing agent execution with
-    local orchestration.
+  balance: Model-agnostic multi-LLM routing distributes agent workload across providers,
+    preventing single-backend overload and maintaining throughput under variable model
+    availability.
+  pipeline: Seamless local-to-remote execution portability lets agents offload sandboxed
+    tasks to remote instances, parallelizing agent execution with local orchestration.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=pzVmWs6yGq
+optimization_type: []
 organizations:
 - Carnegie Mellon University
 presentation_type: oral

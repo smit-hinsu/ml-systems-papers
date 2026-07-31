@@ -1,0 +1,344 @@
+[
+  {
+    "slug": "a-lightweight-high-throughput-collective-capable-noc-for-lar",
+    "title": "A Lightweight High-Throughput Collective-Capable NoC for Large-Scale ML Accelerators",
+    "authors": [
+      "Luca Colagrande",
+      "Lorenzo Leone",
+      "Chen Wu",
+      "Tim Fischer",
+      "Raphael Roth",
+      "Luca Benini"
+    ],
+    "abstract": "The exponential increase in Machine Learning (ML) model size and complexity has driven unprecedented demand for high-performance acceleration systems. As technology scaling enables the integration of thousands of computing elements onto a single die, the boundary between distributed and on-chip systems has blurred, making efficient on-chip collective communication increasingly critical. In this work, we present a lightweight, collective-capable Network on Chip (NoC) that supports efficient barrier synchronization alongside scalable, high-bandwidth multicast and reduction operations, co-designed for the next generation of ML accelerators. We introduce Direct Compute Access (DCA), a novel paradigm that grants the interconnect fabric direct access to the cores\u2019 computational resources, enabling high-throughput in-network reductions with a small 16.5% router area overhead. Through in-network hardware acceleration, we achieve 2.9\u00d7 and 2.5\u00d7 geomean speedups on multicast and reduction operations involving between 1 and 32 KiB of data, respectively. Furthermore, by keeping communication off the critical path in GEMM workloads, these features allow our architecture to scale efficiently\nto large meshes, resulting in up to 2.1\u00d7 and 2.1\u00d7 estimated performance gains through multicast and reduction support, respectively, compared to a baseline unicast NoC architecture.",
+    "openreview_url": "https://openreview.net/forum?id=VDuS8N9RCx",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3804"
+  },
+  {
+    "slug": "accelerating-large-scale-reasoning-model-inference-with-spar",
+    "title": "Accelerating Large-Scale Reasoning Model Inference with Sparse Self-Speculative Decoding",
+    "authors": [
+      "Yilong Zhao",
+      "Jiaming Tang",
+      "Kan Zhu",
+      "Zihao Ye",
+      "Chi-Chih Chang",
+      "Chaofan Lin",
+      "Jongseok Park",
+      "Guangxuan Xiao",
+      "Mohamed S. Abdelfattah",
+      "Mingyu Gao",
+      "Baris Kasikci",
+      "Song Han",
+      "Ion Stoica"
+    ],
+    "abstract": "Reasoning language models have demonstrated remarkable capabilities on challenging tasks by generating elaborate chain-of-thought (CoT) solutions. However, such lengthy generation shifts the inference bottleneck from compute-bound to memory-bound. To generate each token, the model applies full attention to all previously generated tokens, requiring memory access to an increasingly large KV-Cache. Consequently, longer generations demand more memory access for every step, leading to substantial pressure on memory bandwidth. \n\nTo address this, we introduce SpecGen, a speculative decoding framework that reuses the same model as the draft and target models (i.e., self-speculation). SpecGen features a novel sparse attention mechanism \\textit{PillarAttn} as the draft model, which accurately selects critical tokens via elegantly reusing information from the verification stage. Furthermore, SpecGen co-designs self-speculation with three system innovations: (1) a unified scheduler to batch token drafting and verification, (2) delayed verification for CPU/GPU overlap, and (3) dynamic KV-Cache management to maximize memory utilization. Across various models and datasets, SpecGen outperforms state-of-the-art solutions, with an up to $2.13\\times$ throughput speedup.",
+    "openreview_url": "https://openreview.net/forum?id=yeqrwcWjPu",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3733"
+  },
+  {
+    "slug": "accelopt-a-self-improving-llm-agentic-system-for-ai-accelera",
+    "title": "AccelOpt: A Self-Improving LLM Agentic System for AI Accelerator Kernel Optimization",
+    "authors": [
+      "Genghan Zhang",
+      "Shaowei Zhu",
+      "Anjiang Wei",
+      "Zhenyu Song",
+      "Allen Nie",
+      "Zhen Jia",
+      "Nandita Vijaykumar",
+      "Yida Wang",
+      "Kunle Olukotun"
+    ],
+    "abstract": "We present AccelOpt, a self-improving large language model (LLM) agentic system that autonomously optimizes kernels for emerging AI acclerators, eliminating the need for expert-provided hardware-specific optimization knowledge.\nAccelOpt explores the kernel optimization space through iterative generation, informed by an optimization memory that curates experiences and insights from previously encountered slow-fast kernel pairs.\nWe build NKIBench, a new benchmark suite of AWS Trainium accelerator kernels with varying complexity extracted from real-world LLM workloads to evaluate the effectiveness of AccelOpt.\nOur evaluation confirms that AccelOpt's capability improves over iterations, boosting the average percentage of peak throughput from $49\\%$ to $61\\%$ on Trainium 1 and from $45\\%$ to $59\\%$ on Trainium 2 for NKIBench kernels. Moreover, AccelOpt is highly cost-effective: using open-source models, it matches the kernel improvements of Claude Sonnet 4 while being $26\\times$ cheaper. The code is open-sourced at https://github.com/zhang677/AccelOpt.",
+    "openreview_url": "https://openreview.net/forum?id=SBS4NJHYjZ",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3808"
+  },
+  {
+    "slug": "adr-an-agentic-detection-systemforenterprise-agentic-ai-secu",
+    "title": "ADR: AN AGENTIC DETECTION SYSTEMFORENTERPRISE AGENTIC AI SECURITY",
+    "authors": [
+      "Chenning Li",
+      "Pan Hu",
+      "Justin Xu",
+      "Baris Ozbas",
+      "Olivia Liu",
+      "Caroline Van",
+      "Manxue Li",
+      "Wei Zhou",
+      "Mohammad Alizadeh",
+      "Pengyu Zhang",
+      "KK Sriramadhesikan",
+      "Ming Zhang"
+    ],
+    "abstract": "We present the Agentic AI Detection and Response (ADR) system, the first large-scale, production-proven enterprise framework for securing AI agents operating through the Model Context Protocol (MCP). We identify three persistent challenges in this domain: (1) limited observability\u2013 existing Endpoint Detection and Response (EDR) tools see file writes but not the agent reasoning, prompts, or causal chains linking intent to execution; (2) insufficient robustness\u2013 static defenses constrained by pre-defined rules fail to generalize across diverse attack techniques and enterprise contexts; and (3) high detection costs\u2013 LLM-based inference is prohibitively expensive at scale. ADR addresses these challenges via three components: the ADR Sensor for high-fidelity agentic telemetry, the ADR Explorer for systematic pre-deployment red teaming and hard-example generation, and the ADR Detector for scalable, two-tier online detection combining fast triage with context-aware reasoning. Deployed at UBER for over ten months, ADR has sustained reliable detection in production with growing adoption reaching over 7,200 unique hosts and processing over 10,000 agent sessions daily, uncovering hundreds of credential exposures across 26 categories and enabling a shift-left prevention layer (97.2% precision, 206 detected credentials). To validate the approach and enable community adoption, we introduce ADR-Bench (302 tasks, 17 techniques, 133 MCP servers), where ADR achieves zero false positives while detecting 67% of attacks, outperforming three state-of-the-art baselines (ALRPHFS, GuardAgent, LlamaFirewall) by 2\u20134\u00d7 in F1-score. On AgentDojo (public prompt injection benchmark), ADR detects all attacks with only three false alarms out of 93 tasks.",
+    "openreview_url": "https://openreview.net/forum?id=7B91Naeszw",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3853"
+  },
+  {
+    "slug": "agentic-operator-generation-for-ml-asics",
+    "title": "Agentic Operator Generation for ML ASICs",
+    "authors": [
+      "Alec Hammond",
+      "Aram Markosyan",
+      "Aman Dontula",
+      "Simon Mahns",
+      "Zacharias Fisches",
+      "Dmitrii Pedchenko",
+      "Keyur Muzumdar",
+      "Natacha Supper",
+      "Site Cao",
+      "Haishan Zhu",
+      "Mark Saroufim",
+      "Joe Isaacson",
+      "Laura Wang",
+      "Warren Hunt",
+      "Kaustubh Gondkar",
+      "Roman Levenstein",
+      "Gabriel Synnaeve",
+      "Richard Li",
+      "Jacob Kahn",
+      "Ajit Mathews"
+    ],
+    "abstract": "We present TritorX, an agentic AI system designed to generate functionally correct Triton PyTorch ATen kernels at scale for emerging accelerator platforms. TritorX integrates large language models with a custom linter, JIT compilation, and a PyTorch OpInfo-based test harness. This pipeline is compatible with both real Meta Training and Inference Accelerator (MTIA) silicon and in hardware simulation environments for next-generation devices. In contrast to previous kernel-generation approaches that prioritize performance for a limited set of high-usage kernels, TritorX prioritizes coverage. Our system emphasizes correctness and generality across the entire operator set, including diverse data types, shapes, and argument patterns. In our experiments, TritorX successfully generated kernels and wrappers for 481 unique ATen operators that pass all corresponding PyTorch OpInfo tests (over 20,000 in total). TritorX paves the way for overnight generation of complete PyTorch ATen backends for new accelerator platforms.",
+    "openreview_url": "https://openreview.net/forum?id=O3Bx0nNGnW",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3817"
+  },
+  {
+    "slug": "agenticcache-cache-driven-asynchronous-planning-for-embodied",
+    "title": "AgenticCache: Cache-Driven Asynchronous Planning for Embodied AI Agents",
+    "authors": [
+      "Hojoon Kim",
+      "Yuheng Wu",
+      "Thierry Tambe"
+    ],
+    "abstract": "Embodied AI agents increasingly rely on large language models (LLMs) for planning, yet per-step LLM calls impose severe latency and cost. In this paper, we show that embodied tasks exhibit strong plan locality, where the next plan is largely predictable from the current one. Building on this, we introduce AgenticCache, a planning framework that reuses cached plans to avoid per-step LLM calls. In AgenticCache, each agent queries a runtime cache of frequent plan transitions, while a background Cache Updater asynchronously calls the LLM to validate and refine cached entries. Across four multi-agent embodied benchmarks, AgenticCache improves task success rate by 22\\% on average across 12 configurations (4 benchmarks $\\times$ 3 models), reduces simulation latency by 65\\%, and lowers token usage by 50\\%. Cache-based plan reuse thus offers a practical path to low-latency, low-cost embodied agents. Code is available at https://github.com/hojoonleokim/MLSys26_AgenticCache.",
+    "openreview_url": "https://openreview.net/forum?id=UfABxFoSXH",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3806"
+  },
+  {
+    "slug": "airs-scaling-live-inference-in-resource-constrained-environm",
+    "title": "AIRS: Scaling Live Inference in Resource Constrained Environments",
+    "authors": [
+      "Nilesh Jagnik",
+      "Xiaohao Yang",
+      "Tuan Do",
+      "Chelsea Chen",
+      "Harshvardhan GM"
+    ],
+    "abstract": "Advancements in large language models (LLMs) have made them increasingly useful for complex reasoning tasks which previously required domain experts. One such task is quality evaluation of query responses produced by a search engine. Evaluation generates metrics necessary to study the quality, impact, and usefulness of product changes and features. Typically, to compute evaluation metrics, human experts are asked to rate various attributes of search responses. This process is generally quite expensive and requires several days to complete. As an alternative, LLMs are now being used to perform rating tasks with lower costs and latency. In addition, many new metrics are being developed to evaluate Google's new AI-based offerings, which require ratings too. As a result, there is much higher demand for LLM rating prediction tasks in comparison with the allocated TPU (Tensor Processing Unit) budget. A larger portion of the company's TPU resources are reserved for serving live user traffic. In this paper, we present the AI Rater Service (AIRS), an inference pipeline that employs several software engineering techniques to generate AI ratings with high reliability and low latency. AIRS maximizes LLM inference throughput by optimizing TPU resource utilization across various evaluation workflows, while minimizing latency for higher priority tasks.",
+    "openreview_url": "https://openreview.net/forum?id=g1RWik4Gy1",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3781"
+  },
+  {
+    "slug": "approxmlir-accuracy-aware-compiler-for-compound-ml-system",
+    "title": "ApproxMLIR : Accuracy-Aware Compiler for Compound ML System",
+    "authors": [
+      "Hao Ren",
+      "Yi Mu",
+      "Sasa Misailovic"
+    ],
+    "abstract": "Many compound AI systems are inherently approximate because the ML components (e.g., a large language model) are probabilistic models and the non-ML components (e.g., retrieval-augmented generation) are heuristic. Such systems benefit from trading off result quality for improved performance. While extensive work exists on approximating ML and non-ML components individually, the wide deployment of LLMs in compound systems presents significant opportunities for end-to-end, accuracy-aware compilation. However, tailoring approximations across these different components is challenging to implement. This difficulty comes from their reliance on different software stacks for compilation and execution, as well as deployment on different hardware. \n\nTo address these issues, we present approxMLIR, a reusable accuracy-aware compilation toolchain. approxMLIR introduces the approx MLIR dialect that serves as a unified and centralized interface for defining approximations and approx-opt, a\nreusable MLIR-based optimizer, which applies approximate transformations on ML and non-ML components. We evaluated approxMLIR on three compound AI systems, which combine LLMs with information retrieval tasks and tool calling. The evaluation shows that approxMLIR can effectively represent many common approximation choices, discover profitable points in the accuracy-performance tradeoff space and consistently achieve higher speedups compared to static approximation strategies.",
+    "openreview_url": "https://openreview.net/forum?id=nKm25GWbuB",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3757"
+  },
+  {
+    "slug": "attribution-based-sparse-activation-in-large-language-models",
+    "title": "Attribution-based Sparse Activation in Large Language Models",
+    "authors": [
+      "Jifeng Song",
+      "Xiangyu Yin",
+      "Boyuan Yang",
+      "Kai Huang",
+      "Weichen Liu",
+      "Wei Gao"
+    ],
+    "abstract": "LLM inference is computationally expensive due to the LLM's large parameter sizes. Existing techniques reduce the computing cost via model retraining, but cannot well adapt to different downstream tasks or variant input data at runtime. To avoid such retraining efforts for runtime adaptability, a better option is sparse activation that selectively deactivates an input-dependent set of neurons in inference, but current methods of lossless sparse activation only deactivate neurons with zero output magnitudes, and are ineffective on recent LLMs with higher parameter efficiency. In this paper, we present a new technique of attribution-based sparse activation, which is a lossy sparse activation technique that deactivates neurons with low attribution scores and aims to achieve the best tradeoff between model accuracy and computing costs. To ensure optimal sparse activation, we quantified the large errors of existing attribution metrics when used for sparse activation, due to the interdependency among attribution scores of different neurons, and further proposed a new attribution metric that can provably correct such errors. Experiments show that our technique can achieve up to 70\\% model sparsity in difficult generative tasks such as question answering and text summarization with <5\\% model accuracy loss. Such high model sparsity enables us to reduce the computing latency and memory use of LLM inference by 35% and 40%, respectively.",
+    "openreview_url": "https://openreview.net/forum?id=gJFigZeb5D",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3779"
+  },
+  {
+    "slug": "automated-algorithm-design-for-auto-tuning-optimizers",
+    "title": "Automated Algorithm Design for Auto-Tuning Optimizers",
+    "authors": [
+      "Floris-Jan Willemsen",
+      "Niki van Stein",
+      "Ben van Werkhoven"
+    ],
+    "abstract": "Automatic performance tuning (auto-tuning) is essential for optimizing high-performance applications, where vast and irregular search spaces make manual exploration infeasible.\nWhile auto-tuners traditionally rely on classical approaches such as evolutionary, annealing, or surrogate-based optimizers, designing algorithms that efficiently find near-optimal configurations robustly across diverse tasks is challenging.\nWe propose a new paradigm: using large language models (LLMs) to automatically generate optimization algorithms tailored to auto-tuning problems.\nWe introduce a framework that prompts LLMs with problem descriptions and search space characteristics to synthesize, test, and iteratively refine specialized optimizers.\nThese generated algorithms are evaluated on four real-world auto-tuning applications across six hardware platforms and compared against the state-of-the-art in two contemporary auto-tuning frameworks. \nThe evaluation demonstrates that providing additional application- and search space-specific information in the generation stage results in an average performance improvement of 30.7% and 14.6%, respectively. \nIn addition, our results show that LLM-generated optimizers can rival, and in various cases outperform, existing human-designed algorithms, with our best-performing generated optimization algorithms achieving an average 72.4% improvement over state-of-the-art optimizers for auto-tuning.",
+    "openreview_url": "https://openreview.net/forum?id=qKlHJCbY6m",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3748"
+  },
+  {
+    "slug": "axlearn-modular-hardware-agnostic-large-model-training",
+    "title": "AXLearn: Modular, Hardware-Agnostic Large Model Training",
+    "authors": [
+      "Mark Lee",
+      "Chang Lan",
+      "Tom Gunter",
+      "John Peebles",
+      "Hanzhi Zhou",
+      "Xuan Kelvin Zou",
+      "Sneha Bangalore",
+      "Chung-Cheng Chiu",
+      "Nan Du",
+      "Xianzhi Du",
+      "Philipp Dufter",
+      "Liang He",
+      "Ruixuan Hou",
+      "Haoshuo Huang",
+      "Dongseong Hwang",
+      "Xiang Kong",
+      "Jinhao Lei",
+      "Tao Lei",
+      "Ethan Li",
+      "Li Li",
+      "Jiarui Lu",
+      "Zhiyun Lu",
+      "Yiping Ma",
+      "David Qiu",
+      "Vivek Rathod",
+      "Senyu Tong",
+      "Zhucheng Tu",
+      "Chong Wang",
+      "Jianyu Wang",
+      "Yongqiang Wang",
+      "Zirui Wang",
+      "Floris Weers",
+      "Sam Wiseman",
+      "Guoli Yin",
+      "Bowen Zhang",
+      "Xiyou Zhou",
+      "Danyang Zhuo",
+      "Cheng Leong",
+      "Ruoming Pang"
+    ],
+    "abstract": "AXLearn is a production system which facilitates scalable and high-performance training of large deep learning models. Compared to other state-of-the-art deep learning systems, AXLearn has a unique focus on modularity and support for hardware-agnostic training. AXLearn's internal interfaces between software components follow strict encapsulation, allowing different components to be assembled to facilitate rapid model development and experimentation on different hardware infrastructure. AXLearn maintains constant complexity as we scale the components in the system, compared to linear or quadratic complexity in state-of-the-art training systems. This allows integrating features such as Rotary Position Embeddings (RoPE) into AXLearn across hundreds of modules with just 10 lines of code, compared to hundreds, as required in other systems. At the same time, AXLearn maintains equivalent performance compared to state-of-the-art training systems. We also share our experience in the development and operation of AXLearn at Apple.",
+    "openreview_url": "https://openreview.net/forum?id=41x11EB3bc",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3858"
+  },
+  {
+    "slug": "batchllm-optimizing-large-batched-llm-inference-with-global-",
+    "title": "BatchLLM: Optimizing Large Batched LLM Inference with Global Prefix Sharing and Throughput-oriented Token Batching",
+    "authors": [
+      "Zhen Zheng",
+      "Xin Ji",
+      "Taosong Fang",
+      "Fanghao Zhou",
+      "Chuanjie Liu",
+      "Gang Peng"
+    ],
+    "abstract": "Large language models (LLMs) increasingly play an important role in a wide range of information processing and management tasks in industry.\nMany of these tasks are performed in large batches or even offline, and the performance indicator for which is throughput.\nThese tasks usually show the characteristic of prefix sharing, where different prompt input can partially show the common prefix.\nHowever, the existing LLM inference engines tend to optimize the streaming requests and show limitations of supporting the large batched tasks with the prefix sharing characteristic.\nThe existing solutions use the LRU-based cache to reuse the KV context of common prefix between requests.\nThe KV context that are about to be reused may be prematurely evicted with the implicit cache management.\nBesides, the streaming oriented systems do not leverage the request-batch information and can not mix the decoding tokens with the prefill chunks to the best for the batched scenarios, and thus fails to saturate the GPU.\nWe propose BatchLLM to address the above problems.\nBatchLLM explicitly identifies the common prefixes globally.\nThe requests sharing the same prefix will be scheduled together to reuse the KV context the best.\nBatchLLM reorders the requests and schedules the requests with larger ratio of decoding first to better mix the decoding tokens with the latter prefill chunks, and applies memory-centric token batching to enlarge the token-batch sizes,\nwhich helps to increase the GPU utilization.\nExtensive evaluation shows that BatchLLM outperforms vLLM and SGLang by $1.3\\times$ to $10.8\\times$ on a set of microbenchmarks and a typical industry workload under different hardware environments.\nCode is available at [https://github.com/microsoft/MixLLM/tree/batchllm_vllm_064](https://github.com/microsoft/MixLLM/tree/batchllm_vllm_064).",
+    "openreview_url": "https://openreview.net/forum?id=IuVHde07l6",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3833"
+  },
+  {
+    "slug": "beam-joint-resourcepower-optimization-for-energy-efficient-l",
+    "title": "BEAM: Joint Resource\u2013Power Optimization for Energy-Efficient LLM Inference under SLO contraints",
+    "authors": [
+      "Hyunjae Lee",
+      "Sangjin Choi",
+      "Seungjae Lim",
+      "Youngjin Kwon"
+    ],
+    "abstract": "Large Language Model (LLM) serving is rapidly becoming one of the most\npower-intensive workloads in modern datacenters. Unlike training, where\nthroughput dominates, inference must satisfy strict per-request latency targets\nsuch as Time-to-First-Token (TTFT) and Time-Between-Tokens (TBT). Once an SLO is\nmet, the remaining latency slack between the earliest possible\ncompletion and the deadline offers an opportunity for energy savings. Existing\nsystems, however, exploit only one dimension of this trade-off: batching\nimproves resource efficiency, while DVFS improves power efficiency. These two\naxes are tightly coupled, and optimizing one while fixing the other yields only\na local optimum.\nWe present BEAM, a fine-grained controller that dynamically co-optimizes\nresource and power efficiency under per-request SLOs. BEAM continuously\nallocates the available latency slack across both dimensions by jointly tuning\nGPU frequency, chunk size, and microbatch count in real time. Its event-driven\ndesign responds instantly to request arrivals and completions, while a\nlightweight predictive model enables sub-millisecond decision making with\nnegligible overhead. Implemented atop the vLLM runtime, BEAM reduces end-to-end\nGPU energy consumption by up to 51\\% compared to vLLM.",
+    "openreview_url": "https://openreview.net/forum?id=BfNBXM8CCT",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3849"
+  },
+  {
+    "slug": "beat-the-long-tail-distribution-aware-speculative-decoding-f",
+    "title": "Beat the long tail: Distribution-Aware Speculative Decoding for RL Training",
+    "authors": [
+      "Zelei Shao",
+      "Vikranth Srivatsa",
+      "Sanjana Srivastava",
+      "Qingyang Wu",
+      "Alpay Ariyak",
+      "Xiaoxia wu",
+      "Ameen Patel",
+      "Jue Wang",
+      "Percy Liang",
+      "Tri Dao",
+      "Ce Zhang",
+      "Yiying Zhang",
+      "Ben Athiwaratkun",
+      "Chenfeng Xu",
+      "Junxiong Wang"
+    ],
+    "abstract": "Reinforcement learning(RL) post-training has become essential for aligning large language models (LLMs), yet its efficiency is increasingly constrained by the rollout phase, where long trajectories are generated token by token. We identify a major bottleneck:the long-tail distribution of rollout lengths, where a small fraction of long generations dominates wall clock time and a complementary opportunity; the availability of historical rollouts that reveal stable prompt level patterns across training epochs. Motivated by these observations, we propose DAS, a Distribution Aware Speculative decoding framework that accelerates RL rollouts without altering model outputs. DAS integrates two key ideas: an adaptive, nonparametric drafter built from recent rollouts using an incrementally maintained suffix tree, and a length aware speculation policy that allocates more aggressive draft budgets to long trajectories that dominate makespan. This design exploits rollout history to sustain acceptance while balancing base and token level costs during decoding. Experiments on math and code reasoning tasks show that DAS reduces rollout time up to 50% while preserving identical training curves, demonstrating that distribution-aware speculative decoding can significantly accelerate RL post training without compromising learning quality.",
+    "openreview_url": "https://openreview.net/forum?id=kMeqqPBjSl",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3766"
+  },
+  {
+    "slug": "blueprint-bootstrap-and-bridge-a-security-look-at-nvidia-gpu",
+    "title": "Blueprint, Bootstrap, and Bridge: A Security Look at NVIDIA GPU Confidential Computing",
+    "authors": [
+      "Zhongshu Gu",
+      "Enriquillo Valdez",
+      "Salman Ahmed",
+      "Julian James Stephen",
+      "Michael Le",
+      "Hani Jamjoom",
+      "Shixuan Zhao",
+      "Zhiqiang Lin"
+    ],
+    "abstract": "NVIDIA GPU Confidential Computing (GPU-CC) aims to provide secure execution for AI workloads. For end users, enabling GPU-CC is seamless and requires no modifications to existing applications. However, this ease of adoption relies on a proprietary and highly complex system that is difficult to inspect, creating challenges for researchers seeking to understand its architecture and security landscape. In this work, we provide a security look at GPU-CC by reconstructing a coherent view of the system. We first examine the system\u2019s blueprint, focusing on the specialized architectural engines that support its security mechanisms. We then analyze the bootstrap process, which coordinates hardware and software components to establish these protections. Finally, we conduct targeted experiments to assess whether, under the GPU-CC threat model, data transfers along different paths remain protected across the bridge between trusted CPU and GPU domains. We responsibly disclosed all security findings presented in this paper to the NVIDIA Product Security Incident Response Team (PSIRT).",
+    "openreview_url": "https://openreview.net/forum?id=t9RDCO1aL7",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3741"
+  },
+  {
+    "slug": "boost-bottleneck-optimized-scalable-training-framework-for-l",
+    "title": "BOOST: BOttleneck-Optimized Scalable Training Framework for Low-Rank Large Language Models",
+    "authors": [
+      "Zhengyang Wang",
+      "Ziyue Liu",
+      "Ruijie Zhang",
+      "Avinash Maurya",
+      "Bogdan Nicolae",
+      "Paul Hovland",
+      "Franck Cappello",
+      "Zheng Zhang"
+    ],
+    "abstract": "The scale of transformer model pre-training is constrained by the increasing computation and communication cost. Low-rank bottleneck architectures offer a promising solution to significantly reduce the training time and memory footprint with minimum impact on accuracy. Despite algorithmic efficiency, bottleneck architectures scale poorly under standard tensor parallelism. Simply applying 3D parallelism designed for full-rank\nmethods leads to excessive communication and poor GPU utilization. To address this limitation, we propose BOOST, an efficient training framework tailored for large-scale low-rank bottleneck architectures. BOOST introduces a novel Bottleneck-aware Tensor Parallelism, and combines optimizations such as online-RMSNorm, linear layer grouping, and low-rank activation checkpointing to achieve end-to-end training speedup. Evaluations on different low-rank bottleneck architectures demonstrate that BOOST achieves 1.46\u20131.91$\\times$ speedup over full-rank model baselines and 1.87\u20132.27$\\times$ speedup over low-rank model with naively integrated 3D parallelism, with improved GPU utilization and reduced communication overhead.",
+    "openreview_url": "https://openreview.net/forum?id=JhN5hldx4V",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3830"
+  },
+  {
+    "slug": "boute-cost-efficient-llm-serving-with-heterogeneous-llms-and",
+    "title": "BOute: Cost-Efficient LLM Serving with Heterogeneous LLMs and GPUs via Multi-Objective Bayesian Optimization",
+    "authors": [
+      "Youhe Jiang",
+      "Fangcheng Fu",
+      "Eiko Yoneki"
+    ],
+    "abstract": "The rapid growth of large language model (LLM) deployments has made cost-efficient serving systems essential. Recent efforts to enhance system cost-efficiency adopt two main perspectives: (\\textbf{\\underline{i}}) An \\textit{algorithmic} perspective that exploits heterogeneous model capabilities to route simpler queries to lower-cost models and complex queries to higher-cost models (i.e., heterogeneous query routing); and (\\textbf{\\underline{ii}}) a \\textit{systems} perspective that utilizes heterogeneous GPU resources as cost-effective alternatives to homogeneous high-end GPUs (i.e., heterogeneous model deployment). However, algorithm-system co-design for cost-efficient LLM serving necessitates sophisticated management: (\\textbf{\\underline{i}}) Determining optimal query routing strategies under latency and quality requirements, (\\textbf{\\underline{ii}}) configuring model deployment across heterogeneous GPUs with appropriate resource allocation and parallelism strategies, and (\\textbf{\\underline{iii}}) co-optimizing routing and deployment decisions to maximize overall system performance. To address these challenges, we present BOute, a \\textit{quality-aware scheduling system} that jointly exploits heterogeneous model and GPU capabilities for cost-efficient LLM serving. BOute employs a \\textit{multi-objective Bayesian optimization (MOBO) framework} to co-optimize the routing strategy and model deployment, thereby maximizing the cost-efficiency of the serving system while guaranteeing response quality. Evaluation results demonstrate that \\sys outperforms state-of-the-art LLM serving systems by up to 157\\% and 59\\% on average under \\textit{identical} cost budgets and quality requirements, or reducing serving costs by 15\\%-61\\% (38\\% on average) while maintaining the \\textit{same} performance targets, validating its effectiveness in achieving cost-efficient LLM serving.",
+    "openreview_url": "https://openreview.net/forum?id=ZVQb92umqX",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3795"
+  },
+  {
+    "slug": "breaking-the-ice-analyzing-cold-start-latency-in-vllm",
+    "title": "Breaking the Ice: Analyzing Cold Start Latency in vLLM",
+    "authors": [
+      "Huzaifa Shaaban Kabakibo",
+      "Animesh Trivedi",
+      "Lin Wang"
+    ],
+    "abstract": "As scalable inference services become popular, the cold start latency of an inference engine becomes important. Today, vLLM has evolved into the de-facto inference engine of choice for many inference workloads.\nAlthough popular, due to its complexity and rapid evolution, there has not been a systematic study on the startup latency of its engine.\nWith major architectural innovations under it (e.g., the `V1` API, introduction of `torch.compile`), in this paper, we present the first detailed performance characterization of vLLM startup latency. We break down the startup process into six foundational steps and demonstrate that this process is predominantly CPU-bound. Each step exhibits consistent and interpretable scaling trends with respect to model- and system-level parameters, enabling fine-grained attribution of latency sources.\nBuilding on these insights, we develop a lightweight analytical model that accurately predicts vLLM's startup latency for a given hardware configuration, providing actionable guidance for resource planning in large-scale inference environments.\nAll our benchmarking datasets, analysis tools, and prediction scripts are open-sourced at: https://github.com/upb-cn/vllm-startup-profiler",
+    "openreview_url": "https://openreview.net/forum?id=eoEobeKTNZ",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3784"
+  },
+  {
+    "slug": "cage-curvature-aware-gradient-estimation-for-accurate-quanti",
+    "title": "CAGE: Curvature-Aware Gradient Estimation For Accurate Quantization-Aware Training",
+    "authors": [
+      "Soroush Tabesh",
+      "Mher Safaryan",
+      "Andrei Panferov",
+      "Alexandra Volkova",
+      "Dan Alistarh"
+    ],
+    "abstract": "Despite significant work on low-bit quantization-aware training (QAT), there is still an accuracy gap between such techniques and native training. To address this, we introduce CAGE (Curvature-Aware Gradient Estimation), a new QAT method that augments the straight-through estimator (STE) gradient with a curvature-aware correction designed to counteract the loss increase induced by quantization. CAGE is derived from a multi-objective view of QAT that balances loss minimization with adherence to quantization constraints, yielding a principled correction term that depends on local curvature information.  On the theoretical side, we introduce the notion of Pareto-optimal solutions for quantized optimization, and establish that CAGE yields strong convergence guarantees in the smooth non-convex setting.\nIn terms of implementation, our approach is optimizer-agnostic, but we provide a highly-efficient implementation that leverages Adam statistics. \nCAGE significantly improves upon the prior state-of-the-art methods in terms of accuracy, for similar computational cost: for QAT fine-tuning, it halves the compression accuracy loss relative to the prior best method, while for QAT pre-training of Llama models, its accuracy for 3-bit weights-and-activations (W3A3) matches that of 4-bit training (W4A4) with the prior best method (QuEST).",
+    "openreview_url": "https://openreview.net/forum?id=Fubm1TtWeo",
+    "venue_url": "https://mlsys.org/virtual/2026/oral/3841"
+  }
+]

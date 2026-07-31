@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: 'https://arxiv.org/abs/2511.21686'
+arxiv_url: https://arxiv.org/abs/2511.21686
 authors:
 - Dong Wang
 - Yang Li
@@ -19,8 +19,8 @@ authors:
 - Carole-Jean Wu
 - Shang-Wen Li
 award: ''
-citations: null
-citations_updated: ''
+citations: 2
+citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - agentic-inference
@@ -41,8 +41,8 @@ observations:
     dispatch; a coordinator-free peer-to-peer design achieves 2–15× throughput because
     the coordinator itself was the bottleneck.
 official_category: ''
-optimization_type: []
 openreview_url: https://openreview.net/forum?id=ok96wGyPdI
+optimization_type: []
 organizations:
 - Meta
 presentation_type: oral
