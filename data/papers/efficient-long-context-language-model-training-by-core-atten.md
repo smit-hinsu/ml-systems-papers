@@ -64,10 +64,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3754
 ---
 
-## Background
-
-At long context (512K+ tokens), attention grows quadratically while FFN and other ops grow linearly, so attention consumes a disproportionate share of each training step. In standard pipeline or data-parallel setups, every GPU must finish all operators before communicating; since attention is so much heavier, devices that finish non-attention work first stall waiting, creating stragglers that cap cluster throughput. Sequence parallelism distributes attention across GPUs but doesn't eliminate the compute density mismatch — it just spreads the slow phase evenly.
-
 ## Key Contributions
 
 - **Core attention disaggregation (CAD)**: separates the parameter-free softmax(QKᵀ)V computation from the rest of the transformer and dispatches it to a dedicated pool of attention server devices, exploiting its statelessness (no trainable parameters, minimal transient state) and composability (attention kernels sustain high utilization on arbitrary-length batches)

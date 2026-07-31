@@ -55,10 +55,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3783
 ---
 
-## Background
-
-RLVR fine-tunes LLMs on problems with objectively checkable answers (math, code, puzzles), using pass/fail as the reward signal. It has shown strong results at frontier scale, but those runs assume large annotated datasets and thousands of GPU-days. For sub-7B models with single-GPU budgets, whether RLVR produces real capability gains — and which dataset properties matter — was an open empirical question.
-
 ## Key Contributions
 
 - **Procedural dataset framework**: Three novel procedurally generated datasets (number counting, graph reasoning, spatial reasoning) with controllable size, diversity, and complexity provide fine-grained benchmarks for RLVR data scaling studies.

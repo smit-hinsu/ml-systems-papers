@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3856
 ---
 
-## Background
-
-Tensor-parallel LLM serving splits weight matrices across GPUs and requires all-reduce on every forward pass. A single GPU failure stalls the entire group — existing recovery restarts from scratch, reloading weights and recomputing the KV cache for all in-flight requests. The surviving GPUs also end up with asymmetric memory layouts, causing compute imbalance even after recovery begins.
-
 ## Key Contributions
 
 - **Cyclic KVCache Placement**: distributes KV cache blocks cyclically across GPUs to maintain even memory utilization after a GPU failure, preventing memory hotspots on surviving nodes

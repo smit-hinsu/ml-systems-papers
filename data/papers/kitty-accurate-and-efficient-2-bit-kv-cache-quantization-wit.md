@@ -72,10 +72,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3746
 ---
 
-## Background
-
-KV cache quantization compresses key/value memory by storing at lower bit-width. 4-bit preserves accuracy while halving memory vs. FP16, but 2-bit (which would halve it again) degrades quality sharply on long-context reasoning. The root cause is Key-cache **outlier channels** — a small fraction of channels with much larger magnitude that uniform 2-bit quantization collapses, destroying attention distributions.
-
 ## Key Contributions
 
 - **Dynamic Channel-wise Precision Boost**: Ranks Key-cache channels by per-channel sensitivity; only the most sensitive channels are kept at 4-bit while the rest are quantized to 2-bit, achieving near-zero accuracy drop while approaching full 2-bit memory density.

@@ -56,7 +56,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3850
 
 ## Background
 
-In federated learning, clients train locally and share only gradients. For LLMs this raises a data provenance question: if the model generates a harmful response, which client's data caused it? Standard attribution methods work at the dataset or sample level, but LLM generation is token-by-token — a single response may draw on contributions from multiple clients across different tokens. No prior approach attributes individual generated tokens to specific federated clients.
+In federated learning, clients train locally and share only gradients. If the model then generates a harmful response, which client's data caused it? Existing attribution works at the dataset or sample level, but generation is token-by-token — one response can draw on several clients across different tokens. No prior method attributes individual generated tokens to specific federated clients.
 
 ## Key Contributions
 

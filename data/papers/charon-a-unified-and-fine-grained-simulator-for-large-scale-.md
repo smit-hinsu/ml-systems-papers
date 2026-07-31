@@ -49,10 +49,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3861
 ---
 
-## Background
-
-Choosing parallelism strategies for LLM training — pipeline parallelism, tensor parallelism, data parallelism, and communication overlap — requires evaluating combinations that each demand real GPU-hours to measure. Running systematic experiments on a 512-GPU cluster is prohibitively expensive, but naive roofline simulators miss fine-grained effects like pipeline bubbles and NCCL contention that determine actual throughput.
-
 ## Key Contributions
 
 - **Charon simulator**: unified, modular, fine-grained performance predictor for LLM training and inference that models parallelism strategies, system optimizations, and hardware configurations in a single framework

@@ -59,10 +59,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3833
 ---
 
-## Background
-
-vLLM and similar engines evict KV context with LRU when memory fills — fine for interactive streaming but a poor fit for batch inference (scoring thousands of pre-collected prompts, nightly re-ranking). Batch workloads share long common prefixes that LRU evicts under pressure, forcing recomputation. All requests are known upfront, so a scheduler with global visibility could group prefix-sharing requests and keep shared KV cache resident — impossible when the scheduler sees only one request at a time.
-
 ## Key Contributions
 
 - **Global prefix identification**: explicitly scans the entire request batch to identify all shared prefixes before scheduling begins, avoiding the fragmented per-request LRU cache lookups that cause premature eviction in streaming systems

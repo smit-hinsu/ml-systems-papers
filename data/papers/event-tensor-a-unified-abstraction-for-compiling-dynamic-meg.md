@@ -76,10 +76,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3815
 ---
 
-## Background
-
-A megakernel handles an entire forward pass as one persistent GPU kernel, eliminating launch overhead and keeping intermediate tensors in registers instead of HBM. Megakernels work well for static models, but LLM inference is dynamic: sequence lengths vary per request, speculative decoding produces data-dependent token counts, and MoE routing selects experts at runtime. Existing megakernel compilers assume shapes are fixed at compile time and break when a runtime decision changes a downstream tensor's shape.
-
 ## Key Contributions
 
 - **Event Tensor abstraction**: Encodes dependencies between tiled tasks as first-class events, enabling megakernel compilation to support both shape-dependent and data-dependent dynamism in LLM workloads.

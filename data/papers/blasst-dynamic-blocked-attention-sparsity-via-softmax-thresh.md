@@ -83,10 +83,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3854
 ---
 
-## Background
-
-Attention is O(n²) in sequence length, and even FlashAttention's tiled streaming loop visits every tile even when most contribute negligibly to the output after softmax normalization. Sparse attention methods skip low-contribution tiles but require training-time sparsity patterns, separate profiling passes, or model weight modifications — all of which block drop-in deployment with pretrained models. The gap is a sparsity criterion computable inside the existing FlashAttention tile loop using only information already available during inference.
-
 ## Key Contributions
 
 - **Softmax-threshold block-skip criterion**: During FlashAttention's online-softmax tile loop, if a tile's local maximum score satisfies `m̃ᵢ − m < ln(λ)`, its softmax weights are negligible after normalization and the entire tile — softmax ops, value-block HBM load, and attention-value matmul — is skipped without an extra profiling pass.

@@ -62,10 +62,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3778
 ---
 
-## Background
-
-GPU matrix cores require precisely structured operand layouts in registers and shared memory: tiles must arrive in a specific arrangement, results must land at specific register locations, and the sequence must not stall the units. CUTLASS exposes these details directly, requiring intricate multi-level addressing where a single wrong index silently kills performance. Higher-level DSLs like Triton abstract some details but still require explicit tiling strategies and memory access patterns from the programmer.
-
 ## Key Contributions
 
 - **Wave DSL**: a Python-embedded symbolic domain-specific language for kernel authoring that abstracts away matrix core addressing schemes; authors express core computations directly while the compiler handles tile address generation and scheduling.

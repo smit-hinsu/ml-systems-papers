@@ -45,7 +45,7 @@ key_results: "Hawkeye enables perfect CPU reproduction of NVIDIA Tensor Core mat
 
 ## Background
 
-Floating-point arithmetic is not associative: GPU matmuls use massively parallel reduction trees whose accumulation order depends on undocumented, architecture-specific hardware details. The same model on different GPU generations (Ampere vs. Hopper) or precisions (FP16 vs. FP8) produces different bit patterns. For third-party ML auditing — verifying a model owner's reported outputs match declared weights — this non-determinism is a fundamental blocker: an auditor cannot reproduce the computation to check it without burdening the model owner with cryptographic overhead.
+Third-party ML auditing asks whether a model owner's reported outputs really came from the declared weights. Rerunning the computation is the cheapest check, but GPU matmuls accumulate in an undocumented, architecture-specific order, so the same model emits different bit patterns on Ampere vs. Hopper, or FP16 vs. FP8. Existing verifiable-ML schemes route around this with cryptographic machinery the model owner has to pay for.
 
 ## Key Contributions
 

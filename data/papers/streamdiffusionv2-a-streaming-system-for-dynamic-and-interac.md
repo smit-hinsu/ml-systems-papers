@@ -71,7 +71,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3750
 
 ## Background
 
-Video diffusion models generate frames by iteratively denoising over many steps — high quality but expensive. Offline generation optimizes for throughput, but live streaming imposes hard SLOs: frames must appear at a fixed rate (30+ FPS) with sub-second time-to-first-frame. At 14B parameter scale, a single denoising forward pass takes longer than the inter-frame budget, and existing diffusion serving stacks have no SLO-aware scheduling.
+Video diffusion models produce each frame by iteratively denoising over many steps. Offline generation optimizes throughput, but live streaming imposes hard SLOs: 30+ FPS at a fixed rate with sub-second time-to-first-frame. At 14B parameters a single denoising forward pass already exceeds the inter-frame budget, and existing diffusion serving stacks schedule with no notion of SLOs.
 
 ## Key Contributions
 

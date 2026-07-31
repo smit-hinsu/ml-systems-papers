@@ -81,7 +81,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3852
 
 ## Background
 
-Autoregressive decode is memory-bandwidth-bound, yet GPUs achieve only ~21% bandwidth utilization because CPU kernel launch, barrier synchronization, and dispatch scheduling inject stall time between every pair of kernels. SambaNova's SN40 Reconfigurable Dataflow Unit (RDU) statically schedules operators into a continuous data-movement graph with no CPU on the critical path — but extracting this advantage for full LLM workloads requires rethinking decode loops, KV prefetching, and speculative decoding for dataflow execution.
+SambaNova's SN40 Reconfigurable Dataflow Unit (RDU) statically schedules operators into a continuous data-movement graph with no CPU on the critical path — unlike a GPU, where kernel launch, barrier sync, and dispatch inject stalls between every pair of kernels. Turning that into a decode win means rewriting decode loops, KV prefetching, and speculative decoding for dataflow execution.
 
 ## Key Contributions
 

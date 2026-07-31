@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3805
 ---
 
-## Background
-
-Weight quantization stores LLM parameters at 4-bit or lower, shrinking model size and accelerating memory-bandwidth-bound inference. Uniform quantization wastes precision budget — some weights tolerate aggressive quantization while others are sensitive. Mixed-precision methods allocate bit-widths by sensitivity, but prior work analyzes layers independently, over-allocating bits. A second challenge: mixed-precision weights require dequantization before GEMM, and naive implementations erase the bandwidth savings.
-
 ## Key Contributions
 
 - **Global output-feature sensitivity ranking**: identifies important output features across all layers simultaneously rather than per-layer, allocating higher bit-width only to features that most affect accuracy; achieves sweet-spot accuracy with minimal extra bits

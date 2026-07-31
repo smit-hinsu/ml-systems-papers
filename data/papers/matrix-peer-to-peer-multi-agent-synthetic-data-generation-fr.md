@@ -66,10 +66,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3753
 ---
 
-## Background
-
-Synthetic data generation for LLM training uses multi-agent pipelines where agents interact to produce labeled conversations, reasoning traces, and tool-use trajectories. The standard architecture is centralized orchestration: a controller dispatches tasks and collects results. At scale this hits two limits — the orchestrator becomes a throughput bottleneck, and hard-coded task graphs require a new orchestration layer for each synthesis workflow.
-
 ## Key Contributions
 
 - **Decentralized control flow**: represents both control and data as serialized messages through distributed queues, eliminating the central orchestrator bottleneck; built on Ray to scale to tens of thousands of concurrent agentic workflows

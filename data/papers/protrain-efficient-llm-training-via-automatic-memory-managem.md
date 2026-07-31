@@ -53,10 +53,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3800
 ---
 
-## Background
-
-LLM training requires fitting activations, gradients, optimizer states, and weights simultaneously in GPU memory. Techniques like activation checkpointing (recompute instead of store), CPU offloading, and gradient accumulation each reduce memory pressure but add compute or I/O overhead. Choosing the right combination and granularity depends on model, batch size, and hardware — and is currently configured by hand, with expert engineers still routinely misconfiguring it.
-
 ## Key Contributions
 
 - **Automated memory management abstraction**: collapses complex memory management strategies (activation checkpointing, offloading, recomputation) into a small set of tunable configuration parameters, removing the need for expert-level manual tuning

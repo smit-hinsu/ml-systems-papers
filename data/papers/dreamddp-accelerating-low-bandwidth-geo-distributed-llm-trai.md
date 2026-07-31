@@ -62,10 +62,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3790
 ---
 
-## Background
-
-Geo-distributed LLM training spans GPU clusters across datacenters connected by links orders of magnitude slower than intra-datacenter InfiniBand (1–10 Gbps vs. 400 Gbps). Standard data parallelism all-reduces after every backward pass — too expensive across slow WAN links. Local SGD reduces synchronization frequency by letting clusters train independently for several steps, but its sync step still exchanges every parameter in the full model, consuming enormous bandwidth even infrequently and blocking compute while the sync completes.
-
 ## Key Contributions
 
 - **Partial Local SGD**: extends Local SGD by synchronizing only a subset of layers per iteration rather than the full model; only layers whose local divergence exceeds a threshold are synchronized, with theoretical convergence guarantees comparable to S-SGD

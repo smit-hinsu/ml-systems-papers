@@ -66,7 +66,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3785
 
 ## Background
 
-Diffusion language models (DLMs) generate text by iteratively unmasking a fully masked sequence over 50–200 steps using bidirectional attention. Two structural problems make them 10–15× slower than autoregressive models: bidirectional attention prevents KV caching, and each step produces only an intermediate state rather than a final token. Consistency distillation — a technique from image diffusion — can compress many steps into far fewer, but adapting it to discrete masked language requires rethinking both the attention structure and training objective.
+Diffusion language models generate text by unmasking a fully masked sequence over 50–200 steps with bidirectional attention. Two structural problems make them 10–15× slower than autoregressive models: bidirectional attention rules out KV caching, and each step yields an intermediate state rather than a committed token. Consistency distillation from image diffusion can collapse many steps into a few, but porting it to discrete masked text means rethinking both the attention structure and the training objective.
 
 ## Key Contributions
 

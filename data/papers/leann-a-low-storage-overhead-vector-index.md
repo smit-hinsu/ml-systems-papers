@@ -62,10 +62,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3786
 ---
 
-## Background
-
-Vector search indices (e.g., HNSW) store both embeddings and multi-layer graph metadata, typically occupying 3–10× more storage than raw text. For RAG on a laptop or personal device, this overhead makes indexing even a moderately large corpus impractical — the index alone can exhaust disk before a user's data is ingested.
-
 ## Key Contributions
 
 - **On-the-fly embedding recomputation**: LEANN discards stored embeddings and recomputes them at query time using the original encoder, reducing index storage to graph structure and IDs only (≈5% of original data size).

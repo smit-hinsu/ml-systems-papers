@@ -89,7 +89,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3768
 
 ## Background
 
-Edge ML deployment is fragmented: each hardware vendor (Apple, Qualcomm, ARM) has its own SDK, requiring model conversion out of PyTorch before deployment. On the most constrained targets — microcontrollers under 1 MB SRAM — there is no runtime allocator, so memory planning must happen at compile time. ExecuTorch provides a single PyTorch-native path from embedded targets to multi-accelerator mobile SoCs.
+Edge ML deployment is fragmented: each hardware vendor (Apple, Qualcomm, ARM) ships its own SDK, so models must be converted out of PyTorch before deployment. On the tightest targets — microcontrollers under 1 MB SRAM — there is no runtime allocator at all, so memory planning has to happen at compile time.
 
 ## Key Contributions
 

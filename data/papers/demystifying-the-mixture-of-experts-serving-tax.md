@@ -52,10 +52,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3764
 ---
 
-## Background
-
-MoE models route each token to a small subset of expert feed-forward networks, keeping per-token FLOPs comparable to a much smaller dense model (DeepSeek-R1-671B activates ~37B of 671B parameters). Despite equivalent FLOPs, MoE models run 2–3× slower at serving time. The overhead has three sources — expert weight loading, all-to-all token routing between GPUs, and routing imbalance — and each interacts differently with prefill versus decode, making it unclear which bottleneck to address first without systematic measurement.
-
 ## Key Contributions
 
 - **Comprehensive MoE serving tax study**: Systematic microbenchmarks decomposing the 2–3× serving gap between MoE and FLOP-equivalent dense models into distinct sources — expert weight loading, all-to-all communication, and load imbalance — across prefill and decode phases separately.

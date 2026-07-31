@@ -76,7 +76,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3821
 
 ## Background
 
-Sequence recommendation models encode variable-length user histories through transformer architectures with large embedding tables. Unlike LLM training where inputs are padded to uniform length, recommendation batches have wide per-user history variance, causing per-GPU compute skew and straggler delays at every sync barrier. Embedding AllGather and ReduceScatter collectives also compete for streaming multiprocessors (SMs) with compute kernels, limiting effective communication overlap.
+Sequence recommendation models encode variable-length user histories with transformers on top of large embedding tables. Unlike LLM training, where inputs are padded to uniform length, recommendation batches vary widely in per-user history length, so per-GPU compute skews and stragglers delay every sync barrier. Embedding AllGather and ReduceScatter also contend with compute kernels for SMs, capping how much communication overlap actually pays off.
 
 ## Key Contributions
 

@@ -52,10 +52,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3802
 ---
 
-## Background
-
-A typical client GPU has 8–24 GB of VRAM while a 7B FP16 model requires 14 GB. The standard fix is CPU offloading — keeping layers in CPU RAM and copying them to GPU before use — but naive offloading serializes copy and compute, leaving the GPU idle during transfers. VLMs like Cosmos-Reason1 add high-resolution image encoders that push requirements even higher, and client hardware heterogeneity (3–10× CPU-to-GPU bandwidth variation) means no static configuration works across all devices.
-
 ## Key Contributions
 
 - **Pipelined sharding**: A CPU-GPU hybrid scheduling technique using sub-layer model sharding, pipelined copy-compute, and prioritized VRAM tensor placement that adapts to runtime system conditions.

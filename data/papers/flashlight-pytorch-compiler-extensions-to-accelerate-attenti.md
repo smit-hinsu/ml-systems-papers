@@ -61,10 +61,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3763
 ---
 
-## Background
-
-FlashAttention fused kernels handle standard SDPA efficiently, but many research models — AlphaFold's Evoformer, gated row/column-wise attention — need custom attention variants that FlexAttention's static templates cannot express. TorchInductor also treats matrix multiplications as atomic, blocking fusion with surrounding elementwise or reduction operations that would eliminate HBM round-trips. Each new variant currently requires a hand-tuned CUDA kernel.
-
 ## Key Contributions
 
 - **Unified Reduction IR**: Represents matrix multiplications as generalized reductions inside TorchInductor, breaking the hard boundary between GEMMs and surrounding elementwise operations that previously blocked cross-operation fusion

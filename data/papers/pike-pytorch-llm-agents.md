@@ -57,10 +57,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3823
 ---
 
-## Background
-
-Writing optimized CUDA/Triton kernels requires deep GPU expertise. `torch.compile` automates a fixed set of transformations but can't explore the full optimization space. LLM-based code generation can propose novel optimizations, but correctness requires iterative generate-compile-benchmark-fix loops. No framework existed for running this loop with multiple specialized agents sharing best-found solutions.
-
 ## Key Contributions
 
 - **PIKE logical framework**: five-stage pipeline — Library, Seed Selection, Prompt Construction, Evaluation, Post-processing — for comparing multi-agent PyTorch optimization strategies; formalizes the explore/exploit ratio as the primary design variable

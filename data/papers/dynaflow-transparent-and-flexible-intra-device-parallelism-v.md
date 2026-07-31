@@ -58,10 +58,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3771
 ---
 
-## Background
-
-A single GPU has multiple independent engines — tensor cores, copy engines, separate SM partitions — that can run concurrently. Overlapping memory-bound operators (KV cache loads) with compute-bound operators (matmuls) on the same device improves utilization, but ML frameworks serialize operators by default. Adding this intra-device overlap to an existing system like vLLM or FlashAttention requires invasive, model-specific rewrites — work that must be repeated from scratch for each framework and doesn't generalize.
-
 ## Key Contributions
 
 - **DynaFlow abstraction**: decouples logical model definition from physical execution schedule via a flexible frontend with graph partitioning annotations and a programmable intra-device parallelism interface — developers describe strategies declaratively rather than rewriting model code

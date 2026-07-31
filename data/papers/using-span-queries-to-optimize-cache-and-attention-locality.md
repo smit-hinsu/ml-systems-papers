@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3747
 ---
 
-## Background
-
-KV prefix caching reduces TTFT by reusing states when a request starts with the same token prefix. This works for linear chat, but RAG, inference-time scaling, and agentic pipelines have non-linear inputs: retrieved chunks can arrive in any order, reasoning branches share partial context, and tool results are inserted mid-conversation. When document order doesn't match the prefix tree, KV states can't be reused even for semantically identical inputs — serving frameworks have no way to express that segments are interchangeable.
-
 ## Key Contributions
 
 - **Span query abstraction**: a generalized representation of inference calls as an expression tree linked by commutativity constraints; chat, RAG, inference-time scaling, and agentic workloads are all special cases that differ only in whether input segments commute.

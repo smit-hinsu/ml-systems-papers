@@ -51,7 +51,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3739
 
 ## Background
 
-Red-teaming finds individual jailbreak examples but produces no meaningful guarantee: finding one says nothing about how many others exist, and failing to find one doesn't mean they don't. The output space under adversarial decoding is exponential in sequence length, making exhaustive search impossible. The missing piece is a formal statement asking not "can we find a jailbreak" but "does the model produce jailbreaks with probability above a threshold?" — a question with an auditable, reproducible answer.
+Red-teaming finds individual jailbreaks but guarantees nothing: one example says nothing about how many others exist, and finding none says nothing about safety. Under adversarial decoding the output space grows exponentially with sequence length, so exhaustive search is out. The unasked question is not "can we find a jailbreak" but "does this model produce one with probability above a threshold?" — which has an auditable, reproducible answer.
 
 ## Key Contributions
 

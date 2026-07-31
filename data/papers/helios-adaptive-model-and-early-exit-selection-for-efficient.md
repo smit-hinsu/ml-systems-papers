@@ -55,10 +55,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3846
 ---
 
-## Background
-
-Early-exit LLMs (EE-LLMs) add classifiers at intermediate transformer layers so simpler tokens exit before the final layer, reducing average per-token compute. In practice, a single EE-LLM has a fixed exit distribution — some tokens always traverse deep layers, creating a bottleneck that limits throughput. Loading all layer weights into HBM even when most exits happen early wastes memory that could hold more concurrent requests.
-
 ## Key Contributions
 
 - **Multi-model dynamic switching**: HELIOS maintains a pool of EE-LLM variants and routes each token to the model where it is most likely to exit early; early-exit patterns across models are complementary, reducing the fraction of late-exit tokens that stall throughput.

@@ -53,7 +53,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3835
 
 ## Background
 
-Graph-based vector indexes (e.g., HNSW) traverse a proximity graph toward a query, requiring sequential disk reads when the index doesn't fit in RAM. Traversal finds close neighbors early then enters a long tail of diminishing returns — the top-1 result is typically locked in well before the budget is exhausted. Existing early termination schemes use fixed I/O budgets or similarity thresholds, ignoring that downstream RAG applications weight the top-ranked results far more heavily than lower-ranked ones.
+Graph-based vector indexes such as HNSW walk a proximity graph toward the query, and when the index exceeds RAM each hop is a sequential disk read. The walk finds close neighbors early, then spends a long tail on diminishing returns — the top-1 result is usually settled well before the budget runs out. Existing early-termination schemes stop on a fixed I/O budget or similarity threshold, ignoring that RAG consumers care far more about the top ranks than the rest.
 
 ## Key Contributions
 

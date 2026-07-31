@@ -50,10 +50,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3767
 ---
 
-## Background
-
-Distributing a large model requires jointly choosing tensor parallelism, pipeline parallelism, and ZeRO/FSDP sharding — each affecting communication volume, memory, and compute differently. Current practice is heuristic: engineers pick a default layout and tune by hand, a process that fails badly on heterogeneous clusters where an optimal allocation on one topology can saturate memory ranks on another.
-
 ## Key Contributions
 
 - **Unified structured dynamic programming**: operator graph annotated with intra-layer parallelism configs (tensor, expert, sequence, context), explicit allreduce latencies, and per-device memory/compute profiles; DP searches hybrid strategies in a principled, jointly-feasible space

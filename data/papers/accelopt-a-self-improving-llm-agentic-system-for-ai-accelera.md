@@ -60,10 +60,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3808
 ---
 
-## Background
-
-New AI accelerators (AWS Trainium, custom ASICs) need hand-tuned kernels to reach peak throughput, but the required hardware expertise is scarce and doesn't transfer across chip generations. Traditional auto-tuners search within a fixed parameter space; they can't invent new code structures. LLMs can generate novel kernel code but naively produce a random walk through the optimization space with no mechanism to learn from past attempts.
-
 ## Key Contributions
 
 - **Three-agent agentic workflow**: planner agent generates optimization strategies, executor agent implements them, summarizer agent distills insights from profiling feedback; together they drive iterative beam search over the kernel optimization space without requiring hand-written hardware expertise

@@ -63,10 +63,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3731
 ---
 
-## Background
-
-MoE models route each token to a small subset of expert feed-forward networks, with different experts on different GPUs (expert parallelism). Routing skew — some experts receiving 10× average load — is handled by replicating hot experts across more GPUs. Existing schemes apply the same replication factor uniformly across all layers, but skew varies layer by layer; replicating balanced layers wastes HBM that could instead enlarge the KV cache.
-
 ## Key Contributions
 
 - **Layer-wise benefit estimation**: For each MoE layer, CRAFT computes an L×K benefit matrix measuring load-balancedness gain for each of K=log₂D+1 possible replica counts, using offline expert load distributions; this exposes that high-skew layers benefit greatly from replication while low-skew layers do not.

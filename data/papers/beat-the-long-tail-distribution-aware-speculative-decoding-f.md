@@ -69,10 +69,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3766
 ---
 
-## Background
-
-RL post-training uses a rollout phase where the model generates many candidate responses to training prompts. Rollout lengths vary enormously — a math problem might take 50 or 5,000 tokens — so a few long stragglers dominate wall-clock time while the GPU idles waiting for the batch. Speculative decoding could speed individual generations, but standard draft models assume a stable token distribution. During RL training the target distribution shifts every gradient step, collapsing acceptance rates for static drafters.
-
 ## Key Contributions
 
 - **DAS (Distribution-Aware Speculative Decoding)**: Builds an adaptive nonparametric drafter from recent rollouts via an incrementally maintained suffix tree, enabling speculation without altering model outputs during RL post-training.

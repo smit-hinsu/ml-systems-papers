@@ -80,7 +80,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3834
 
 ## Background
 
-LLM decode is memory-bandwidth-bound: each token requires loading the full model weights from HBM even though only a tiny fraction are used. GPUs have only a few MB of on-chip SRAM — far too little for a large model. Groq's GroqChip takes a different design point: ~220 MB of on-chip SRAM per chip with a deterministic compiler. Thousands of chips on a synchronous low-latency fabric can collectively hold an entire model in SRAM, eliminating the HBM bottleneck entirely.
+Groq's GroqChip carries roughly 220 MB of on-chip SRAM per chip plus a deterministic compiler, instead of the few MB a GPU has next to HBM. Thousands of chips on a synchronous, low-diameter fabric can hold an entire model in SRAM, so decode never pays the HBM weight-loading cost — at the price of far more chips per model.
 
 ## Key Contributions
 

@@ -49,10 +49,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3841
 ---
 
-## Background
-
-Quantization-aware training (QAT) fine-tunes a model while simulating low-bit rounding, using the **straight-through estimator (STE)** to pass gradients through the non-differentiable quantization step. STE works at 4-bit but introduces gradient bias at aggressive precisions like W3A3, leaving a significant accuracy gap versus full-precision training.
-
 ## Key Contributions
 
 - **CAGE (Curvature-Aware Gradient Estimation)**: Augments the straight-through estimator with a curvature-aware correction term derived from a multi-objective view of QAT, reducing the loss increase induced by quantization.

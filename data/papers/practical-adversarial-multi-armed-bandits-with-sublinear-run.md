@@ -54,7 +54,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3762
 
 ## Background
 
-Adversarial multi-armed bandits select among k options each round while an adversary can change which option is optimal, so historical rewards may not predict future payoffs. Database physical design tuning — choosing which indexes to build as workloads shift — is a natural application, but with thousands of candidate indexes k is large. Standard adversarial bandit algorithms require O(k) work per iteration to update all arm weights, making them impractical at this scale.
+Adversarial multi-armed bandits pick among k options each round while an adversary changes which option is best, so past rewards may not predict future payoffs. Database physical design tuning — choosing which indexes to build as workloads shift — fits this model, but k runs to thousands of candidate indexes. Standard adversarial bandit algorithms update every arm's weight each round, costing O(k) per iteration.
 
 ## Key Contributions
 

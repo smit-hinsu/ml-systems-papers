@@ -50,10 +50,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3757
 ---
 
-## Background
-
-Compound AI systems (LLM + RAG, LLM + tool calls) can be approximated at many points — quantize the LLM, skip retrieval on high-confidence queries, use cheaper tool policies — but these choices interact. Existing ML compilers optimize single neural networks with no way to express an accuracy budget spanning an LLM and a retrieval engine in one IR, forcing cross-component trade-offs to be found by hand-tuning. The result: individually reasonable approximations combine unexpectedly to breach quality constraints.
-
 ## Key Contributions
 
 - **approx MLIR dialect**: unified IR extension that represents approximation choices for both ML components (LLM sampling temperature, quantization) and non-ML components (retrieval heuristics, tool call policies) in a single compilation framework

@@ -62,7 +62,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3853
 
 ## Background
 
-Enterprise AI agents take actions through tools via the Model Context Protocol (MCP). Traditional EDR tools watch file-system and network artifacts but are blind to agent reasoning — they can't see the causal chain between a prompt injection attack in a retrieved document and the tool call it triggers. The missing layer is semantic telemetry that captures why an agent made each tool call, paired with a detector that scales to tens of thousands of daily sessions.
+Enterprise AI agents act through tools over the Model Context Protocol (MCP). EDR tools watch file-system and network artifacts but are blind to agent reasoning: they cannot see the causal chain from a prompt injection buried in a retrieved document to the tool call it triggers. What's missing is semantic telemetry recording why an agent made each tool call, plus a detector that scales to tens of thousands of sessions a day.
 
 ## Key Contributions
 

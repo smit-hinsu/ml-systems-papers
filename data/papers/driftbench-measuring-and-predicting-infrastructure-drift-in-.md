@@ -39,10 +39,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3799
 ---
 
-## Background
-
-Changing a production LLM's infrastructure — GPU type, precision (FP16 → BF16), or serving framework — can silently change model outputs even with identical weights, because floating-point arithmetic is not bit-reproducible across implementations. For most tokens this is harmless, but tokens near a decision boundary (a safety classifier, a structured-output choice) can flip. There is no established methodology for predicting how risky an infrastructure change is before rolling it out.
-
 ## Key Contributions
 
 - **DriftBench dataset**: 236,985 prompt-response pairs across 105 infrastructure configurations spanning 5 LLMs, 4 GPU platforms, 3 frameworks, 3 precision levels — the first systematic characterization of output consistency across infrastructure changes

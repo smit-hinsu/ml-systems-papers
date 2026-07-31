@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3794
 ---
 
-## Background
-
-At 128K token contexts, each decode step reads the full KV cache from HBM — an O(N) memory transfer that grows with every generated token. FlashAttention minimizes passes but can't reduce total bytes transferred. Sparse attention (sliding-window, StreamingLLM) drops tokens to cut reads but accepts accuracy loss. MAC-Attention exploits a different observation: nearby tokens often have semantically similar queries, so prior attention outputs can be reused instead of recomputed.
-
 ## Key Contributions
 
 - **Match stage**: pre-RoPE L2 similarity search over a short local window identifies a prior query whose attention output can be reused; on a hit, KV access complexity becomes O(1) independent of context length

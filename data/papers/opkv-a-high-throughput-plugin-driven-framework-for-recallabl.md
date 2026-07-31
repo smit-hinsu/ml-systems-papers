@@ -56,10 +56,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3844
 ---
 
-## Background
-
-At large batch sizes, the KV cache for all active sequences doesn't fit in GPU memory, so pages are evicted to CPU RAM and recalled on demand. Recallable sparsity predicts which KV pages each attention step actually needs and skips recalling the rest — but integrating this into paged KV cache systems (like vLLM) requires touching memory management internals, and recall overhead grows linearly with batch size.
-
 ## Key Contributions
 
 - **Plugin interface**: decouples sparsity selection logic from model code and KV cache management, allowing any recallable sparsity policy to be integrated into paged KV cache systems without framework modification

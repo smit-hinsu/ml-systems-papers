@@ -65,10 +65,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3776
 ---
 
-## Background
-
-Shared GPU clusters reclaim or grant nodes mid-run, so LLM training jobs benefit from elastically adjusting GPU count without restarting. The challenge: naively adding data-parallel replicas changes gradient aggregation and causes loss curve divergence; adjusting pipeline stage assignments requires layer re-partitioning. Prior elastic systems accept accuracy non-determinism or restrict themselves to one parallelism axis, capping throughput gains.
-
 ## Key Contributions
 
 - **PP-first elasticity**: Prioritizes adjusting pipeline-parallelism degree when GPU resources change, preserving deterministic stage assignments and bitwise-reproducible gradients, thereby maintaining training accuracy consistency

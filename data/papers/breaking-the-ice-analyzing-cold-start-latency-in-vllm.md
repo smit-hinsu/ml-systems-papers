@@ -46,10 +46,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3784
 ---
 
-## Background
-
-vLLM cold starts take tens of seconds to several minutes — far longer than typical microservices — because the engine must initialize CUDA contexts, load weights from disk, compile kernels with `torch.compile`, and pre-allocate KV-cache memory before serving any request. For serverless and auto-scaling this forces a hard choice: over-provision to avoid cold starts or accept queuing spikes on traffic surges. Despite vLLM's ubiquity, its startup sequence has no published phase breakdown.
-
 ## Key Contributions
 
 - **6-phase startup breakdown**: First systematic decomposition of vLLM's startup process into foundational steps (including torch.compile, model loading, CUDA context init) with fine-grained attribution of latency sources.

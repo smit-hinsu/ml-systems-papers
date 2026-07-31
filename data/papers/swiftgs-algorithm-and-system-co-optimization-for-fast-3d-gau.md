@@ -58,7 +58,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3773
 
 ## Background
 
-3D Gaussian Splatting (3DGS) represents scenes as millions of semi-transparent ellipsoidal Gaussians, rendered by depth-sorting and alpha-compositing them tile-by-tile — producing high-quality novel-view images faster than NeRF. Each frame sorts and rasterizes all primitives regardless of contribution. Two cost centers dominate: O(N log N) depth sort over all Gaussians, and per-tile rasterization that redundantly loads data per thread.
+3D Gaussian Splatting represents a scene as millions of semi-transparent ellipsoidal Gaussians, rendered by depth-sorting and alpha-compositing them tile by tile — higher quality than NeRF at lower cost. Every frame sorts and rasterizes all primitives regardless of contribution. Two costs dominate: the O(N log N) depth sort over all Gaussians, and per-tile rasterization that reloads the same data per thread.
 
 ## Key Contributions
 

@@ -51,7 +51,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3820
 
 ## Background
 
-In federated learning and edge-cloud inference, bandwidth between nodes is the bottleneck — lossless compression reduces transmitted bytes without changing model behavior. General-purpose codecs (gzip, zstd) target text and binary data, not 8-bit quantized ML tensor distributions, leaving headroom above the Shannon entropy limit. Prior ANS-based ML tensor codecs either need megabytes of state (won't fit in edge SRAM) or sacrifice throughput to hit high compression ratios.
+In federated learning and edge-cloud inference, the link between nodes is the bottleneck, and lossless compression cuts transmitted bytes without changing model behavior. General-purpose codecs like gzip and zstd target text, not 8-bit quantized tensor distributions, and leave headroom above the Shannon entropy limit. Prior ANS-based tensor codecs either need megabytes of state — too much for edge SRAM — or give up throughput to reach high ratios.
 
 ## Key Contributions
 

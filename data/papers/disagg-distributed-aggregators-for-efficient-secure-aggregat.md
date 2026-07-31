@@ -52,7 +52,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3837
 
 ## Background
 
-Federated learning (FL) trains across many client devices without sending raw data to a server. Gradient updates can still leak private data through inference attacks, so FL uses **secure aggregation**: clients mask their gradients with values that cancel in the sum so the server sees only the aggregate. At scale (100k+ clients, 100k-dimensional updates), generating those canceling masks requires multi-round coordination or homomorphic encryption — both prohibitively slow for large 5G deployments.
+Federated learning keeps raw data on client devices, but gradient updates still leak it through inference attacks. So FL uses **secure aggregation**: clients mask their gradients with values that cancel in the sum, leaving the server only the aggregate. At scale — 100k+ clients, 100k-dimensional updates — generating those canceling masks needs multi-round coordination or homomorphic encryption, both far too slow for 5G deployments.
 
 ## Key Contributions
 

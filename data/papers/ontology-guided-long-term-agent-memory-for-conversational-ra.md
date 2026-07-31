@@ -49,10 +49,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3738
 ---
 
-## Background
-
-Conversational RAG retrieves past interactions before generating a response, but dense retrieval fails when a query like "remind me of my dietary restriction" has no lexical overlap with a past message like "I'm vegetarian, by the way." Re-reading full session histories with a long-context LLM handles this but is expensive. The gap is a structured intermediate that captures durable user facts cheaply enough to index but richly enough to answer implicit preference questions.
-
 ## Key Contributions
 
 - **Dialogue-aware memory graph**: extracts durable user facts from conversations into a lightweight ontology-structured memory graph; enables semantic lookup across sessions without re-reading raw conversation history

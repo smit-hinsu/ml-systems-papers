@@ -59,10 +59,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3775
 ---
 
-## Background
-
-Sparse attention skips token pairs with negligible attention scores, making 512K-token training tractable. Ring attention distributes long sequences across GPUs, but dynamic sparsity patterns are uneven — some workers get far more active pairs than others — and the sparsity pattern can't be known until attention scores are computed.
-
 ## Key Contributions
 
 - **Distributed sparse index approximation**: computes sparse attention patterns in a distributed-friendly manner, making sparsity indices available across ring-attention workers without requiring full synchronization of attention scores

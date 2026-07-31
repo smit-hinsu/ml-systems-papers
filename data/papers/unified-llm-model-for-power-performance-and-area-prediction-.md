@@ -51,7 +51,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3761
 
 ## Background
 
-Evaluating PPA (Power, Performance, Area) for Verilog RTL requires logic synthesis tools (Synopsys DC, Cadence Genus) that take minutes to hours per design — a bottleneck when comparing thousands of candidates in early exploration. Surrogate models predicting PPA from source code can accelerate this by orders of magnitude, but prior approaches use hand-crafted features or small neural networks that don't generalize across technology nodes (15 nm vs. 45 nm) or optimization styles, requiring per-configuration retraining.
+Getting PPA (power, performance, area) for Verilog RTL means running logic synthesis — Synopsys DC or Cadence Genus — which takes minutes to hours per design, far too slow to rank thousands of candidates during early exploration. Surrogate models predict PPA straight from source, but prior ones use hand-crafted features or small networks that don't transfer across technology nodes (15 nm vs. 45 nm) or synthesis optimization styles, so every configuration needs its own retrained model.
 
 ## Key Contributions
 

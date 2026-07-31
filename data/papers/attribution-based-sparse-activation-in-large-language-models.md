@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3779
 ---
 
-## Background
-
-Sparse activation skips neurons whose output contribution is effectively zero, cutting compute and memory bandwidth. Early LLMs used ReLU activations that produce exact zeros, enabling lossless skipping. Modern models use SwiGLU/GELU, which produce almost no true zeros, so lossless sparsity is ineffective. Attribution scores (borrowed from interpretability research) can estimate each neuron's contribution, but existing metrics assume neuron scores are independent — in FFN layers they're not, making the scores systematically wrong and causing either accuracy loss or over-estimated sparsity.
-
 ## Key Contributions
 
 - **Attribution-based sparse activation**: lossy neuron deactivation technique that skips neurons with low attribution scores rather than only zero-output neurons, achieving high sparsity on modern LLMs that existing lossless methods cannot reach

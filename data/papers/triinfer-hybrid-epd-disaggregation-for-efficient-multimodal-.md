@@ -63,10 +63,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3756
 ---
 
-## Background
-
-Multimodal LLM inference has three stages with different resource profiles: vision encoding is compute-bound, prefill is compute-bound and batching-sensitive, decode is memory-bandwidth-bound. When all three share a GPU pool, they interfere — a long decode phase blocks new vision encoding, and bursty image workloads starve decode throughput. Prefill-decode disaggregation for text-only LLMs is established, but MLLMs require a third stage split for vision encoding that no prior system addresses.
-
 ## Key Contributions
 
 - **Hybrid Encode-Prefill-Decode (EPD) disaggregation**: schedules the three MLLM inference stages onto separate, heterogeneous GPU instances, allowing each stage to be independently scaled and optimized for its distinct compute/memory characteristics.

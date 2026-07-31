@@ -54,7 +54,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3857
 
 ## Background
 
-Decentralized learning trains models across nodes where each communicates only with neighbors defined by a communication topology — no central parameter server. Topology choice (dense graphs vs. sparse rings or tori) affects convergence speed, communication cost, and robustness to data heterogeneity, but prior work uses inconsistent setups that make results incomparable. Adaptive methods that pick neighbors by similarity introduce an additional failure mode: nodes cluster into homogeneous groups, losing gradient diversity without any standard metric capturing the problem.
+Decentralized learning trains across nodes that talk only to neighbors defined by a communication topology, with no central parameter server. Topology — dense graph vs. sparse ring or torus — drives convergence speed, communication cost, and robustness to data heterogeneity, but prior work uses inconsistent setups that make results incomparable. Adaptive neighbor selection adds a failure mode: nodes cluster into homogeneous groups and lose gradient diversity.
 
 ## Key Contributions
 

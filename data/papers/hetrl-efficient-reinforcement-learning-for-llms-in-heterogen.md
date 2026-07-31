@@ -57,10 +57,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3825
 ---
 
-## Background
-
-RL post-training for LLMs requires three compute-heavy stages per iteration: rollout (trajectory sampling), actor update (policy gradients), and critic update. Standard frameworks like Ray assume homogeneous hardware and schedule these stages serially — but real clusters mix GPU generations acquired over multiple procurement cycles. On heterogeneous hardware, naive scheduling wastes fast GPUs waiting on slower ones, and ignores that the three stages have very different memory and compute profiles.
-
 ## Key Contributions
 
 - **Constrained joint optimization**: HetRL models the RL training workflow as a constrained optimization problem over heterogeneous GPU-network topologies, enabling principled task allocation rather than ad-hoc placement of actor, critic, and rollout stages.

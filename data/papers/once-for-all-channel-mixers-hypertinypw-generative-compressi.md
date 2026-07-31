@@ -49,7 +49,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3818
 
 ## Background
 
-TinyML runs neural nets on microcontrollers with kilobytes of flash and SRAM. Pointwise (1×1) convolutions dominate flash footprint in lightweight CNNs like MobileNet because every layer stores its own weight matrix — even INT8-quantized models can exceed MCU budgets. Conventional compression (pruning, quantization) still stores one matrix per layer; no prior approach eliminates the per-layer storage cost by treating layers as instances of a shared latent structure.
+TinyML runs neural nets on microcontrollers with kilobytes of flash and SRAM. Pointwise (1×1) convolutions dominate flash footprint in lightweight CNNs like MobileNet: every layer stores its own weight matrix, and even INT8 models overrun MCU budgets. Pruning and quantization shrink each matrix but still keep one per layer.
 
 ## Key Contributions
 

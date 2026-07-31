@@ -54,7 +54,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3814
 
 ## Background
 
-Mobile SoCs use DVFS (Dynamic Voltage and Frequency Scaling) to trade frequency for power. Each resource — CPU, GPU, DRAM — has its own governor that makes frequency decisions independently, without awareness of the others. LLM inference has two phases with very different resource profiles: prefill is compute-bound, decode is memory-bandwidth-bound. Independent governors react too slowly and inconsistently to these phase transitions, causing 23–40% latency overhead and 5–16% excess energy from coordination failures alone.
+Mobile SoCs use DVFS to trade frequency for power, and each resource — CPU, GPU, DRAM — runs its own governor with no awareness of the others. LLM inference switches between a compute-bound prefill phase and a memory-bandwidth-bound decode phase. Independent governors react too slowly and inconsistently to these transitions, costing 23–40% latency and 5–16% energy on their own.
 
 ## Key Contributions
 

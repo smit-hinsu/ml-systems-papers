@@ -62,10 +62,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3848
 ---
 
-## Background
-
-INT8 quantization reduces memory and enables faster integer arithmetic on edge devices (smartphones, microcontrollers). Quantizing Q/K/V projections is well-understood, but softmax applies an exponential that requires floating-point. Prior INT8 attention implementations therefore dequantize to float for softmax, then requantize — a type-conversion round-trip benchmarked at up to 65% of total attention latency on Armv8 CPUs, negating most of the INT8 speedup gained in the linear layers.
-
 ## Key Contributions
 
 - **IndexSoftmax operator**: A hardware-friendly integer-domain softmax replacement that uses sparsity-aware clipping, a 32-entry lookup table for exponential approximation, and direct integer normalization to eliminate all floating-point operations in the attention path.

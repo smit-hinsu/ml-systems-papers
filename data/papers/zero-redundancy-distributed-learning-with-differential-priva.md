@@ -57,7 +57,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3803
 
 ## Background
 
-Differential privacy (DP) training clips each sample's gradient to a maximum norm and adds calibrated Gaussian noise, bounding any individual example's influence. Per-sample clipping requires computing individual gradients before averaging — incompatible with standard mini-batch computation. ZeRO shards gradients across data-parallel workers to train 100B+ models, but DP requires each worker to apply clipping and noise before gradients are reduced. Naive implementations add extra AllReduce rounds to enforce this ordering, erasing most of ZeRO's efficiency gains.
+Differentially private training clips each sample's gradient to a norm bound and adds calibrated Gaussian noise, bounding any one example's influence. That needs per-sample gradients before averaging — which standard mini-batch computation never materializes. ZeRO shards gradients across data-parallel workers, but DP requires each worker to clip and add noise before the reduction. Naive implementations insert extra AllReduce rounds to enforce that ordering, giving back most of what ZeRO saved.
 
 ## Key Contributions
 

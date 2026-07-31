@@ -54,7 +54,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3847
 
 ## Background
 
-GPU-accelerated UMAP (cuML) runs in minutes for up to ~10M vectors, but industry-scale datasets (hundreds of millions for recommendation systems or genomics) exceed GPU HBM capacity. CPU-based UMAP at that scale takes hours to days, blocking interactive analysis. Out-of-core tiling through GPU memory in stages is the standard technique, but UMAP's k-NN graph construction and optimization steps have complex cross-dataset dependencies that complicate tiling.
+UMAP reduces dimensionality in two phases: build a k-NN graph over the input vectors, then optimize a low-dimensional embedding against it. cuML's GPU version finishes in minutes up to ~10M vectors, but recommendation and genomics datasets run to hundreds of millions and exceed HBM, and CPU UMAP at that scale takes hours to days. Tiling through GPU memory is the standard escape, except both UMAP phases have cross-tile dependencies.
 
 ## Key Contributions
 

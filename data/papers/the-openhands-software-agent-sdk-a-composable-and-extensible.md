@@ -60,10 +60,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3749
 ---
 
-## Background
-
-Software agents run multi-step tasks — code execution, web browsing, file editing, API calls — inside sandboxed environments, maintaining state across many tool calls for minutes to hours. Production deployment needs isolated sandboxes, composable tool interfaces, multi-LLM routing, and lifecycle controls (pause, resume, inspect) that general-purpose inference frameworks don't provide. Most existing agent frameworks bolt these on top of chat APIs, producing fragile integrations that fail at scale.
-
 ## Key Contributions
 
 - **OpenHands SDK V1 architecture**: complete redesign of agent runtime with a minimal agent interface (few lines of code for default case), extensible to custom tools, memory management, and complex agent behaviors.

@@ -61,10 +61,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3735
 ---
 
-## Background
-
-ThunderKittens introduced a C++ tile-based DSL for NVIDIA GPUs that exposes the memory hierarchy and wavefront scheduling without hand-written assembly. AMD's CDNA GPUs (MI300X and successors) are gaining datacenter adoption, but the ROCm stack lacked an equivalent: engineers tolerated compiler-auto-vectorized code or wrote low-level HIP approaching assembly complexity. Porting high-performance attention and GEMM kernels from NVIDIA to AMD required substantial per-kernel effort, fragile across AMD generations.
-
 ## Key Contributions
 
 - **HipKittens (HK) programming framework**: A C++ tile-based DSL for AMD GPUs that ports the ThunderKittens abstractions (explicit tile management, asynchronous execution, fine-grained worker control) to the AMD HIP/ROCm stack with AMD-specific algorithm redesigns.

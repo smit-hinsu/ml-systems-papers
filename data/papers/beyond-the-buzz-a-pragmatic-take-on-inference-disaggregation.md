@@ -70,10 +70,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3819
 ---
 
-## Background
-
-In monolithic LLM serving, prefill and decode share the same GPUs. A long prefill from one request delays decode for all others, causing head-of-line blocking. Prefill-decode disaggregation runs each phase on separate GPU pools for independent scaling, which is theoretically appealing — but how many GPUs to allocate to each phase, whether disaggregation helps for all model sizes and traffic patterns, and what the KV-cache transfer cost is had not been systematically measured before this work.
-
 ## Key Contributions
 
 - **Systematic disaggregation study**: First evaluation of hundreds of thousands of design points spanning workload shapes, GPU counts, and hardware generations; establishes when prefill-decode disaggregation improves vs. degrades the TTFT/throughput Pareto frontier.

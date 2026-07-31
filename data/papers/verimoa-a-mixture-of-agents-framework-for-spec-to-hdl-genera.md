@@ -62,7 +62,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3855
 
 ## Background
 
-Verilog is the register-transfer-level language that synthesis tools compile into actual silicon. Writing correct Verilog requires expressing hardware parallelism, timing constraints, and bit-level behavior simultaneously; small errors produce circuits that silently compute wrong results. LLMs have high error rates on RTL generation tasks because Verilog is underrepresented in training data compared to Python or C++. Mixture-of-Agents (MoA) chains multiple LLM calls together for iterative refinement, but naively passing all outputs forward propagates early errors and reduces solution diversity.
+Verilog is the register-transfer-level language synthesis tools compile into silicon. Correct code expresses hardware parallelism, timing, and bit-level behavior at once, and small mistakes yield circuits that silently compute the wrong thing. LLMs do poorly here because Verilog is rare in training data next to Python or C++. Mixture-of-Agents (MoA) chains several LLM calls for refinement, but passing every output forward propagates early errors and collapses solution diversity.
 
 ## Key Contributions
 

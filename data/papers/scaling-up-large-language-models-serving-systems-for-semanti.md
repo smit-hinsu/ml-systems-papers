@@ -67,10 +67,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3745
 ---
 
-## Background
-
-LinkedIn's job search must rank millions of listings against user profiles in real time — millions of requests per second with strict latency budgets. LLMs dramatically outperform traditional embedding models on semantic matching, but even a small decoder-only LLM is expensive per request: prefill cost scales with input length, and naive deployment would require far more GPUs than cost-per-click economics justify.
-
 ## Key Contributions
 
 - **Structured model pruning**: reduces decoder-only SLM size by up to 40% while maintaining relevance ranking accuracy for semantic job search; enables deployment on fewer GPUs

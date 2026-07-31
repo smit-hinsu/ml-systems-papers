@@ -51,7 +51,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3813
 
 ## Background
 
-Federated learning trains across clients without centralizing data, but on non-IID data full-model aggregation overwrites task-specific layers tuned to each client's distribution. Partial FL keeps later layers local and only federates early general-purpose layers, but deciding where to split has been done by intuition — freeze the last N layers — with no principled method and inconsistent results across architectures.
+Federated learning trains across clients without centralizing data, but on non-IID data full-model aggregation overwrites layers tuned to each client's distribution. Partial FL federates only the early general-purpose layers and keeps later ones local. Where to split has been picked by intuition — freeze the last N layers — with inconsistent results across architectures.
 
 ## Key Contributions
 

@@ -57,10 +57,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3788
 ---
 
-## Background
-
-Beam search test-time compute requires holding each beam's KV cache in GPU memory during decoding. Consumer GPUs (8–24 GB VRAM) can't fit all beams simultaneously for long sequences, so KV caches are offloaded to CPU and paged back. Naive layer-wise offloading produces a waterfall of small independent transfers that stall the GPU — and ignores that beams sharing a common prefix have identical KV data that could be reused.
-
 ## Key Contributions
 
 - **Inter-token locality exploitation**: Within each decode step, consecutive tokens in the same beam access nearly identical KV cache data; the scheduler batches these accesses to maximize transfer reuse per I/O operation.

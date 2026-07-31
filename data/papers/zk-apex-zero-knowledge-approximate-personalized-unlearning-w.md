@@ -53,7 +53,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3793
 
 ## Background
 
-Machine unlearning removes the influence of specific training data from a deployed model, as required by GDPR "right to be forgotten" requests. Retraining is prohibitively expensive, so approximate unlearning applies a lightweight update instead. In personalized federated learning, each user has a locally fine-tuned model, and the provider must trust the prescribed update was applied — verifying this without receiving weights violates privacy. ZK-SNARKs can certify a computation without revealing inputs, but prior systems couldn't scale to neural network operations.
+Machine unlearning strips a deployed model of specific training data, as GDPR "right to be forgotten" requests demand. Retraining costs far too much, so approximate unlearning applies a light update instead. Under personalized federated learning each user holds a locally fine-tuned model, and the provider must take on faith that the prescribed update ran — checking it directly would mean handing over weights. ZK-SNARKs certify a computation without revealing its inputs, but prior systems couldn't scale to neural network ops.
 
 ## Key Contributions
 

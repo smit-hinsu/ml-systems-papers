@@ -47,7 +47,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3765
 
 ## Background
 
-Datacenter maintenance schedulers pack software upgrades (OS patches, firmware updates) into maintenance windows by predicting how long each upgrade takes. Mispredictions are asymmetric: underestimates risk SLO violations when machines stay offline too long; overestimates waste windows by leaving capacity idle. Standard regression models optimizing symmetric accuracy don't capture this asymmetry, and straggler machines that take far longer than peers compound the problem.
+Datacenter schedulers pack software upgrades (OS patches, firmware updates) into maintenance windows by predicting how long each upgrade takes. Mispredictions cost asymmetrically: underestimates risk SLO violations when machines stay offline past the window; overestimates leave capacity idle. Regression models trained on symmetric accuracy miss that asymmetry, and stragglers that take far longer than their peers make it worse.
 
 ## Key Contributions
 

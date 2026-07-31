@@ -53,10 +53,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3849
 ---
 
-## Background
-
-LLM inference SLOs (TTFT and TBT) leave latency slack when requests finish before their deadlines. DVFS (dynamic voltage and frequency scaling) exploits this by running the GPU at lower frequency, trading latency headroom for power savings. Batching strategy and microbatch count interact with DVFS — lowering frequency changes the compute-vs-bandwidth tradeoff, which shifts the optimal batch size. Prior work tunes these knobs in isolation, missing configurations that are only optimal when all three dimensions are solved jointly.
-
 ## Key Contributions
 
 - **Joint resource-power controller**: BEAM co-optimizes GPU frequency (DVFS), chunk size, and microbatch count simultaneously rather than treating them as independent knobs; the coupling between these dimensions means independent optimization yields only local optima

@@ -56,7 +56,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3755
 
 ## Background
 
-Speculative decoding uses a small draft model to propose tokens that a larger target model verifies in one pass. Two bottlenecks limit speedup: autoregressive drafting is sequential (N tokens = N steps), and draft-verifier distribution mismatch causes rejections. Discrete diffusion models can generate all draft tokens in a single non-autoregressive pass, but their training objective differs from autoregressive models — prior diffusion drafters produced low acceptance rates that cancelled the parallelism gain.
+Discrete diffusion models can emit every draft token in a single non-autoregressive pass, removing the sequential bottleneck in speculative drafting. Their training objective differs from an autoregressive target model, though, so earlier diffusion drafters produced acceptance rates low enough to cancel the parallelism gain.
 
 ## Key Contributions
 

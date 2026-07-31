@@ -57,10 +57,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3828
 ---
 
-## Background
-
-Standard LLM parallelism strategies — data, pipeline, and tensor — partition work into equal-sized chunks, which is optimal only when all GPUs have identical capacity. In heterogeneous clusters with mixed GPU generations, the slowest device sets iteration time: fast GPUs idle waiting for the straggler. No existing training framework offered a principled way to right-size each device's workload to its actual compute and memory capacity.
-
 ## Key Contributions
 
 - **Asymmetric parallelism support**: HexiScale extends data-, pipeline-, and tensor-parallelism to allow unequal partition sizes, enabling each GPU to receive a workload slice proportional to its actual compute capacity rather than a fixed equal share.

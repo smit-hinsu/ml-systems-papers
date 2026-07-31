@@ -51,10 +51,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3742
 ---
 
-## Background
-
-Hardware architects designing AI accelerators need to evaluate chips against real ML workloads before fabrication. Production traces are proprietary; synthetic benchmarks misrepresent real training dynamics. Execution trace replay — capturing operator graphs, tensor shapes, and communication dependencies from real runs, then replaying against a simulated hardware model — is the right approach, but no portable open format for these traces existed. Every framework and simulator used its own representation, making cross-organization sharing impossible.
-
 ## Key Contributions
 
 - **Chakra Execution Traces (ET) format**: open, graph-based representation of distributed ML workloads capturing operator execution order, communication dependencies, tensor shapes, and timing metadata — portable across frameworks and hardware platforms and usable for both replay and simulation

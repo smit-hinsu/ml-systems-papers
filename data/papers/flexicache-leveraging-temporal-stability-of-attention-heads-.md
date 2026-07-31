@@ -56,10 +56,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3838
 ---
 
-## Background
-
-The KV cache grows with context length and dominates GPU memory in long-generation workloads. Eviction-based approaches recover memory but risk accuracy loss. FlexiCache builds on the observation that attention heads vary in temporal stability — some consistently attend to the same tokens across decode steps, others are volatile. Stable heads can have most KV pages offloaded to CPU memory without accuracy loss, an asymmetry that uniform eviction policies miss.
-
 ## Key Contributions
 
 - **Temporal stability classification**: Scores each KV head by how consistently it attends to the same tokens across decoding steps; classifies the least-stable 25% as unstable (retain all GPU pages) and the rest as stable (keep only top-K pages on GPU)

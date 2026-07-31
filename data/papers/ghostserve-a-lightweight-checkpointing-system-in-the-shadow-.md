@@ -50,10 +50,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3736
 ---
 
-## Background
-
-Long-running agentic LLM sessions accumulate large KV caches that encode all prior context. A GPU failure mid-session destroys the KV cache and forces full replay from scratch — a cost that scales with session length. Full KV replication to a second GPU doubles memory pressure. Erasure coding offers a middle ground: parity shards can reconstruct any single lost block at lower storage overhead than replication, but applying it to a streaming, growing KV cache requires careful design.
-
 ## Key Contributions
 
 - **Shadow checkpointing with erasure coding**: Applies erasure coding to the streaming KV cache to generate parity shards stored in host memory, enabling fast KV reconstruction after GPU failure without replication overhead.

@@ -55,7 +55,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3804
 
 ## Background
 
-In ML accelerator chips (TPUs, custom ASICs), hundreds of cores must exchange partial sums during matrix multiplications via collective operations: all-reduce aggregates contributions from every core, multicast replicates weights or activations to many cores. Today's on-chip networks (NoCs) route all traffic as unicast — one packet, one destination — so a multicast to N cores requires N transmissions and an all-reduce must shuttle data out to a reduction core and back. Each hop wastes bandwidth and stalls the GEMM pipeline.
+On-chip networks in ML accelerators route every packet as unicast — one packet, one destination. So a multicast of weights to N cores costs N transmissions, and an all-reduce over partial sums must ship data out to a reduction core and back. Hundreds of cores do this on every GEMM, so the wasted hops stall the matmul pipeline.
 
 ## Key Contributions
 

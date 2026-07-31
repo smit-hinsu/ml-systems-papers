@@ -62,10 +62,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3769
 ---
 
-## Background
-
-Serverless LLM inference scales instances on demand, but a new GPU node must download the full model before it can serve — a cold start that can mean hundreds of gigabytes of transfer for large models. FaaScale begins serving requests while the model is still loading, so cold-start time no longer directly adds to user-visible latency.
-
 ## Key Contributions
 
 - **Pipelined multicast inference (PipeCast)**: Synergizes network multicast with dynamic, cross-node pipeline-parallel execution during model transfer — model blocks are multicasted to new nodes while inference is simultaneously served on partially loaded pipelines.

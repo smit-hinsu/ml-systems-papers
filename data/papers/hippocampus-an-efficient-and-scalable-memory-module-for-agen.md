@@ -53,10 +53,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3863
 ---
 
-## Background
-
-LLM-based agents accumulate context across many turns beyond a single context window, requiring external memory stores. Dense vector stores (float embeddings + cosine similarity retrieval) scale poorly: float32/float16 embeddings are large and retrieval requires full vector scans or HNSW indices that store many embedding copies. Knowledge graphs are brittle for unstructured conversation history. Neither approach handles millions of entries on commodity hardware — the regime long-horizon agents eventually reach.
-
 ## Key Contributions
 
 - **Binary signature semantic search**: Compact binary signatures replace high-dimensional float embeddings for semantic similarity search, enabling ultra-fast semantic lookup in the compressed domain without costly dense-vector dot products.

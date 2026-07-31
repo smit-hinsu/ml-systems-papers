@@ -52,10 +52,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3743
 ---
 
-## Background
-
-In distributed MoE models, each expert layer requires an all-to-all collective to route tokens across GPUs — a blocking operation that idles compute on both sides. Overlapping this with other computation is the standard mitigation, but only works if the architecture has independent work to fill the gap. FarSkip-Collective adds skip connections to the model so that later-layer compute can proceed before the all-to-all completes, creating the overlap opportunity structurally.
-
 ## Key Contributions
 
 - **FarSkip-Collective architecture**: Modifies MoE models by adding skip connections that enable overlapping all-to-all communication with computation from subsequent layers, without changing model capacity.

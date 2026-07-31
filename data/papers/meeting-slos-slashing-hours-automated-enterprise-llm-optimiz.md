@@ -56,10 +56,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3752
 ---
 
-## Background
-
-LLM compression (quantization, pruning, distillation) can reduce GPU memory 2–8× and improve throughput, but requires expertise most application teams don't have: selecting schemes, tuning calibration data, and validating accuracy regressions. At a large enterprise, teams default to FP16 or attempt ad-hoc compression that breaks quality. Heterogeneous GPU infrastructure adds further complexity — a multi-stage optimization pipeline must run across partially occupied clusters.
-
 ## Key Contributions
 
 - **OptiKIT framework**: distributed LLM optimization system that automates compression and tuning workflows (quantization, pruning, distillation) for non-expert application teams without requiring deep ML optimization expertise

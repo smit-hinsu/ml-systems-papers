@@ -50,7 +50,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3811
 
 ## Background
 
-Graph Convolutional Networks (GCNs) aggregate neighbor features across graph-structured data. Homomorphic Encryption (HE) enables private inference — compute on encrypted inputs without the server seeing the data — but HE arithmetic is orders of magnitude slower than plaintext. A key efficiency lever is **ciphertext packing**: multiple values packed into one ciphertext amortize per-ciphertext overhead. Poor packing choices force redundant HE operations, and prior HE-GCN systems ran only on a single GPU, making large-graph private inference infeasible.
+Homomorphic encryption (HE) lets a server run inference on encrypted inputs without seeing the data, but HE arithmetic is orders of magnitude slower than plaintext. The main efficiency lever is **ciphertext packing**: several values share one ciphertext and amortize per-ciphertext overhead. Graph convolutional networks aggregate neighbor features through an encrypted adjacency matrix, where a bad packing choice forces redundant HE operations. Prior HE-GCN systems ran on one GPU only.
 
 ## Key Contributions
 

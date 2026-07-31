@@ -63,10 +63,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3770
 ---
 
-## Background
-
-Block floating point (BFP) quantization assigns a shared scale factor to a block of values so only mantissa bits need to be stored per value. NVIDIA's NVFP4 format (native on Blackwell GPUs) uses this approach for 4-bit inference. The standard scale choice — the maximum-magnitude value in the block — prevents overflow but wastes mantissa precision on blocks with skewed distributions where most values are far smaller than the max.
-
 ## Key Contributions
 
 - **ScaleSearch**: fine-grained scale factor search that uses mantissa bits in BFP microscaling formats to minimize quantization error for the given block value distribution; reduces NVFP4 quantization error by 27%

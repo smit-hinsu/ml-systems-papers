@@ -67,10 +67,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3836
 ---
 
-## Background
-
-RL-based LLM fine-tuning (RLHF, GRPO, PPO) generates thousands of rollout sequences per gradient step — autoregressive generation consumes over 75% of wall-clock training time. Speculative decoding is an obvious accelerant, but RL continuously updates the actor model. A draft model calibrated at step 0 diverges from the actor by step 100; acceptance rates collapse, and at the large batch sizes typical in RL rollouts the verifier is already compute-saturated even with a perfect drafter.
-
 ## Key Contributions
 
 - **Dynamic SD configuration tuning**: adapts speculative decoding parameters (draft length, temperature) per training step based on current batch size and model state, avoiding the diminishing-returns regime at large batches

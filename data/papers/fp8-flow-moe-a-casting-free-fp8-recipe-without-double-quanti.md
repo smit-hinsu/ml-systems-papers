@@ -56,10 +56,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3737
 ---
 
-## Background
-
-FP8 on H100/H200 roughly doubles matmul throughput and halves memory bandwidth vs. BF16, but most frameworks keep primary compute in BF16 and cast to FP8 only for matmul. In MoE models with many expert layers, tensors are quantized and dequantized at every boundary, erasing most of the theoretical speedup. When a tensor is quantized along different dimensions for storage vs. compute, two rounding steps accumulate — "double quantization error."
-
 ## Key Contributions
 
 - **Quantization-consistent FP8-centric dataflow**: Maintains tensors in FP8 format throughout the MoE forward and backward pass, eliminating 10 of 12 explicit cast operations via a scaling-aware transpose.

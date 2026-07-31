@@ -40,7 +40,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3812
 
 ## Background
 
-Reinforcement learning for autonomous network security management (blocking traffic, isolating segments, triggering recovery) must train in simulation because running real attacks on live infrastructure is unsafe. The sim-to-real gap — differences in timing, software behavior, and failure modes between a simulated and actual network — means policies that look optimal in simulation often fail in production.
+RL agents for network security management (blocking traffic, isolating segments, triggering recovery) have to train in simulation, since running real attacks on live infrastructure is unsafe. But simulated and real networks differ in timing, software behavior, and failure modes, so policies that look optimal in simulation often fail in production.
 
 ## Key Contributions
 

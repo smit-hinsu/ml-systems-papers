@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3809
 ---
 
-## Background
-
-LLM serving keeps the KV cache in GPU HBM. When the budget fills, systems evict or offload KV to CPU — but PCIe bandwidth (~64 GB/s) makes offloading slow enough to miss TTFT SLOs, causing head-of-line blocking behind long-context requests. The NVIDIA GH200 Superchip connects the Grace CPU and Hopper GPU via NVLink-C2C at ~900 GB/s (~14× PCIe), making fast KV offloading physically possible — but only if the scheduler is redesigned to exploit it proactively.
-
 ## Key Contributions
 
 - **RotaSched**: the first proactive SLO-aware rotary scheduler for Superchips; monitors KV cache occupancy and rotates requests between GPU and CPU memory before the cache budget is exhausted, preventing HOL blocking and maintaining TTFT/TBT compliance.

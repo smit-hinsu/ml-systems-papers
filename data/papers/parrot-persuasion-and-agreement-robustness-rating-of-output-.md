@@ -49,10 +49,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3791
 ---
 
-## Background
-
-LLM sycophancy — abandoning a correct answer when a user confidently asserts a wrong one — is actively harmful in high-stakes settings. Existing evaluations are qualitative or poorly controlled, making it impossible to compare models or track whether RLHF training is improving or worsening the problem. A causal benchmark isolating the effect of authority pressure on accuracy, with a double-blind design, has been missing.
-
 ## Key Contributions
 
 - **PARROT benchmark**: evaluates sycophancy using 1,302 MMLU-style questions across 13 domains paired with authority-framed false alternatives; double-blind design isolates the causal effect of social pressure on accuracy

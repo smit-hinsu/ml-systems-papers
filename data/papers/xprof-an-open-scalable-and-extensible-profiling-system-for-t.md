@@ -60,10 +60,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3827
 ---
 
-## Background
-
-Optimizing ML training across thousands of TPUs requires diagnosing hardware-level bottlenecks — which ops stall on memory bandwidth, which stages leave matrix units idle, where host-device bubbles occur. Traditional profilers require triggering a trace after the fact, so transient anomalies disappear before capture. At fleet scale, raw hardware counters (MXU bus activity, HBM bandwidth, SparseCore utilization) are not self-explanatory — an engineer sees a number, not an actionable diagnosis.
-
 ## Key Contributions
 
 - **Continuous Profiling Snapshots**: always-on flight recorder using a 2GB host-side circular buffer retaining ~90 seconds of performance data; captures anomalies programmatically with <7µs per packet overhead, enabling post-hoc analysis of transient failures without manual re-triggering

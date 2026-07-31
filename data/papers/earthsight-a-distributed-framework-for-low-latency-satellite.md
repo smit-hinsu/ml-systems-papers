@@ -55,7 +55,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3792
 
 ## Background
 
-Earth observation satellites increasingly carry onboard compute to run vision models (fire, flood, ship detection) before downlinking, conserving scarce bandwidth by sending only relevant findings. In a constellation, each satellite typically operates independently, which wastes compute in two ways: separate model instances per task re-run identical backbone computations, and no global scheduler coordinates load — a satellite over a high-value region can be overwhelmed while others over open ocean sit idle.
+Earth observation satellites carry onboard compute to run vision models (fire, flood, ship detection) before downlinking, so scarce downlink bandwidth carries only relevant findings. Each satellite in a constellation usually runs on its own, wasting compute twice over: a separate model instance per task re-runs the same backbone, and nothing coordinates load across satellites — one over a high-value region saturates while others over open ocean sit idle.
 
 ## Key Contributions
 

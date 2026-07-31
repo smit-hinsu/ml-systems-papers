@@ -55,10 +55,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3810
 ---
 
-## Background
-
-In RAG and multi-turn agent workloads, prefill dominates latency because every request must process large context — documents, tool results, conversation history — before generating the first token. Standard prefix caching only helps when requests share identical prefixes; real workloads share most context with small surface differences (different retrieved docs, diverged history) that defeat exact-match caching and leave most reuse opportunity unused.
-
 ## Key Contributions
 
 - **Context index**: identifies overlapping context blocks across LLM interactions (across users and conversation turns), enabling KV-cache reuse even when inputs are not identical prefixes

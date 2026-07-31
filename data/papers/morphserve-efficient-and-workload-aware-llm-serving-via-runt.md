@@ -63,10 +63,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3816
 ---
 
-## Background
-
-LLM serving faces a tension between latency SLOs and GPU utilization. Under traffic bursts, the KV cache fills, requests queue, and TTFT spikes. The standard response — static INT4/INT8 quantization — accepts a permanent accuracy penalty even when the system is lightly loaded and full precision would easily meet SLOs. The ideal is elastic: full precision at normal load, deeper compression under burst, returning to full precision automatically without interrupting in-flight generation.
-
 ## Key Contributions
 
 - **Quantized layer swapping**: asynchronous token-level mechanism that selectively replaces less accuracy-sensitive layers with quantized (INT4/INT8) alternatives during high-load periods, preserving generation quality for critical layers

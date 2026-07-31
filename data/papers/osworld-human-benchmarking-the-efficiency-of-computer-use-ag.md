@@ -40,10 +40,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3865
 ---
 
-## Background
-
-Computer-use agents control a desktop GUI to complete tasks, but benchmarks like OSWorld only measure task completion rate — not how many steps the agent took or how long it ran. Without human-determined optimal trajectories as a reference, there's no way to quantify how inefficient any given agent is. Per-step latency also compounds: each step passes the full action history as context to the planning model.
-
 ## Key Contributions
 
 - **OSWorld-Human benchmark**: manually annotated version of the OSWorld dataset with human-determined optimal trajectories for each task, providing a ground-truth efficiency reference against which agent step counts can be measured

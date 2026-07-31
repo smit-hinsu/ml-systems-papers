@@ -51,10 +51,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3748
 ---
 
-## Background
-
-Auto-tuning searches for optimal kernel parameters (tile sizes, unroll factors, memory access patterns) by benchmarking configurations. Standard search algorithms (evolutionary, Bayesian optimization) are generic — they don't exploit hardware-specific structure or application semantics. LLMs encode implicit knowledge of both, potentially enabling them to synthesize specialized search algorithms rather than just generating kernel code, with hardware performance as the verifiable feedback signal.
-
 ## Key Contributions
 
 - **LLM-driven optimizer synthesis**: framework that prompts LLMs with problem descriptions and search space characteristics to generate, test, and iteratively refine specialized optimization algorithms for auto-tuning, replacing manually designed evolutionary/surrogate baselines

@@ -65,7 +65,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3801
 
 ## Background
 
-VR headsets like Meta Quest Pro run neural avatar reconstruction for each participant in real time, but the on-device GPU saturates quickly with multiple concurrent users. Offloading reconstruction to a nearby edge device would scale capacity, but doing so sends raw facial expression data — intimate biometric information — to an untrusted machine. Differential privacy can mask individual signals, but worst-case per-frame noise destroys reconstruction fidelity.
+VR headsets like Meta Quest Pro reconstruct a neural avatar for each participant in real time, and the on-device GPU saturates with a few concurrent users. Offloading to a nearby edge device would scale capacity but ships raw facial expression data — intimate biometrics — to an untrusted machine. Differential privacy masks individual signals, but worst-case per-frame noise destroys reconstruction fidelity.
 
 ## Key Contributions
 

@@ -87,10 +87,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3858
 ---
 
-## Background
-
-Training frameworks accumulate hardware-specific optimizations across GPU and TPU backends until adding a new feature (RoPE, a new parallelism strategy) requires touching many files and risks breaking other components. At Apple's scale across multiple hardware generations, this O(N) integration complexity slows every research iteration. The design question is whether strict component encapsulation can achieve O(1) integration complexity — adding RoPE in 10 lines rather than hundreds — without sacrificing training throughput.
-
 ## Key Contributions
 
 - **Strict component encapsulation**: each software component in AXLearn exposes a well-defined interface with no cross-layer leakage; this enables composing components across hardware backends without framework-wide refactoring

@@ -62,10 +62,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3864
 ---
 
-## Background
-
-Large reasoning models like DeepSeek-R1 generate chain-of-thought traces spanning thousands of tokens before answering. Each trace token occupies KV cache memory, causing linear memory growth with reasoning length. Per-token KV eviction based on attention scores misses sentence-level redundancy (models often restate intermediate conclusions) and is unstable in multi-batch settings because padding tokens distort attention scores and shrink the effective eviction budget.
-
 ## Key Contributions
 
 - **Sentence-level KV compression**: coarse-grained sentence-level removal of semantically similar CoT sentences, in contrast to per-token eviction; uses a sentence-scoring metric to identify and skip redundant reasoning steps

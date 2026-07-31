@@ -47,10 +47,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3758
 ---
 
-## Background
-
-AI training clusters have historically relied on proprietary high-speed interconnects (InfiniBand), but RoCEv2 over Ethernet with open-source SONiC network OS offers a vendor-neutral alternative. Whether open-Ethernet clusters match proprietary interconnects at 800 Gb/s scale is an open empirical question. Single-tenant clusters dedicated to one LLM project are also rare data points for understanding how GPU utilization actually evolves over a development lifecycle.
-
 ## Key Contributions
 
 - **SAKURAONE system design**: 100-node HPC cluster with 8 NVIDIA H100 GPUs per node, 2 PB all-flash Lustre storage, interconnected via rail-optimized 800 GbE leaf-spine fabric with RoCEv2 — the only top-100 ISC 2025 system using a fully open networking stack (SONiC)

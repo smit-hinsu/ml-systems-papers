@@ -57,10 +57,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3744
 ---
 
-## Background
-
-In tensor-parallel inference, each layer ends with an AllReduce that must complete before the next starts — at large GPU counts this dominates decode latency. The standard fix overlaps it with the next layer's compute by splitting the batch into two sub-batches, but naive splitting creates a **wave quantization** problem: sub-batches that don't fill a whole number of SM waves cost more together than the original single layer. Prior approaches also consume many SMs for communication, contending with compute kernels.
-
 ## Key Contributions
 
 - **Fused AllReduce-RMSNorm kernel**: performs RMSNorm directly on ReduceScatter partial results before the AllGather completes, using NVSHARP/Multimem PTX instructions on Hopper/Blackwell GPUs — reduces HBM reads from two to one and eliminates an intermediate HBM write

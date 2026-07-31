@@ -52,7 +52,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3806
 
 ## Background
 
-Embodied AI agents (robots, simulated agents) call an LLM at each step to decide what to do next — pick up object A, navigate to room B — and block waiting for the response before acting. This per-step synchronous call dominates latency. Crucially, embodied tasks exhibit strong plan locality: the same bounded environment produces similar action sequences across episodes, making cached plans a viable substitute for on-demand LLM generation.
+An embodied agent — a robot or simulated actor — calls an LLM at every step to pick its next action, then blocks until the response arrives. That synchronous call dominates step latency. Embodied tasks have strong plan locality: a bounded environment produces similar action sequences across episodes, so a cached plan can stand in for a fresh LLM call.
 
 ## Key Contributions
 

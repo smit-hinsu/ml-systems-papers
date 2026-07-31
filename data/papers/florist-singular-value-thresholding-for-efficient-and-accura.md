@@ -56,7 +56,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3840
 
 ## Background
 
-Federated fine-tuning trains across many clients (hospitals, phones, edge devices) without centralizing data. LoRA keeps upload sizes small — each client sends low-rank A/B adapter pairs — but simply averaging adapters introduces cross-term noise: (A₁B₁ + A₂B₂)/2 ≠ the average of the underlying weight updates. Correct aggregation otherwise requires reconstructing the full O(d²) weight matrix on the server, which is prohibitively expensive.
+Federated fine-tuning trains across clients (hospitals, phones, edge devices) that never share raw data. LoRA keeps uploads small — each client sends a low-rank A/B adapter pair — but averaging adapters introduces cross-term noise: (A₁B₁ + A₂B₂)/2 is not the average of the underlying weight updates. Aggregating correctly instead means rebuilding the full O(d²) weight matrix on the server, which costs too much.
 
 ## Key Contributions
 

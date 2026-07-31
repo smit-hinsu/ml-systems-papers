@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3843
 ---
 
-## Background
-
-Running LLMs on TPU clusters requires choosing a sharding configuration across tensor, pipeline, data, and expert parallelism dimensions — a space that grows multiplicatively with model depth and the 2D/3D torus interconnect topology. Expert engineers at Google can tune this manually, but it takes days and the knowledge lives in individuals. Exhaustive empirical search is accurate but prohibitively expensive at large TPU allocations.
-
 ## Key Contributions
 
 - **Analyzer Agent**: diagnoses performance bottlenecks by synthesizing profiler traces; identifies sharding misconfigurations across tensor/pipeline/data-parallel dimensions without manual inspection

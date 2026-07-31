@@ -55,10 +55,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3830
 ---
 
-## Background
-
-Low-rank bottleneck architectures factor large transformer weight matrices into a product of two smaller matrices, reducing parameter count. Training at scale uses 3D parallelism (tensor + pipeline + data parallel), but standard tensor parallelism was designed for full-rank matrices. In a bottleneck layer the intermediate tensor is much smaller, so naively splitting it across GPUs leaves each device with a tiny slice — communication dominates and GPUs stall on all-reduce, making naive 3D parallelism 1.8–2.3× slower than necessary.
-
 ## Key Contributions
 
 - **Bottleneck-aware Tensor Parallelism**: A novel parallelism strategy tailored to low-rank bottleneck architectures that reduces cross-device communication by exploiting the factored structure.

@@ -53,10 +53,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3842
 ---
 
-## Background
-
-RAG pipelines and agentic systems retrieve context before answering — vector searches, tool calls, or file reads all take time. Current serving systems wait for all context to arrive before starting prefill, so TTFT = retrieval latency + prefill latency, fully sequential. Prefill could start on already-received chunks while retrieval continues in the background, hiding retrieval latency behind compute.
-
 ## Key Contributions
 
 - **Streaming-aware scheduling for two retrieval modes**: Adaptive scheduling for append-mode (progressive context accumulation) and update-mode (iterative context refinement with cache invalidation) handles the distinct preemption patterns each mode requires.

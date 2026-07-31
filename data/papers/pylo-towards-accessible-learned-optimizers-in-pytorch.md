@@ -48,7 +48,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3824
 
 ## Background
 
-Learned optimizers are neural networks meta-trained to replace fixed rules like Adam — they take gradients as input and output weight updates. The flagship example, VeLO, was meta-trained for 4,000 TPU-months entirely in JAX. No PyTorch library exposed these as drop-in `torch.optim.Optimizer` replacements with competitive throughput, leaving ~70% of the ML community unable to use them.
+Learned optimizers are neural networks meta-trained to replace fixed update rules like Adam: they take gradients in and emit weight updates. The flagship, VeLO, was meta-trained for 4,000 TPU-months entirely in JAX. No PyTorch library exposed these as drop-in `torch.optim.Optimizer` replacements at competitive throughput.
 
 ## Key Contributions
 

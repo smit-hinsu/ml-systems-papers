@@ -53,7 +53,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3839
 
 ## Background
 
-Video conferencing uses UDP — no retransmission, so packet loss causes freezes. Forward Error Correction (FEC) adds sender-side redundancy to recover losses, but real Internet loss is bursty and unpredictable: under-provisioned FEC causes freezes, over-provisioned FEC wastes bandwidth. Deep generative models offer an alternative: reconstruct missing frames at the receiver from surrounding context rather than adding redundancy at the sender.
+Video conferencing runs over UDP — no retransmission, so packet loss freezes video. Forward Error Correction adds sender-side redundancy, but real Internet loss is bursty: too little FEC still freezes, too much wastes bandwidth. Deep generative models offer another route — reconstruct missing frames at the receiver from surrounding context instead of paying redundancy at the sender.
 
 ## Key Contributions
 

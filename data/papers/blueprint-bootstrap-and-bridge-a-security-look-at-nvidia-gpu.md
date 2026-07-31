@@ -50,7 +50,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3741
 
 ## Background
 
-NVIDIA GPU Confidential Computing (GPU-CC) extends Trusted Execution Environments to GPUs, keeping ML models and inputs encrypted from the cloud operator — important for healthcare and regulated workloads on untrusted infrastructure. GPU-CC relies on proprietary mechanisms — security processors, attestation hardware, encrypted PCIe channels — that are not publicly documented. Whether data transfers between the CPU TEE and GPU secure memory are actually protected, or exposed at unguarded "bridges," requires reverse-engineering the architecture to determine.
+NVIDIA GPU Confidential Computing (GPU-CC) extends Trusted Execution Environments to GPUs, keeping models and inputs encrypted from the cloud operator. It rests on proprietary, undocumented mechanisms: security processors, attestation hardware, encrypted PCIe channels. Whether data moving between the CPU TEE and GPU secure memory is actually protected, or exposed at unguarded bridges, can only be settled by reverse-engineering the architecture.
 
 ## Key Contributions
 

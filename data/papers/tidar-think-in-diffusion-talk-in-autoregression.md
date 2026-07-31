@@ -63,7 +63,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3751
 
 ## Background
 
-Autoregressive generation is inherently sequential — each token depends on all prior tokens. Speculative decoding uses a small draft model to propose tokens in parallel for a large model to verify, but requires two separate models. Diffusion language models generate all tokens simultaneously via iterative denoising, achieving parallelism but at a quality penalty vs. AR baselines. The gap is a single-model approach that combines diffusion's parallelism with AR's output quality.
+Diffusion language models produce a whole block of tokens at once by iteratively denoising it, so decoding is parallel rather than one token at a time — but their output quality trails autoregressive models. Prior work treats the two as separate families: pick diffusion for speed or AR for quality, and hybrid schemes still need a second draft model.
 
 ## Key Contributions
 

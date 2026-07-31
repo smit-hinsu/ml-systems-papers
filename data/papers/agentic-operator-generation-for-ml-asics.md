@@ -68,10 +68,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3817
 ---
 
-## Background
-
-A new AI accelerator chip (like Meta's MTIA) cannot run any ML model until every PyTorch ATen operator it needs has a correct implementation — hundreds of primitives covering matmul, normalization, activations, and their data-type/shape variants. Writing these by hand takes weeks per chip. Prior LLM-based kernel generation focused on optimizing a handful of high-value operators; this paper targets correctness across the full operator long tail, using PyTorch's OpInfo test suite (20,000+ tests) as the verifiable signal.
-
 ## Key Contributions
 
 - **TritorX system**: agentic pipeline integrating LLMs with a custom linter, JIT compilation, and PyTorch OpInfo-based test harness to generate functionally correct Triton ATen kernels at scale for new accelerator targets

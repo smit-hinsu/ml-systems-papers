@@ -54,7 +54,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3851
 
 ## Background
 
-GNNs pass messages between connected nodes across layers. Full-graph training — processing all nodes and edges each iteration — is more accurate than mini-batch sampling but requires holding the entire graph in memory simultaneously. Real-world graphs (social, citation, molecular) easily exceed GPU memory, so the standard solution is multi-GPU distribution. GNN neighbor aggregation produces irregular random memory accesses that defeat naive CPU/NVMe offloading strategies, making single-machine alternatives impractical without careful hierarchy management.
+GNNs pass messages between connected nodes at each layer. Full-graph training — all nodes and edges every iteration — is more accurate than mini-batch sampling but needs the whole graph resident at once. Social, citation, and molecular graphs easily exceed GPU memory, so the standard answer is multi-GPU distribution. Neighbor aggregation issues irregular random reads that defeat naive CPU/NVMe offloading, which is why single-machine alternatives need careful hierarchy management.
 
 ## Key Contributions
 

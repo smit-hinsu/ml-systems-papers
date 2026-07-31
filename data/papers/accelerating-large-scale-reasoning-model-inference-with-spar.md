@@ -74,10 +74,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3733
 ---
 
-## Background
-
-Long chain-of-thought reasoning models generate thousands of tokens per response, making inference memory-bandwidth-bound as the KV-cache grows. Speculative decoding speeds generation by having a draft model propose tokens for the full model to verify in one pass, but a separate draft model is impractical when the primary model's KV-cache already strains GPU memory. Self-speculative decoding uses the same model as both drafter and verifier, but needs a sparse attention approximation for draft steps that requires no extra profiling.
-
 ## Key Contributions
 
 - **SpecGen framework**: self-speculative decoding that uses the same model as both draft and target, eliminating the need to maintain a separate smaller draft model while achieving 2.13× throughput over vLLM on long-chain-of-thought workloads

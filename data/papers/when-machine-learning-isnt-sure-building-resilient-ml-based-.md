@@ -57,10 +57,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3772
 ---
 
-## Background
-
-ML models make operational decisions — server provisioning, job routing, I/O admission control — trained on historical telemetry that drifts over time. New application versions, traffic changes, and hardware upgrades create out-of-distribution inputs where predictions can be badly wrong. Unlike a bad recommendation, incorrect system control predictions cascade: an underprovisioned server causes latency spikes, a misrouted job starves a cluster. Standard models produce confident-looking outputs even on OOD inputs, so failures are silent until they cause visible damage.
-
 ## Key Contributions
 
 - **Uncertainty-aware framework for ML-driven systems**: a general approach that quantifies prediction uncertainty at runtime, rejects unreliable outputs, and gracefully degrades to a safe fallback strategy — applicable across diverse system ML tasks.

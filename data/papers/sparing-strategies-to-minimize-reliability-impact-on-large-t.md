@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3862
 ---
 
-## Background
-
-At 10,000+ GPU scale, hardware failures are daily events, not exceptions. When a GPU fails mid-run, the training job stalls until hardware is replaced. Sparing pre-provisions spare GPU nodes or trays for hot-swap, but the configuration space — compute block size, spare count, spare tray count — is non-trivial: over-spare and you waste GPUs sitting idle; under-spare and jobs wait hours for replacement hardware.
-
 ## Key Contributions
 
 - **Analytical sparing framework**: closed-form expressions to guide sparing strategy decisions including compute block size, number of spare blocks, and spare GPU trays; enables first-order recommendations without exhaustive simulation

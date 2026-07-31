@@ -67,10 +67,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3796
 ---
 
-## Background
-
-RAG fetches relevant documents from a large datastore and includes them in the prompt as context. The datastore is too large for GPU memory, so retrieval runs on the CPU and results transfer over PCIe before generation starts — turning retrieval latency directly into user-facing TTFT. Existing LLM serving schedulers treat retrieval as an opaque blocking call rather than an opportunity for asynchronous prefetching.
-
 ## Key Contributions
 
 - **Lookahead retrieval**: predicts which datastore entries will be needed for upcoming RAG lookups based on in-progress LLM generation, and transfers them from CPU to GPU memory in parallel with decode — hiding retrieval latency behind generation.

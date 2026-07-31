@@ -46,10 +46,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3740
 ---
 
-## Background
-
-eBPF lets you attach lightweight tracing programs to kernel and userspace events without recompiling the target process. Edge LLM inference engines like llama.cpp run on devices with no GPU vendor profiling tools, and behaviors like MoE routing (dynamically selecting expert layers) and CPU offloading (moving KV pages to RAM under pressure) are invisible to coarse-grained timers. Without operator-level visibility, developers can't distinguish compute-bound from memory-bandwidth-bound slowdowns.
-
 ## Key Contributions
 
 - **Non-intrusive eBPF profiling**: ProfInfer dynamically attaches eBPF probes to runtime functions across multiple inference engine layers without modifying or recompiling source, making it deployable on production llama.cpp instances.

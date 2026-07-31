@@ -59,10 +59,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3822
 ---
 
-## Background
-
-Context parallelism shards long sequences across GPUs using ring-pattern collectives so each worker sees the full sequence. The difficulty is length diversity in pretraining datasets: short documents (hundreds of tokens) mixed with very long ones (millions). Existing designs either over-shard short sequences — many workers holding tiny slices, wasting bandwidth — or process short and long sequences in separate batches, losing throughput. Neither adapts the communication topology to the actual sequence distribution.
-
 ## Key Contributions
 
 - **FCP (Flexible Context Parallelism)**: shards and schedules sequences at block-level granularity rather than at fixed sequence-level granularity; replaces rigid ring communication topologies with arbitrary peer-to-peer communication for flexible block placement.

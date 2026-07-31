@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3781
 ---
 
-## Background
-
-Google uses LLM-based automated rating to evaluate search quality at the pace of model updates — replacing multi-day human rater cycles. This rating workload competes with live user traffic for the same TPU budget and total demand consistently exceeds capacity. Rating is latency-tolerant compared to user requests, making it a candidate for filling spare capacity, but requires a scheduler that can differentiate priority tiers without over-provisioning dedicated pools.
-
 ## Key Contributions
 
 - **AI Rater Service (AIRS)**: production inference pipeline at Google that performs LLM-based quality evaluation of search engine responses, replacing multi-day human rating processes with low-latency automated ratings

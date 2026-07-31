@@ -54,10 +54,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3859
 ---
 
-## Background
-
-LLM training combines tensor, pipeline, and data parallelism. In heterogeneous clusters — where A100s, H100s, and V100s coexist from gradual upgrades or multi-cloud procurement — standard strategies break: equal-sized pipeline stages mean the slowest GPU determines the step time. Isolating GPU generations into separate jobs wastes slower capacity. Megatron-LM and DeepSpeed have no planner that accounts for per-GPU heterogeneity when assigning pipeline stages and data-parallel groups simultaneously.
-
 ## Key Contributions
 
 - **Pipeline-Efficient ZeRO DP**: novel parallelism strategy that integrates pipeline parallelism with data parallelism in a way that is simultaneously communication-efficient (no extra all-reduce for sharded gradients) and memory-efficient (no full parameter replication across data-parallel ranks), overcoming the tradeoff in existing heterogeneous training systems.

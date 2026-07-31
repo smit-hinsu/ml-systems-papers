@@ -56,10 +56,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3782
 ---
 
-## Background
-
-Speculative decoding papers routinely report 2–4× speedups, but benchmarks almost always measure a single request on a custom inference stack. Production serving uses continuous batching, which keeps the GPU busy regardless of draft quality — the target model's verification pass is already compute-saturated, so verification is no longer "free." Whether SD delivers real latency gains on production inference engines at realistic batch sizes had not been systematically studied.
-
 ## Key Contributions
 
 - **First production-grade SD evaluation**: Systematic study of four SD variants (n-gram, EAGLE/EAGLE-3, Draft-Model, Multi-Token Prediction) on production vLLM, covering diverse workloads, model scales, and batch sizes rather than research prototypes.

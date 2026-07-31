@@ -57,10 +57,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3845
 ---
 
-## Background
-
-Multi-GPU AI kernels often bottleneck on inter-GPU communication rather than compute. The fix is compute-communication overlap: structuring kernels so communication is in-flight while the GPU does independent math. Each workload — tensor-parallel matmuls, sequence-parallel attention, expert routing — has its own ad-hoc implementation today, with no shared abstraction across patterns or GPU generations.
-
 ## Key Contributions
 
 - **ParallelKittens (PK) framework**: minimal CUDA extension of ThunderKittens exposing eight core multi-GPU primitives derived from a systematic analysis of data-transfer mechanisms, resource scheduling, and design overheads

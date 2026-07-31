@@ -50,10 +50,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3795
 ---
 
-## Background
-
-Queries vary enormously in difficulty — a factual lookup doesn't need a 70B model on an H100, but a multi-step reasoning task does. Heterogeneous serving routes easy queries to cheaper models or GPUs and reserves expensive hardware for complex queries. Routing policy and GPU allocation are coupled: routing more traffic to a cheap tier frees capacity on the expensive tier, changing the optimal allocation. Prior systems tune these separately, missing configurations only optimal when both are solved together.
-
 ## Key Contributions
 
 - **BOute (Bayesian Optimization for routing)**: A quality-aware scheduling system that co-optimizes query routing strategy and heterogeneous model deployment using multi-objective Bayesian optimization (MOBO).

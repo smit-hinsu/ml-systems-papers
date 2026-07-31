@@ -66,7 +66,7 @@ venue_url: https://mlsys.org/virtual/2026/oral/3777
 
 ## Background
 
-Server CPUs have multiple NUMA nodes — clusters of cores with local memory banks. Accessing remote NUMA memory is 2–3× slower, causing 20–30% VM performance degradation when vCPUs and memory span nodes. Optimal placement is NP-hard bin-packing: VM configurations vary continuously, topologies differ across server generations, and providers run millions of VMs simultaneously. Heuristics baked into hypervisors generalize poorly across the diversity of VM sizes and workload mixes in a real fleet.
+Server CPUs split cores and memory into NUMA nodes; remote-node memory is 2–3× slower, and a VM whose vCPUs and memory straddle nodes loses 20–30% performance. Placing VMs well is NP-hard bin-packing, and a cloud provider does it for millions of VMs across server generations with different topologies. The heuristics hypervisors ship with generalize poorly across the range of VM sizes and workload mixes in a real fleet.
 
 ## Key Contributions
 

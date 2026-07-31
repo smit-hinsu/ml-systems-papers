@@ -62,10 +62,6 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3789
 ---
 
-## Background
-
-Speculative decoding has a small draft model propose several tokens, then the large target model verifies them in parallel — gaining throughput proportional to how many draft tokens are accepted. The core tension: small drafters are fast but diverge from the target distribution; large drafters improve acceptance length but add enough compute overhead to eliminate the speedup. Architectural tricks (SSM drafters, multi-head drafters) have narrowed but not broken this trade-off.
-
 ## Key Contributions
 
 - **Parameter set disaggregation**: PRISM decouples model capacity from inference cost by distributing each draft prediction step across multiple disjoint parameter sets instead of a single monolithic forward pass, enabling high-capacity drafting at low per-step latency.
