@@ -75,7 +75,7 @@
       {% endif %}
     </div>
     <!-- Domain + topic tags immediately after meta -->
-    {% set has_tags = (paper.domain or []) or (paper.topics or []) or paper.award or paper.status in ['under-review', 'draft'] %}
+    {% set has_tags = (paper.domain or []) or (paper.topics or []) or paper.award or (dev_mode and paper.status in ['under-review', 'draft']) %}
     {% if has_tags %}
     <div class="tags" style="margin-bottom:.5rem;">
       {% for d in paper.domain or [] %}
@@ -85,8 +85,9 @@
         <a href="#" class="tag tag-topic" data-filter-type="topic" data-filter-value="{{ t }}">{{ topics[t].label if t in topics else t }}</a>
       {% endfor %}
       {% if paper.award %}<span class="tag tag-award">★ {{ paper.award }}</span>{% endif %}
-      {% if paper.status == 'under-review' %}<span class="tag tag-review{% if not dev_mode %} dev-badge{% endif %}"{% if not dev_mode %} style="display:none;"{% endif %}>reviewing</span>{% endif %}
-      {% if paper.status == 'draft' %}<span class="tag tag-draft{% if not dev_mode %} dev-badge{% endif %}"{% if not dev_mode %} style="display:none;"{% endif %}>draft</span>{% endif %}
+      {# Review status is internal — emitted only in dev builds, never in prod HTML. #}
+      {% if dev_mode and paper.status == 'under-review' %}<span class="tag tag-review">reviewing</span>{% endif %}
+      {% if dev_mode and paper.status == 'draft' %}<span class="tag tag-draft">draft</span>{% endif %}
     </div>
     {% endif %}
     <!-- Optimization type tags -->
@@ -294,16 +295,18 @@ requestAnimationFrame(() => {
   document.querySelectorAll('.paper-card').forEach(fitMetaRow);
 });
 
-// ── dev mode (?dev=1 in URL) ───────────────────────────────────────────────────
+{% if dev_mode %}
+// ── dev mode banner (?dev=1 in URL) ────────────────────────────────────────────
+// Only shipped in --dev builds. Review badges are rendered server-side there, so
+// there is nothing for a client-side flag to reveal in a prod build.
 (function() {
-  const isDev = new URLSearchParams(location.search).has('dev');
-  if (isDev) {
-    document.querySelectorAll('.dev-badge').forEach(el => el.style.display = '');
+  if (new URLSearchParams(location.search).has('dev')) {
     const banner = document.createElement('div');
     banner.style.cssText = 'position:fixed;bottom:1rem;right:1rem;background:#1e293b;color:#f8fafc;font-size:.75rem;padding:.4em .85em;border-radius:999px;z-index:99;opacity:.85;pointer-events:none;';
     banner.textContent = 'dev mode';
     document.body.appendChild(banner);
   }
 })();
+{% endif %}
 </script>
 {% endblock %}

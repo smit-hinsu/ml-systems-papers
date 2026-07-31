@@ -152,12 +152,14 @@ def main():
     domains = load_registry("domains.yaml")
     topics = load_registry("topics.yaml")
     optimization_types = load_registry("optimization_types.yaml")
-    all_loaded = load_papers()
-    papers = all_loaded if args.dev else [p for p in all_loaded if p.get("status") == "published"]
+    # Every paper is rendered, in both prod and dev. `status` is the internal review
+    # tracker, not a visibility switch — it must not appear anywhere in the prod output.
+    papers = load_papers()
     if not args.dev:
-        excluded = len(all_loaded) - len(papers)
-        if excluded:
-            print(f"Skipping {excluded} non-published paper(s) (use --dev to include all).")
+        unreviewed = len([p for p in papers if p.get("status") != "published"])
+        if unreviewed:
+            print(f"Publishing all {len(papers)} papers ({unreviewed} not yet human-reviewed; "
+                  f"review badges are hidden — use --dev to show them).")
     index = build_index(papers, principles, domains, topics, venues)
 
     def sorted_by_count(registry, paper_index):
