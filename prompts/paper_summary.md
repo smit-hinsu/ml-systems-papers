@@ -110,6 +110,7 @@ than picking the closest wrong thing.
 - `elastic` — reclaim idle resources with secondary tasks that yield on demand
 - `search-ai` — use AI agents to explore configuration or code spaces where objectives are deterministic and benchmarkable
 - `portable` — use hardware-agnostic abstractions to preserve optionality across vendors and interconnects
+- `simplify` — remove a mechanism (scheduling layer, format-conversion stage, per-case specialization) whose management overhead exceeded the benefit it provided; the simpler design counterintuitively outperforms the complex one
 
 **observations** — for each principle slug you picked, write one sentence (**max 200 chars**) as `observations.<slug>` capturing what the authors *specifically observed* in this paper's context. This is NOT a restatement of the principle — it is the paper-specific insight: what they noticed that made the principle applicable, or what the measurement revealed.
 

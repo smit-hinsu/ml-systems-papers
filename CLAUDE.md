@@ -73,6 +73,7 @@ recur across papers regardless of domain or era:
 | `elastic` | Scale elastically to fill spare capacity | distributed |
 | `search-ai` | Search with AI for verifiable problems | tooling |
 | `portable` | Abstract hardware to preserve deployment optionality | tooling |
+| `simplify` | Simplify to remove mechanisms that cost more than they save | efficiency |
 
 **Slug stability.** Slugs are short mechanism-words (`cache`, `pipeline`) chosen to be stable
 even if labels change. If the wording of a label needs updating, edit only `data/principles.yaml`

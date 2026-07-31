@@ -48,6 +48,9 @@ observations:
   fuse: KernelLooping fuses multiple decode iterations into one persistent kernel,
     eliminating launch overhead and inter-kernel synchronization that forces
     unnecessary HBM round-trips on GPU architectures.
+  simplify: GPU decode dispatches every kernel through the CPU at runtime; replacing
+    dynamic dispatch with a statically compiled dataflow graph raises bandwidth
+    utilization from 21% to >75% of roofline.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=7wOOhxkuN8
@@ -58,6 +61,7 @@ principles:
 - tier
 - pipeline
 - fuse
+- simplify
 problem: GPU decode extracts only 21% of memory bandwidth; kernel launch overhead
   and synchronization gaps block continuous data movement during autoregressive decode.
 project_url: ''

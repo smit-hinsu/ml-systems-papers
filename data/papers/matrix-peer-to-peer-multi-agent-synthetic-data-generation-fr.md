@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2511.21686'
 authors:
 - Dong Wang
 - Yang Li
@@ -37,6 +37,9 @@ observations:
   pipeline: Peer-to-peer message passing lets concurrent agentic workflows advance
     in parallel on Ray, overlapping LLM inference across tens of thousands of tasks
     simultaneously.
+  simplify: Centralized orchestration for synthetic data generation serializes task
+    dispatch; a coordinator-free peer-to-peer design achieves 2–15× throughput because
+    the coordinator itself was the bottleneck.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=ok96wGyPdI
@@ -46,6 +49,7 @@ presentation_type: oral
 principles:
 - balance
 - pipeline
+- simplify
 problem: Centralized orchestrators in multi-agent synthetic data pipelines create
   scalability bottlenecks; hardcoded designs limit reuse across diverse generation
   tasks.

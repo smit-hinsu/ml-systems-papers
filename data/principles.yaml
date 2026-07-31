@@ -125,3 +125,13 @@ portable:
     Coupling a system tightly to one hardware vendor or interconnect sacrifices
     the ability to migrate to cheaper or faster alternatives. Hardware-agnostic
     abstractions preserve flexibility at the cost of some per-platform optimization.
+
+simplify:
+  label: "Simplify to remove mechanisms that cost more than they save"
+  category: efficiency
+  description: >
+    Added mechanisms — scheduling layers, format-conversion stages, per-case
+    specializations — impose their own overhead. When that overhead exceeds the
+    benefit the mechanism was designed to provide, removing it yields counterintuitive
+    gains: simpler designs expose hardware-native efficiency by eliminating
+    accidental complexity.

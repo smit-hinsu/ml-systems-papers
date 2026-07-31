@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2511.02302'
 authors:
 - Fengjuan Wang
 - Zhiyi Su
@@ -22,13 +22,14 @@ key_results: FP8-Flow-MoE achieves 21% higher throughput and 16.5 GB less GPU me
 models_evaluated:
 - MoE LLM (671B parameters)
 observations:
-  cache: Scaling-aware transpose and fused FP8 operators eliminate explicit cast operations,
-    reducing Q/DQ conversions from 12 to 2 in the MoE training dataflow.
   fuse: FP8-centric dataflow keeps tensors in FP8 format throughout, eliminating BF16
-    materializaion steps that waste memory bandwidth.
+    materialization steps that waste memory bandwidth.
   quantize: Casting-free FP8 stores and computes in the same format, eliminating double-quantization
     error from the FP8-store→BF16-compute round-trip; single-format FP8 paths reduce
     noise across MoE.
+  simplify: FP8 MoE training maintained a BF16-compatible dataflow with 12 Q/DQ conversion
+    boundaries; the conversion overhead eroded most of FP8's speedup, so removing 10 of
+    12 casts yields 21% throughput gain.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=wyH60Su6G7
@@ -36,9 +37,9 @@ organizations:
 - Zhejiang Lab
 presentation_type: oral
 principles:
-- cache
 - fuse
 - quantize
+- simplify
 problem: FP8 MoE training still relies on BF16-dominated dataflows with frequent quantize-dequantize
   casts, eroding most of FP8's theoretical efficiency gains.
 project_url: ''
