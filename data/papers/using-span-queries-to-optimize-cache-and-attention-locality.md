@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2511.02749'
 authors:
 - Paul Castro
 - Nick Mitchell

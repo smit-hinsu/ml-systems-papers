@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2604.13327'
 authors:
 - Hongyi Jin
 - Bohan Hou

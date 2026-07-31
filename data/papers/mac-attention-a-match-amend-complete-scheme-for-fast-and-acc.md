@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2604.00235'
 authors:
 - Jinghan Yao
 - Sam Jacobs

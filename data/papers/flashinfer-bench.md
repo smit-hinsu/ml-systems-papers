@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2601.00227'
 authors:
 - Shanli Xing
 - Vivian Zhai

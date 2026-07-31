@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2511.03475'
 authors:
 - Yinsicheng Jiang
 - Yeqi Huang

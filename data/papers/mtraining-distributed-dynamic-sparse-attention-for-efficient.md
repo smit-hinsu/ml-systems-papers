@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2510.18830'
 authors:
 - Wenxuan Li
 - Chengruidong Zhang

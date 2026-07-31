@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2605.11517'
 authors:
 - Jaeyong Song
 - Seongyeon Park

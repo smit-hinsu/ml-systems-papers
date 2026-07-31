@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2602.10729'
 authors:
 - Youhe Jiang
 - Fangcheng Fu

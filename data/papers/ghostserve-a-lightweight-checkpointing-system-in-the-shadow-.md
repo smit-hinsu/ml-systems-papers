@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2605.00831'
 authors:
 - Shakya Jayakody
 - Youpeng Zhao

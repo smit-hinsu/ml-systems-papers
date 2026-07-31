@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2512.12131'
 authors:
 - Zhengyang Wang
 - Ziyue Liu

@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2511.03690'
 arxiv_date: ''
 authors:
 - Xingyao Wang

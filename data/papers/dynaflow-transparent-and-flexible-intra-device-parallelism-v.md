@@ -1,6 +1,6 @@
 ---
 agentic_models: []
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2605.21603'
 arxiv_date: ''
 authors:
 - Yi Pan

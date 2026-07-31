@@ -16,7 +16,7 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3759
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=mN5RtvuYl3
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2603.05451'
 presentation_type: oral
 official_category: ''
 award: ''

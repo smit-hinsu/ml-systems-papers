@@ -2,7 +2,7 @@
 agentic_models:
 - Multiple LLM backbones (GPT-4, smaller models)
 arxiv_date: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2510.27617'
 authors:
 - Heng Ping
 - Arijit Bhattacharjee

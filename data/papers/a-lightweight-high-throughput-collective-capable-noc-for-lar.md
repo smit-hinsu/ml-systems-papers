@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2603.26438'
 authors:
 - Luca Colagrande
 - Lorenzo Leone

@@ -1,7 +1,7 @@
 ---
 agentic_models: []
 arxiv_date: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2601.11580'
 authors:
 - Xiaoxuan Liu
 - Jiaxiang Yu
