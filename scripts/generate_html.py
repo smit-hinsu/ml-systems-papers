@@ -4,7 +4,7 @@
 import argparse
 import re
 import shutil
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 from urllib.parse import quote_plus
 
@@ -120,65 +120,27 @@ def build_search_index(papers, principles, domains, topics, venues):
     return records
 
 
-# Hardware values are free text on the papers, so the same chip appears under several
-# spellings. This merge is display-only for the Browse page — it does not touch the
-# paper files. The real fix is a normalization pass plus a hardware registry; until then
-# this keeps the browse list from showing "H100" and "NVIDIA H100" as separate entries.
-_HW_VENDOR = re.compile(r"^(NVIDIA|Nvidia|AMD|Intel|Google)\s+", re.I)
-_HW_ALIAS = {
-    "Blackwell (B200)": "B200",
-    "Hopper (H100)": "H100",
-    "GPU (CUDA)": "GPU",
-    "GPUs": "GPU",
-    "GPU cluster": "GPU",
-    "Multi-GPU": "GPU",
-}
-
-
-def _norm_hardware(value):
-    s = _HW_VENDOR.sub("", (value or "").strip())
-    return _HW_ALIAS.get(s, s)
-
-
-def build_facets(papers, principles, domains, topics, optimization_types, index):
-    """Assemble the Browse page's facet list.
-
-    Two kinds of facet: registry-backed ones carry curated labels and descriptions;
-    derived ones enumerate their values straight from the papers.
-    """
-    def registry_facet(label, hint, param, chip, registry, paper_index):
-        values = []
+def build_facets(domains, topics, index):
+    """Facets shown on the Browse page: domains and techniques."""
+    def facet(label, hint, param, chip, registry, paper_index):
+        options = []
         for slug, item in registry.items():
-            n = len(paper_index.get(slug, []))
-            if n:
-                values.append({"value": slug, "label": (item or {}).get("label") or slug,
-                               "count": n, "title": (item or {}).get("description") or ""})
-        values.sort(key=lambda v: (-v["count"], v["label"]))
-        return {"label": label, "hint": hint, "param": param, "chip": chip, "options": values}
-
-    def derived_facet(label, hint, param, chip, field, normalize=None):
-        counts = Counter()
-        for p in papers:
-            for raw in p.get(field) or []:
-                counts[normalize(raw) if normalize else raw] += 1
-        values = [{"value": v, "label": v, "count": n, "title": f"{n} paper(s)"}
-                  for v, n in counts.most_common()]
-        return {"label": label, "hint": hint, "param": param, "chip": chip, "options": values}
+            item = item or {}
+            options.append({
+                "value": slug,
+                "label": item.get("label") or slug,
+                "count": len(paper_index.get(slug, [])),
+                "description": item.get("description") or "",
+                "category": item.get("category") or "",
+            })
+        options.sort(key=lambda v: (-v["count"], v["label"]))
+        return {"label": label, "hint": hint, "param": param, "chip": chip, "options": options}
 
     return [
-        registry_facet("Principles", "Why the optimization works — the reusable idea.",
-                       "principle", "principle", principles, index["by_principle"]),
-        registry_facet("Domains", "Which part of the ML stack the paper targets.",
-                       "domain", "domain", domains, index["by_domain"]),
-        registry_facet("Techniques", "Concrete methods and mechanisms the paper uses.",
-                       "topic", "topic", topics, index["by_topic"]),
-        registry_facet("Optimization type", "What kind of change the contribution is.",
-                       "opttype", "opttype", optimization_types, index["by_opttype"]),
-        derived_facet("Organizations", "Labs and companies behind the work.",
-                      "organization", "org", "organizations"),
-        # Hardware has no filter param on the index page, so these search instead.
-        derived_facet("Hardware", "Accelerators the results were measured on. Searches rather than filters.",
-                      "q", "topic", "hardware", normalize=_norm_hardware),
+        facet("Domains", "Which part of the ML stack the paper targets.",
+              "domain", "domain", domains, index["by_domain"]),
+        facet("Techniques", "Concrete methods and mechanisms the paper uses.",
+              "topic", "topic", topics, index["by_topic"]),
     ]
 
 
@@ -278,8 +240,7 @@ def main():
            items=ctx["topics"], paper_index=index["by_topic"], **ctx)
 
     render(env, "browse.html.jinja2", out / "browse" / "index.html",
-           facets=build_facets(papers, principles, domains, topics,
-                               optimization_types, index), **ctx)
+           facets=build_facets(ctx["domains"], ctx["topics"], index), **ctx)
 
     print("Generating search page...")
     search_index = build_search_index(papers, principles, domains, topics, venues)

@@ -10,28 +10,32 @@
   Browse
 </div>
 
-<h1 style="font-size: 1.4rem; margin-bottom: .35rem;">Browse</h1>
-<p style="color: var(--text2); font-size: .9rem; margin-bottom: 1.75rem;">
-  Every dimension the index can be filtered or searched by. Each value opens the paper
-  list filtered to it.
-</p>
+<h1 style="font-size: 1.4rem; margin-bottom: 1.5rem;">Browse</h1>
 
 {% for facet in facets %}
-  {% if facet.options %}
-  <section style="margin-bottom: 2rem;">
-    <h2 style="font-size: 1.05rem; margin-bottom: .2rem;">
-      {{ facet.label }}
-      <span class="count-badge">{{ facet.options | length }}</span>
-    </h2>
-    <p style="color: var(--text3); font-size: .8rem; margin: 0 0 .7rem;">{{ facet.hint }}</p>
-    <div class="tags" style="gap: .35rem;">
-      {% for v in facet.options %}
-        <a href="{{ root_path }}index.html?{{ facet.param }}={{ v.value | urlencode }}"
-           class="tag tag-{{ facet.chip }}"
-           title="{{ v.title }}">{{ v.label }} <span style="opacity:.6;">{{ v.count }}</span></a>
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
+<section style="margin-bottom: 2.25rem;">
+  <h2 style="font-size: 1.05rem; margin-bottom: .15rem;">
+    {{ facet.label }}
+    <span class="count-badge">{{ facet.options | length }}</span>
+  </h2>
+  <p style="color: var(--text3); font-size: .8rem; margin: 0 0 .8rem;">{{ facet.hint }}</p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: .75rem;">
+  {% for v in facet.options %}
+    <a href="{{ root_path }}index.html?{{ facet.param }}={{ v.value }}" class="card" style="text-decoration: none; color: inherit;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; margin-bottom: .4rem;">
+        <span class="tag tag-{{ facet.chip }}">{{ v.label }}</span>
+        <span class="count-badge" style="flex-shrink: 0;">{{ v.count }}</span>
+      </div>
+      {% if v.description %}
+        <p style="font-size: .8rem; color: var(--text2); margin-top: .35rem;">{{ v.description | truncate(120) }}</p>
+      {% endif %}
+      {% if v.category %}
+        <div style="font-size: .75rem; color: var(--text3); margin-top: .25rem;">{{ v.category }}</div>
+      {% endif %}
+    </a>
+  {% endfor %}
+  </div>
+</section>
 {% endfor %}
 {% endblock %}
