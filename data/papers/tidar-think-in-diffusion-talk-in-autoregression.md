@@ -29,6 +29,9 @@ observations:
   speculate: Diffusion generates candidate token proposals across all positions in
     parallel; the AR phase verifies and commits only accepted positions, hiding full-sequence
     generation behind one pass.
+  simplify: A separate drafter must be trained, served, and kept aligned with the
+    target, and verification costs a second forward pass — upkeep that buys only
+    parallelism one model could supply itself.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=onfxEjoE4L
@@ -41,6 +44,7 @@ presentation_type: oral
 principles:
 - pipeline
 - speculate
+- simplify
 problem: Speculative decoding serializes generation and needs a draft model; diffusion
   models parallelize token generation but degrade quality vs. AR baselines.
 project_url: ''

@@ -32,6 +32,9 @@ observations:
   tier: Layer-group scheduling keeps each expert's weights resident
     for the full layer group, loading each weight exactly once per request vs. once
     per chunk with token-level scheduling (39% more traffic).
+  simplify: Chunked prefill exists to keep decode stall-free, but on MoE it reloads
+    every expert weight once per chunk — 39% more memory traffic than the stalls it
+    was added to prevent.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=yyDbI3HXco
@@ -42,6 +45,7 @@ principles:
 - fuse
 - pipeline
 - tier
+- simplify
 problem: Chunked prefill in MoE serving forces redundant expert weight reloads per
   chunk, inflating memory traffic by up to 39% and increasing TTFT.
 project_url: ''

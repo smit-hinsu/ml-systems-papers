@@ -51,6 +51,9 @@ observations:
   fuse: Skipping negligible attention blocks eliminates value-block
     HBM loads and the attention-value matmul; at 74% sparsity, bandwidth freed dominates
     the speedup more than compute reduction.
+  simplify: Prior sparse attention needs a training or profiling pass to predict skippable
+    blocks, yet the online-softmax loop already computes the running max that answers
+    the question for free.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=6INSBXTQ4x
@@ -62,6 +65,7 @@ presentation_type: oral
 principles:
 - skip
 - fuse
+- simplify
 problem: Dense softmax is O(n²) and prohibitively slow beyond 32K tokens; sparse alternatives
   require training or profiling — blocking drop-in deployment.
 project_url: ''
