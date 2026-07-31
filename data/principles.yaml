@@ -4,12 +4,14 @@
 # each paper's `observations:` dict.
 #
 # slug:
-#   label: Short, memorable principle statement (action-verb format)
+#   label: Full principle statement (action-verb format); used on the principles page
+#   short: One- or two-word name; used where the observation supplies the context
 #   category: efficiency | memory | distributed | tooling
 #   description: 1-2 sentences. Generic — does not mention specific ML systems or papers.
 
 cache:
   label: "Cache to avoid repeated computation"
+  short: "Cache"
   category: efficiency
   description: >
     Results for repeated inputs can be stored so they are computed only once.
@@ -17,6 +19,7 @@ cache:
 
 pipeline:
   label: "Pipeline independent work to hide latency"
+  short: "Pipeline"
   category: efficiency
   description: >
     Two operations that do not depend on each other can run concurrently,
@@ -24,6 +27,7 @@ pipeline:
 
 skip:
   label: "Skip provably unnecessary work"
+  short: "Skip"
   category: efficiency
   description: >
     When inputs or intermediate values are known to be irrelevant — sparse, zero,
@@ -32,6 +36,7 @@ skip:
 
 fuse:
   label: "Fuse operations to minimize memory bandwidth"
+  short: "Fuse"
   category: memory
   description: >
     Moving data between compute and memory — or between memory tiers — is often
@@ -40,6 +45,7 @@ fuse:
 
 tier:
   label: "Keep hot data near compute"
+  short: "Tier"
   category: memory
   description: >
     Memory systems have a hierarchy of tiers with orders-of-magnitude differences
@@ -48,6 +54,7 @@ tier:
 
 recompute:
   label: "Recompute to save storage"
+  short: "Recompute"
   category: memory
   description: >
     Some intermediate values are cheaper to recompute on demand than to store.
@@ -56,6 +63,7 @@ recompute:
 
 quantize:
   label: "Quantize to trade precision for efficiency"
+  short: "Quantize"
   category: efficiency
   description: >
     Reducing numerical precision from FP32 to lower-bit formats shrinks memory
@@ -64,6 +72,7 @@ quantize:
 
 approximate:
   label: "Approximate to trade quality for efficiency"
+  short: "Approximate"
   category: efficiency
   description: >
     Exact computation can be replaced with a cheaper approximation when the quality
@@ -72,6 +81,7 @@ approximate:
 
 speculate:
   label: "Speculate to hide sequential latency"
+  short: "Speculate"
   category: efficiency
   description: >
     When the result of a sequential dependency cannot be known in advance, a guess
@@ -80,6 +90,7 @@ speculate:
 
 batch:
   label: "Batch to amortize fixed overheads"
+  short: "Batch"
   category: efficiency
   description: >
     Fixed per-call costs — kernel launch, memory allocation, data movement —
@@ -88,6 +99,7 @@ batch:
 
 balance:
   label: "Balance load to maximize utilization"
+  short: "Balance"
   category: distributed
   description: >
     When parallel workers have unequal amounts of work, the faster workers idle
@@ -96,6 +108,7 @@ balance:
 
 specialize:
   label: "Specialize divergent workloads for independent optimizations"
+  short: "Specialize"
   category: distributed
   description: >
     When a workload contains structurally different sub-tasks — prefill vs. decode,
@@ -104,6 +117,7 @@ specialize:
 
 elastic:
   label: "Scale elastically to fill spare capacity"
+  short: "Elastic"
   category: distributed
   description: >
     Resources left idle by the primary workload can be reclaimed by secondary tasks
@@ -112,6 +126,7 @@ elastic:
 
 search-ai:
   label: "Search with AI for verifiable problems"
+  short: "Search with AI"
   category: tooling
   description: >
     When an objective is deterministic and benchmarkable, AI agents can explore
@@ -120,6 +135,7 @@ search-ai:
 
 portable:
   label: "Abstract hardware to preserve deployment optionality"
+  short: "Portable"
   category: tooling
   description: >
     Coupling a system tightly to one hardware vendor or interconnect sacrifices
@@ -128,6 +144,7 @@ portable:
 
 simplify:
   label: "Simplify to remove mechanisms that cost more than they save"
+  short: "Simplify"
   category: efficiency
   # TODO(revisit): the boundary against `fuse` (avoiding intermediate materialization)
   # and `skip` is not crisp enough yet — several papers arguably qualify under either.

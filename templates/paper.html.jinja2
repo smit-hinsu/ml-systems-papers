@@ -76,7 +76,7 @@
           {% set pr = principles.get(i) %}
           {% set obs = (paper.observations or {}).get(i) %}
           <li>
-            <a href="{{ root_path }}index.html?principle={{ i }}"><strong>{{ pr.label if pr else i }}</strong></a>
+            <a href="{{ root_path }}index.html?principle={{ i }}"><strong>{{ (pr.short or pr.label) if pr else i }}</strong></a>
             {% if obs %} — {{ obs }}{% endif %}
           </li>
         {% endfor %}
