@@ -20,9 +20,7 @@ key_results: BOute improves throughput by up to 157% and reduces cost by 15-61% 
   existing systems under identical quality and latency constraints.
 models_evaluated:
 - Heterogeneous LLMs
-observations:
-  cache: MOBO jointly searches routing strategy and model deployment config, avoiding
-    the sub-optimality of tuning each independently.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=ZVQb92umqX
 optimization_type: []
@@ -30,8 +28,7 @@ organizations:
 - University of Cambridge
 - Shanghai Jiao Tong University
 presentation_type: oral
-principles:
-- cache
+principles: []
 problem: Co-optimizing query routing across heterogeneous LLMs and GPU deployment
   configs is too complex for manual tuning, leaving significant cost savings unrealized.
 project_url: ''
