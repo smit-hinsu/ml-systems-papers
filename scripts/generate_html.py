@@ -42,7 +42,6 @@ def load_papers():
 
 
 _PRESENTATION_RANK = {"oral": 1, "spotlight": 2, "poster": 3}
-_STATUS_RANK = {"published": 0, "under-review": 1, "draft": 2}
 
 
 class _Desc(str):
@@ -54,15 +53,18 @@ class _Desc(str):
 
 
 def sort_papers(papers):
+    # `status` is deliberately NOT a sort key. It tracks human review progress and is
+    # hidden from the production build, so ordering by it would rank papers by something
+    # the reader cannot see — which put the one reviewed paper on top regardless of merit.
+    #
     # TODO: revisit this ordering when the index includes non-MLSys venues —
     # award tiers and presentation types aren't standardized across conferences.
     def key(p):
-        status_rank = _STATUS_RANK.get(p.get("status") or "draft", 2)
         award_rank = 0 if p.get("award") else 1
         ptype_rank = _PRESENTATION_RANK.get(p.get("presentation_type") or "", 99)
         citations = -(p.get("citations") or 0)
         date = _Desc(p.get("arxiv_date") or "")
-        return (status_rank, award_rank, ptype_rank, citations, date, _Desc(p.get("title") or ""))
+        return (award_rank, ptype_rank, citations, date, _Desc(p.get("title") or ""))
 
     return sorted(papers, key=key)
 
