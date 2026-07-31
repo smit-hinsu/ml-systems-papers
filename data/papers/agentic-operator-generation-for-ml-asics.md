@@ -29,6 +29,7 @@ citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - ml-kernels
+- hardware
 hardware:
 - MTIA
 indexed_by: smithinsu

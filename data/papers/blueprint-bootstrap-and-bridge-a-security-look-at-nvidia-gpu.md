@@ -16,6 +16,7 @@ citations_updated: '2026-07-31'
 code_url: ''
 domain:
 - observability
+- hardware
 hardware:
 - NVIDIA GPU (Ampere, Hopper)
 indexed_by: smithinsu

@@ -40,3 +40,7 @@ fleet-efficiency:
 edge-inference:
   label: "Edge Inference"
   description: "On-device and edge inference: mobile, embedded, and resource-constrained deployment"
+
+hardware:
+  label: "Hardware"
+  description: "Accelerator and interconnect design, hardware-software co-design, and hardware-level characterization"

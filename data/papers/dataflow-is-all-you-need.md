@@ -30,6 +30,7 @@ citations_updated: ''
 code_url: ''
 domain:
 - llm-serving
+- hardware
 hardware:
 - SambaNova SN40
 - H100

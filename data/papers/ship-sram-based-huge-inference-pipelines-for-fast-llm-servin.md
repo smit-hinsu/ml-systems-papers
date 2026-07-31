@@ -34,6 +34,7 @@ citations_updated: ''
 code_url: ''
 domain:
 - llm-serving
+- hardware
 hardware:
 - GroqChip
 indexed_by: smithinsu

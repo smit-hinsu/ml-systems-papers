@@ -157,3 +157,14 @@ simplify:
     benefit the mechanism was designed to provide, removing it yields counterintuitive
     gains: simpler designs expose hardware-native efficiency by eliminating
     accidental complexity.
+
+measure:
+  label: "Measure before optimizing"
+  short: "Measure"
+  category: tooling
+  description: >
+    At scale the bottleneck is rarely where intuition puts it, and an improvement
+    nobody can attribute is an improvement nobody can defend. Building the instrument —
+    a profiler, a benchmark, a simulator, or a metric that splits one number into
+    actionable parts — is a contribution in its own right, and usually the one that
+    makes every later optimization possible.

@@ -12,6 +12,7 @@ citations_updated: ''
 code_url: ''
 domain:
 - ml-compilers
+- hardware
 hardware: []
 indexed_by: smithinsu
 indexed_date: '2026-05-25'

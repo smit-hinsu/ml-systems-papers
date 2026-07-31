@@ -14,6 +14,7 @@ citations_updated: '2026-07-31'
 code_url: https://github.com/WanliZhong/IntAttention
 domain:
 - edge-inference
+- hardware
 hardware:
 - Armv8 CPUs
 indexed_by: smithinsu
