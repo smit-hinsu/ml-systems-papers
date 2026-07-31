@@ -148,12 +148,17 @@ Evaluate on these 6 dimensions:
 1. PROBLEM VOICE: Does `problem` read like a practitioner describing a real cost or
    breakage at scale (specific, concrete) or like an academic abstract (vague, generic)?
 
-2. KEY CONTRIBUTIONS: Do the `## Key Contributions` bullets each name a specific
-   artifact (algorithm/data structure/protocol) with a concrete mechanism?
+2. KEY CONTRIBUTIONS: Do the bullets each name a specific artifact (algorithm/protocol/
+   data structure) with a concrete mechanism? They should assume the reader already knows
+   the principle and the motivating problem — skip re-explaining those. Flag any bullet
+   that could be replaced by just reading the principle label + observation.
 
-3. OBSERVATIONS: For each observation, does it say something paper-specific — what
-   the authors noticed that made the principle applicable — or does it just restate
-   the general principle description?
+3. OBSERVATIONS: Each observation should capture the *motivating problem insight* that
+   makes the principle applicable — i.e., what the paper noticed about the problem
+   situation, NOT the solution. Bad example: "we overlap prefill and decode" (describes
+   the solution). Good example: "downstream agents idle waiting for upstream output despite
+   having spare GPU capacity" (describes the problem). Flag any observation framed as a
+   solution description or that restates the principle.
 
 4. MISSING NUANCES: What obvious limitations or gotchas are likely present but missing
    from `## Nuances`? (One sentence only; skip if nuances look complete.)
@@ -305,8 +310,11 @@ def main() -> None:
     print(f"\n{hr('Checklist')}")
     checks = [
         "Read the paper (link above)",
-        "Verify key_results: hardware + model + metric + named baseline",
+        "Background: remove if domain obvious from title+key_results; keep ≤80 words only when non-obvious",
+        "Verify key_results: hardware + model + metric + named baseline ≤160 chars",
         "Verify principles: core mechanism only, not tangential",
+        "Verify observations: motivating problem insight, not solution description",
+        "Verify Key Contributions: concrete artifact+mechanism; assumes reader knows principles",
         "Verify domain and topics: correct and complete",
         "Add optimization_type (algorithm / system / hardware / workflow / application)",
         "Fill code_url if findable (check OpenReview / arXiv abstract)",

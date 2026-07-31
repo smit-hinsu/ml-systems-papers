@@ -2,26 +2,36 @@
 
 A community-maintained, semi-structured index of ML systems papers. The current corpus covers all 135 MLSys 2026 oral presentations and is organized by principle, domain, and topic rather than by conference or date.
 
-**Live site:** [mlsys26.hinsu.org](https://mlsys26.hinsu.org) *(coming soon)*
-
 ## What's here
 
 Each paper gets:
-- Structured metadata: domain, topics, principles, hardware, organizations, key results
-- A one-paragraph problem statement
+- Structured metadata: domain, topics, principles, optimization type, hardware, organizations, key results
+- A one-line problem statement in practitioner voice
 - A summary with key contributions, trade-offs, and nuances
 - Cross-links to papers sharing the same principle or topic
 
 Papers are browsable by:
-- **Principle** — cross-cutting optimization ideas (e.g., "fusion reduces memory bandwidth", "kernel performance is verifiable by LLMs")
-- **Domain** — LLM serving, LLM training, agentic inference, recommendation models, ML compilers, fleet efficiency
-- **Topic** — KV cache, speculative decoding, FSDP, quantization, kernel fusion, etc.
+- **Principle** — 16 cross-cutting optimization ideas that recur regardless of domain (e.g. "Cache to avoid repeated computation", "Speculate to hide sequential latency", "Simplify to remove mechanisms that cost more than they save"). Each paper's `observations` field records what *this* paper noticed that made the principle apply.
+- **Domain** — 10 domains: LLM serving, LLM training, RL training, recommendation models, agentic inference, ML compilers, ML kernels, observability, fleet efficiency, edge inference
+- **Topic** — 27 concrete technique tags: KV cache, speculative decoding, FSDP/ZeRO, quantization, kernel fusion, expert parallelism, etc.
+- **Optimization type** — algorithm, system, hardware, workflow, application
 
-## Current coverage
+## Current status
 
-| Conference | Papers indexed |
-|-----------|---------------|
-| MLSys 2026 | 135 |
+All 135 papers have full summaries and pass `validate.py` with zero errors and zero warnings.
+Entries move through a review gate — `draft` → `under-review` → `published` — and the production
+build publishes only reviewed papers. Use `--dev` to preview everything.
+
+| | Count |
+|---|---|
+| Papers indexed (MLSys 2026) | 135 |
+| `published` | 1 |
+| `under-review` | 9 |
+| `draft` | 125 |
+
+Metadata completeness: `organizations` 135/135 · `slides_url` 112/135 · `arxiv_url` 68/135 · `code_url` 29/135 · `citations` 0/135.
+
+*(counts as of 2026-07-31)*
 
 ## Quick start
 
@@ -31,12 +41,21 @@ cd ml-systems-papers
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-# Build the site
+# Build the site (production: published papers only)
 python scripts/generate_html.py
 open site/index.html
 
-# Validate papers
+# Build with drafts included, status badges shown
+python scripts/generate_html.py --dev
+
+# Validate papers — schema, registries, char limits
 python scripts/validate.py
+
+# Content quality heuristics (--llm for a per-paper LLM critique)
+python scripts/check_quality.py
+
+# Per-paper review brief before publishing
+python scripts/review.py <slug>
 
 # Add a new paper
 python scripts/new_paper.py \
@@ -49,27 +68,36 @@ python scripts/new_paper.py \
 
 ```
 data/
-  papers/           # one .md file per paper (YAML frontmatter + Markdown body)
-  principles.yaml   # canonical principle registry
-  domains.yaml      # domain taxonomy
-  topics.yaml       # topic tags
-  venues.yaml       # conference/venue registry
-  site.yaml         # site-wide config (name, GitHub handle)
+  papers/                 # one .md file per paper (YAML frontmatter + Markdown body)
+  principles.yaml         # canonical principle registry (the primary taxonomy)
+  domains.yaml            # domain taxonomy
+  topics.yaml             # concrete technique tags
+  optimization_types.yaml # algorithm / system / hardware / workflow / application
+  venues.yaml             # conference/venue registry
+  site.yaml               # site-wide config (name, GitHub handle, analytics)
 scripts/
-  generate_html.py  # builds site/ from data/
-  validate.py       # checks schema and registry references
-  new_paper.py      # creates a paper template from a URL
-  fetch_metadata.py # pulls citation counts from Semantic Scholar
-  fetch_mlsys_slides.py  # scrapes MLSys virtual for slides + OpenReview links
-templates/          # Jinja2 HTML templates
-site/               # generated output (gitignored)
-schema.md           # full field documentation
-CONTRIBUTING.md     # how to add papers
+  generate_html.py   # builds site/ from data/ (--dev includes drafts)
+  validate.py        # schema, registry references, char limits
+  check_quality.py   # content heuristics, optional LLM critique
+  review.py          # per-paper review brief: data gaps, validation, LLM check
+  new_paper.py       # creates a paper template from a URL
+  fetch_metadata.py  # pulls citation counts from OpenAlex
+  fetch_arxiv.py     # resolves arXiv URLs by title match
+  fetch_slides.py    # scrapes MLSys virtual for slides URLs (needs a logged-in browser)
+templates/           # Jinja2 HTML templates
+site/                # generated output (gitignored)
+docs/
+  schema.md          # full field documentation
+  summarizing.md     # quality bar for paper summaries
+  plan.md            # working plan and review checklist
+prompts/
+  paper_summary.md   # the LLM prompt used to generate paper entries
+CONTRIBUTING.md      # how to add papers
 ```
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). The fastest way to help: pick any unindexed paper and open a PR with a new file in `data/papers/`.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/schema.md](docs/schema.md). The fastest way to help: pick any unindexed paper and open a PR with a new file in `data/papers/`. Run `python scripts/validate.py` before submitting.
 
 ## Adding a new conference
 

@@ -29,13 +29,38 @@ what's left each session — update them as work happens.
 
 ### Infrastructure additions (this session)
 - [x] `?dev=1` URL flag — shows draft/reviewing status badges client-side without separate build
-- [x] `scripts/review.py` — per-paper review brief: data gaps, validation, heuristics, LLM check
+- [x] `scripts/review.py` — per-paper review brief: data gaps, validation, heuristics, LLM check (prompt updated: observation framing + Key Contributions conciseness rules)
 - [x] `check_quality.py` LLM prompt updated: adds optimization_type suggestion, domain/topic check, 6000-char body
 - [x] `optimization_type` registry (`data/optimization_types.yaml`): algorithm, system, hardware, workflow, application
 
 ---
 
-## Track 1 — Per-paper review (quality gate)
+## Track 0 — Ship v1 (all 135 papers public)
+
+**Decision (2026-07-31):** v1 publishes *all* 135 papers, not just human-reviewed ones. Review
+continues after launch as a quality pass, not a gate.
+
+- [ ] **Commit the working tree** — 51 modified + 3 untracked files are uncommitted (last commit
+      `d6b0ebe`, local == origin/main). Contains: `simplify` principle added to registry and 5 papers,
+      68 `arxiv_url` values, `review.py` updates, prompt updates, README rewrite. Untracked:
+      `scripts/fetch_arxiv.py`, `scripts/fetch_arxiv_urls.py`.
+- [x] **Decided how "publish everything" is implemented** (2026-07-31): the prod build renders
+      **all** papers regardless of `status`, and `status` stays in the data as the internal review
+      tracker — never rendered in prod. Review badges appear only under `--dev` / `?dev=1`.
+      No mass-flip of the 135 files, so the record of which papers were actually reviewed survives.
+- [ ] `generate_html.py`: drop the status filter from the prod path; render every paper
+- [ ] Suppress status badges in prod templates (keep them behind `--dev` / `?dev=1`)
+- [ ] Keep `status` out of the prod search index and any `data-*` attributes — "not in the prod
+      build" means not in the shipped HTML at all, not merely hidden with CSS
+- [ ] Naming wart to revisit: `status: published` now means "human-reviewed", not "visible on the
+      site". Consider renaming the field to `review_status` with values `unreviewed` /
+      `under-review` / `reviewed` once v1 is out.
+- [ ] Add a short "these entries are AI-generated and under review" note to the site header/footer
+- [ ] Build prod, spot-check, push → GitHub Actions deploy
+
+---
+
+## Track 1 — Per-paper review (quality pass, no longer a launch gate)
 
 Move each paper `under-review` → `published` after human review.
 
@@ -62,8 +87,8 @@ python scripts/review.py --no-llm <slug>  # skip LLM call (faster)
 11. Set `status: published`
 12. Capture any systematic error found → add to Global Checklist below
 
-### Paper status (as of 2026-05-26)
-- 1 published · 9 under-review · 125 draft
+### Paper status (as of 2026-07-31)
+- 1 published · 9 under-review · 125 draft — unchanged since 2026-05-26
 - Run `python scripts/review.py <slug>` before reading each paper
 
 ### Paper TODOs (first batch — oral/award papers)
@@ -97,16 +122,64 @@ Remaining 125 draft papers: add rows here as you work through them, or track in 
 - [ ] `attention-kernels` tagging — audit all papers doing attention kernel work (2 known; likely more)
 - [ ] `graph-learning` domain — decision pending: add domain for grinnder + g-hemp, or leave as `ml-kernels`
 
+### `simplify` back-tag sweep (incomplete)
+
+`simplify` was added to the registry and applied to only **5 of 135** papers
+(dataflow-is-all-you-need, fp8-flow-moe, intattention, matrix-p2p, parallelkittens). The sweep
+never covered the rest of the corpus.
+
+- [ ] Sweep all 135 papers for `simplify` candidates — papers whose win comes from *removing* a
+      mechanism (a scheduler, a conversion stage, a specialization) rather than adding one
+- [ ] Each new tag needs a matching `observations.simplify` entry (validator requires one)
+
+### Full taxonomy consistency audit (all 135, not just under-review)
+
+Current per-principle distribution is badly skewed, which is the signature of the over-tagging
+failure mode already documented in CLAUDE.md:
+
+| Principle | Papers | | Principle | Papers |
+|---|---|---|---|---|
+| `balance` | 57 | | `speculate` | 7 |
+| `cache` | 48 | | `simplify` | 5 |
+| `pipeline` | 38 | | `quantize` | 5 |
+| `fuse` | 37 | | `recompute` | 2 |
+| `tier` | 33 | | `specialize` | 1 |
+| `skip` | 23 | | `portable` | 1 |
+| `search-ai` | 15 | | `elastic` | 1 |
+| | | | `approximate` | 1 |
+| | | | `batch` | **0** |
+
+- [ ] **`balance` audit (57 papers, 42% of corpus)** — the exact mistake CLAUDE.md warns about:
+      "`balance` ≠ any distributed paper". Expect a large fraction to be untagged.
+- [ ] **`cache` audit (48)** — same failure mode: "`cache` ≠ any paper that uses caching"
+- [ ] **`pipeline` audit (38)** — "`pipeline` ≠ any parallel system"
+- [ ] **`batch` has zero papers** — either it is genuinely unused (then consider removing it from
+      the registry) or continuous/dynamic batching papers were tagged `balance`/`pipeline` instead
+- [ ] **Under-used principles (`approximate`, `elastic`, `portable`, `specialize` at 1 each)** —
+      check whether papers that should carry them were absorbed into the popular principles
+- [ ] Re-check every paper has ≤4 principles (CLAUDE.md: "5+ usually means over-tagging")
+- [ ] Verify every `principles:` entry has a matching `observations:` key — currently clean (0 gaps)
+
+### Principle hierarchy
+
+Deferred to Track 6 below — not required for v1.
+
 ---
 
 ## Track 3 — Metadata completeness
 
-Stats as of 2026-05-26: slides 112/135 · arxiv 24/135 · code 29/135 · orgs 135/135
+Stats as of 2026-07-31 (verified): slides 112/135 · arxiv 68/135 · code 29/135 · orgs 135/135 ·
+openreview 135/135 · venue 135/135 · project 1/135
 
 - [x] **`organizations`**: all 135 filled
 - [x] **`slides_url`**: 112/135 filled (23 missing) — ran `fetch_slides.py` after mlsys.org login
 - [ ] **`slides_url`** (remaining 23): re-run `fetch_slides.py` to pick up stragglers; may need fresh login
-- [ ] **`arxiv_url`**: 111/135 missing — Semantic Scholar title search, serial with 0.5s delays (batch agent)
+- [ ] **`arxiv_url`**: 68/135 filled (67 missing). Use `python scripts/fetch_arxiv.py` (arXiv API,
+      1.5s delays, title-match validation); many remaining papers are industry-only and may have no
+      arXiv ID. Note: `scripts/fetch_arxiv.py` and `fetch_arxiv_urls.py` are **untracked** — commit them.
+- [ ] **`arxiv_url` malformed**: `kitty-accurate-and-efficient-2-bit-kv-cache-quantization-wit.md` has
+      a bare ID `'2511.18643'` instead of a URL. Add a URL-format check to `validate.py` so this
+      class of error can't recur.
 - [ ] **`citations`**: 0/135 — run `scripts/fetch_metadata.py` after arxiv_url populated; OpenAlex API
 - [ ] **`code_url`**: 106/135 missing — batch agent reads OpenReview/arXiv page per paper for GitHub link; NOT general web search
 
@@ -128,6 +201,116 @@ Stats as of 2026-05-26: slides 112/135 · arxiv 24/135 · code 29/135 · orgs 13
 - [ ] **`optimization_type` filter**: tags render on cards and paper pages; no UI filter chip yet in the section nav — add when enough papers are tagged to make filtering useful
 - [ ] **Analytics**: add GoatCounter snippet to `analytics_html` in `data/site.yaml` (needs account URL)
 - [ ] **Fuse.js weights**: `topic_labels` in search index; verify weights are well-tuned
+
+---
+
+## Track 5 — Media: posters, images, video recordings (future)
+
+Not needed for v1. Each item needs a schema field before any fetching starts.
+
+- [ ] **`poster_url`**: MLSys posts poster PDFs/PNGs on the virtual site per presentation. Same
+      auth constraint as slides — extend `fetch_slides.py` rather than writing a new scraper, since
+      it already handles the logged-in browser session.
+- [ ] **`video_url`**: link to the published recording when the conference posts it (MLSys
+      typically publishes talk videos on the virtual site and/or YouTube after the event). Needs a
+      check for availability before a bulk pass — recordings may not exist yet for MLSys 2026.
+- [ ] **Card/social images**: generate a per-paper image for link previews and card thumbnails.
+      Two options: (a) render the poster's first page to a thumbnail, (b) generate an OG image from
+      the paper's title + principles + key_results with PIL or headless Chrome. Option (b) is
+      self-contained and works for all 135 regardless of poster availability — prefer it, and treat
+      posters as an enrichment.
+- [ ] **`og:image` meta tags** in `templates/base.html` once images exist — this is what makes
+      shared links look right in Slack/Twitter/LinkedIn
+- [ ] Storage decision: committed to the repo under `site/assets/` vs. generated at build time.
+      Generated-at-build keeps the repo small but slows CI; 135 small WebPs is probably fine to commit.
+
+---
+
+## Track 6 — Principle hierarchy (future, post-v1)
+
+Proposed representation, not yet implemented. Nothing here blocks v1.
+
+**Tasks**
+- [ ] Add `data/principle_groups.yaml` (6 groups: label + description)
+- [ ] Rename `category:` → `group:` in `data/principles.yaml`; set the group for all 16 principles
+- [ ] `validate.py`: papers may reference **leaf** slugs only — reject group slugs in `principles:`;
+      every principle must declare a `group` that exists; enforce depth exactly 2
+- [ ] `generate_html.py` + templates: group sections on the principles page, group label on
+      paper-page chips, group filter pages (union of the group's leaves)
+- [ ] Update `CLAUDE.md` principles table and `docs/schema.md` with the group column
+- [ ] Update `prompts/paper_summary.md` — generation still picks leaves only; groups are
+      navigation, so the prompt's taxonomy list does not change shape
+- [ ] Confirm existing leaf URLs are unchanged (no link rot)
+
+**The problem.** Some principles are subtypes of others — `quantize` is a special case of
+`approximate` (trade fidelity for speed); `fuse` and `tier` are both about the memory hierarchy.
+The flat list hides this, and the existing `category:` field (efficiency / memory / distributed /
+tooling) is a weak, unnamed proxy for it: buckets with no descriptions and no page of their own.
+
+**The constraint.** Papers keep tagging **leaf** principles only. A paper is `quantize`, never the
+parent — parents are for navigation and reading, not tagging.
+
+### Representation: two-level tree, single parent, groups replace categories
+
+Add `data/principle_groups.yaml`, and in `principles.yaml` rename `category:` → `group:`. This
+*replaces* a concept instead of adding one, and paper files don't change at all (they never
+referenced `category`).
+
+```yaml
+# data/principle_groups.yaml
+eliminate:
+  label: "Eliminate the work"
+  description: >
+    The cheapest computation is the one that never runs. These principles find
+    work that does not need to happen and remove it.
+```
+
+```yaml
+# data/principles.yaml — only the field name and value change
+cache:
+  label: "Cache to avoid repeated computation"
+  group: eliminate          # was: category: efficiency
+  description: >
+    ...
+```
+
+### Proposed tree (counts are current tags, pre-audit)
+
+| Group | Leaves | Papers |
+|---|---|---|
+| **Eliminate the work** — find work that needn't happen | `cache` 48, `skip` 23, `simplify` 5 | 76 |
+| **Trade exactness for speed** — same work, cheaper and less exact | `quantize` 5, `approximate` 1 | 6 |
+| **Move data less** — the bottleneck is bandwidth, not FLOPs | `fuse` 37, `tier` 33, `recompute` 2 | 72 |
+| **Hide latency** — work is fixed; overlap it | `pipeline` 38, `speculate` 7 | 45 |
+| **Fill the machine** — work is fixed; remove idle time | `balance` 57, `batch` 0, `elastic` 1, `specialize` 1 | 59 |
+| **Change who optimizes** — meta/tooling | `search-ai` 15, `portable` 1 | 16 |
+
+This resolves the `approximate` / `quantize` case the natural way: both become siblings under a
+parent named for the trade-off, so no leaf slug has to be renamed or re-parented into another leaf.
+CLAUDE.md's slug-stability rule holds — group slugs are new, leaf slugs are untouched.
+
+### Rendering
+
+- **Principles page**: one section per group — group label as a heading, its one-sentence
+  description, then the leaf cards with paper counts. The group heading itself links to a group
+  page showing the union of its leaves' papers, with a leaf breakdown at the top.
+- **Paper page**: chips gain a muted group label above the cluster, so a reader sees
+  `Trade exactness for speed › Quantize to trade precision for efficiency` in context.
+- **Existing leaf URLs are unchanged**, so nothing that is already linked breaks.
+
+### Validation rules
+
+- `principles:` in a paper may reference **leaf slugs only** — reject group slugs
+- Every principle must declare a `group:` that exists in the registry
+- Depth is exactly 2 — groups cannot nest
+
+### Open question: `skip` has two plausible parents
+
+`skip` sits under *Eliminate the work* when the skipped work is provably irrelevant, but under
+*Trade exactness for speed* when it's sparse attention dropping tokens that do affect the output.
+A multi-parent DAG would express this, at the cost of ambiguous per-group counts and a messier
+page. **Recommendation: stay single-parent** (`skip` → Eliminate) and let each paper's
+`observations.skip` carry the lossy-vs-lossless nuance.
 
 ---
 
