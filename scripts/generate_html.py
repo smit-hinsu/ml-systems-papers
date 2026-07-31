@@ -160,6 +160,21 @@ def main():
         if unreviewed:
             print(f"Publishing all {len(papers)} papers ({unreviewed} not yet human-reviewed; "
                   f"review badges are hidden — use --dev to show them).")
+    # Draft principles are still being worked out; they stay in the data (papers keep
+    # their tags and observations) but are stripped from the prod build so they render
+    # only under --dev. Stripping here, before the index and search index are built,
+    # keeps them out of every downstream surface: cards, chips, filter pages, search.
+    draft_principles = {s for s, p in principles.items() if (p or {}).get("status") == "draft"}
+    if draft_principles and not args.dev:
+        principles = {s: p for s, p in principles.items() if s not in draft_principles}
+        for paper in papers:
+            if paper.get("principles"):
+                paper["principles"] = [s for s in paper["principles"] if s not in draft_principles]
+            if paper.get("observations"):
+                paper["observations"] = {k: v for k, v in paper["observations"].items()
+                                         if k not in draft_principles}
+        print(f"Hiding draft principle(s) from prod build: {', '.join(sorted(draft_principles))}")
+
     index = build_index(papers, principles, domains, topics, venues)
 
     def sorted_by_count(registry, paper_index):

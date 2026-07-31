@@ -129,6 +129,11 @@ portable:
 simplify:
   label: "Simplify to remove mechanisms that cost more than they save"
   category: efficiency
+  # TODO(revisit): the boundary against `fuse` (avoiding intermediate materialization)
+  # and `skip` is not crisp enough yet — several papers arguably qualify under either.
+  # Draft principles are stripped from the production build; they render only under
+  # --dev. Decide to sharpen the definition or drop the principle, then remove this.
+  status: draft
   description: >
     Added mechanisms — scheduling layers, format-conversion stages, per-case
     specializations — impose their own overhead. When that overhead exceeds the
