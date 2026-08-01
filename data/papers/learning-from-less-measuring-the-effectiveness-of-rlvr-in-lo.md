@@ -24,9 +24,6 @@ key_results: Mixed-complexity RLVR datasets yield 5× sample efficiency vs. easy
 models_evaluated:
 - Small Language Models (SLMs)
 observations:
-  balance: Training on mixed-complexity tasks prevents trivial (easy-only) and intractable
-    (hard-only) examples from dominating the curriculum, keeping learning signal dense
-    throughout low-data training.
   search-ai: Procedurally generated datasets with controllable complexity and verifiable
     answers let RLVR train on objectively checkable problems, enabling scaling law
     studies without human annotation.
@@ -42,7 +39,6 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
-- balance
 - measure
 problem: RLVR post-training requires large annotated datasets with ground-truth answers;
   applying it effectively in low-data, low-compute regimes is unsolved.

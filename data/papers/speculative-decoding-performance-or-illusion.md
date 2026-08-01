@@ -21,9 +21,6 @@ key_results: 4 SD variants (n-gram, EAGLE, Draft-Model, MTP) consistently underp
   theoretical speedup on production vLLM; gains diminish at large batch sizes
 models_evaluated: []
 observations:
-  balance: Acceptance length varies across token positions, requests, and datasets;
-    SD benefits concentrate in a fraction of tokens and diminish at larger batch sizes
-    where verification cost dominates.
   cache: Theoretical speedup analysis reveals verification by the target model dominates
     total execution time, exposing draft generation cost as not the limiting factor
     in production SD settings.
@@ -40,7 +37,6 @@ organizations:
 - UC Berkeley
 presentation_type: oral
 principles:
-- balance
 - cache
 - speculate
 - measure

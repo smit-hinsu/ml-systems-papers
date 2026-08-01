@@ -27,9 +27,6 @@ observations:
   measure: Every decentralized-learning paper picks its own node count, data split,
     and neighbor graph, so topology results cannot be compared — and collaborator
     collapse never shows up in the accuracy number.
-  balance: Topology is a first-class systems variable whose impact amplifies with
-    scale and data heterogeneity; sparse structured topologies can match dense graphs
-    at much lower communication cost.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=4Bqg7Xyk5t
@@ -38,7 +35,6 @@ organizations:
 - EPFL
 presentation_type: oral
 principles:
-- balance
 - measure
 problem: Network topology's role in decentralized learning is poorly understood due
   to lack of controlled, reproducible evaluation frameworks with consistent conditions.

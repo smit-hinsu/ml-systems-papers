@@ -26,9 +26,6 @@ observations:
   cache: Configuration simulation before deployment avoids expensive
     empirical search on production hardware by modeling throughput and latency SLO
     compliance for millions of candidate configurations offline.
-  balance: Simulation over millions of (TP/PP/EP/CP) configs identifies
-    Pareto splits; manual configs commonly leave one dimension memory-saturated while
-    another dimension idles.
   measure: Hardware, parallelism degrees, and runtime policy multiply into millions
     of candidate deployments for one Llama model; testing them on production GPUs
     costs more than any of them wins back.
@@ -39,7 +36,6 @@ organizations:
 - Meta
 presentation_type: oral
 principles:
-- balance
 - cache
 - measure
 problem: No framework exists to navigate hardware, parallelism, and runtime choices

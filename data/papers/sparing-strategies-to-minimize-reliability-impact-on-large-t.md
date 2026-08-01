@@ -30,8 +30,6 @@ key_results: Closed-form framework for sparing at Meta 10,000+ GPU LLM clusters;
   parameters (block size, spare count, GPU trays) optimized via simulation
 models_evaluated: []
 observations:
-  balance: Sparing configuration (block size, spare count, GPU trays) determines replacement
-    speed; under-sparing causes training downtime while over-sparing wastes GPU capacity.
   measure: Sparing for 10,000-GPU training clusters gets picked by feel, and both
     errors hide — too few spares stall jobs waiting on replacement blocks, too many
     park trays that never run.
@@ -42,7 +40,6 @@ organizations:
 - Meta
 presentation_type: oral
 principles:
-- balance
 - measure
 problem: Selecting optimal sparing (block size, spare count, GPU trays) for LLM training
   clusters is complex and directly impacts fault tolerance and training goodput.

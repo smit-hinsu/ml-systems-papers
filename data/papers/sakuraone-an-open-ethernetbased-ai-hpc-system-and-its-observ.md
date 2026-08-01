@@ -21,9 +21,6 @@ key_results: 33.95 PFLOP/s HPL on 100×H100 nodes; top-49 ISC 2025 via open 800 
   SONiC; workload shifts from large-scale to mid-scale jobs as project matures.
 models_evaluated: []
 observations:
-  balance: Single-tenant cluster shows use shifting from large to mid-scale jobs as
-    the project matures; few large jobs account for most GPU time while small jobs
-    dominate count — classic HPC pattern.
   measure: Published GPU cluster traces come from multi-tenant clouds where many teams'
     jobs mix; how one LLM project's demand shifts over its lifetime had never been
     watched in isolation.
@@ -34,7 +31,6 @@ organizations:
 - SAKURA Internet Research Center
 presentation_type: oral
 principles:
-- balance
 - measure
 problem: Characterizing real-world GPU cluster utilization under a single unified
   LLM development project to understand workload dynamics at scale.

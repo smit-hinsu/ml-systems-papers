@@ -24,7 +24,9 @@ key_results: QBL reduces per-iteration cost from O(k) to O(m log k), outperformi
   prior bandit methods in time and quality on database physical design with 1000s
   of arms
 models_evaluated: []
-observations: {}
+observations:
+  skip: Adversarial bandits update all k arms every iteration, but with thousands of database index
+    configurations almost every update touches an arm that will not be picked next.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=lfHvcstuo2
@@ -33,7 +35,8 @@ organizations:
 - University of Southern Denmark
 - University of Melbourne
 presentation_type: oral
-principles: []
+principles:
+- skip
 problem: Adversarial multi-armed bandit algorithms with many arms have O(k) per-iteration
   cost, impractical for large-arm settings like database physical design tuning.
 project_url: ''
