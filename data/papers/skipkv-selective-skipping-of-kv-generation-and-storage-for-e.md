@@ -29,9 +29,6 @@ observations:
   cache: Steering vector adjustment suppresses redundant token generation by dynamically
     updating hidden activation states; prevents the LRM from revalidating already-established
     reasoning steps.
-  kv-cache: Token-wise KV eviction has unstable scoring and padding-caused budget
-    reduction; sentence-level removal maintains semantic coherence while achieving
-    superior compression vs. per-token methods.
   skip: Sentence-level scoring identifies and removes semantically similar CoT sentences
     entirely from KV cache, skipping both eviction and generation for redundant reasoning
     steps.

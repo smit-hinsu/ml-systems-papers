@@ -165,6 +165,17 @@ def main():
         if p.get("venue") and p["venue"] not in venues:
             record(bucket, f"{name}: unknown venue slug '{p['venue']}'")
 
+        # `observations` is keyed by principle slug. Nothing checked these keys, so a
+        # topic slug (kv-cache) sat in one paper's observations dict undetected, and
+        # observations for principles the paper no longer carries would render nowhere.
+        obs_keys = set((p.get("observations") or {}))
+        for s in sorted(obs_keys):
+            if s not in principles:
+                record(bucket, f"{name}: observations key '{s}' is not a principle slug")
+        for s in sorted(obs_keys - set(p.get("principles") or [])):
+            if s in principles:
+                record(bucket, f"{name}: observations['{s}'] has no matching entry in principles")
+
         # Character limits — error for published, warning for draft
         check_len(p.get("problem") or "", CHAR_LIMITS["problem"],
                   "problem", name, is_published, errors, warnings)
