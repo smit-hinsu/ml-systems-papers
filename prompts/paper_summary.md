@@ -116,6 +116,38 @@ entirely for algorithmic or systems-design papers.
 | "significantly reduces memory" | "reduces peak KV cache memory by 3.2× via 4-bit quantization of keys and 8-bit of values" |
 | "inspired by prior work" | "extends PagedAttention (vLLM) with copy-on-write semantics for beam search" |
 
+## Principle anti-patterns — real errors from this corpus
+
+A 2026-08 audit found 52% of principle assignments in this index were wrong. These are
+verified examples. Each looked reasonable at the time. Read them before tagging anything.
+
+| Paper | Wrong tag | What the observation actually said | Why it is wrong | Correct home |
+|---|---|---|---|---|
+| GhostServe | `cache` | "Erasure-coded KV cache parity shards in host memory enable fast recovery after device failure" | Redundancy for fault tolerance. Nothing is memoized. It was tagged because the words "KV cache" appear in the paper. | none — fault tolerance has no principle |
+| FaaScale | `fuse` | "Multicast transfers a single copy of model blocks to multiple nodes… reducing total bytes transferred" | Fewer bytes on a network link is not fusing operations to avoid a memory round-trip. | none |
+| BatchLLM | `tier` | "Memory-centric token batching enlarges token batch sizes to increase GPU utilization" | This is amortizing per-call cost across grouped work. No hierarchy, no eviction. | `batch` |
+| Attribution-based Sparse Activation | `skip` | "70% neuron deactivation with <5% accuracy loss" | Output quality changes, so it is not provably unnecessary work. | `approximate` |
+| Hawkeye | `search-ai` | "Systematic tests of rounding direction, subnormal handling, and accumulation order on Tensor Cores" | No AI agent and no candidate search anywhere — this is differential testing. | `measure` |
+| ProToken | `cache` | "Gradient-based relevance weighting filters irrelevant neuron activations" | Filtering. Nothing is stored and nothing is reused. | `skip`-adjacent |
+| MixLLM | `skip` | "Global cross-layer sensitivity analysis identifies the small fraction of output features needing higher bit-width" | Non-uniform bit allocation is quantization, not declining to compute. | `quantize` |
+
+**The pattern behind all seven: the tag matched a word in the paper, not the idea.**
+Before assigning a principle, state in your own words what is being reused, overlapped,
+skipped, fused, or tiered — and by what mechanism. If you cannot say it without repeating
+the paper's own vocabulary, the tag is wrong.
+
+**Second pattern: means vs. contribution.** Recomputation used inside a memory planner does
+not make the paper a `recompute` paper. Fusion discovered by an agent the paper built does
+not make it a `fuse` paper. Ask what the paper would still be if you deleted that mechanism.
+
+**Third: read the `not:` clause.** Every principle in `data/principles.yaml` carries one,
+naming the near-misses that actually occurred. It is there to be used.
+
+**Prefer the neglected principles.** `approximate`, `batch`, `portable`, `specialize`,
+`elastic` and `recompute` are heavily under-applied because `cache`, `fuse`, `tier` and
+`skip` absorbed their papers. If a paper trades quality for speed it is `approximate`, not
+`skip`. If it amortizes a fixed cost it is `batch`, not `tier`.
+
 ## Taxonomy
 
 Pick slugs only from these lists. If the paper doesn't fit a slug, leave the list shorter rather
