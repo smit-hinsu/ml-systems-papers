@@ -395,6 +395,13 @@ Orwell's six rules are the house style — full text in `docs/summarizing.md`, e
       art (KV cache, prefill, all-reduce) are required and always beat this rule
 - [ ] Break any rule sooner than write something inaccurate
 
+### Assigning principles
+
+Follow `docs/assigning-principles.md` — the full method, written after the 2026-08 audit found
+52% of assignments wrong. The short version: go from the paper to the principle, never the
+reverse; write the observation before choosing the tag; read the `not:` clause; check the
+neglected principles before the popular five; zero principles is a valid answer.
+
 ### Field rules
 
 **`problem`** (≤ 160 chars)
