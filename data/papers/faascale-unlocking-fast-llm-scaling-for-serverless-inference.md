@@ -47,8 +47,8 @@ presentation_type: oral
 principles:
 - pipeline
 - fuse
-problem: Serverless LLM scaling-on-demand is bottlenecked by high model data transfer
-  cost, causing long cold-start latency under bursty traffic.
+problem: Autoscaling on a traffic spike makes each new GPU replica download hundreds
+  of GB of weights before serving one token, putting cold start on tail TTFT.
 project_url: ''
 reading_status: want-to-read
 research_or_industry: research

@@ -39,6 +39,24 @@ One sentence, **max 160 chars**. Practitioner voice: what breaks, costs too much
 - ❌ "existing approaches have performance limitations"
 - ✅ "GPU kernels hand-written in CUDA take weeks to tune per architecture and don't transfer across hardware generations"
 
+**Name the term of art.** If practitioners already have a word for this situation — autoscaling,
+cold start, head-of-line blocking, straggler, thundering herd, tail latency, backpressure,
+fragmentation, checkpoint stall — use that word. It locates the problem in one token, and the
+reader stops guessing.
+
+This matters most when the title is a system name that reveals nothing (FaaScale, Zorse, Kitty).
+The test: reading `problem` alone, could someone who knows the field say "ah, this is an
+autoscaling paper"?
+
+- ❌ "Serverless LLM scaling-on-demand is bottlenecked by high model data transfer cost, causing
+  long cold-start latency under bursty traffic." — says the words, never names the mechanism
+- ✅ "Autoscaling on a traffic spike makes each new GPU replica download hundreds of GB of weights
+  before serving one token, putting cold start on tail TTFT."
+
+Also state the causal chain, not just its endpoints: what triggers the expensive event, and what
+it costs. `problem` is where that belongs — do not rely on `## Background`, which is cut whenever
+the domain is familiar.
+
 ### key_results
 One sentence, **max 160 chars**. Hardware + model/workload + metric + baseline — all in one sentence. Numbers required.
 

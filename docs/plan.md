@@ -76,10 +76,10 @@ engineer." Serverless inference is obvious; the causal chain — traffic burst �
 a replica → replica must pull tens of GB of weights → cold start → tail TTFT — is not. The
 rule conflated an obvious domain with an obvious problem.
 
-- [ ] **FaaScale**: restore the scale-out framing. Either widen `problem` to name the trigger
-      (traffic burst forces a new replica that must download the model first) or restore a
-      trimmed Background. `problem` currently says "scaling-on-demand ... under bursty traffic",
-      which names the words but not the mechanism.
+- [x] **FaaScale** (2026-08-04): `problem` rewritten to name the term of art and the causal chain —
+      "Autoscaling on a traffic spike makes each new GPU replica download hundreds of GB of weights
+      before serving one token, putting cold start on tail TTFT." No Background restored; the
+      problem field is the right home for this.
 - [ ] **Audit the other 93 Background deletions** for the same failure. Deletions are recoverable
       with `git show 35df5a5^:data/papers/<slug>.md`. Look for papers whose remaining entry never
       states what triggers the expensive event — cold starts, scale-out, failover, cache misses,
@@ -365,6 +365,14 @@ Orwell's six rules are the house style — full text in `docs/summarizing.md`, e
 ### Field rules
 
 **`problem`** (≤ 160 chars)
+- [ ] **Names the term of art** — autoscaling, cold start, head-of-line blocking, straggler,
+      thundering herd, tail latency, backpressure, fragmentation. One recognized word locates the
+      problem faster than a paragraph of description. Critical when the title is an opaque system
+      name (FaaScale, Zorse, Kitty).
+- [ ] **States the causal chain**, not just its endpoints — what triggers the expensive event and
+      what it costs. `problem` carries this, not `## Background`, which is cut whenever the domain
+      is familiar.
+- [ ] Test: reading `problem` alone, would someone who knows the field name the category?
 - [ ] Practitioner voice — "X breaks / costs Y at scale" not "This paper addresses..."
 - [ ] No opener: "Large language models...", "Modern systems...", "Recent advances..."
 - [ ] Describes a cost or breakage, not a research gap
