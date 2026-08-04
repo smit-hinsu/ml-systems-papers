@@ -60,6 +60,37 @@ continues after launch as a quality pass, not a gate.
 
 ---
 
+## Track 0.5 — Background pass regression: deleted causal setup, not just domain tutorial
+
+**Found 2026-08-04 while reading the FaaScale page.** The entry never establishes *why* nodes
+are being added, so the reader cannot tell that the problem is autoscaling under traffic.
+
+The Background pass (commit `35df5a5`) removed the section that carried it:
+
+> "Serverless LLM inference scales instances on demand, but a new GPU node must download the
+> full model before it can serve — a cold start that can mean hundreds of gigabytes of
+> transfer for large models."
+
+The rule that pass applied was "delete when the *domain* is obvious to an ML systems
+engineer." Serverless inference is obvious; the causal chain — traffic burst → autoscaler adds
+a replica → replica must pull tens of GB of weights → cold start → tail TTFT — is not. The
+rule conflated an obvious domain with an obvious problem.
+
+- [ ] **FaaScale**: restore the scale-out framing. Either widen `problem` to name the trigger
+      (traffic burst forces a new replica that must download the model first) or restore a
+      trimmed Background. `problem` currently says "scaling-on-demand ... under bursty traffic",
+      which names the words but not the mechanism.
+- [ ] **Audit the other 93 Background deletions** for the same failure. Deletions are recoverable
+      with `git show 35df5a5^:data/papers/<slug>.md`. Look for papers whose remaining entry never
+      states what triggers the expensive event — cold starts, scale-out, failover, cache misses,
+      recovery. Serving and fleet papers are the likely cluster.
+- [ ] **Fix the rule** in the review checklist below and in `prompts/paper_summary.md`: the test
+      is whether the *problem* is self-evident from title + `problem` + `key_results`, not whether
+      the domain is familiar. Background may be cut when it teaches a field the reader knows; it
+      must stay when it supplies the causal setup for the paper's cost.
+
+---
+
 ## Track 1 — Per-paper review (quality pass, no longer a launch gate)
 
 Move each paper `under-review` → `published` after human review.
@@ -384,7 +415,11 @@ Orwell's six rules are the house style — full text in `docs/summarizing.md`, e
 - [ ] `## Key Contributions`: each bullet has a **bold named artifact** — `**SystemName**:`, `**AlgorithmName**:`
 - [ ] `## Key Contributions` assumes readers have read the principles and observations — skip re-explaining the principle or its motivation; focus on the specific mechanism, design decision, or artifact that delivers it
 - [ ] Test: if a bullet could be fully replaced by just reading the principle label + observation, rewrite it to add the concrete detail that isn't already there
-- [ ] `## Background`: keep only when domain is non-obvious to an ML systems engineer; remove if title + key_results make context clear
+- [ ] `## Background`: the test is whether the **problem** is self-evident from title + `problem` +
+      `key_results` — not whether the domain is familiar. Cut it when it teaches a field the reader
+      already knows; keep it when it supplies the causal setup for the paper's cost (what triggers
+      the scale-out, the cold start, the failover, the cache miss). See Track 0.5 for the FaaScale
+      regression this rule was rewritten to prevent.
 - [ ] `## Findings`: add *only* for measurement/characterization papers; omit for system-building papers
 - [ ] No repetition across sections — each section has one job
 - [ ] `research_or_industry`: use `industry` when it's a production system report with little algorithmic novelty
