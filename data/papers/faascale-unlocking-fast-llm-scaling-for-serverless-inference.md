@@ -62,6 +62,14 @@ venue: mlsys-2026
 venue_url: https://mlsys.org/virtual/2026/oral/3769
 ---
 
+## Background
+
+Serverless LLM inference autoscales replicas to follow traffic. When a spike arrives the
+platform starts a new GPU node, but that node must download the full model — hundreds of
+gigabytes for large models — before it can serve a single token. The download sits on the
+critical path, so scale-out latency lands directly on the requests that triggered the
+scale-up.
+
 ## Key Contributions
 
 - **Pipelined multicast inference (PipeCast)**: Synergizes network multicast with dynamic, cross-node pipeline-parallel execution during model transfer — model blocks are multicasted to new nodes while inference is simultaneously served on partially loaded pipelines.

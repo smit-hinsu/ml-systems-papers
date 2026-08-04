@@ -16,6 +16,8 @@ cache:
   description: >
     Results for repeated inputs can be stored so they are computed only once.
     The savings are proportional to reuse frequency and the cost of recomputation.
+  not: >
+    Not any paper that contains a cache. What is reused must be a computed result for a repeating input — not replication for durability, not routing, not filtering, not a surrogate model that predicts rather than recalls. The word "cache" appearing in the paper is not evidence.
 
 pipeline:
   label: "Pipeline independent work to hide latency"
@@ -24,6 +26,8 @@ pipeline:
   description: >
     Two operations that do not depend on each other can run concurrently,
     hiding the latency of the slower one behind the faster one.
+  not: >
+    Not any parallel or concurrent system. The two operations must be independent and one latency must hide behind the other. Scale-out of independent tasks is not pipelining, and "pipeline parallelism" as a mechanism name does not qualify.
 
 skip:
   label: "Skip provably unnecessary work"
@@ -33,6 +37,8 @@ skip:
     When inputs or intermediate values are known to be irrelevant — sparse, zero,
     pruned, or outside an attended region — the corresponding computation can be
     skipped without affecting correctness or meaningful accuracy.
+  not: >
+    Not lossy dropping — if output quality changes at all, it is approximate. Not sparsity inherited from the model architecture rather than contributed by the paper.
 
 fuse:
   label: "Fuse operations to minimize memory bandwidth"
@@ -42,6 +48,8 @@ fuse:
     Moving data between compute and memory — or between memory tiers — is often
     more expensive than the computation itself. Fusing operations and tiling reduces
     the number of memory round-trips.
+  not: >
+    Not anything that reduces bytes moved. Network multicast, communication volume, compression and state sharding are not fusion. Operations must be combined so a memory round-trip disappears.
 
 tier:
   label: "Keep hot data near compute"
@@ -51,6 +59,8 @@ tier:
     Memory systems have a hierarchy of tiers with orders-of-magnitude differences
     in bandwidth and latency. Performance depends on keeping frequently accessed
     data in the fastest tier and evicting cold data to slower, larger tiers.
+  not: >
+    Not a synonym for using less memory. There must be a real hierarchy with hot data promoted and cold data evicted. A compact index, a smaller footprint, or reallocating one memory pool into another is not tiering.
 
 recompute:
   label: "Recompute to save storage"
@@ -60,6 +70,8 @@ recompute:
     Some intermediate values are cheaper to recompute on demand than to store.
     Trading compute for memory frees capacity for the working set that cannot
     be reconstructed cheaply.
+  not: >
+    Not recomputation used as a means inside some other method. Trading compute for storage must be the contribution.
 
 quantize:
   label: "Quantize to trade precision for efficiency"
@@ -69,6 +81,8 @@ quantize:
     Reducing numerical precision from FP32 to lower-bit formats shrinks memory
     footprint and accelerates arithmetic, at the cost of representational fidelity.
     The acceptable precision loss is workload- and layer-dependent.
+  not: >
+    Not any precision change that happens as a side effect — the numeric format is the contribution. Non-uniform bit allocation by measured sensitivity is still quantize, not skip.
 
 approximate:
   label: "Approximate to trade quality for efficiency"
@@ -78,6 +92,8 @@ approximate:
     Exact computation can be replaced with a cheaper approximation when the quality
     degradation is bounded or acceptable for the task. Unlike quantization, the
     approximation may change model behavior rather than just numerical precision.
+  not: >
+    Not quantization, which changes numeric precision only. Use this whenever output quality changes: lossy skipping, early exit that drops real results, generative reconstruction, or a surrogate that replaces an exact evaluator.
 
 speculate:
   label: "Speculate to hide sequential latency"
@@ -87,6 +103,8 @@ speculate:
     When the result of a sequential dependency cannot be known in advance, a guess
     can be issued early and verified later. Correct speculations eliminate waiting;
     incorrect ones require rollback, so speculation pays off when the hit rate is high.
+  not: >
+    Not any prediction or drafting. There must be a guess issued early, an explicit verification, and a rollback path when the guess is wrong.
 
 batch:
   label: "Batch to amortize fixed overheads"
@@ -96,6 +114,8 @@ batch:
     Fixed per-call costs — kernel launch, memory allocation, data movement —
     can be spread across many requests by grouping them. Larger batches improve
     hardware utilization up to the point of memory or latency constraints.
+  not: >
+    Not any large batch size. A fixed per-call cost — kernel launch, transfer setup, allocation, one round of a protocol — must be amortized across grouped work.
 
 balance:
   label: "Balance load to maximize utilization"
@@ -105,6 +125,8 @@ balance:
     When parallel workers have unequal amounts of work, the faster workers idle
     waiting for the slowest. Eliminating this imbalance is often the dominant
     performance lever at large scale.
+  not: >
+    Not any distributed system. There must be measured work-skew between parallel workers, with faster workers idling on the slowest. Cost routing, SLO scheduling, capacity provisioning and memory-capacity scaling are not balance.
 
 specialize:
   label: "Specialize divergent workloads for independent optimizations"
@@ -114,6 +136,8 @@ specialize:
     When a workload contains structurally different sub-tasks — prefill vs. decode,
     dense vs. sparse, prompt vs. completion — separating them lets each be optimized
     independently without compromising the other.
+  not: >
+    Not any heterogeneity or routing. The sub-tasks must be structurally different and separated so each can be optimized independently.
 
 elastic:
   label: "Scale elastically to fill spare capacity"
@@ -123,6 +147,8 @@ elastic:
     Resources left idle by the primary workload can be reclaimed by secondary tasks
     — speculative decoding, background prefetch, auxiliary training — as long as the
     primary workload can reclaim them on demand.
+  not: >
+    Not autoscaling to meet demand. Capacity left idle by the primary workload must be reclaimed by a secondary one that yields on demand.
 
 search-ai:
   label: "Search with AI for verifiable problems"
@@ -132,6 +158,8 @@ search-ai:
     When an objective is deterministic and benchmarkable, AI agents can explore
     the solution space more effectively than hand-crafted heuristics, using
     code execution to evaluate and rank candidates.
+  not: >
+    Not any ML applied to a systems problem. An AI agent must explore a candidate space with a deterministic check ranking results. A learned policy applied directly, a surrogate predictor, or a knowledge base that answers in one shot is not search.
 
 portable:
   label: "Abstract hardware to preserve deployment optionality"
@@ -141,6 +169,8 @@ portable:
     Coupling a system tightly to one hardware vendor or interconnect sacrifices
     the ability to migrate to cheaper or faster alternatives. Hardware-agnostic
     abstractions preserve flexibility at the cost of some per-platform optimization.
+  not: >
+    Not any abstraction layer or clean interface. The contribution must preserve optionality across vendors, backends or hardware generations.
 
 simplify:
   label: "Simplify to remove mechanisms that cost more than they save"
@@ -157,6 +187,8 @@ simplify:
     benefit the mechanism was designed to provide, removing it yields counterintuitive
     gains: simpler designs expose hardware-native efficiency by eliminating
     accidental complexity.
+  not: >
+    Not any design that happens to be simpler. A specific existing mechanism must be removed, and the removal must be what produces the gain.
 
 measure:
   label: "Measure before optimizing"
@@ -168,3 +200,23 @@ measure:
     a profiler, a benchmark, a simulator, or a metric that splits one number into
     actionable parts — is a contribution in its own right, and usually the one that
     makes every later optimization possible.
+  not: >
+    Not any paper with an evaluation section. Building the instrument — a profiler, benchmark, simulator, or a metric that decomposes one number into actionable parts — must be the contribution.
+
+schedule:
+  label: "Schedule work against a deadline or budget"
+  short: "Schedule"
+  category: efficiency
+  # TODO(revisit): added 2026-08-04 from the BatchLLM audit. Draft until a corpus sweep
+  # confirms how many papers genuinely need it — see Track 2 in docs/plan.md. Candidates
+  # already noted: pla-serve, superinfer, streamdiffusionv2, beam, airs, from-tokens-to-layers.
+  status: draft
+  description: >
+    Requests differ in cost, urgency and deadline. Choosing what runs next, in what
+    order, and how much of the remaining latency or memory budget each may consume is
+    often worth more than making any single request faster. When the whole workload is
+    known in advance, that choice becomes global planning rather than online guessing.
+  not: >
+    Not load balancing across parallel workers, which is balance, and not grouping work
+    to amortize a fixed cost, which is batch. The ordering or admission decision itself
+    must be the contribution.

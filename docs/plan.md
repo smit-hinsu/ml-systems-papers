@@ -78,8 +78,16 @@ rule conflated an obvious domain with an obvious problem.
 
 - [x] **FaaScale** (2026-08-04): `problem` rewritten to name the term of art and the causal chain —
       "Autoscaling on a traffic spike makes each new GPU replica download hundreds of GB of weights
-      before serving one token, putting cold start on tail TTFT." No Background restored; the
-      problem field is the right home for this.
+      before serving one token, putting cold start on tail TTFT." A 61-word `## Background` was also
+      restored carrying the same causal setup, so the page matches the other 40 papers that have one.
+- [ ] **Open question — does the crisp `problem` need to be stated separately from `## Background`?**
+      FaaScale now carries the autoscaling framing in both, which brushes against the
+      "one section, one job" rule. They serve different surfaces: `problem` is the one-line card
+      summary on the index and in search, `## Background` is the paper page only. But the overlap is
+      real. Decide one of: (a) keep both, treating `problem` as the card-sized projection of
+      Background; (b) let `problem` stay minimal wherever a Background exists; (c) drop Background
+      whenever `problem` already carries the causal chain. Whatever is chosen has to hold for all
+      135, not just FaaScale.
 - [ ] **Audit the other 93 Background deletions** for the same failure. Deletions are recoverable
       with `git show 35df5a5^:data/papers/<slug>.md`. Look for papers whose remaining entry never
       states what triggers the expensive event — cold starts, scale-out, failover, cache misses,
@@ -194,6 +202,31 @@ failure mode already documented in CLAUDE.md:
 ### Principle hierarchy
 
 Deferred to Track 6 below — not required for v1.
+
+### Candidate principles — sweep the corpus before publishing any of them
+
+Draft principles are stripped from the production build (`status: draft` in
+`data/principles.yaml`), so a candidate can be tagged and lived with before it ships.
+
+- [ ] **`schedule`** (added 2026-08-04 from BatchLLM) — sweep all 135 for papers whose
+      contribution is the ordering or admission decision itself. Known candidates: `pla-serve`,
+      `superinfer`, `streamdiffusionv2`, `beam`, `airs`, `from-tokens-to-layers`, `helios`.
+      Guard against the `balance` failure: scheduling is not load balancing and not batching.
+- [ ] **Find the rest.** `docs/taxonomy-audit.md` ranks twelve uncovered ideas by how many
+      independent papers need them. Work down that list, adding each as `status: draft` and
+      sweeping before promoting. In rough order of support:
+      cheapest-first cascade (6 papers) · cost-model config search with no AI (7) ·
+      non-uniform budget allocation by measured sensitivity (5) · fault tolerance and forward
+      progress (5) · policy/mechanism separation (4) · deadline-driven scheduling (4, may be
+      absorbed by `schedule`) · trust-gating a learned component (3) · rewriting a computation
+      so a blocked optimization becomes legal (3).
+- [ ] **The bar for promoting draft → published**: at least 5 independent papers whose *core*
+      contribution needs it, and a `not:` clause sharp enough to reject the near-misses. `batch`
+      was added with zero papers and sat unused for months; `simplify` is still draft because its
+      boundary against `fuse` and `skip` was never crisp.
+- [ ] Three categories still have no axis at all — fault tolerance, provenance/verifiability,
+      privacy partitioning. Every principle today is cost-oriented. Decide whether the taxonomy
+      gains a second axis or those papers stay uncovered.
 
 ---
 

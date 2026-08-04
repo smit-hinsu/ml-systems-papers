@@ -194,6 +194,15 @@ def main():
     # their tags and observations) but are stripped from the prod build so they render
     # only under --dev. Stripping here, before the index and search index are built,
     # keeps them out of every downstream surface: cards, chips, filter pages, search.
+    # `principles_review` is never published. Under --dev it is folded into the visible
+    # tags so a reviewer can see what the audit set aside; in prod it does not exist.
+    if args.dev:
+        for paper in papers:
+            extra = [s for s in (paper.get("principles_review") or [])
+                     if s not in (paper.get("principles") or [])]
+            if extra:
+                paper["principles"] = (paper.get("principles") or []) + extra
+
     draft_principles = {s for s, p in principles.items() if (p or {}).get("status") == "draft"}
     if draft_principles and not args.dev:
         principles = {s: p for s, p in principles.items() if s not in draft_principles}

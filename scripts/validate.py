@@ -168,11 +168,22 @@ def main():
         # `observations` is keyed by principle slug. Nothing checked these keys, so a
         # topic slug (kv-cache) sat in one paper's observations dict undetected, and
         # observations for principles the paper no longer carries would render nowhere.
+        # `principles_review` holds tags the audit judged arguable rather than clearly wrong.
+        # They are kept in the data so a human can settle them, but the site never renders
+        # them. Their observations stay in the same `observations` dict.
+        for s in p.get("principles_review") or []:
+            if s not in principles:
+                record(bucket, f"{name}: unknown principle slug '{s}' in principles_review")
+        both = set(p.get("principles") or []) & set(p.get("principles_review") or [])
+        for s in sorted(both):
+            record(bucket, f"{name}: '{s}' is in both principles and principles_review")
+
         obs_keys = set((p.get("observations") or {}))
+        tagged = set(p.get("principles") or []) | set(p.get("principles_review") or [])
         for s in sorted(obs_keys):
             if s not in principles:
                 record(bucket, f"{name}: observations key '{s}' is not a principle slug")
-        for s in sorted(obs_keys - set(p.get("principles") or [])):
+        for s in sorted(obs_keys - tagged):
             if s in principles:
                 record(bucket, f"{name}: observations['{s}'] has no matching entry in principles")
 
