@@ -25,8 +25,6 @@ observations:
   approximate: Lost video frames are replaced by generative outputs conditioned on
     surrounding frames; approximate reconstruction avoids retransmission round-trips
     at the cost of occasional visual artifacts.
-  skip: Generation is conditioned on what was actually received; the model focuses
-    compute on the missing regions rather than reprocessing the entire frame.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=GaBGzA7fpe
 optimization_type: []
@@ -34,7 +32,6 @@ organizations:
 - MIT
 presentation_type: oral
 principles:
-- skip
 - approximate
 problem: Packet loss in video conferencing causes video freezes; FEC is impractical
   due to bursty Internet losses requiring unpredictable and wasteful redundancy.

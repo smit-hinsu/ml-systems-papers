@@ -49,9 +49,6 @@ observations:
   pipeline: Large pipeline of chips partitions the model across SRAM
     tiers, allowing prefill and decode stages to overlap across different pipeline
     stages for sustained high throughput
-  fuse: Synchronous low-diameter interconnect enables pipelining across
-    thousands of chips without the serialization delays of asynchronous HBM-based
-    communication
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=IZaXDwDtL1
@@ -60,7 +57,6 @@ organizations:
 presentation_type: oral
 principles:
 - tier
-- fuse
 - pipeline
 problem: GPU decode is HBM-bandwidth-bound; loading model weights each token leaves
   FLOPS severely underutilized and caps tokens-per-second per chip.

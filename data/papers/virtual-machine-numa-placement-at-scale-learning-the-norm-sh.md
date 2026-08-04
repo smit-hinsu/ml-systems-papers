@@ -33,18 +33,14 @@ indexed_date: '2026-05-25'
 key_results: Catur reduces average resource defect by 34.2%–50.0% vs. default hypervisor
   heuristics, evaluated on 100 million VM production traces.
 models_evaluated: []
-observations:
-  search-ai: Reinforcement learning optimizes a measurable objective (NUMA resource
-    defect rate) on production workloads, with drift-aware continuous training adapting
-    to evolving VM placement patterns.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=guCUThRvX5
 organizations:
 - Microsoft Research
 presentation_type: oral
-principles:
-- search-ai
+principles: []
 problem: Poor VM NUMA placement causes up to 30% performance degradation from remote
   memory access; optimal placement at scale is intractable with heuristics.
 project_url: ''

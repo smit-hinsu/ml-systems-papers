@@ -35,18 +35,15 @@ observations:
   balance: Fail-slow nodes pass functional tests — they never fail outright, they just
     run each step slower, and every other node waits at the sync barrier. Step-time
     variance reached 20%.
-  cache: Offline node sweeping qualifies nodes before they join production jobs, preventing
-    straggler-induced checkpoint rollbacks that waste compute already spent on the
-    aborted run segment.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=JFEwQ821MS
 optimization_type: []
 organizations:
 - Amazon
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - balance
-- cache
 problem: Fail-slow GPU behaviors silently inflate step-time variance; burn-in tests
   miss performance regressions that accumulate over multi-month training runs.
 project_url: ''

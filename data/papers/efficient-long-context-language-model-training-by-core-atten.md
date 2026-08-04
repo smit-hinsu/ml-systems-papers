@@ -29,9 +29,6 @@ observations:
   balance: At 512K context, softmax(QKᵀ)V grows quadratically while other ops grow
     linearly, so ranks holding longer attention shards become stragglers that stall
     every DP and PP group at each sync point.
-  fuse: Rebatching CA-tasks at attention servers creates dense fused batches that
-    sustain high kernel utilization, avoiding the low utilization of scattered small
-    attention shards processed independently.
   pipeline: DistCA's ping-pong scheme overlaps CA communication with compute on host
     devices; attention servers process CA-task batches while hosts proceed with non-attention
     ops, eliminating idle time.
@@ -46,7 +43,6 @@ presentation_type: oral
 principles:
 - balance
 - pipeline
-- fuse
 problem: At long context, attention grows quadratically while other ops grow linearly,
   creating stragglers that cap throughput across DP and PP groups.
 project_url: ''

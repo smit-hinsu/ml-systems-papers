@@ -30,12 +30,6 @@ observations:
   cache: Block-wise causal attention mask enables standard KV caching in diffusion
     LMs; previously each denoising step re-computed all positions from scratch, making
     caching impossible.
-  pipeline: Consistency distillation enables multi-token finalization per step, reducing
-    total denoising steps by 4.1×–7.7× and letting the model finalize multiple tokens
-    in one forward pass.
-  speculate: Consistency distillation compresses multi-step diffusion into single-step
-    proposals; multiple positions are finalized simultaneously, amortizing sequential
-    AR overhead over a full sequence segment.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=eB8yjR6alL
 optimization_type: []
@@ -46,8 +40,6 @@ organizations:
 presentation_type: oral
 principles:
 - cache
-- pipeline
-- speculate
 problem: Diffusion language models require dozens of iterative denoising steps and
   cannot use KV caching, making inference 10–15× slower than autoregressive models.
 project_url: ''

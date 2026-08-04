@@ -22,9 +22,6 @@ observations:
   balance: Load imbalance hurts prefill but paradoxically improves decode
     by reducing active experts per step; the MoE tax is phase-specific and cannot
     be addressed with a single uniform mitigation.
-  fuse: Expert weight loads dominate MoE serving overhead; strategies
-    that reduce expert memory traffic (replication, caching, fine-grained routing)
-    directly shrink the serving gap to dense models.
   measure: MoE serves 2–3× slower than a FLOP-equivalent dense model, but the causes
     — expert weight loads, all-to-all, imbalance — land differently in prefill and
     decode, so the aggregate gap misleads.
@@ -36,9 +33,9 @@ organizations:
 - Meta
 presentation_type: oral
 principles:
-- balance
-- fuse
 - measure
+principles_review:
+- balance
 problem: MoE incurs 2–3× serving overhead vs. FLOP-equivalent dense, but sources differ
   by phase and parallelism strategy, blocking targeted optimization.
 project_url: ''

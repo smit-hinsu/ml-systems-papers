@@ -22,10 +22,7 @@ key_results: DP-ZeRO scales differentially private training to GPT-100B with the
   computation and communication efficiency as standard ZeRO on multiple GPUs.
 models_evaluated:
 - GPT-100B (target scale)
-observations:
-  fuse: DP-ZeRO shards gradients, optimizer states, and parameters across workers
-    like standard ZeRO, keeping per-GPU memory proportional to shard size even under
-    DP noise accumulation.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=VGacNNZfgo
@@ -33,8 +30,7 @@ organizations:
 - AWS
 - Amazon
 presentation_type: oral
-principles:
-- fuse
+principles: []
 problem: DP training on multiple GPUs is far less efficient than standard ZeRO; existing
   DP methods add high communication overhead incompatible with gradient sharding.
 project_url: ''

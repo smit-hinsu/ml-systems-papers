@@ -18,13 +18,7 @@ indexed_date: '2026-05-25'
 key_results: Up to 1.4× higher throughput vs. existing early termination schemes and
   3.2× vs. no early termination at the same accuracy target.
 models_evaluated: []
-observations:
-  cache: Rank-aware termination stops searching after the highest-ranked results are
-    found, avoiding redundant I/Os for lower-ranked neighbors that contribute minimally
-    to RAG accuracy.
-  skip: Terminus terminates disk I/O once recent reads yield negligible rank-weighted
-    utility, skipping the long tail of low-value graph traversals that existing fixed-budget
-    termination continues.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=IFz0pROwF1
@@ -32,9 +26,7 @@ organizations:
 - Columbia University
 - Princeton University
 presentation_type: oral
-principles:
-- skip
-- cache
+principles: []
 problem: Graph-based vector search reads disk long after the highest-ranked results
   are found, wasting I/O budget on low-value results and limiting throughput.
 project_url: ''

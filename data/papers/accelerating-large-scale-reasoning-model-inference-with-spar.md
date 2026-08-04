@@ -30,9 +30,6 @@ key_results: Up to 2.13× throughput over vLLM on H100 for long-CoT reasoning mo
   3.29× attention latency reduction via PillarAttn sparse drafting
 models_evaluated: []
 observations:
-  cache: Suffix-tree-based sparse attention draft reuses the sparsity pattern identified
-    during the previous verification step, avoiding redundant full-attention computation
-    during drafting phases.
   pipeline: Delayed verification decouples CPU metadata preparation from the critical
     GPU path by deferring it one iteration, enabling asynchronous CPU-GPU execution
     that hides verification overhead.
@@ -52,7 +49,6 @@ organizations:
 presentation_type: oral
 principles:
 - skip
-- cache
 - pipeline
 - tier
 problem: Long CoT reasoning shifts inference from compute-bound to memory-bound; each

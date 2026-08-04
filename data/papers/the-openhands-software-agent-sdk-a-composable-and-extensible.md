@@ -27,17 +27,14 @@ indexed_date: '2026-05-25'
 key_results: V1 SDK substantially reduces system-attributable failures vs. V0 with
   negligible event-sourcing overhead in production deployment.
 models_evaluated: []
-observations:
-  pipeline: Seamless local-to-remote execution portability lets agents offload sandboxed
-    tasks to remote instances, parallelizing agent execution with local orchestration.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=pzVmWs6yGq
 optimization_type: []
 organizations:
 - Carnegie Mellon University
 presentation_type: oral
-principles:
-- pipeline
+principles: []
 problem: Production software agents need sandboxed execution, flexible tool composition,
   multi-LLM routing, and lifecycle control that existing SDKs lack.
 project_url: https://github.com/All-Hands-AI/OpenHands

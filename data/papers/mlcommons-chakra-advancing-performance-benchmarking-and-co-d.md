@@ -20,9 +20,6 @@ models_evaluated:
 - Mixtral-8x22B
 - Mixtral-8x7B
 observations:
-  cache: A captured Chakra ET replays across simulated hardware configurations without
-    re-running the original training job, amortizing measurement cost across the design
-    space.
   measure: Co-designing an interconnect needs a real distributed training workload,
     but those traces stay inside the companies that run them and the target hardware
     does not exist yet.
@@ -38,7 +35,6 @@ organizations:
 - MLCommons
 presentation_type: oral
 principles:
-- cache
 - measure
 problem: Without a portable workload format, ML co-design requires specialized hardware
   unavailable to most; optimizations can't be evaluated offline or shared.

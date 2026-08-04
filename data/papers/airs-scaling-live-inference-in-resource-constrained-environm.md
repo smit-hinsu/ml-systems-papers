@@ -32,7 +32,8 @@ openreview_url: https://openreview.net/forum?id=g1RWik4Gy1
 organizations:
 - Google
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - cache
 problem: LLM rating demand at Google far exceeds the allocated TPU budget; serving
   all evaluation tasks competes with live user traffic for the same TPUs.

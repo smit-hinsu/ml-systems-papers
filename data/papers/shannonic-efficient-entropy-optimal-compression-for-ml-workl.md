@@ -19,22 +19,14 @@ indexed_date: '2026-05-25'
 key_results: 1.3–3.1x faster federated learning over bandwidth-constrained networks;
   29–32% latency reduction in edge-cloud LLM inference; codec state footprint of 530B.
 models_evaluated: []
-observations:
-  fuse: Near-entropy-optimal lossless compression of 8-bit model
-    tensors cuts transmitted bytes in federated learning and edge-cloud LLM inference,
-    reducing bandwidth-limited latency by 29–32%.
-  tier: 530B codec state footprint enables compression/decompression
-    to run efficiently on edge devices with limited SRAM, making tensor compression
-    practical for bandwidth-constrained edge inference.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=NhMxI0GbB8
 organizations:
 - University of Toronto
 presentation_type: oral
-principles:
-- fuse
-- tier
+principles: []
 problem: Existing lossless tensor compression methods trade off between compression
   ratio, memory footprint, and throughput, making them impractical for ML workloads.
 project_url: ''

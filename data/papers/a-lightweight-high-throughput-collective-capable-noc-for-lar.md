@@ -23,9 +23,6 @@ key_results: 2.9× geomean multicast speedup and 2.5× reduction speedup on 1–
   payloads; up to 2.1× GEMM performance gain with only 16.5% router area overhead
 models_evaluated: []
 observations:
-  fuse: In-network reduction via DCA aggregates partial results inside routers rather
-    than routing raw data to a dedicated reduction core and back, cutting the hop
-    count before consumption.
   pipeline: Direct Compute Access keeps collectives off the GEMM critical path; multicast
     and reduction complete in the network fabric while cores continue computing, eliminating
     stalls on large meshes.
@@ -37,7 +34,6 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-- fuse
 problem: On-chip collectives (multicast, reduction) stall GEMM pipelines on large
   ML accelerator meshes because unicast NoCs serialize data transfers with compute.
 project_url: ''

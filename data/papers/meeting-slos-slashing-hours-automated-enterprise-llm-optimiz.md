@@ -24,10 +24,7 @@ indexed_date: '2026-05-25'
 key_results: More than 2× GPU throughput improvement in production deployment; reduces
   model optimization from hours of manual effort to automated pipeline execution
 models_evaluated: []
-observations:
-  cache: Staged pipeline execution with automatic cleanup resumes from the last completed
-    stage on failure, avoiding rerunning costly optimization steps already finished
-    successfully.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=om4H7AI2hc
 optimization_type: []
@@ -35,8 +32,7 @@ organizations:
 - eBay
 - Democritus University of Thrace
 presentation_type: oral
-principles:
-- cache
+principles: []
 problem: Enterprise teams lack LLM optimization expertise to compress models within
   GPU budgets, leaving utilization low across heterogeneous infrastructure.
 project_url: ''

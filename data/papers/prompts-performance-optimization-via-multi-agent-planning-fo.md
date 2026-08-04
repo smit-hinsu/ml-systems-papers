@@ -21,18 +21,14 @@ indexed_date: '2026-05-25'
 key_results: Top recommendation matched production config in 87.5% of cases; up to
   434% perf improvement across 8 workloads on 2–512 TPU chips.
 models_evaluated: []
-observations:
-  search-ai: Multi-agent RAG framework identifies expert-validated sharding configs
-    within top-3 recommendations in a single invocation across 8 real LLM workloads
-    on TPU clusters.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=FTOfgVHcZn
 organizations:
 - Google
 presentation_type: oral
-principles:
-- search-ai
+principles: []
 problem: Optimizing LLM training/serving sharding configs on large TPU clusters requires
   deep expertise or expensive black-box search.
 project_url: ''

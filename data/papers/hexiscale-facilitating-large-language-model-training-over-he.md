@@ -26,9 +26,6 @@ models_evaluated:
 observations:
   balance: Equal-size parallelism partitions on mixed GPU generations let the weakest
     device set the step time; every faster GPU waits at the sync point for it.
-  pipeline: Asymmetric tensor and pipeline parallelism partitions allow work-stealing
-    across heterogeneous tiers so that faster GPUs do not idle while slower ones finish
-    their unequal slices.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=KgcqSNio0U
 optimization_type: []
@@ -39,7 +36,6 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- pipeline
 problem: Standard LLM parallelism strategies assume equal-speed devices, leaving weaker
   GPUs as stragglers in heterogeneous clusters and wasting available compute.
 project_url: ''

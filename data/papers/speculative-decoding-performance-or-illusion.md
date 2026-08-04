@@ -21,9 +21,6 @@ key_results: 4 SD variants (n-gram, EAGLE, Draft-Model, MTP) consistently underp
   theoretical speedup on production vLLM; gains diminish at large batch sizes
 models_evaluated: []
 observations:
-  cache: Theoretical speedup analysis reveals verification by the target model dominates
-    total execution time, exposing draft generation cost as not the limiting factor
-    in production SD settings.
   measure: SD speedups are reported from research prototypes at tiny batches; nobody
     had checked what survives inside production vLLM once continuous batching is already
     saturating the GPU.
@@ -37,7 +34,6 @@ organizations:
 - UC Berkeley
 presentation_type: oral
 principles:
-- cache
 - speculate
 - measure
 problem: Speculative decoding speedup claims use research prototypes at small batches;

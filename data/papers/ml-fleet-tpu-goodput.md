@@ -40,8 +40,9 @@ organizations:
 - Google
 presentation_type: oral
 principles:
-- pipeline
 - measure
+principles_review:
+- pipeline
 problem: MFU cannot separate whether TPU fleet inefficiency comes from scheduling,
   runtime failures, or program inefficiency, making optimization non-actionable.
 project_url: ''

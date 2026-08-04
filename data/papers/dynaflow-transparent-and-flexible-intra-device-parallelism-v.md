@@ -27,9 +27,6 @@ key_results: Up to 1.29× throughput vs. unmodified baseline across 6 ML systems
   FlashAttention and vLLM) with minimal per-system code changes
 models_evaluated: []
 observations:
-  cache: DynaFlow's custom memory manager eliminates copy overheads from async control/data-flow
-    that naive async execution introduces as redundant intermediate buffers between
-    concurrent operators.
   pipeline: DynaFlow's scheduler overlaps memory-bound and compute-bound operators
     without model-specific code, achieving up to 1.29× throughput across 6 ML systems
     including vLLM and FlashAttention.
@@ -41,7 +38,6 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-- cache
 problem: Adding intra-device parallelism to ML frameworks requires invasive, model-specific
   code rewrites that don't generalize across architectures or hardware.
 project_url: ''

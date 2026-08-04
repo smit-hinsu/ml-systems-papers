@@ -23,11 +23,6 @@ observations:
   balance: A GPU failure leaves survivors holding uneven KV cache and attention work,
     so the overloaded rank becomes a straggler the rest of the TP group waits on every
     step.
-  cache: Proactive KVCache backup and on-demand weight recovery avoid
-    expensive KVCache recomputation after GPU failures, a key cost of standard fault
-    handling.
-  tier: Cyclic KVCache Placement distributes cache evenly across
-    surviving GPUs, avoiding memory hotspots that would force eviction and recomputation.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=5pl9fdbEkq
@@ -36,8 +31,6 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- cache
-- tier
 problem: 'TP LLM serving fails on single GPU fault — halts execution, forces full KVCache recompute, and leaves surviving GPUs compute/memory imbalanced.'
 project_url: ''
 reading_status: want-to-read

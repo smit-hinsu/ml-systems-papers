@@ -21,18 +21,14 @@ indexed_date: '2026-05-25'
 key_results: Up to 51% reduction in end-to-end GPU energy consumption vs. vLLM while
   meeting per-request TTFT and TBT SLOs
 models_evaluated: []
-observations:
-  pipeline: Event-driven controller responds to request arrivals and completions to
-    reallocate latency slack across power and resource dimensions; sub-millisecond
-    decisions stay off the critical path.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=BfNBXM8CCT
 organizations:
 - KAIST
 presentation_type: oral
-principles:
-- pipeline
+principles: []
 problem: LLM inference SLOs leave latency slack unexploited; existing systems tune
   batching or DVFS in isolation rather than jointly, missing compound energy savings.
 project_url: ''

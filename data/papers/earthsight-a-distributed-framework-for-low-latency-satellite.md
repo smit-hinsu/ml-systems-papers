@@ -33,6 +33,7 @@ organizations:
 presentation_type: oral
 principles:
 - skip
+principles_review:
 - cache
 problem: Satellite constellation intelligence is bottlenecked by redundant onboard
   inference across satellites and tasks, wasting scarce compute and downlink bandwidth.

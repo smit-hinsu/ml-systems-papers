@@ -31,9 +31,6 @@ observations:
   fuse: Structural fusion with dimension demotion eliminates intermediate HBM tensor
     writes by merging GEMM output with dependent operations in a single fused kernel,
     avoiding a full round-trip.
-  tier: Semantic fusion via algebraic transformation rewrites multi-pass reductions
-    like stable softmax into single-pass online algorithms, keeping partial results
-    in registers.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=lboOMA8XWr
 optimization_type: []
@@ -44,7 +41,6 @@ organizations:
 presentation_type: oral
 principles:
 - fuse
-- tier
 problem: New attention variants require hand-written specialized kernels; FlexAttention
   covers only a subset via rigid static templates, blocking rapid exploration.
 project_url: ''

@@ -24,10 +24,7 @@ key_results: Uncertainty-aware rejection improves resilience across 3 case studi
   (server provisioning, cluster management, storage I/O) by filtering unreliable ML
   calls.
 models_evaluated: []
-observations:
-  search-ai: The framework quantifies prediction uncertainty at runtime to determine
-    when ML outputs are trustworthy, enabling ML to solve measurable system objectives
-    only within its reliable operating envelope.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=i0iOQL2MF5
@@ -36,8 +33,7 @@ organizations:
 - Meta
 - Google
 presentation_type: oral
-principles:
-- search-ai
+principles: []
 problem: ML models in computer systems fail silently on out-of-distribution inputs,
   causing costly failures when predictions are applied without uncertainty awareness.
 project_url: ''

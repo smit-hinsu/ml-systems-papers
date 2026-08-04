@@ -39,6 +39,7 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
+principles_review:
 - fuse
 problem: Writing optimized CUDA/Triton kernels requires deep hardware expertise; no
   framework exists for AI agents to iteratively generate, test, and improve them.

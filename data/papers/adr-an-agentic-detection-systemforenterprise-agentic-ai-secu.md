@@ -28,10 +28,7 @@ indexed_date: '2026-05-25'
 key_results: 97.2% precision detecting credentials at Uber across 26 categories; 67%
   attack detection on ADR-Bench with zero false positives, 2–4× F1 over baselines
 models_evaluated: []
-observations:
-  specialize: ADR Sensor pre-structures telemetry into a fixed schema before passing
-    to the LLM detector; each tier is independently optimized — sensor for throughput,
-    LLM for semantic reasoning quality.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=7B91Naeszw
 optimization_type: []
@@ -39,8 +36,7 @@ organizations:
 - Uber
 - MIT
 presentation_type: oral
-principles:
-- specialize
+principles: []
 problem: Enterprise AI agents using MCP tools are invisible to EDR — which sees file
   writes but not agent reasoning or causal chains linking intent to tool execution.
 project_url: ''

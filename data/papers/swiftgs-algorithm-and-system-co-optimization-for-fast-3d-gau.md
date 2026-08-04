@@ -27,9 +27,6 @@ observations:
   fuse: GPU-efficient axis-shared rasterization shares axis-aligned
     tile data across adjacent rasterization threads, cutting redundant memory loads
     per tile.
-  cache: Dynamic thresholding prunes low-contribution Gaussians at
-    runtime without retraining, avoiding full-scene rasterization for distant or occluded
-    primitives.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=i05mMLR9BX
@@ -39,7 +36,6 @@ presentation_type: oral
 principles:
 - skip
 - fuse
-- cache
 problem: 3D Gaussian Splatting requires rendering millions of Gaussians in parallel,
   imposing memory and compute demands that limit deployment on constrained GPUs.
 project_url: ''

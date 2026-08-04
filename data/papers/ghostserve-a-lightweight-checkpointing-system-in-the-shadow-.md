@@ -21,20 +21,14 @@ key_results: GhostServe reduces checkpointing latency by 2.7x, recovery latency 
   2.1x per batch, and median response latency by 1.2x vs existing fault-tolerant methods.
 models_evaluated:
 - Long-context LLMs (agent-based)
-observations:
-  cache: Erasure-coded KV cache parity shards in host memory enable fast recovery
-    without full KV recomputation after device failure.
-  tier: Parity shards are stored in host memory instead of GPU memory, protecting
-    the KV cache at minimal GPU memory cost.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=xKjYiUgeOK
 optimization_type: []
 organizations:
 - University of Central Florida
 presentation_type: oral
-principles:
-- cache
-- tier
+principles: []
 problem: Long-running agentic LLM inference is vulnerable to device failures that
   force costly full KV cache recomputation, wasting time and compute.
 project_url: ''

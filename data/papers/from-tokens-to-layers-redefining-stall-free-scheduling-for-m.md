@@ -45,8 +45,9 @@ presentation_type: oral
 principles:
 - fuse
 - pipeline
-- tier
 - simplify
+principles_review:
+- tier
 problem: Chunked prefill in MoE serving forces redundant expert weight reloads per
   chunk, inflating memory traffic by up to 39% and increasing TTFT.
 project_url: ''

@@ -22,9 +22,6 @@ key_results: 1.3–1.8× higher decoding throughput vs. SoTA recallable sparsity
   under different batch sizes
 models_evaluated: []
 observations:
-  skip: Plugin interface decouples sparsity selection from KV cache management so
-    any recallable sparsity method integrates without modifying the serving framework,
-    enabling clean adoption.
   tier: Object reaggregation groups discrete KV pages before CPU recall, reducing
     PCIe transfer overhead; hot page hit algorithm keeps frequently recalled pages
     GPU-resident, exploiting temporal locality.
@@ -37,7 +34,6 @@ organizations:
 presentation_type: oral
 principles:
 - tier
-- skip
 problem: Recallable KV sparsity methods are intrusive to paged KV cache management
   and suffer linearly growing recall overhead at high batch sizes, limiting throughput.
 project_url: ''

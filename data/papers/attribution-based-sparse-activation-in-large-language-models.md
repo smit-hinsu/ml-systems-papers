@@ -21,10 +21,7 @@ indexed_date: '2026-05-25'
 key_results: 70% model sparsity with <5% accuracy loss on QA and text summarization;
   35% latency reduction and 40% memory reduction for LLM inference
 models_evaluated: []
-observations:
-  skip: New attribution metric corrects interdependency errors in existing scores;
-    70% neuron deactivation with <5% accuracy loss enables 35% latency and 40% memory
-    reduction without model retraining.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=gJFigZeb5D
 optimization_type: []
@@ -32,8 +29,7 @@ organizations:
 - University of Pittsburgh
 - Huazhong University of Science and Technology
 presentation_type: oral
-principles:
-- skip
+principles: []
 problem: Existing lossless sparse activation only skips zero-output neurons, which
   are rare in modern efficient LLMs, making activation sparsity ineffective in practice.
 project_url: ''

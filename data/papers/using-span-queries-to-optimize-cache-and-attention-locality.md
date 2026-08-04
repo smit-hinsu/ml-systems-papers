@@ -25,9 +25,6 @@ observations:
   cache: Span query commutativity constraints let the server reorder commutative input
     segments and reuse cached KV states across structurally equivalent queries, eliminating
     redundant prefill.
-  tier: Span query optimization places commutative segments with existing KV cache
-    hits first in the attention order, maximizing prefix cache reuse and minimizing
-    cache misses.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=qcGGSXpFcM
 optimization_type: []
@@ -36,7 +33,6 @@ organizations:
 presentation_type: oral
 principles:
 - cache
-- tier
 problem: Inference servers optimized for linear chat use poor KV cache strategies
   for inference-time scaling, RAG, and agentic workloads with non-linear input structure.
 project_url: ''

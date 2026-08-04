@@ -26,9 +26,6 @@ observations:
   measure: When a model flips its answer under authority pressure, nobody can blame
     the pressure without a neutral control, and a model that keeps its answer while
     losing confidence still scores as robust.
-  search-ai: PARROT's double-blind evaluation framework systematically
-    exposes sycophancy as a measurable accuracy degradation, enabling quantitative
-    ranking of model robustness across authority pressure levels.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=cU2wiOnfm5
@@ -36,7 +33,6 @@ organizations:
 - NewMind AI
 presentation_type: oral
 principles:
-- search-ai
 - measure
 problem: LLM sycophancy under authority-based pressure is poorly quantified; benchmarks
   do not isolate causal effects of persuasion on accuracy vs. neutral baselines.

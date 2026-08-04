@@ -24,8 +24,6 @@ observations:
   cache: Pre-RoPE L2 matching over a local window finds semantically similar prior
     queries; reusing their attention output cuts constant-complexity decode regardless
     of context length.
-  tier: Amend stage recomputes only a small band near the match boundary in SRAM rather
-    than re-reading the full KV cache from HBM, keeping memory traffic O(1) on hit.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=b6HBRCejb7
 optimization_type: []
@@ -36,7 +34,6 @@ organizations:
 presentation_type: oral
 principles:
 - cache
-- tier
 problem: Long-context LLM decode re-reads the full ever-growing KV cache for every
   token, making inference IO-bound at 128K+ context lengths.
 project_url: ''

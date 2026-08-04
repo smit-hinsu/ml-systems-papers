@@ -30,13 +30,7 @@ key_results: ScaleSearch reduces NVFP4 quantization error by 27%; ScaleSearchAtt
 models_evaluated:
 - Llama 3.1 70B
 - Qwen3-8B
-observations:
-  tier: Fine-grained scale search uses mantissa bits in BFP microscaling formats to
-    minimize quantization error for the block value distribution, reducing the gap
-    between stored and effective precision.
-  fuse: ScaleSearchAttention uses 4-bit representation for attention, reducing memory
-    bandwidth while maintaining near-zero performance loss via optimized scale
-    selection.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=innqECyZPK
@@ -44,9 +38,7 @@ organizations:
 - Together AI
 - Cornell University
 presentation_type: oral
-principles:
-- tier
-- fuse
+principles: []
 problem: Standard BFP quantization uses maximum-magnitude scale factors that are suboptimal
   for the actual value distribution, causing unnecessary quantization error.
 project_url: ''

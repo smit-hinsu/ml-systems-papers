@@ -31,9 +31,6 @@ observations:
   pipeline: Layer-wise partial sync decouples gradient communication from the backward
     pass; non-synced layers' gradients overlap with compute rather than blocking on
     a cross-datacenter all-reduce.
-  cache: Partial Local SGD syncs only layers whose staleness exceeds a threshold,
-    skipping full-model communication each step and cutting total cross-datacenter
-    bandwidth by an order of magnitude.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=cnvw0mbZQp
@@ -43,7 +40,6 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-- cache
 problem: Geo-distributed LLM training stalls on slow inter-datacenter links because
   Local SGD's strict model synchronization blocks compute-communication overlap.
 project_url: ''

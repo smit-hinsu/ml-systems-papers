@@ -18,22 +18,14 @@ indexed_date: '2026-05-25'
 key_results: Higher speedups than static approximation on 3 compound AI systems (LLM+retrieval,
   LLM+tools); finds Pareto-optimal accuracy-performance trade-offs.
 models_evaluated: []
-observations:
-  cache: End-to-end compilation of compound systems lets approxMLIR discover cross-component
-    approximations (e.g., skip retrieval when LLM confidence is high) that per-component
-    optimizers cannot see.
-  skip: approx MLIR dialect expresses approximation choices for ML and non-ML components
-    in a unified IR; approx-opt searches the joint space to skip work whose accuracy
-    cost stays within budget.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=nKm25GWbuB
 organizations:
 - University of Illinois Urbana-Champaign
 presentation_type: oral
-principles:
-- skip
-- cache
+principles: []
 problem: Compound AI systems (LLM+RAG, tool calling) have no unified way to trade
   accuracy for performance, leaving cross-component optimization unexploited.
 project_url: ''

@@ -28,10 +28,7 @@ indexed_date: '2026-05-24'
 key_results: 2.37× more concurrent users on Meta Quest Pro at 5.7–6.5% higher reconstruction
   loss and ~9% energy overhead vs. local reconstruction baseline
 models_evaluated: []
-observations:
-  fuse: HP keeps high-energy DCT components on-device and offloads only low-energy
-    components, minimizing data transferred to untrusted devices while preserving
-    reconstruction quality.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=WjJfnNhY65
 optimization_type: []
@@ -42,8 +39,7 @@ organizations:
 - Alibaba Group
 - Nokia Bell Labs
 presentation_type: oral
-principles:
-- fuse
+principles: []
 problem: Multi-user VR avatar reconstruction on headsets limits concurrent users;
   offloading to local untrusted devices risks leaking sensitive facial expression
   data.

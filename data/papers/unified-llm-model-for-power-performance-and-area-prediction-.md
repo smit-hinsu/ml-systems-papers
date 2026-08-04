@@ -19,21 +19,14 @@ indexed_date: '2026-05-25'
 key_results: 9.4 percentage point improvement in pass rate at 10% tolerance over prior
   methods, with ~20× higher throughput (0.12 s per design).
 models_evaluated: []
-observations:
-  cache: At 0.12 s per design vs. minutes-long synthesis runs, RocketPPA avoids the
-    redundant work of full tool invocations during early-stage design space exploration.
-  search-ai: RocketPPA uses an LLM with MoE regression and contrastive learning to
-    predict PPA metrics—a verifiable hardware design objective—enabling fast design-space
-    search without full synthesis.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=lpO7kxiayb
 organizations:
 - University of Southern California
 presentation_type: oral
-principles:
-- search-ai
-- cache
+principles: []
 problem: Fast surrogate models for Verilog PPA prediction lack accuracy across technology
   nodes; slow synthesis runs block early design-space exploration.
 project_url: ''

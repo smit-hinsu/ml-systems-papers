@@ -29,9 +29,6 @@ observations:
   balance: Sequence lengths in a pretraining batch vary widely, so sequence-level
     sharding hands some context-parallel ranks far less attention work than others,
     leaving them idle each step.
-  fuse: Arbitrary peer-to-peer communication topology (vs. fixed ring) allows FCP
-    to place sequence blocks on workers that minimize cross-node transfers for the
-    actual sequence distribution.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=MPVycRsIn6
@@ -41,7 +38,6 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- fuse
 problem: Existing context parallelism designs over-shard short sequences or batch
   them separately, causing compute inefficiency and imbalance during LLM pretraining.
 project_url: ''

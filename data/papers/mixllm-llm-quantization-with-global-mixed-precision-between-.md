@@ -19,24 +19,14 @@ key_results: Perplexity increase for Llama 3.1 70B reduced from ~0.5 (SOTA) to w
   0.2; MMLU-Pro loss cut from 1.92 to 0.99 with only 10% more bits
 models_evaluated:
 - Llama-3.1-70B
-observations:
-  fuse: Software pipeline overlaps memory access, dequantization, and MatMul so HBM
-    reads are hidden behind compute, maximizing effective bandwidth utilization.
-  skip: Global cross-layer sensitivity analysis identifies the small fraction of output
-    features needing higher bit-width; most features use low bits, reducing memory
-    footprint vs. uniform quantization.
-  tier: Two-step dequantization reuses Tensor Core hardware pathways with fast data-type
-    conversion, keeping dequantization overhead minimal relative to HBM-bound MatMul.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=VBbMRQ4VOc
 organizations:
 - Microsoft
 presentation_type: oral
-principles:
-- tier
-- fuse
-- skip
+principles: []
 problem: Mixed-precision quantization prior work either sacrifices accuracy or achieves
   low system efficiency; both matter for production LLM deployment.
 project_url: ''

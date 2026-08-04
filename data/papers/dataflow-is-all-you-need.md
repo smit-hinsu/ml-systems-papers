@@ -40,9 +40,6 @@ key_results: '>75% roofline efficiency on SN40; speculative decoding 1.7× faste
   DGX H100 on 16 SN40 chips; 6× speculative decoding speedup over baseline'
 models_evaluated: []
 observations:
-  tier: GPUs extract as little as 21% of memory bandwidth for decode due to CPU
-    scheduling overhead; SN40 dataflow keeps data moving continuously without any
-    CPU involvement in the critical path.
   pipeline: BatchStreaming overlaps KV cache loading with current compute;
     ScheduleOffloading moves dispatch logic off the compute path, eliminating
     synchronization gaps between kernels on SN40.
@@ -59,7 +56,6 @@ organizations:
 - SambaNova Systems
 presentation_type: oral
 principles:
-- tier
 - pipeline
 - fuse
 - simplify

@@ -38,9 +38,6 @@ key_results: Generated 481 unique ATen operator kernels passing all PyTorch OpIn
   tests (20,000+ tests) for MTIA silicon and simulation environments
 models_evaluated: []
 observations:
-  cache: Shared JIT compilation cache and linter catch trivial errors before expensive
-    hardware simulation, reducing the cost of the LLM generation-test loop across
-    481 operators.
   search-ai: LLMs generate ATen kernels via JIT compilation and OpInfo test harness;
     passing 20,000+ correctness tests provides the verifiable signal guiding generation
     and enabling overnight backend creation.
@@ -52,7 +49,6 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
-- cache
 problem: New AI accelerator platforms (e.g., MTIA) lack PyTorch ATen backends; expert
   kernel authors cannot cover the full operator set needed for standard ML workloads.
 project_url: ''

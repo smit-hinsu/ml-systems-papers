@@ -43,6 +43,7 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
+principles_review:
 - cache
 problem: Emerging AI accelerators (Trainium, custom ASICs) lack expert-written optimized
   kernels; manual tuning requires deep hardware knowledge unavailable at scale.

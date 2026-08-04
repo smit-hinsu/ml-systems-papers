@@ -17,22 +17,14 @@ indexed_date: '2026-05-25'
 key_results: Lifts Recall@10 to 0.70 vs. 0.58 for dense-only; improves nDCG@10 from
   0.41 to 0.51; 47% less cross-modality disagreement; 81% cost reduction vs. long-context
 models_evaluated: []
-observations:
-  cache: Budget-aware router selects retrieval paths by cost, skipping expensive long-context
-    prompting when the memory graph already contains the needed facts, cutting serving
-    cost by 81%.
-  tier: Durable user facts are extracted into a lightweight memory graph (fast tier)
-    rather than re-reading full session history; the graph serves as a cheap index
-    before expensive LLM context expansion.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=wpZHLPz4N0
 organizations:
 - Apple
 presentation_type: oral
-principles:
-- cache
-- tier
+principles: []
 problem: Dense retrieval and long-context prompting fail to recall implicit user preferences
   across sessions due to missing lexical overlap with earlier stored facts.
 project_url: ''

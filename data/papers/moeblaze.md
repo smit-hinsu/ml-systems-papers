@@ -30,22 +30,15 @@ observations:
   fuse: Conventional MoE routing materializes ~94GB permutation buffers in HBM; four
     compact index structures replace these with index-only tensors, eliminating most
     permutation traffic.
-  skip: Top-k routing activates only 1–4 of the 4–16 experts per token; compact index
-    structures exploit this sparsity to skip materializing unused routing buffers
-    entirely, cutting ~94GB HBM use.
-  tier: SwiGLU fusion combines dual first-layer projections and activation epilogue
-    into a single kernel, eliminating intermediate global memory writes and keeping
-    activations in registers/shared memory
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=L8qKfWWkry
 optimization_type: []
 organizations:
 - Meta
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - fuse
-- tier
-- skip
 problem: MoE training stores all expert weights and routing buffers in HBM even though
   only top-k experts fire per token, creating a memory wall that limits batch size.
 project_url: ''

@@ -16,22 +16,14 @@ indexed_date: '2026-05-25'
 key_results: 6.31× smaller flash footprint (~225 kB vs. ~1.4 MB) while retaining ≥95%
   of large-model macro-F1 on three ECG benchmarks; 96.2% accuracy on Speech Commands
 models_evaluated: []
-observations:
-  cache: A shared micro-MLP generates all pointwise kernels from tiny per-layer codes
-    once at load time and caches them; inference reuses cached weights with zero synthesis
-    overhead at steady state.
-  tier: Cross-layer weight generation eliminates stored weights for most PW layers;
-    only a tiny shared generator and compact codes live in MCU flash, exploiting the
-    MCU's severe flash/SRAM hierarchy.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=NrDa5Fu10D
 optimization_type: []
 organizations:
 - Independent Researcher
 presentation_type: oral
-principles:
-- cache
-- tier
+principles: []
 problem: Pointwise convolution mixers dominate flash/SRAM on microcontrollers even
   after INT8 quantization, blocking deployment of competitive CNNs in TinyML settings.
 project_url: ''

@@ -28,7 +28,8 @@ optimization_type: []
 organizations:
 - Columbia University
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - skip
 problem: Partial FL methods use ad-hoc heuristics for layer federation choice, causing
   inconsistent performance and client regressions on non-IID data.

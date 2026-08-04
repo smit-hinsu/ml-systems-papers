@@ -20,13 +20,7 @@ indexed_date: '2026-05-24'
 key_results: 1.1×–31.5× retrieval latency speedup and 1.1×–14.5× token footprint reduction
   over dense-vector and knowledge-graph memory baselines on LoCoMo and LongMemEval
 models_evaluated: []
-observations:
-  cache: Compact binary signatures enable semantic search without expanding embeddings;
-    the Dynamic Wavelet Matrix avoids re-decompressing entries for queries resolvable
-    from the binary index alone.
-  tier: DWM co-indexes binary signatures and token-ID streams in one compressed structure,
-    keeping search indices in fast memory while full token streams remain compressed
-    until reconstruction is needed.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=0sUYZh9D4a
 optimization_type: []
@@ -34,9 +28,7 @@ organizations:
 - University of Texas at Dallas
 - Hewlett Packard Enterprise
 presentation_type: oral
-principles:
-- cache
-- tier
+principles: []
 problem: Dense vector and knowledge-graph memory systems incur high retrieval latency
   and storage costs that prevent agentic AI from scaling to long-horizon tasks.
 project_url: ''

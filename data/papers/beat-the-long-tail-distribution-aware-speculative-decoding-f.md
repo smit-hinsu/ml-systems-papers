@@ -33,10 +33,6 @@ key_results: DAS cuts RL rollout time by up to 50% on math and code tasks with i
 models_evaluated:
 - LLM (math/code reasoning)
 observations:
-  cache: Suffix tree drafter reuses token patterns from past rollouts, avoiding recomputation
-    of common prefixes across RL training epochs.
-  skip: Length-aware policy assigns aggressive draft budgets only to the long-tail
-    trajectories that dominate makespan, ignoring short ones.
   speculate: Suffix-tree drafter models the RL rollout long-tail token distribution;
     high acceptance rates on rare tokens close the gap between distribution-naive
     speculation and optimal throughput.
@@ -52,8 +48,6 @@ organizations:
 - Cornell University
 presentation_type: oral
 principles:
-- cache
-- skip
 - speculate
 problem: RL rollout phase is dominated by a small fraction of long trajectories, bottlenecking
   wall-clock time while most rollouts finish quickly.

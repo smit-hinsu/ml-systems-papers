@@ -22,9 +22,6 @@ key_results: Up to 4.08× speedup for sequence-parallel, 2.33× for data/tensor-
   and 1.22× for expert-parallel workloads with fewer than 50 lines of device code
 models_evaluated: []
 observations:
-  fuse: Analysis of data-transfer mechanisms identifies which data must cross NVLink
-    vs. stay on-device; PK kernels minimize cross-GPU transfers by restructuring tiling
-    to match interconnect bandwidth.
   pipeline: Eight core primitives express compute-communication overlap for multi-GPU
     kernels; a unified template ensures hardware resources are scheduled to hide interconnect
     latency behind active computation.
@@ -39,7 +36,7 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-- fuse
+principles_review:
 - simplify
 problem: Inter-GPU communication bottlenecks AI workloads; existing overlap techniques
   fail to reach peak bandwidth across heterogeneous workloads and accelerators.

@@ -21,22 +21,14 @@ key_results: ZK-SNARK proofs complete in ~2 hours (10^7× faster than retraining
 models_evaluated:
 - ViT (Vision Transformer)
 - OPT-125M
-observations:
-  cache: Zero-shot unlearning via sparse masking and block-wise Fisher compensation
-    avoids full retraining, removing targeted samples from personalized models in one
-    forward-backward pass.
-  skip: Provider-side sparse masking targets only the parameters most
-    responsible for the forgotten samples, applying a minimal surgical update rather
-    than globally perturbing the model.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=bLx6orLvQM
 organizations:
 - Imperial College London
 presentation_type: oral
-principles:
-- cache
-- skip
+principles: []
 problem: Verifying correct machine unlearning in personalized distributed models is
   intractable with retraining; edge device clients may falsify deletion.
 project_url: ''

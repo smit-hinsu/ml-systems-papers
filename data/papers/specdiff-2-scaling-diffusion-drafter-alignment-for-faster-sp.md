@@ -20,12 +20,6 @@ key_results: +55% tokens-per-second over prior SD baselines; 5.5× avg speedup o
   standard autoregressive decoding on reasoning, coding, and math benchmarks.
 models_evaluated: []
 observations:
-  cache: Drafter calibration aligns draft-token distributions with the autoregressive
-    verifier, reducing rejection rates and avoiding wasted verification compute on
-    misaligned tokens.
-  pipeline: Discrete diffusion drafting generates multiple tokens in parallel in a
-    single non-autoregressive pass, eliminating the sequential per-token dependency
-    that limits autoregressive drafts.
   speculate: SpecDiff-2 aligns the diffusion drafter to the target LLM distribution;
     higher alignment raises acceptance rates, making the parallel diffusion pass a
     reliable speculative proposal.
@@ -36,8 +30,6 @@ organizations:
 - University of Virginia
 presentation_type: oral
 principles:
-- pipeline
-- cache
 - speculate
 problem: Autoregressive draft models cannot parallelize token drafting; draft-verifier
   misalignment causes high rejection rates that negate speculative decoding speedup.

@@ -38,9 +38,10 @@ organizations:
 - Zhejiang Lab
 presentation_type: oral
 principles:
-- fuse
 - quantize
 - simplify
+principles_review:
+- fuse
 problem: FP8 MoE training still relies on BF16-dominated dataflows with frequent quantize-dequantize
   casts, eroding most of FP8's theoretical efficiency gains.
 project_url: ''

@@ -31,9 +31,6 @@ observations:
   fuse: HipKittens' tile-based primitives group data into hardware-aligned tiles,
     reducing redundant global memory transactions and maximizing L2 reuse on AMD CDNA
     GPUs without hand-written assembly.
-  tier: Explicit tile-based programming exposes CDNA's LDS and cache hierarchy, enabling
-    data reuse patterns that compiler auto-vectorization misses for attention and
-    GEMM kernels on AMD hardware.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=xxSSrndQrI
 optimization_type: []
@@ -42,9 +39,9 @@ organizations:
 - AMD
 - UC San Diego
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - fuse
-- tier
 problem: Peak-performance AMD GPU kernels required hand-written assembly; no high-level
   DSL existed for AMD CDNA hardware, blocking efficient AI kernel development.
 project_url: ''

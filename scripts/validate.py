@@ -280,12 +280,15 @@ def main():
                 f"({', '.join(sorted(MoE_SERVING_DOMAINS))})"
             )
 
-        paper_principles = set(p.get("principles") or [])
-        if "kernel-fusion" in paper_topics and "fuse" not in paper_principles:
-            warnings.append(
-                f"{name}: has topic 'kernel-fusion' but principle 'fuse' "
-                f"is not listed — review whether data movement reduction applies"
-            )
+        # Removed: a "topic kernel-fusion implies principle fuse" check.
+        #
+        # It encoded the conflation that produced the 2026-08 audit's worst results.
+        # `topics` records methods a paper *uses*; `principles` record what it
+        # *contributes*. BLASST runs inside FlashAttention's fused softmax loop and
+        # contributes no fusion; Spira eliminates a pre-processing pass. Both keep an
+        # accurate `kernel-fusion` topic and correctly carry no `fuse` principle.
+        # Warning on that pushes a reviewer toward re-adding the tag the audit removed,
+        # or toward deleting true metadata to silence it — 78% of `fuse` tags were wrong.
 
     # Cross-paper: duplicate observation text for same principle
     for obs_slug, entries in principle_obs_map.items():

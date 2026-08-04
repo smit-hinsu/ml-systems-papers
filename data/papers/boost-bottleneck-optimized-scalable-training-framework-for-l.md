@@ -24,9 +24,7 @@ key_results: BOOST achieves 1.46-1.91x speedup over full-rank baselines and 1.87
   over naive 3D-parallel low-rank training on GPU clusters.
 models_evaluated:
 - Low-rank bottleneck LLMs
-observations:
-  fuse: Bottleneck-aware tensor parallelism splits low-rank factors across devices
-    to avoid the excessive cross-device communication of naively applied 3D parallelism.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=JhN5hldx4V
 optimization_type: []
@@ -34,8 +32,7 @@ organizations:
 - UC Santa Barbara
 - Argonne National Laboratory
 presentation_type: oral
-principles:
-- fuse
+principles: []
 problem: Low-rank bottleneck architectures scale poorly under standard 3D tensor parallelism,
   causing excessive communication overhead and low GPU utilization.
 project_url: ''

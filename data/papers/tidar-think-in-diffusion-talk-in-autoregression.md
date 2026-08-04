@@ -42,9 +42,10 @@ organizations:
 - NVIDIA
 presentation_type: oral
 principles:
-- pipeline
 - speculate
 - simplify
+principles_review:
+- pipeline
 problem: Speculative decoding serializes generation and needs a draft model; diffusion
   models parallelize token generation but degrade quality vs. AR baselines.
 project_url: ''

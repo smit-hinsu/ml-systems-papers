@@ -30,12 +30,6 @@ key_results: FlashInfer Trace schema + leaderboard + apply() injection into SGLa
   multiple LLM agents evaluated across 3 kernel classes (attention, GEMM, activation).
 models_evaluated: []
 observations:
-  cache: Dynamic kernel substitution via apply() lets a winning kernel immediately
-    replace the default in SGLang/vLLM without rewriting application code or re-running
-    benchmarks
-  fuse: Winning LLM-generated kernels are consistently fused attention or GEMM variants;
-    the benchmark reveals that reducing HBM round-trips via fusion is the dominant
-    lever agents converge on.
   measure: Agents report kernel speedups on hand-picked shapes that never appear in
     production serving traces, so nobody can tell whether a claimed win survives real
     traffic or which agent is actually ahead.
@@ -50,8 +44,6 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
-- cache
-- fuse
 - measure
 problem: AI-generated kernels lack a benchmark against production workloads and a
   mechanism to inject them into live systems, breaking the generation-deployment loop.

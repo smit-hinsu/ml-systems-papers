@@ -32,7 +32,8 @@ openreview_url: https://openreview.net/forum?id=XDkOn0iTiH
 organizations:
 - University of Massachusetts Amherst
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - recompute
 problem: LLM training memory-saving techniques expose low-level knobs requiring manual
   tuning; misconfiguration causes suboptimal hardware utilization or OOM failures.

@@ -30,9 +30,6 @@ observations:
   elastic: FlexTrain absorbs spare GPUs at runtime by redistributing layers across
     the enlarged device set; if GPUs are reclaimed, training checkpoints and migrates
     to the smaller configuration without restart.
-  pipeline: When accuracy consistency is relaxed, additional data-parallelism scaling
-    overlaps independent gradient reductions across newly added GPUs, reaching 2.27×
-    over static allocation.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=h2yhNcbwSL
@@ -41,7 +38,6 @@ organizations:
 - ByteDance
 presentation_type: oral
 principles:
-- pipeline
 - elastic
 problem: Elastic LLM training on shared clusters causes accuracy inconsistency, high
   profiling overhead, or limited parallelism flexibility when absorbing idle GPUs.

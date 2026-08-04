@@ -40,6 +40,7 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
+principles_review:
 - fuse
 problem: Blackwell GPUs double tensor core throughput but other units scale slower,
   making Hopper-era attention kernels bottlenecked by non-matmul ops on B200.

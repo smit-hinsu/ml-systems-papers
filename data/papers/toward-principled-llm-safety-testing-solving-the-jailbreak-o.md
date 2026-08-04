@@ -23,9 +23,6 @@ observations:
   search-ai: BOA frames jailbreak detection as a verifiable oracle problem with a
     probability threshold, allowing AI-guided search to systematically solve a measurable
     security objective.
-  skip: Depth-first priority search guided by fine-grained safety scores focuses compute
-    on promising low-probability paths, skipping unpromising branches and reducing
-    exponential search space.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=vr3Rrg6Xnm
 optimization_type: []
@@ -33,7 +30,6 @@ organizations:
 - Northeastern University
 presentation_type: oral
 principles:
-- skip
 - search-ai
 problem: No systematic method exists to determine if an LLM can generate a jailbreak
   above a probability threshold, making security assessment unprincipled.

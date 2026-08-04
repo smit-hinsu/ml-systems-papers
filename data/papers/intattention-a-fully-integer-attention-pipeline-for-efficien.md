@@ -34,9 +34,6 @@ observations:
   simplify: The float-domain softmax detour inserted to enable INT8 attention consumes
     65% of latency — the conversion stage costs more than the quantized compute it
     enables.
-  tier: A 32-entry integer LUT for softmax fits entirely in L1 cache, eliminating
-    repeated FP transcendental computation and replacing it with integer table lookups
-    at negligible memory cost.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=CPCRITwAaP
 optimization_type: []
@@ -44,10 +41,10 @@ organizations:
 - Southern University of Science and Technology
 presentation_type: oral
 principles:
-- fuse
-- tier
 - quantize
 - simplify
+principles_review:
+- fuse
 problem: INT8 attention on edge hardware still requires float softmax, causing a dequantize-softmax-requantize
   detour that dominates up to 65% of attention latency.
 project_url: ''

@@ -33,7 +33,8 @@ organizations:
 - Meta
 - University of Chicago
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - measure
 problem: Software upgrades in datacenters stall due to poor duration predictions —
   overestimates waste maintenance windows and underestimates cause SLO violations.

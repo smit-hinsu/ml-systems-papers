@@ -41,9 +41,6 @@ observations:
   balance: Variable-length user history sequences cause per-GPU compute skew; reordering
     batches to equalize sequence-length sums before dispatch eliminates the dominant
     straggler source
-  fuse: SM-Free communication uses DMA engines for embedding collectives instead of
-    streaming multiprocessors, eliminating resource contention and reducing effective
-    communication cost
   pipeline: Embedding AllGather is independent of dense MLP forward pass; pipelining
     them hides collective latency behind compute without correctness constraints
 official_category: Research Papers
@@ -55,7 +52,6 @@ presentation_type: oral
 principles:
 - balance
 - pipeline
-- fuse
 problem: Recommendation training wastes compute via variable-sequence stragglers,
   serialized embedding communication, and SM contention during collective overlap.
 project_url: ''

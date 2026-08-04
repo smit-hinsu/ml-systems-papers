@@ -24,12 +24,6 @@ key_results: PRISM boosts decoding throughput 2.6× on a highly optimized engine
   outperforms existing draft architectures on acceptance length at minimal draft latency
 models_evaluated: []
 observations:
-  cache: By splitting capacity across separate parameter sets, PRISM avoids executing
-    unused model capacity for each draft token, keeping per-token draft latency low
-    while maintaining high acceptance length.
-  pipeline: PRISM disaggregates each draft step across disjoint parameter sets, allowing
-    subsets to compute in parallel rather than a single sequential forward pass through
-    a large draft model.
   speculate: PRISM extracts shared prefix layers from the target and adds thin adapter
     heads; shared-prefix drafting reuses the target's own computation, keeping the
     drafter close to the target distribution.
@@ -44,8 +38,6 @@ organizations:
 - University of Waterloo
 presentation_type: oral
 principles:
-- pipeline
-- cache
 - speculate
 problem: Larger speculative decoding draft models improve acceptance length but add
   prohibitive compute overhead, creating a fundamental accuracy-vs-latency trade-off.

@@ -24,9 +24,6 @@ key_results: Mixed-complexity RLVR datasets yield 5× sample efficiency vs. easy
 models_evaluated:
 - Small Language Models (SLMs)
 observations:
-  search-ai: Procedurally generated datasets with controllable complexity and verifiable
-    answers let RLVR train on objectively checkable problems, enabling scaling law
-    studies without human annotation.
   measure: RLVR data-scaling claims rest on benchmarks whose difficulty nobody can
     dial, so there is no way to tell what one more training example buys when data
     and compute are both scarce.
@@ -38,7 +35,6 @@ organizations:
 - University of Wisconsin-Madison
 presentation_type: oral
 principles:
-- search-ai
 - measure
 problem: RLVR post-training requires large annotated datasets with ground-truth answers;
   applying it effectively in low-data, low-compute regimes is unsolved.

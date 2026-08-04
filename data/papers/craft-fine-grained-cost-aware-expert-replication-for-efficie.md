@@ -33,9 +33,6 @@ observations:
   skip: Per-layer MoE load skew follows a heavy-tail distribution; CRAFT skips replication
     for the majority of low-skew layers, targeting only the sparse tail where imbalance
     exceeds replication cost.
-  tier: Reducing total replicas via fine-grained allocation frees GPU HBM for a larger
-    KV cache, which improves decode throughput enough to offset the slightly lower
-    expert load balance.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=zdRvzU9ZCe
 optimization_type: []
@@ -44,9 +41,9 @@ organizations:
 - Amazon
 presentation_type: oral
 principles:
-- skip
 - balance
-- tier
+principles_review:
+- skip
 problem: Expert parallelism creates token-level load imbalance; uniform replication
   over-replicates balanced MoE layers, wasting HBM that could serve more KV cache.
 project_url: ''

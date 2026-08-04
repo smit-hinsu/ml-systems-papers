@@ -31,9 +31,6 @@ key_results: Wave matches or surpasses 2 leading baselines (Triton, CUTLASS) in 
   performance while eliminating manual matrix core address computation on NVIDIA GPUs
 models_evaluated: []
 observations:
-  fuse: Wave's symbolic address computation automatically generates optimal tile addressing
-    for matrix cores, avoiding manual indexing errors that cause excess global memory
-    traffic in hand-written kernels.
   tier: Automated register and shared-memory address scheduling in Wave keeps operands
     in the fastest memory tiers throughout matrix core computation, without requiring
     manual tiling directives.
@@ -43,8 +40,8 @@ openreview_url: https://openreview.net/forum?id=gcXV1E8HRH
 organizations:
 - AMD
 presentation_type: oral
-principles:
-- fuse
+principles: []
+principles_review:
 - tier
 problem: GPU matrix cores require complex addressing schemes that are difficult to
   manage by hand, making high-performance kernel authoring error-prone and tedious.

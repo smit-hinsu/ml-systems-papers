@@ -28,9 +28,6 @@ models_evaluated:
 - Qwen-7B
 - Qwen-14B
 observations:
-  cache: Dynamic SD configuration tuning avoids fixed-overhead speculative decoding
-    at large batch sizes where drafting yields diminishing returns; configurations
-    are tuned per-step.
   speculate: Draft model is updated alongside the RL policy to track its distribution
     shift; keeping drafter and target in sync prevents acceptance rate collapse as
     the target model changes during RL training.
@@ -45,7 +42,6 @@ organizations:
 - Shanghai Innovation Institute
 presentation_type: oral
 principles:
-- cache
 - speculate
 problem: Speculative decoding in RL training degrades at large batch sizes, suffers
   drafter staleness, and causes policy degradation from drafter-actor misalignment.

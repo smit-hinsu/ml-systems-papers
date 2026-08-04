@@ -42,9 +42,6 @@ observations:
   balance: The optimal context-to-generation GPU ratio varies significantly with model
     size and traffic pattern; static ratios leave either prefill or decode GPUs underutilized
     without elastic scaling.
-  pipeline: Phase specialization improves Pareto only when prefill dominates; for
-    generation-heavy traffic, KV-transfer and scheduling overhead of disaggregation
-    exceeds the gain from independent batching.
   measure: Teams adopted disaggregation on reputation, yet whether it beats co-located
     serving flips with model size, context length, and traffic mix, and no sweep had
     covered that space.
@@ -55,7 +52,6 @@ organizations:
 - NVIDIA
 presentation_type: oral
 principles:
-- pipeline
 - balance
 - measure
 problem: In monolithic LLM serving, long prefill requests block decode batches causing

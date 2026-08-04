@@ -21,22 +21,14 @@ models_evaluated:
 - LLaMA-3.2-1B
 - TinyLLaMA
 - LLaMA-7B
-observations:
-  cache: SVD is performed on the compact stacked-adapter space rather than constructing
-    the full weight-update matrix, avoiding O(d²) computation and memory that scales
-    with model width.
-  fuse: Clients transmit only low-rank adapter pairs (r × d) rather than full weight-update
-    matrices; FLoRIST-E achieves 3× lower communication than FFA-LoRA and 39× lower
-    than FLoRA.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=GTZRs756YJ
 optimization_type: []
 organizations:
 - University of Arizona
 presentation_type: oral
-principles:
-- cache
-- fuse
+principles: []
 problem: Federated LoRA aggregation either adds noise from averaging, requires large
   adapter uploads, or demands full weight-matrix decomposition at the server.
 project_url: ''

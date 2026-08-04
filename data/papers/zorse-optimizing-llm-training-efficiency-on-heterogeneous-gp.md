@@ -24,9 +24,6 @@ observations:
   balance: In a mixed-generation GPU cluster, an even split of layers across pipeline
     stages makes the slowest GPU set the step time, so every faster GPU idles at each
     pipeline bubble.
-  fuse: Pipeline-Efficient ZeRO DP avoids the extra all-reduce traffic of sharded
-    data parallelism with pipeline parallelism and also avoids replicating parameters
-    across data-parallel ranks.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=40leuGH3iO
@@ -36,7 +33,6 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- fuse
 problem: Heterogeneous GPU clusters bottleneck LLM training — existing parallelism
   integrations trade communication for memory overhead with no clean solution.
 project_url: ''

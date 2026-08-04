@@ -32,9 +32,6 @@ observations:
   recompute: LEANN drops precomputed embeddings after index construction and recomputes
     them at query time from compressed graph structure; storage shrinks to 1.5 bytes/vector
     at ~2× query latency.
-  tier: Compressed proximity graph retains only structure and IDs, fitting to 5% of
-    original storage and enabling deployment on personal devices or large-scale systems
-    without embedding storage.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=e8Dp5QkFxP
 optimization_type: []
@@ -44,7 +41,6 @@ organizations:
 - Wuhan University
 presentation_type: oral
 principles:
-- tier
 - recompute
 problem: Vector search indices storing full embeddings and graph metadata are several
   times larger than raw data, making personal-device deployment impractical.

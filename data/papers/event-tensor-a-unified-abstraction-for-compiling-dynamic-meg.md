@@ -40,8 +40,6 @@ key_results: ETC matches the best LLM serving latency on GPU while cutting warmu
 models_evaluated:
 - LLM inference workloads
 observations:
-  cache: Persistent megakernel eliminates repeated kernel launch overhead and coarse
-    synchronization barriers between fused operators.
   fuse: Fusing operators into a single persistent kernel eliminates intermediate tensor
     writes to global memory between consecutive ops in the LLM decode graph.
   pipeline: Event Tensor compiler exposes inter-kernel parallelism by encoding tiled
@@ -60,7 +58,6 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-- cache
 - fuse
 problem: Existing megakernel approaches eliminate kernel launch overhead but cannot
   handle dynamic shapes or data-dependent computation in real LLM workloads.

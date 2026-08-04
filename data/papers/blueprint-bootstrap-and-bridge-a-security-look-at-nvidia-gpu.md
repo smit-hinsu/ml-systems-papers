@@ -36,7 +36,8 @@ organizations:
 - IBM Research
 - Ohio State University
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - measure
 problem: NVIDIA GPU Confidential Computing is proprietary and opaque, making it hard
   to audit security guarantees for AI workloads running in untrusted clouds.

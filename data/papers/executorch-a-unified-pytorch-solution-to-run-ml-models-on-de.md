@@ -58,20 +58,14 @@ key_results: ExecuTorch ships LLMs on Meta AI wearables and smartphones, scaling
 models_evaluated:
 - LLMs
 - VLMs
-observations:
-  fuse: Sub-graph delegation keeps tensors in accelerator-native formats, avoiding
-    costly CPU-GPU copies for each heterogeneous SoC component in the serving pipeline.
-  tier: Static memory planning for microcontroller targets eliminates dynamic allocations
-    and maximizes SRAM reuse across operators at inference time.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=jmE5nwC9kb
 optimization_type: []
 organizations:
 - Meta
 presentation_type: oral
-principles:
-- fuse
-- tier
+principles: []
 problem: Edge ML deployment is fragmented across hardware, requiring model conversion
   outside PyTorch and blocking rapid iteration from research to production.
 project_url: ''

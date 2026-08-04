@@ -23,9 +23,6 @@ key_results: Exhaustive search over millions of configs for Llama on H100/H200/M
 models_evaluated:
 - Llama (family)
 observations:
-  cache: Configuration simulation before deployment avoids expensive
-    empirical search on production hardware by modeling throughput and latency SLO
-    compliance for millions of candidate configurations offline.
   measure: Hardware, parallelism degrees, and runtime policy multiply into millions
     of candidate deployments for one Llama model; testing them on production GPUs
     costs more than any of them wins back.
@@ -36,7 +33,6 @@ organizations:
 - Meta
 presentation_type: oral
 principles:
-- cache
 - measure
 problem: No framework exists to navigate hardware, parallelism, and runtime choices
   to find throughput-maximizing configs under strict latency SLOs at scale.

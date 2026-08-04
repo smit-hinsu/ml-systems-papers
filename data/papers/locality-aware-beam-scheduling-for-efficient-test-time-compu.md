@@ -37,8 +37,9 @@ organizations:
 - National Taiwan University
 presentation_type: oral
 principles:
-- cache
 - pipeline
+principles_review:
+- cache
 problem: Step-wise beam search for test-time compute on consumer GPUs causes I/O stalls
   because the KV cache must be repeatedly transferred between CPU and GPU memory.
 project_url: ''

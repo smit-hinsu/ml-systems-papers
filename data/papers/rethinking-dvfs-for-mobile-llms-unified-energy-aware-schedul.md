@@ -21,10 +21,7 @@ indexed_date: '2026-05-25'
 key_results: CORE reduces TTFT by 8.5–17.7% and time-per-token by 27.8–39.6% on average
   without increasing energy per token on mobile devices.
 models_evaluated: []
-observations:
-  pipeline: CORE jointly schedules CPU, GPU, and memory frequencies for each LLM phase
-    (prefill vs. decode), overlapping their frequency ramp-up to avoid sequential
-    governor delays.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=PSyHQ8kVUT
@@ -32,8 +29,7 @@ organizations:
 - Purdue University
 - Shanghai Jiao Tong University
 presentation_type: oral
-principles:
-- pipeline
+principles: []
 problem: Mobile LLM inference is bottlenecked by independent CPU/GPU/memory frequency
   governors that lack cross-resource coordination, causing 23–40% latency overhead.
 project_url: ''

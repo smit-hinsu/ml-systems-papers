@@ -36,20 +36,14 @@ indexed_date: '2026-05-25'
 key_results: 10x throughput increase in production at LinkedIn serving millions of
   requests/sec; 40% model size reduction via pruning with maintained accuracy.
 models_evaluated: []
-observations:
-  cache: Context compression reduces input context length by >10x with minimal accuracy
-    loss, cutting prefill compute and KV cache memory per request.
-  fuse: Pruning reduces model size by up to 40%, decreasing weight load per forward
-    pass and reducing HBM bandwidth pressure during serving.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=re82zZczHj
 organizations:
 - LinkedIn
 presentation_type: oral
-principles:
-- cache
-- fuse
+principles: []
 problem: Deploying LLMs for semantic job search at LinkedIn is prohibitively expensive
   due to strict latency/throughput requirements at millions of requests per second.
 project_url: ''

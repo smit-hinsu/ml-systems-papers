@@ -26,9 +26,6 @@ observations:
   balance: DiT sparsity swings per head and per denoising step — some heads stay dense
     while others are 90% sparse — so the sequence-parallel rank holding dense heads
     runs far longer while the rest sit idle.
-  skip: DiT block-wise sparse attention produces irregular dense blocks unevenly across
-    heads; db-SP routes blocks to workers by actual sparsity pattern rather than naive
-    head or sequence splitting.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=XgKteNxNe0
 optimization_type: []
@@ -37,7 +34,6 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- skip
 problem: Sequence parallelism for DiT inference creates severe workload imbalance
   because sparse attention density varies unpredictably across heads and blocks.
 project_url: ''

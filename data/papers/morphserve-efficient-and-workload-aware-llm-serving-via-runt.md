@@ -28,9 +28,6 @@ observations:
   quantize: Layers are dynamically quantized to INT4 and swapped based on current
     SLO headroom; elastic quantization depth adapts throughput vs. latency trade-off
     without recompiling the model.
-  tier: Pressure-aware KV cache resizing dynamically expands KV capacity using the
-    VRAM freed by quantized layers, converting weight memory into KV memory on-the-fly
-    without additional GPU hardware.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=PDu13oOl4G
@@ -39,7 +36,6 @@ organizations:
 - Harvard University
 presentation_type: oral
 principles:
-- tier
 - quantize
 problem: Static quantization degrades accuracy permanently; full-precision serving
   violates SLOs under bursty load. Neither adapts to real-time workload fluctuations.

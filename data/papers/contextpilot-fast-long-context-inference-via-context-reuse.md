@@ -26,9 +26,6 @@ observations:
   cache: Context index identifies overlapping blocks across users and turns; alignment
     and de-duplication maximize KV-cache reuse so shared context is computed at most
     once despite surface differences.
-  tier: Succinct context annotations prevent reasoning quality degradation under reuse,
-    enabling safe KV-cache sharing where prior approaches required full recomputation
-    to maintain accuracy.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=RnKvDy1jv2
 optimization_type: []
@@ -37,7 +34,6 @@ organizations:
 presentation_type: oral
 principles:
 - cache
-- tier
 problem: Long-context prefill dominates latency in RAG/agent workloads; prior KV-cache
   reuse techniques either degrade reasoning quality or fail to surface real reuse.
 project_url: ''

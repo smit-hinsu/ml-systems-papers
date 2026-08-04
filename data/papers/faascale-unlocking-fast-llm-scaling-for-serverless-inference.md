@@ -30,8 +30,6 @@ key_results: FaaScale cuts tail TTFT by up to 5x and reduces serving cost by 31.
 models_evaluated:
 - LLMs (serverless cloud workloads)
 observations:
-  fuse: Multicast transfers a single copy of model blocks to multiple nodes simultaneously
-    instead of unicast per node, reducing total bytes transferred.
   pipeline: PipeCast overlaps model block multicast transfer with pipeline-parallel
     inference execution, hiding model download latency during scale-out.
 official_category: ''
@@ -46,7 +44,6 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-- fuse
 problem: Autoscaling on a traffic spike makes each new GPU replica download hundreds
   of GB of weights before serving one token, putting cold start on tail TTFT.
 project_url: ''

@@ -23,13 +23,7 @@ models_evaluated:
 - Llama
 - Qwen
 - SmolLM
-observations:
-  cache: Gradient-based relevance weighting filters irrelevant neuron activations,
-    focusing attribution on neurons that directly influence each token generation
-    rather than scoring all activations.
-  skip: Transformer architectures concentrate task-specific signals in later blocks;
-    ProToken selects only those layers for attribution, reducing computation vs. full-model
-    attribution.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=8WXUjbFr0Z
 optimization_type: []
@@ -37,9 +31,7 @@ organizations:
 - Virginia Tech
 - University of Minnesota
 presentation_type: oral
-principles:
-- skip
-- cache
+principles: []
 problem: Federated LLMs lack token-level attribution, making it impossible to identify
   which client contributed to a specific generated response.
 project_url: ''

@@ -34,15 +34,9 @@ models_evaluated:
 - Qwen3
 - LLaMA3
 observations:
-  fuse: Page-centric KV layout decomposes mixed-precision Key pages into two unified
-    2-bit tensors, enabling coalesced memory reads and removing scattered access patterns
-    that harm HBM bandwidth utilization.
   quantize: 2-bit KV quantization identifies per-channel outliers and preserves them
     at higher precision; mixed-precision cuts KV memory 4× vs FP16 with <1% accuracy
     degradation on Llama-3.
-  skip: Channel-wise Precision Boost ranks Key-cache channels by sensitivity, keeps
-    a small fraction at 4-bit, and quantizes insensitive channels at 2-bit — avoiding
-    accuracy loss from applying uniform 2-bit.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=r3mQiuYKIN
 optimization_type: []
@@ -51,8 +45,6 @@ organizations:
 - University of Washington
 presentation_type: oral
 principles:
-- skip
-- fuse
 - quantize
 problem: 2-bit KV cache quantization degrades LLM accuracy, especially on long-context
   reasoning, while 4-bit preserves accuracy but limits batch size gains.
