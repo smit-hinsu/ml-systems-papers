@@ -33,10 +33,13 @@ models_evaluated:
 - CogVideoX-5B (14B parameter video diffusion)
 - 1.3B parameter video diffusion
 observations:
-  pipeline: Pipeline orchestration parallelizes denoising steps across
-    GPUs; near-linear FPS scaling achieved without violating per-frame latency deadlines.
-  cache: Sink-token-guided rolling KV cache reuses attention state
-    across streaming frames, avoiding full recomputation each generation step.
+  schedule: Live video has two deadlines at once — first frame under a second, every
+    later frame on the 30 FPS beat — and diffusion serving stacks batch with no notion
+    of either.
+  cache: Each new frame attends over the frames already generated, so per-frame cost
+    grows with stream length, but dropping that history breaks temporal consistency.
+  pipeline: One denoising pass on a 14B model already exceeds the inter-frame budget,
+    so no single GPU can hold the frame rate on its own.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=p9WALNBvc6
@@ -46,8 +49,10 @@ organizations:
 - Stanford University
 presentation_type: oral
 principles:
-- pipeline
+- schedule
 - cache
+principles_review:
+- pipeline
 problem: Offline video diffusion systems optimize throughput via batching but cannot
   meet strict per-frame SLOs and time-to-first-frame requirements of live streaming.
 project_url: ''

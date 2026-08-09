@@ -23,6 +23,9 @@ key_results: Serves Google LLM-based evaluation across 2+ priority tiers on shar
   TPUs; high-priority tasks meet latency SLOs while background tasks fill spare capacity.
 models_evaluated: []
 observations:
+  elastic: Rating demand exceeds the TPU budget and the same chips carry live user
+    traffic, so batch evaluation can only run on capacity the foreground workload
+    leaves idle and must give it back.
   cache: Pipeline engineering across evaluation workflows avoids redundant preprocessing
     and caching shared prompt prefixes across ratings tasks that share common system-prompt
     templates.
@@ -32,7 +35,8 @@ openreview_url: https://openreview.net/forum?id=g1RWik4Gy1
 organizations:
 - Google
 presentation_type: oral
-principles: []
+principles:
+- elastic
 principles_review:
 - cache
 problem: LLM rating demand at Google far exceeds the allocated TPU budget; serving

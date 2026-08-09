@@ -40,12 +40,9 @@ key_results: '>75% roofline efficiency on SN40; speculative decoding 1.7× faste
   DGX H100 on 16 SN40 chips; 6× speculative decoding speedup over baseline'
 models_evaluated: []
 observations:
-  pipeline: BatchStreaming overlaps KV cache loading with current compute;
-    ScheduleOffloading moves dispatch logic off the compute path, eliminating
-    synchronization gaps between kernels on SN40.
-  fuse: KernelLooping fuses multiple decode iterations into one persistent kernel,
-    eliminating launch overhead and inter-kernel synchronization that forces
-    unnecessary HBM round-trips on GPU architectures.
+  pipeline: Decode is memory-bound, yet the KV read for the next step waits behind
+    the current step's kernel boundary, so bandwidth sits idle through every compute
+    phase.
   simplify: GPU decode dispatches every kernel through the CPU at runtime; replacing
     dynamic dispatch with a statically compiled dataflow graph raises bandwidth
     utilization from 21% to >75% of roofline.
@@ -57,7 +54,6 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-- fuse
 - simplify
 problem: GPU decode extracts only 21% of memory bandwidth; kernel launch overhead
   and synchronization gaps block continuous data movement during autoregressive decode.

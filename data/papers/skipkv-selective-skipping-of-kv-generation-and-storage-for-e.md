@@ -26,9 +26,8 @@ key_results: Up to 26.7% accuracy gain vs. baseline KV eviction; 1.6x shorter ge
   and 1.7x throughput vs. per-token eviction methods at similar compression budget.
 models_evaluated: []
 observations:
-  skip: Sentence-level scoring identifies and removes semantically similar CoT sentences
-    entirely from KV cache, skipping both eviction and generation for redundant reasoning
-    steps.
+  approximate: Long chain-of-thought restates the same reasoning step in new words,
+    so the KV cache grows with sentences that move the final answer nowhere.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=0EsV9SIm8p
 optimization_type: []
@@ -37,7 +36,7 @@ organizations:
 - Intel Labs
 presentation_type: oral
 principles:
-- skip
+- approximate
 problem: Large reasoning models produce verbose CoT responses causing linear KV cache
   growth; token-level eviction fails in multi-batch settings due to unstable scoring.
 project_url: ''

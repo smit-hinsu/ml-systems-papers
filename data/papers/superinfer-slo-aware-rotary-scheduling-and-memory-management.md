@@ -21,9 +21,10 @@ key_results: Up to 74.7% improvement in TTFT SLO attainment on GH200 vs. vLLM/SG
   while maintaining comparable TBT and throughput.
 models_evaluated: []
 observations:
-  tier: DuplexKV uses full-duplex NVLink-C2C to transfer KV cache between GH200 GPU
-    and CPU simultaneously; higher bandwidth than PCIe enables profitable KV offloading
-    under tight TTFT SLOs.
+  tier: KV offload over PCIe is too slow to pay for itself under tight TTFT, so servers
+    either stall when the GPU cache budget runs out or never offload at all.
+  schedule: The KV budget is found to be exhausted only when a request needs memory,
+    and by then the whole queue is blocked behind it.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=RuslSHdIHa
@@ -32,6 +33,7 @@ organizations:
 presentation_type: oral
 principles:
 - tier
+- schedule
 problem: PCIe-based KV offloading cannot sustain tight TTFT and TBT SLOs at high request
   rates, causing head-of-line blocking when the KV cache budget is exhausted.
 project_url: ''

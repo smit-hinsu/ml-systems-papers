@@ -60,9 +60,9 @@ observations:
   search-ai: XLA compilation quality is directly measurable via execution
     time on real hardware, making automated search tractable where human experts cannot
     cover the combinatorial tiling/fusion/layout space.
-  cache: CATWILD caches tuned configurations so identical or structurally
-    similar computation graphs reuse prior search results, avoiding redundant tuning
-    runs across jobs sharing the same model architecture.
+  cache: Fleet jobs re-run the same handful of model architectures for months, so
+    most tuning searches would pay again for a configuration another job already
+    found.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=hB3nov3gIP

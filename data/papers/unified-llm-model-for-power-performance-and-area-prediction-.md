@@ -19,14 +19,17 @@ indexed_date: '2026-05-25'
 key_results: 9.4 percentage point improvement in pass rate at 10% tolerance over prior
   methods, with ~20× higher throughput (0.12 s per design).
 models_evaluated: []
-observations: {}
+observations:
+  approximate: Logic synthesis gives exact PPA but takes minutes to hours per design,
+    so ranking thousands of RTL candidates during early exploration is out of reach.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=lpO7kxiayb
 organizations:
 - University of Southern California
 presentation_type: oral
-principles: []
+principles:
+- approximate
 problem: Fast surrogate models for Verilog PPA prediction lack accuracy across technology
   nodes; slow synthesis runs block early design-space exploration.
 project_url: ''

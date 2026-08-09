@@ -30,14 +30,11 @@ key_results: Up to 1.98× latency reduction (single-query) and 1.83× throughput
   (batched) with minimal GPU memory requirements.
 models_evaluated: []
 observations:
-  cache: Cache-aware scheduler routes repeated or similar queries to cached GPU-side
-    retrievals, avoiding redundant CPU-GPU transfers for hot datastore entries.
-  pipeline: Lookahead retrieval predicts needed datastore entries during LLM generation
-    and prefetches them from CPU to GPU in parallel, hiding retrieval latency behind
-    decode.
-  tier: Prefetching scheduler moves retrieval data from CPU memory to GPU just-in-time
-    for each RAG lookup, keeping GPU memory overhead minimal while avoiding retrieval
-    stalls.
+  pipeline: The datastore sits in CPU memory, so every RAG lookup stalls decode while
+    entries cross PCIe — yet the query needing them is visible in the generation well
+    before the lookup fires.
+  cache: A small set of datastore entries is hit by many queries, and each hit pays
+    the CPU-to-GPU transfer over again.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=YsOyCpMUYD
@@ -47,7 +44,7 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-- tier
+principles_review:
 - cache
 problem: Large RAG datastores cannot fit in GPU memory, forcing expensive CPU-to-GPU
   retrieval transfers that block LLM generation and reduce throughput.

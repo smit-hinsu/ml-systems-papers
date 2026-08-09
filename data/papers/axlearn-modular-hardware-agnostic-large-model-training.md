@@ -55,9 +55,9 @@ key_results: Adds RoPE across hundreds of modules with 10 lines of code vs. hund
   in comparable systems; O(1) integration complexity vs. O(N) or O(N²) in alternatives.
 models_evaluated: []
 observations:
-  portable: All model components implement against an abstract Tensor interface; swapping
-    the backend (TPU, GPU, CPU) requires no changes to model code — the same config
-    runs unmodified on any supported hardware.
+  portable: Model code that reaches into backend details turns every new accelerator
+    into a framework-wide rewrite, and that rewrite cost is what pins a training
+    stack to the vendor it started on.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=41x11EB3bc
 optimization_type: []

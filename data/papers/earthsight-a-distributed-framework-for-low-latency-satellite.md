@@ -22,9 +22,12 @@ observations:
   cache: Shared backbone multi-task inference amortizes feature extraction across
     multiple vision tasks per satellite pass, so the same backbone activations serve
     N tasks rather than running N separate models.
-  skip: Dynamic filter ordering rejects low-value frames using selectivity and accuracy
-    estimates, skipping full inference on frames below query thresholds to save onboard
-    compute for high-priority imagery.
+  approximate: Most captured frames hold nothing any user asked for, but rejecting
+    them cheaply means trusting a filter's estimated accuracy and dropping some real
+    detections with them.
+  schedule: Each satellite decides alone what to process during a pass, so onboard
+    compute goes to whatever it flies over next rather than to the queries ground
+    users are waiting on.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=c3O6DnhUYm
 optimization_type: []
@@ -32,7 +35,8 @@ organizations:
 - Georgia Tech
 presentation_type: oral
 principles:
-- skip
+- approximate
+- schedule
 principles_review:
 - cache
 problem: Satellite constellation intelligence is bottlenecked by redundant onboard

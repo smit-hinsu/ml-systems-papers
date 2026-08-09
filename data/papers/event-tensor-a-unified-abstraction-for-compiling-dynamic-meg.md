@@ -40,11 +40,9 @@ key_results: ETC matches the best LLM serving latency on GPU while cutting warmu
 models_evaluated:
 - LLM inference workloads
 observations:
-  fuse: Fusing operators into a single persistent kernel eliminates intermediate tensor
-    writes to global memory between consecutive ops in the LLM decode graph.
-  pipeline: Event Tensor compiler exposes inter-kernel parallelism by encoding tiled
-    task dependencies, enabling static and dynamic scheduling to overlap independent
-    ops.
+  fuse: A megakernel keeps intermediates off HBM only if every shape is known at compile
+    time, and real serving has variable sequence lengths, speculative token counts
+    and runtime expert routing.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=PJqFhAbUHa
 optimization_type: []
@@ -57,7 +55,6 @@ organizations:
 - Purdue University
 presentation_type: oral
 principles:
-- pipeline
 - fuse
 problem: Existing megakernel approaches eliminate kernel launch overhead but cannot
   handle dynamic shapes or data-dependent computation in real LLM workloads.

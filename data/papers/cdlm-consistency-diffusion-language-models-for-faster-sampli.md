@@ -27,9 +27,12 @@ models_evaluated:
 - Dream-7B-Instruct
 - LLaDA-8B-Instruct
 observations:
-  cache: Block-wise causal attention mask enables standard KV caching in diffusion
-    LMs; previously each denoising step re-computed all positions from scratch, making
-    caching impossible.
+  cache: Bidirectional attention lets every denoising step revise earlier positions,
+    so nothing computed in the previous step survives and each step re-reads the
+    whole sequence.
+  approximate: A diffusion LM needs 50-200 steps because each one commits so little,
+    and collapsing them means accepting a student that tracks the teacher's
+    trajectory instead of walking it.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=eB8yjR6alL
 optimization_type: []
@@ -40,6 +43,7 @@ organizations:
 presentation_type: oral
 principles:
 - cache
+- approximate
 problem: Diffusion language models require dozens of iterative denoising steps and
   cannot use KV caching, making inference 10–15× slower than autoregressive models.
 project_url: ''

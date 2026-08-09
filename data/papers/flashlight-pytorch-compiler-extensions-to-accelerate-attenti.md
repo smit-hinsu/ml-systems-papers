@@ -28,9 +28,9 @@ key_results: Up to 1.48× over FlexAttention on H100/A100; 5× for Evoformer; 6�
 models_evaluated:
 - LLaMA-3.2-1B
 observations:
-  fuse: Structural fusion with dimension demotion eliminates intermediate HBM tensor
-    writes by merging GEMM output with dependent operations in a single fused kernel,
-    avoiding a full round-trip.
+  fuse: TorchInductor treats a GEMM as a fusion barrier, so every new attention variant
+    writes its score matrix out to HBM and reads it back unless someone hand-writes
+    a kernel for it.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=lboOMA8XWr
 optimization_type: []

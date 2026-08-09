@@ -19,14 +19,18 @@ key_results: Perplexity increase for Llama 3.1 70B reduced from ~0.5 (SOTA) to w
   0.2; MMLU-Pro loss cut from 1.92 to 0.99 with only 10% more bits
 models_evaluated:
 - Llama-3.1-70B
-observations: {}
+observations:
+  quantize: Bit-width is allocated layer by layer, but the output features that carry
+    the accuracy are spread unevenly across the whole model, so a per-layer budget
+    overpays cheap layers.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=VBbMRQ4VOc
 organizations:
 - Microsoft
 presentation_type: oral
-principles: []
+principles:
+- quantize
 problem: Mixed-precision quantization prior work either sacrifices accuracy or achieves
   low system efficiency; both matter for production LLM deployment.
 project_url: ''

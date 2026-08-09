@@ -23,9 +23,9 @@ key_results: Up to 3× prefill latency reduction vs. full-context recompute base
   while preserving—or improving—reasoning quality at longer context lengths.
 models_evaluated: []
 observations:
-  cache: Context index identifies overlapping blocks across users and turns; alignment
-    and de-duplication maximize KV-cache reuse so shared context is computed at most
-    once despite surface differences.
+  cache: Agent turns and RAG requests share context blocks that are neither prefixes
+    nor byte-identical, so exact prefix matching reports a miss on context the engine
+    has already prefilled.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=RnKvDy1jv2
 optimization_type: []

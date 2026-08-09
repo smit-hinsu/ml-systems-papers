@@ -22,10 +22,7 @@ indexed_date: '2026-05-25'
 key_results: 1.43x–2.71x training throughput improvement over manual-tuned training
   systems via automated memory management without accuracy loss.
 models_evaluated: []
-observations:
-  recompute: ProTrain auto-selects activation checkpoint granularity using cost models
-    that weigh memory savings against recomputation overhead; the planner finds the
-    optimal schedule without manual search.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=XDkOn0iTiH
@@ -33,8 +30,6 @@ organizations:
 - University of Massachusetts Amherst
 presentation_type: oral
 principles: []
-principles_review:
-- recompute
 problem: LLM training memory-saving techniques expose low-level knobs requiring manual
   tuning; misconfiguration causes suboptimal hardware utilization or OOM failures.
 project_url: ''

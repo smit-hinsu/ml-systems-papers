@@ -25,10 +25,11 @@ models_evaluated:
 - Mistral-Small-24B-Instruct-2501
 - Qwen2.5-32B-Instruct
 observations:
-  skip: Classifying 75% of heads as stable and caching only top-K pages for them reduces
-    GPU KV footprint by up to 70% with near-zero accuracy drop on long-context workloads.
-  tier: Stable-head pages beyond top-K are offloaded to 1.1TB DDR5 host memory and
-    asynchronously transferred via UVA CUDA kernels overlapped with computation.
+  approximate: Three quarters of heads attend to the same tokens step after step,
+    so their remaining KV pages can be dropped from the attention math for a small
+    but real accuracy cost.
+  tier: KV pages a stable head has stopped attending to still hold HBM, while host
+    DDR5 sits an order of magnitude larger and mostly empty next to it.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=GgX6dPJx9M
 optimization_type: []
@@ -36,7 +37,7 @@ organizations:
 - UC Irvine
 presentation_type: oral
 principles:
-- skip
+- approximate
 - tier
 problem: KV cache memory grows with context and generation length, limiting LLM serving
   throughput; naively evicting tokens degrades accuracy in long-generation tasks.

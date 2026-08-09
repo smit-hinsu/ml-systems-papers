@@ -25,10 +25,9 @@ key_results: FlashAttention-4 achieves 1613 TFLOPs/s (71% utilization) on B200 B
 models_evaluated:
 - Transformer attention (BF16)
 observations:
-  fuse: Tensor memory acceleration and 2-CTA MMA mode cut shared memory traffic and
-    eliminate atomic adds in the backward pass.
-  pipeline: Fully asynchronous MMA pipelines with larger tile sizes overlap tensor
-    core compute with memory operations, exploiting B200's doubled MMA throughput.
+  pipeline: B200 doubles tensor core throughput but not exponentials, softmax or
+    shared memory, so a Hopper-era schedule leaves the MMA units waiting on the
+    non-matmul work between tiles.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=mN5RtvuYl3
 optimization_type: []
@@ -40,8 +39,6 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
-principles_review:
-- fuse
 problem: Blackwell GPUs double tensor core throughput but other units scale slower,
   making Hopper-era attention kernels bottlenecked by non-matmul ops on B200.
 project_url: ''

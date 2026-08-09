@@ -27,9 +27,9 @@ key_results: GriNNder achieves up to 9.78x speedup over baselines on a single GP
 models_evaluated:
 - GNNs (various models and large graph datasets)
 observations:
-  tier: SSO framework coordinates GPU-host-storage hierarchy via cache, regather,
-    and bypass mechanisms tuned to full-graph GNN's unique cross-partition access
-    patterns.
+  tier: Neighbor aggregation reads across graph partitions in irregular order, so
+    naive NVMe offload thrashes — but which partitions share neighbors is known from
+    the graph before the step runs.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=8SNPzGRldN
 optimization_type: []

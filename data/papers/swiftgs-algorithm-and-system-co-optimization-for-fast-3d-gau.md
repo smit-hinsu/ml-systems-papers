@@ -21,12 +21,10 @@ key_results: Up to 1.41× speedup over gsplat baseline with negligible rendering
   drop, via joint algorithm and system co-optimization.
 models_evaluated: []
 observations:
-  skip: Adaptive early sorting skips Gaussian primitives that contribute
-    negligible opacity to the current view, reducing sort and rasterize work proportionally
-    to scene sparsity.
-  fuse: GPU-efficient axis-shared rasterization shares axis-aligned
-    tile data across adjacent rasterization threads, cutting redundant memory loads
-    per tile.
+  approximate: Every frame sorts and rasterizes all millions of Gaussians, though most
+    contribute opacity too small to see in the finished image.
+  fuse: Per-tile rasterization reloads the same axis-aligned tile data once per thread,
+    so the same bytes cross the memory bus many times over.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=i05mMLR9BX
@@ -34,7 +32,8 @@ organizations:
 - Imperial College London
 presentation_type: oral
 principles:
-- skip
+- approximate
+principles_review:
 - fuse
 problem: 3D Gaussian Splatting requires rendering millions of Gaussians in parallel,
   imposing memory and compute demands that limit deployment on constrained GPUs.

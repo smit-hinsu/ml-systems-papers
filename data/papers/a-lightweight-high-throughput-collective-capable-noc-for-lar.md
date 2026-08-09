@@ -23,9 +23,9 @@ key_results: 2.9× geomean multicast speedup and 2.5× reduction speedup on 1–
   payloads; up to 2.1× GEMM performance gain with only 16.5% router area overhead
 models_evaluated: []
 observations:
-  pipeline: Direct Compute Access keeps collectives off the GEMM critical path; multicast
-    and reduction complete in the network fabric while cores continue computing, eliminating
-    stalls on large meshes.
+  pipeline: A unicast NoC makes a core send N copies and wait for partial sums to
+    travel out and back, so the GEMM that needs those values stalls on transfers the
+    fabric could have finished on its own.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=VDuS8N9RCx
 optimization_type: []

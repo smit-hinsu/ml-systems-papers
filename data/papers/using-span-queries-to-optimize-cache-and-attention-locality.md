@@ -22,9 +22,8 @@ key_results: 10–20× TTFT reduction for two non-chat use cases; attention-opti
   span query on 2B model outperforms stock 8B model on accuracy.
 models_evaluated: []
 observations:
-  cache: Span query commutativity constraints let the server reorder commutative input
-    segments and reuse cached KV states across structurally equivalent queries, eliminating
-    redundant prefill.
+  cache: Prefix caching only hits on an exact leading match, so RAG and agentic requests
+    carrying the same documents in a different order miss the cache entirely.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=qcGGSXpFcM
 optimization_type: []

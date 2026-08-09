@@ -23,15 +23,11 @@ key_results: 4.71×–5.91× tokens/s vs. autoregressive at 1.5B and 8B; surpass
   decoding and diffusion models (Dream, Llada) in throughput and quality
 models_evaluated: []
 observations:
-  pipeline: Diffusion drafting generates multiple tokens in parallel within a single
-    forward pass using structured attention masks, filling GPU compute that is idle
-    during sequential AR token generation
   simplify: A separate drafter must be trained, served, and kept aligned with the
     target, and verification costs a second forward pass — upkeep that buys only parallelism
     one model could supply itself.
-  speculate: Diffusion generates candidate token proposals across all positions in
-    parallel; the AR phase verifies and commits only accepted positions, hiding full-sequence
-    generation behind one pass.
+  speculate: AR decoding commits one token per forward pass while the GPU sits memory-bound,
+    so the full cost of reading the weights buys a single token.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=onfxEjoE4L
 optimization_type: []
@@ -44,8 +40,6 @@ presentation_type: oral
 principles:
 - speculate
 - simplify
-principles_review:
-- pipeline
 problem: Speculative decoding serializes generation and needs a draft model; diffusion
   models parallelize token generation but degrade quality vs. AR baselines.
 project_url: ''

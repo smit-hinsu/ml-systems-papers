@@ -21,14 +21,17 @@ key_results: ZK-SNARK proofs complete in ~2 hours (10^7× faster than retraining
 models_evaluated:
 - ViT (Vision Transformer)
 - OPT-125M
-observations: {}
+observations:
+  approximate: Erasing one user's data exactly means retraining from scratch on every
+    deletion request, so the only affordable path is a parameter edit that dents accuracy.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=bLx6orLvQM
 organizations:
 - Imperial College London
 presentation_type: oral
-principles: []
+principles:
+- approximate
 problem: Verifying correct machine unlearning in personalized distributed models is
   intractable with retraining; edge device clients may falsify deletion.
 project_url: ''

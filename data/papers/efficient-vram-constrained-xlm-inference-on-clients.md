@@ -25,10 +25,10 @@ models_evaluated:
 - MoE LLMs
 - Cosmos-Reason1 VLM
 observations:
-  pipeline: Pipelined sharding overlaps CPU-to-GPU tensor copy with GPU compute, hiding
-    memory transfer latency for VRAM-constrained inference.
-  tier: Sub-layer sharding with prioritized VRAM placement puts hot tensors on GPU
-    and offloads cold tensors to CPU, maximizing effective throughput.
+  pipeline: Weights that do not fit in client VRAM are copied from host memory every
+    layer, and a naive offload leaves the GPU idle for the full duration of each copy.
+  tier: A client GPU holds only a fraction of the model, and which tensors deserve
+    the scarce fast memory shifts with the model, the resolution and the machine.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=VKqQYg6JPb
 optimization_type: []

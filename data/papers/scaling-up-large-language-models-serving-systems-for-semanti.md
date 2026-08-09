@@ -36,14 +36,18 @@ indexed_date: '2026-05-25'
 key_results: 10x throughput increase in production at LinkedIn serving millions of
   requests/sec; 40% model size reduction via pruning with maintained accuracy.
 models_evaluated: []
-observations: {}
+observations:
+  approximate: Job-search relevance is a narrow ranking task, so most of the model
+    and most of the prompt earn nothing at serving time, but no one knew how much
+    could go before ranking quality moved.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=re82zZczHj
 organizations:
 - LinkedIn
 presentation_type: oral
-principles: []
+principles:
+- approximate
 problem: Deploying LLMs for semantic job search at LinkedIn is prohibitively expensive
   due to strict latency/throughput requirements at millions of requests per second.
 project_url: ''

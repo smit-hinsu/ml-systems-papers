@@ -49,9 +49,9 @@ observations:
   simplify: Prior sparse attention needs a training or profiling pass to predict skippable
     blocks, yet the online-softmax loop already computes the running max that answers
     the question for free.
-  skip: At 74% average sparsity across Llama-3.1 and Qwen3 long-context benchmarks,
-    most attention blocks contribute negligibly to output after softmax normalization
-    and can be skipped without accuracy loss.
+  approximate: Once softmax normalizes, a tile whose local max sits far below the
+    running max adds almost nothing to the output, and how far below is a threshold
+    that buys sparsity against accuracy.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=6INSBXTQ4x
 optimization_type: []
@@ -61,7 +61,7 @@ organizations:
 - NVIDIA
 presentation_type: oral
 principles:
-- skip
+- approximate
 - simplify
 problem: Dense softmax is O(n²) and prohibitively slow beyond 32K tokens; sparse alternatives
   require training or profiling — blocking drop-in deployment.

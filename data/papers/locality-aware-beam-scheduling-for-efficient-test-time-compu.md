@@ -24,12 +24,11 @@ models_evaluated:
 - LLaMA-2-7B
 - Qwen-7B
 observations:
-  cache: Inter-beam locality detection finds beams sharing a common prefix and reuses
-    their overlapping KV segments, eliminating redundant transfers that would otherwise
-    be issued independently per beam.
-  pipeline: Balanced grouping with prefetching overlaps KV cache data movement from
-    CPU/host memory with GPU computation, hiding transfer latency behind active decode
-    steps during test-time compute.
+  batch: Every beam issues its own KV transfer even though neighboring beams and consecutive
+    tokens want nearly the same bytes, so a narrow PCIe link pays for the same pages
+    many times.
+  pipeline: Beam expansion stalls on PCIe because the next step's KV is requested
+    only once the current step needs it, leaving the GPU idle for the whole transfer.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=dTo8jAXm9K
@@ -37,9 +36,8 @@ organizations:
 - National Taiwan University
 presentation_type: oral
 principles:
+- batch
 - pipeline
-principles_review:
-- cache
 problem: Step-wise beam search for test-time compute on consumer GPUs causes I/O stalls
   because the KV cache must be repeatedly transferred between CPU and GPU memory.
 project_url: ''

@@ -19,9 +19,9 @@ key_results: Best LLM-generated optimizer achieves 72.4% improvement over human-
   baselines on 4 apps (GEMM, convolution, hotspot, dedispersion) across 6 GPUs.
 models_evaluated: []
 observations:
-  search-ai: LLMs synthesize and refine auto-tuning search algorithms using application-
-    and search-space descriptions; performance vs. near-optimal configurations is
-    the verifiable signal driving improvement.
+  search-ai: How good a tuning algorithm is reduces to one number measured on real
+    hardware, so generated optimizers can be ranked against each other and against
+    the human-designed ones with no expert in the loop.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=qKlHJCbY6m
 optimization_type: []

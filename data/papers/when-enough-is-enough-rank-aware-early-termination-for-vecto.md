@@ -18,7 +18,9 @@ indexed_date: '2026-05-25'
 key_results: Up to 1.4× higher throughput vs. existing early termination schemes and
   3.2× vs. no early termination at the same accuracy target.
 models_evaluated: []
-observations: {}
+observations:
+  approximate: Graph vector search settles the top-ranked neighbor early, then keeps
+    paying sequential disk reads for the ranks a RAG consumer barely weighs.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=IFz0pROwF1
@@ -26,7 +28,8 @@ organizations:
 - Columbia University
 - Princeton University
 presentation_type: oral
-principles: []
+principles:
+- approximate
 problem: Graph-based vector search reads disk long after the highest-ranked results
   are found, wasting I/O budget on low-value results and limiting throughput.
 project_url: ''

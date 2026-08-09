@@ -22,9 +22,8 @@ key_results: Outperforms FEC on 3 quality metrics (PSNR, SSIM, LPIPS) with fewer
   freezes on public video conferencing datasets
 models_evaluated: []
 observations:
-  approximate: Lost video frames are replaced by generative outputs conditioned on
-    surrounding frames; approximate reconstruction avoids retransmission round-trips
-    at the cost of occasional visual artifacts.
+  approximate: Internet loss is bursty, so FEC sized for the average still freezes
+    the video and FEC sized for the worst burst wastes bandwidth every clean second.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=GaBGzA7fpe
 optimization_type: []

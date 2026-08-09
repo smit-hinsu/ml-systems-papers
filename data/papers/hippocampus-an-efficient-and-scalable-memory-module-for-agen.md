@@ -20,7 +20,10 @@ indexed_date: '2026-05-24'
 key_results: 1.1×–31.5× retrieval latency speedup and 1.1×–14.5× token footprint reduction
   over dense-vector and knowledge-graph memory baselines on LoCoMo and LongMemEval
 models_evaluated: []
-observations: {}
+observations:
+  approximate: Agent memory pays a full float dot product against every stored fact
+    just to pick the few worth reading, and the exact scores are discarded right after
+    the top-k.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=0sUYZh9D4a
 optimization_type: []
@@ -28,7 +31,8 @@ organizations:
 - University of Texas at Dallas
 - Hewlett Packard Enterprise
 presentation_type: oral
-principles: []
+principles:
+- approximate
 problem: Dense vector and knowledge-graph memory systems incur high retrieval latency
   and storage costs that prevent agentic AI from scaling to long-horizon tasks.
 project_url: ''

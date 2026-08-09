@@ -22,9 +22,9 @@ key_results: Up to 4.08× speedup for sequence-parallel, 2.33× for data/tensor-
   and 1.22× for expert-parallel workloads with fewer than 50 lines of device code
 models_evaluated: []
 observations:
-  pipeline: Eight core primitives express compute-communication overlap for multi-GPU
-    kernels; a unified template ensures hardware resources are scheduled to hide interconnect
-    latency behind active computation.
+  pipeline: Every multi-GPU kernel alternates between moving data and computing on
+    it, leaving the interconnect idle during compute and the tensor cores idle during
+    transfers.
   simplify: Every workload (TP, SP, EP) had its own ad-hoc overlap kernel; finding
     that all share 8 underlying primitives let a single template outperform the specialized
     code by up to 4×.

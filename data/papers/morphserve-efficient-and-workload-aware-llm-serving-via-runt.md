@@ -25,9 +25,8 @@ models_evaluated:
 - Vicuna
 - Llama-2
 observations:
-  quantize: Layers are dynamically quantized to INT4 and swapped based on current
-    SLO headroom; elastic quantization depth adapts throughput vs. latency trade-off
-    without recompiling the model.
+  quantize: Precision is chosen once at deploy time for the worst-case burst, so the
+    accuracy it costs is paid during every quiet hour as well.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=PDu13oOl4G

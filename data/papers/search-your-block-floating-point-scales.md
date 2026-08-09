@@ -30,7 +30,9 @@ key_results: ScaleSearch reduces NVFP4 quantization error by 27%; ScaleSearchAtt
 models_evaluated:
 - Llama 3.1 70B
 - Qwen3-8B
-observations: {}
+observations:
+  quantize: Block floating point takes its scale from the block maximum, so one outlier
+    claims the exponent range and every other value in the block loses mantissa bits.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=innqECyZPK
@@ -38,7 +40,8 @@ organizations:
 - Together AI
 - Cornell University
 presentation_type: oral
-principles: []
+principles:
+- quantize
 problem: Standard BFP quantization uses maximum-magnitude scale factors that are suboptimal
   for the actual value distribution, causing unnecessary quantization error.
 project_url: ''

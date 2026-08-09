@@ -20,7 +20,10 @@ key_results: BOute improves throughput by up to 157% and reduces cost by 15-61% 
   existing systems under identical quality and latency constraints.
 models_evaluated:
 - Heterogeneous LLMs
-observations: {}
+observations:
+  approximate: Most queries do not need the largest model to clear the quality bar,
+    so the cost savings sit in sending each query to the weakest model that still
+    passes rather than in serving any one model faster.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=ZVQb92umqX
 optimization_type: []
@@ -29,6 +32,8 @@ organizations:
 - Shanghai Jiao Tong University
 presentation_type: oral
 principles: []
+principles_review:
+- approximate
 problem: Co-optimizing query routing across heterogeneous LLMs and GPU deployment
   configs is too complex for manual tuning, leaving significant cost savings unrealized.
 project_url: ''

@@ -30,8 +30,9 @@ key_results: FaaScale cuts tail TTFT by up to 5x and reduces serving cost by 31.
 models_evaluated:
 - LLMs (serverless cloud workloads)
 observations:
-  pipeline: PipeCast overlaps model block multicast transfer with pipeline-parallel
-    inference execution, hiding model download latency during scale-out.
+  pipeline: A replica added during a spike must pull hundreds of GB of weights before
+    its first token, so the download lands on the tail latency of the very requests
+    that triggered the scale-out.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=jgL8LuOVyT

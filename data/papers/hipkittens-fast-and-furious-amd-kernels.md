@@ -28,9 +28,9 @@ key_results: 1.2–2.4× over all baselines for d=64 attention, GQA non-causal b
   GEMM
 models_evaluated: []
 observations:
-  fuse: HipKittens' tile-based primitives group data into hardware-aligned tiles,
-    reducing redundant global memory transactions and maximizing L2 reuse on AMD CDNA
-    GPUs without hand-written assembly.
+  portable: Peak AMD kernels exist only as hand-written assembly, so every new kernel
+    is a rewrite and buying AMD means abandoning the tile abstractions CUDA kernels
+    are already written against.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=xxSSrndQrI
 optimization_type: []
@@ -39,9 +39,8 @@ organizations:
 - AMD
 - UC San Diego
 presentation_type: oral
-principles: []
-principles_review:
-- fuse
+principles:
+- portable
 problem: Peak-performance AMD GPU kernels required hand-written assembly; no high-level
   DSL existed for AMD CDNA hardware, blocking efficient AI kernel development.
 project_url: ''

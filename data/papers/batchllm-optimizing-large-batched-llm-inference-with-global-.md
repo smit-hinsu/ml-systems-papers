@@ -25,6 +25,9 @@ observations:
   schedule: Offline batch jobs expose every request before scheduling starts, so
     request order can be planned across the whole batch instead of guessed one
     arrival at a time by an LRU cache.
+  batch: Decode leaves the GPU idle at the token counts a streaming engine picks,
+    and an offline job has no per-request deadline stopping it from packing far more
+    tokens into each step.
   cache: Global prefix scan groups all requests sharing a prefix before scheduling;
     the common KV cache is computed once and stays resident rather than being evicted
     by LRU between requests.
@@ -37,6 +40,7 @@ presentation_type: oral
 principles:
 - cache
 - schedule
+- batch
 problem: Batch LLM engines optimized for streaming evict shared KV before reuse; LRU
   caches waste compute and underutilize GPUs on prefix-heavy workloads.
 project_url: ''

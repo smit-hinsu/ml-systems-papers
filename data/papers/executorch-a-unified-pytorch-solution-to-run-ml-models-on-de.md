@@ -58,14 +58,18 @@ key_results: ExecuTorch ships LLMs on Meta AI wearables and smartphones, scaling
 models_evaluated:
 - LLMs
 - VLMs
-observations: {}
+observations:
+  portable: Every edge vendor ships its own SDK, so a model must leave PyTorch to
+    reach a phone, a wearable or a microcontroller, and each target forks the
+    deployment path.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=jmE5nwC9kb
 optimization_type: []
 organizations:
 - Meta
 presentation_type: oral
-principles: []
+principles:
+- portable
 problem: Edge ML deployment is fragmented across hardware, requiring model conversion
   outside PyTorch and blocking rapid iteration from research to production.
 project_url: ''

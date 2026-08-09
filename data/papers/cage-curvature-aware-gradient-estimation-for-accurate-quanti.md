@@ -23,9 +23,9 @@ key_results: CAGE halves compression accuracy loss vs prior best method; W3A3 Ll
 models_evaluated:
 - Llama (W3A3, W4A4)
 observations:
-  quantize: CAGE corrects STE gradient bias using curvature from Adam second-moment
-    statistics; the correction enables W3A3 models to match W4A4 accuracy without
-    extra training passes.
+  quantize: The straight-through estimator pretends the quantizer is the identity,
+    so every QAT gradient carries a bias that more training steps never remove and
+    that widens as bit-width drops.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=Fubm1TtWeo
 optimization_type: []

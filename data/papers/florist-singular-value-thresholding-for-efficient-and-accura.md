@@ -21,14 +21,18 @@ models_evaluated:
 - LLaMA-3.2-1B
 - TinyLLaMA
 - LLaMA-7B
-observations: {}
+observations:
+  approximate: Stacked client LoRA adapters carry nearly all their energy in a few
+    singular directions, so the rank the server ships back can follow an energy
+    threshold instead of a hand-picked constant.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=GTZRs756YJ
 optimization_type: []
 organizations:
 - University of Arizona
 presentation_type: oral
-principles: []
+principles:
+- approximate
 problem: Federated LoRA aggregation either adds noise from averaging, requires large
   adapter uploads, or demands full weight-matrix decomposition at the server.
 project_url: ''

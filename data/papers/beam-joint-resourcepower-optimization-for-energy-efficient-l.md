@@ -21,14 +21,18 @@ indexed_date: '2026-05-25'
 key_results: Up to 51% reduction in end-to-end GPU energy consumption vs. vLLM while
   meeting per-request TTFT and TBT SLOs
 models_evaluated: []
-observations: {}
+observations:
+  schedule: Most requests finish well inside their TTFT and TBT deadlines, and that
+    unused slack is energy the GPU spent racing to an answer nobody needed that
+    early.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=BfNBXM8CCT
 organizations:
 - KAIST
 presentation_type: oral
-principles: []
+principles:
+- schedule
 problem: LLM inference SLOs leave latency slack unexploited; existing systems tune
   batching or DVFS in isolation rather than jointly, missing compound energy savings.
 project_url: ''

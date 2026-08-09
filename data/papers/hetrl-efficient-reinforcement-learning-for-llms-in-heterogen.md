@@ -40,6 +40,7 @@ organizations:
 presentation_type: oral
 principles:
 - balance
+principles_review:
 - pipeline
 problem: RL post-training for LLMs on heterogeneous GPU clusters wastes compute; schedulers
   assume homogeneous hardware and serialize actor, critic, rollout stages.

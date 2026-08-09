@@ -19,12 +19,10 @@ key_results: 22% avg task success improvement across 12 configs (4 benchmarks ×
   models); 65% latency reduction and 50% fewer tokens via cached plan reuse
 models_evaluated: []
 observations:
-  cache: Embodied tasks exhibit strong plan locality; AgenticCache reuses cached plan
-    transitions to skip per-step LLM calls, cutting token usage by 50% and latency
-    by 65% across benchmarks.
-  pipeline: A background Cache Updater asynchronously validates and refines cached
-    plans while the agent executes, hiding LLM inference latency behind task execution
-    rather than blocking each planning step.
+  cache: Embodied agents revisit near-identical states across episodes in a bounded
+    environment, yet every step pays a fresh LLM call to pick the next action.
+  pipeline: Refreshing a stale plan needs an LLM call, but the physical action the
+    agent is already executing runs long enough to cover that call.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=UfABxFoSXH
 optimization_type: []

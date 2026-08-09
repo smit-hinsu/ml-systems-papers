@@ -18,10 +18,7 @@ indexed_date: '2026-05-25'
 key_results: Competitive FL accuracy with 1-epoch split-point search vs. ad-hoc partial
   FL baselines across diverse architectures and non-IID data splits
 models_evaluated: []
-observations:
-  skip: A federation-sensitivity score after one epoch identifies layers safe to keep
-    local; those layers skip federated synchronization entirely, cutting communication
-    without full training runs.
+observations: {}
 official_category: ''
 openreview_url: https://openreview.net/forum?id=QBUy1HdKrZ
 optimization_type: []
@@ -29,8 +26,6 @@ organizations:
 - Columbia University
 presentation_type: oral
 principles: []
-principles_review:
-- skip
 problem: Partial FL methods use ad-hoc heuristics for layer federation choice, causing
   inconsistent performance and client regressions on non-IID data.
 project_url: ''

@@ -26,8 +26,9 @@ models_evaluated:
 - Llama 4 Scout (109B)
 - DeepSeek-V3
 observations:
-  pipeline: Skip connections let later-layer compute begin before all-to-all MoE routing
-    completes, achieving 97.3% communication-computation overlap during prefill.
+  pipeline: Every MoE layer's compute waits on the all-to-all that routes its tokens,
+    and the dependency lives in the architecture, so no scheduler can overlap them
+    without changing the model.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=ruOpvLzsGV
 optimization_type: []

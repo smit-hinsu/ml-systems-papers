@@ -28,12 +28,9 @@ key_results: 15–30% improvement in Pass@1 on VerilogEval 2.0 and RTLLM 2.0 ben
   across diverse LLM backbones without any training.
 models_evaluated: []
 observations:
-  cache: Quality-guided caching retains all intermediate HDL outputs and ranks them
-    across reasoning layers; subsequent agents reuse high-quality prior outputs instead
-    of starting from scratch.
-  search-ai: Multi-path generation through C++ and Python intermediates and quality-guided
-    selection optimizes a verifiable objective (HDL correctness) by exploring diverse
-    solution paths and selecting the best.
+  search-ai: Chained agents pass every intermediate forward, so one weak early Verilog
+    draft contaminates all later layers and the candidate pool collapses to a single
+    lineage.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=5wgZXJ0kWA
 optimization_type: []
@@ -43,7 +40,6 @@ organizations:
 - Intel Labs
 presentation_type: oral
 principles:
-- cache
 - search-ai
 problem: LLM-based HDL generation suffers from noise propagation across agent layers
   and limited solution diversity, limiting correctness on complex RTL specifications.

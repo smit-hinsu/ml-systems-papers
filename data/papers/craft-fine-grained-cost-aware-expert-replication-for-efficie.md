@@ -30,9 +30,6 @@ observations:
   balance: MoE load is skewed per-layer — one expert can get 10× average load while
     others are balanced; uniform replication wastes HBM on low-skew layers that gain
     nothing from it.
-  skip: Per-layer MoE load skew follows a heavy-tail distribution; CRAFT skips replication
-    for the majority of low-skew layers, targeting only the sparse tail where imbalance
-    exceeds replication cost.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=zdRvzU9ZCe
 optimization_type: []
@@ -42,8 +39,6 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-principles_review:
-- skip
 problem: Expert parallelism creates token-level load imbalance; uniform replication
   over-replicates balanced MoE layers, wasting HBM that could serve more KV cache.
 project_url: ''

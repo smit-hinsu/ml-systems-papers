@@ -21,7 +21,10 @@ indexed_date: '2026-05-25'
 key_results: CORE reduces TTFT by 8.5–17.7% and time-per-token by 27.8–39.6% on average
   without increasing energy per token on mobile devices.
 models_evaluated: []
-observations: {}
+observations:
+  specialize: Prefill saturates compute and decode saturates memory bandwidth, but
+    each DVFS governor sees only its own resource and reacts after the phase has already
+    changed.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=PSyHQ8kVUT
@@ -29,7 +32,8 @@ organizations:
 - Purdue University
 - Shanghai Jiao Tong University
 presentation_type: oral
-principles: []
+principles:
+- specialize
 problem: Mobile LLM inference is bottlenecked by independent CPU/GPU/memory frequency
   governors that lack cross-resource coordination, causing 23–40% latency overhead.
 project_url: ''

@@ -29,9 +29,9 @@ observations:
   balance: At 512K context, softmax(QKᵀ)V grows quadratically while other ops grow
     linearly, so ranks holding longer attention shards become stragglers that stall
     every DP and PP group at each sync point.
-  pipeline: DistCA's ping-pong scheme overlaps CA communication with compute on host
-    devices; attention servers process CA-task batches while hosts proceed with non-attention
-    ops, eliminating idle time.
+  specialize: Core attention alone carries no parameters and almost no persistent
+    state, so it is the one part of the transformer that can leave the model-parallel
+    devices without dragging weights along.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=oIonqkc8hM
 optimization_type: []
@@ -42,7 +42,7 @@ organizations:
 presentation_type: oral
 principles:
 - balance
-- pipeline
+- specialize
 problem: At long context, attention grows quadratically while other ops grow linearly,
   creating stragglers that cap throughput across DP and PP groups.
 project_url: ''

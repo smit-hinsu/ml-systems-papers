@@ -24,12 +24,10 @@ models_evaluated:
 - Qwen2.5-72B
 - Mixtral-8x22B
 observations:
-  fuse: RMSNorm after ReduceScatter (on 1/N of tensor) halves HBM reads; combining
-    with Multimem eliminates an intermediate HBM write, achieving 1.34×–1.39× single-layer
-    speedup.
-  pipeline: Wave-aware token splitting partitions batches so communication and compute
-    waves align, preventing the wave quantization penalty that defeats naive decomposition
-    strategies at small batch sizes
+  fuse: AllReduce writes the full activation tensor back to HBM and RMSNorm reads it
+    straight back in, and every tensor-parallel layer pays both round trips.
+  pipeline: Splitting a batch so communication overlaps compute adds a partial GPU
+    wave, so at small batch sizes the overlap costs more than the latency it hides.
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=rh2Ylffkq6
 optimization_type: []

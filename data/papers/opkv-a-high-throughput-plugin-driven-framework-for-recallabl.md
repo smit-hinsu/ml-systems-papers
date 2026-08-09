@@ -22,9 +22,11 @@ key_results: 1.3–1.8× higher decoding throughput vs. SoTA recallable sparsity
   under different batch sizes
 models_evaluated: []
 observations:
-  tier: Object reaggregation groups discrete KV pages before CPU recall, reducing
-    PCIe transfer overhead; hot page hit algorithm keeps frequently recalled pages
-    GPU-resident, exploiting temporal locality.
+  tier: Recalled KV pages live in CPU memory and the same pages come back over PCIe
+    every few decode steps, so recall latency, not attention compute, sets the step
+    time.
+  batch: Each recalled page is its own PCIe transfer, so recall cost grows linearly
+    with batch size and cancels the savings sparsity was supposed to deliver.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=EB5bgzv4qA
@@ -34,6 +36,7 @@ organizations:
 presentation_type: oral
 principles:
 - tier
+- batch
 problem: Recallable KV sparsity methods are intrusive to paged KV cache management
   and suffer linearly growing recall overhead at high batch sizes, limiting throughput.
 project_url: ''

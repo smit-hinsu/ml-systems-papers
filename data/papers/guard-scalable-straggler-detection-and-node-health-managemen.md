@@ -32,18 +32,16 @@ key_results: 1.7× FLOPs utilization gain; training step variance 20%→1% on te
   thousands of GPUs in multi-month foundation model pretraining.
 models_evaluated: []
 observations:
-  balance: Fail-slow nodes pass functional tests — they never fail outright, they just
-    run each step slower, and every other node waits at the sync barrier. Step-time
-    variance reached 20%.
+  measure: Fail-slow nodes pass NCCL and burn-in tests — they never fail outright,
+    they just run each step slower, and nothing in the stack says which node it is.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=JFEwQ821MS
 optimization_type: []
 organizations:
 - Amazon
 presentation_type: oral
-principles: []
-principles_review:
-- balance
+principles:
+- measure
 problem: Fail-slow GPU behaviors silently inflate step-time variance; burn-in tests
   miss performance regressions that accumulate over multi-month training runs.
 project_url: ''

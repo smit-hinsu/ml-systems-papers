@@ -21,7 +21,10 @@ indexed_date: '2026-05-25'
 key_results: 70% model sparsity with <5% accuracy loss on QA and text summarization;
   35% latency reduction and 40% memory reduction for LLM inference
 models_evaluated: []
-observations: {}
+observations:
+  approximate: Lossless sparse activation only drops neurons whose output is exactly
+    zero, and modern LLMs have almost none, so useful sparsity has to come from
+    dropping neurons that do contribute a little.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=gJFigZeb5D
 optimization_type: []
@@ -29,7 +32,8 @@ organizations:
 - University of Pittsburgh
 - Huazhong University of Science and Technology
 presentation_type: oral
-principles: []
+principles:
+- approximate
 problem: Existing lossless sparse activation only skips zero-output neurons, which
   are rare in modern efficient LLMs, making activation sparsity ineffective in practice.
 project_url: ''

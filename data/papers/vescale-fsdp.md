@@ -27,12 +27,9 @@ key_results: 5%–66% higher throughput and 16%–30% lower memory vs. existing 
   scales to tens of thousands of GPUs with zero-copy communications via RaggedShard
 models_evaluated: []
 observations:
-  pipeline: AllGather and ReduceScatter are overlapped with forward/backward
-    compute via structure-aware scheduling, hiding collective latency behind local
-    computation at each FSDP unit boundary.
-  fuse: veScale-FSDP eliminates the extra memcpy PyTorch FSDP needs
-    for contiguous parameter layout before AllGather; structure-aware planning further
-    reduces calls by fusing collectives at block granularity.
+  simplify: FSDP flattens every parameter into one contiguous buffer for fast collectives,
+    and that buffer blocks block-wise quantization, Shampoo and Muon while costing
+    a memcpy per AllGather.
 official_category: Research Papers
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=3Lj8R0F48P
@@ -40,8 +37,7 @@ organizations:
 - ByteDance
 presentation_type: oral
 principles:
-- fuse
-- pipeline
+- simplify
 problem: FSDP requires flat parameter sharding, making it incompatible with block-wise
   quantization, Shampoo/Muon optimizers, and per-module parallelism strategies.
 project_url: ''

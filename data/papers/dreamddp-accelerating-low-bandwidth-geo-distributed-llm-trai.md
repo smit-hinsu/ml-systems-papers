@@ -31,6 +31,9 @@ observations:
   pipeline: Layer-wise partial sync decouples gradient communication from the backward
     pass; non-synced layers' gradients overlap with compute rather than blocking on
     a cross-datacenter all-reduce.
+  approximate: Most layers drift little between syncs, so a full-model all-reduce
+    every round spends scarce cross-datacenter bandwidth on divergence that is not
+    there.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=cnvw0mbZQp
@@ -40,6 +43,7 @@ organizations:
 presentation_type: oral
 principles:
 - pipeline
+- approximate
 problem: Geo-distributed LLM training stalls on slow inter-datacenter links because
   Local SGD's strict model synchronization blocks compute-communication overlap.
 project_url: ''

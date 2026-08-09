@@ -28,9 +28,9 @@ key_results: Up to 3.7× higher inference throughput vs. vLLM and SGLang while m
   90th-percentile SLO under real multimodal workloads.
 models_evaluated: []
 observations:
-  pipeline: Stage-level batching enables parallel execution of visual and language
-    model stages; visual encoding and language prefill can proceed concurrently on
-    separate instances.
+  specialize: Image encoding, prefill and decode each stress compute, FLOPs and memory
+    bandwidth differently, yet one shared GPU pool forces a single allocation on all
+    three.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=nNovi8fvGN
@@ -40,7 +40,7 @@ organizations:
 - Beihang University
 presentation_type: oral
 principles:
-- pipeline
+- specialize
 problem: Monolithic MLLM serving couples image encoding, prefill, and decode on the
   same GPUs, causing resource contention and low utilization across divergent stages.
 project_url: ''

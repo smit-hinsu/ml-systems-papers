@@ -18,14 +18,18 @@ indexed_date: '2026-05-25'
 key_results: Higher speedups than static approximation on 3 compound AI systems (LLM+retrieval,
   LLM+tools); finds Pareto-optimal accuracy-performance trade-offs.
 models_evaluated: []
-observations: {}
+observations:
+  approximate: A compound system has quality knobs in both its ML and non-ML parts,
+    and quality given up cheaply in retrieval buys compute back in the LLM, but no
+    compiler could see both ends at once.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=nKm25GWbuB
 organizations:
 - University of Illinois Urbana-Champaign
 presentation_type: oral
-principles: []
+principles:
+- approximate
 problem: Compound AI systems (LLM+RAG, tool calling) have no unified way to trade
   accuracy for performance, leaving cross-component optimization unexploited.
 project_url: ''

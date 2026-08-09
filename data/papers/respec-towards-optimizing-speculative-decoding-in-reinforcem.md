@@ -28,9 +28,8 @@ models_evaluated:
 - Qwen-7B
 - Qwen-14B
 observations:
-  speculate: Draft model is updated alongside the RL policy to track its distribution
-    shift; keeping drafter and target in sync prevents acceptance rate collapse as
-    the target model changes during RL training.
+  speculate: The RL policy shifts with every training step, so a drafter trained once
+    goes stale and its acceptance rate falls away mid-run.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=HhDSxs7x2R
 optimization_type: []

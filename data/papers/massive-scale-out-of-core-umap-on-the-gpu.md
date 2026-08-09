@@ -32,7 +32,8 @@ organizations:
 - UMBC
 - NVIDIA
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - tier
 problem: UMAP on tens to hundreds of GB of vectors is intractable on CPU (hours to
   days), blocking interactive exploratory workflows at massive scale.

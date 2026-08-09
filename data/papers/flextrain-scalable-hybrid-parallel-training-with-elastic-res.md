@@ -27,9 +27,9 @@ key_results: Up to 1.73× speedup with consistent accuracy and 2.27× with relax
   vs. non-elastic scheduling; evaluated on shared GPU clusters.
 models_evaluated: []
 observations:
-  elastic: FlexTrain absorbs spare GPUs at runtime by redistributing layers across
-    the enlarged device set; if GPUs are reclaimed, training checkpoints and migrates
-    to the smaller configuration without restart.
+  elastic: Shared clusters free GPUs mid-run, but a job that widens its parallelism
+    to absorb them changes the gradient reduction order and gives up reproducible
+    accuracy to do it.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=h2yhNcbwSL

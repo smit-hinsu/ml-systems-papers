@@ -29,9 +29,9 @@ key_results: Up to 50× index size reduction vs. HNSW-style indices while mainta
   comparable accuracy and latency for RAG on real-world benchmarks
 models_evaluated: []
 observations:
-  recompute: LEANN drops precomputed embeddings after index construction and recomputes
-    them at query time from compressed graph structure; storage shrinks to 1.5 bytes/vector
-    at ~2× query latency.
+  recompute: A vector index over personal data stores embeddings several times larger
+    than the documents themselves, while the encoder that produced them already sits
+    idle on the same device.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=e8Dp5QkFxP
 optimization_type: []

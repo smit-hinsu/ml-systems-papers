@@ -24,9 +24,8 @@ key_results: PRISM boosts decoding throughput 2.6× on a highly optimized engine
   outperforms existing draft architectures on acceptance length at minimal draft latency
 models_evaluated: []
 observations:
-  speculate: PRISM extracts shared prefix layers from the target and adds thin adapter
-    heads; shared-prefix drafting reuses the target's own computation, keeping the
-    drafter close to the target distribution.
+  speculate: Acceptance length rises with drafter capacity, but every extra draft
+    parameter is paid on the critical path of every decode step.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=cvU2HuuxEf

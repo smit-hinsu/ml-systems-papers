@@ -34,9 +34,9 @@ models_evaluated:
 - Qwen3
 - LLaMA3
 observations:
-  quantize: 2-bit KV quantization identifies per-channel outliers and preserves them
-    at higher precision; mixed-precision cuts KV memory 4× vs FP16 with <1% accuracy
-    degradation on Llama-3.
+  quantize: 2-bit KV cache wrecks long-context reasoning accuracy, but the damage
+    concentrates in a few Key channels — the rest of them tolerate 2 bits with no
+    measurable loss.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=r3mQiuYKIN
 optimization_type: []

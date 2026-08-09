@@ -21,12 +21,11 @@ key_results: Up to 11× TTFT improvement via streaming; throughput parity with n
   baselines under memory pressure on web crawl and ANN search workloads.
 models_evaluated: []
 observations:
-  cache: Longest common prefix matching minimizes redundant prefill when context updates
-    dynamically; only the changed suffix is re-processed rather than re-prefilling
-    the full updated context.
-  pipeline: Stream2LLM overlaps context retrieval with prefill, letting incremental
-    context chunks trigger partial prefill computations rather than waiting for all
-    context before beginning inference.
+  cache: In update mode the context is revised between turns, and the server re-prefills
+    the whole thing even when only a short suffix actually changed.
+  pipeline: Retrieval can take longer than prefill itself, and the GPU waits for the
+    last context chunk even though the earlier chunks are already there and ready to
+    prefill.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=FuRo7Ur5Ib

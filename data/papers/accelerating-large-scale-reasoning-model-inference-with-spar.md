@@ -30,14 +30,12 @@ key_results: Up to 2.13× throughput over vLLM on H100 for long-CoT reasoning mo
   3.29× attention latency reduction via PillarAttn sparse drafting
 models_evaluated: []
 observations:
-  pipeline: Delayed verification decouples CPU metadata preparation from the critical
-    GPU path by deferring it one iteration, enabling asynchronous CPU-GPU execution
-    that hides verification overhead.
-  skip: PillarAttn reuses verification-phase attention scores to select critical tokens
-    at zero overhead; top-k filtering identifies the sparse set that preserves accuracy
-    across reasoning steps.
-  tier: Dynamic KV-cache offloads chunks to host memory asynchronously overlapped
-    with GPU compute, bounding peak GPU memory use without stalling inference.
+  speculate: Long-CoT decode is memory-bound, so verifying many tokens in one pass
+    costs about what one token costs — the drafter is the only part that has to get
+    cheaper, and a second model is not it.
+  approximate: A draft pass over the full KV cache is as expensive as the target it
+    is drafting for, so the draft has to read a small subset of tokens and accept a
+    worse guess.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=yeqrwcWjPu
 optimization_type: []
@@ -48,9 +46,9 @@ organizations:
 - Tsinghua University
 presentation_type: oral
 principles:
-- skip
-- pipeline
-- tier
+- speculate
+principles_review:
+- approximate
 problem: Long CoT reasoning shifts inference from compute-bound to memory-bound; each
   decoding step reads a growing KV-cache that bottlenecks throughput on H100s.
 project_url: ''

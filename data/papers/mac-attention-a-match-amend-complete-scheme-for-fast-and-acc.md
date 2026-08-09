@@ -21,9 +21,11 @@ key_results: Reduces KV accesses by up to 99% and cuts token generation latency 
   over 60% at 128K context; up to 14.3× attention-phase speedup
 models_evaluated: []
 observations:
-  cache: Pre-RoPE L2 matching over a local window finds semantically similar prior
-    queries; reusing their attention output cuts constant-complexity decode regardless
-    of context length.
+  approximate: Query vectors drift slowly between decode steps, so an earlier query's
+    attention output is close to right but not right, and the error concentrates near
+    the match boundary.
+  cache: Consecutive decode steps in a 128K context ask nearly the same question of
+    the KV cache, yet each one re-reads all of it from scratch.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=b6HBRCejb7
 optimization_type: []
@@ -33,6 +35,7 @@ organizations:
 - Anyscale
 presentation_type: oral
 principles:
+- approximate
 - cache
 problem: Long-context LLM decode re-reads the full ever-growing KV cache for every
   token, making inference IO-bound at 128K+ context lengths.

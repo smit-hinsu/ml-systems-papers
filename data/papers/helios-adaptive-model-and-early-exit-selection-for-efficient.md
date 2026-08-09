@@ -22,6 +22,9 @@ key_results: 1.48× higher throughput and 15.14× larger batch size vs. existing
 models_evaluated:
 - Early-Exit LLMs
 observations:
+  approximate: A token's real exit layer is unknown until it reaches one, so the only
+    way to stop paying for deep layers is to exit on a predicted confidence and accept
+    the quality it costs.
   tier: Greedy layer loading loads only weights for layers most likely to be used
     based on profiled exit distributions, freeing HBM for larger batch sizes instead
     of holding all layer weights resident.
@@ -33,6 +36,8 @@ organizations:
 - NVIDIA
 presentation_type: oral
 principles:
+- approximate
+principles_review:
 - tier
 problem: EE-LLM serving bottlenecks on tokens that never exit early; loading all layer
   weights wastes HBM that could be used for larger batches.

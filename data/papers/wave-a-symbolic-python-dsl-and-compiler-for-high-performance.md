@@ -30,10 +30,7 @@ indexed_date: '2026-05-25'
 key_results: Wave matches or surpasses 2 leading baselines (Triton, CUTLASS) in kernel
   performance while eliminating manual matrix core address computation on NVIDIA GPUs
 models_evaluated: []
-observations:
-  tier: Automated register and shared-memory address scheduling in Wave keeps operands
-    in the fastest memory tiers throughout matrix core computation, without requiring
-    manual tiling directives.
+observations: {}
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=gcXV1E8HRH
@@ -41,8 +38,6 @@ organizations:
 - AMD
 presentation_type: oral
 principles: []
-principles_review:
-- tier
 problem: GPU matrix cores require complex addressing schemes that are difficult to
   manage by hand, making high-performance kernel authoring error-prone and tedious.
 project_url: ''

@@ -43,12 +43,8 @@ key_results: Production SRAM-based LLM inference on thousands of GroqChips servi
   100B+ tokens/day; no HBM bandwidth bottleneck vs. GPU-based decode pipelines.
 models_evaluated: []
 observations:
-  tier: SRAM bandwidth is orders of magnitude higher than HBM;
-    placing model weights in on-chip SRAM instead of HBM eliminates the memory bandwidth
-    bottleneck that dominates GPU decode latency
-  pipeline: Large pipeline of chips partitions the model across SRAM
-    tiers, allowing prefill and decode stages to overlap across different pipeline
-    stages for sustained high throughput
+  tier: Decode reads every weight once per token, so an HBM-resident model spends
+    the step waiting on weight loads while the arithmetic units sit idle.
 official_category: ''
 optimization_type: []
 openreview_url: https://openreview.net/forum?id=IZaXDwDtL1
@@ -57,7 +53,6 @@ organizations:
 presentation_type: oral
 principles:
 - tier
-- pipeline
 problem: GPU decode is HBM-bandwidth-bound; loading model weights each token leaves
   FLOPS severely underutilized and caps tokens-per-second per chip.
 project_url: ''

@@ -16,14 +16,20 @@ indexed_date: '2026-05-25'
 key_results: 6.31× smaller flash footprint (~225 kB vs. ~1.4 MB) while retaining ≥95%
   of large-model macro-F1 on three ECG benchmarks; 96.2% accuracy on Speech Commands
 models_evaluated: []
-observations: {}
+observations:
+  approximate: A generator small enough to fit in flash cannot reproduce each layer's
+    trained weights exactly, so some macro-F1 buys back the space those matrices occupied.
+  recompute: Pointwise conv weights dominate MCU flash even at INT8, yet each is read
+    once per inference — the device has compute to spare and nowhere to put the matrices.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=NrDa5Fu10D
 optimization_type: []
 organizations:
 - Independent Researcher
 presentation_type: oral
-principles: []
+principles:
+- approximate
+- recompute
 problem: Pointwise convolution mixers dominate flash/SRAM on microcontrollers even
   after INT8 quantization, blocking deployment of competitive CNNs in TinyML settings.
 project_url: ''

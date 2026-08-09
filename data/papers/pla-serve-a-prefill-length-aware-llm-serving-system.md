@@ -29,9 +29,11 @@ models_evaluated:
 - Qwen2.5-14B
 - Qwen2.5-32B
 observations:
-  cache: CUDA Graph plans for power-of-two length-bucket short prefills reuse compiled
-    graphs across requests, eliminating kernel launch overhead and JIT compilation
-    per request.
+  specialize: Long prefills are compute-bound and short ones memory-bound; batched
+    together the short requests wait behind the long ones, and short requests are
+    most of real traffic.
+  schedule: One fixed batch-wait window suits neither class; waiting fills the batch
+    for throughput but charges that wait to every short request already queued.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=dzjCkSEDyG
 optimization_type: []
@@ -39,9 +41,9 @@ organizations:
 - Carnegie Mellon University
 - University of Illinois Urbana-Champaign
 presentation_type: oral
-principles: []
-principles_review:
-- cache
+principles:
+- specialize
+- schedule
 problem: Batching short and long prompts together causes long requests to delay short
   ones, inflating TTFT for the majority of real-world workloads.
 project_url: ''

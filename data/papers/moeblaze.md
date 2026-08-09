@@ -27,18 +27,21 @@ key_results: Up to 6.2× speedup and 4× activation memory reduction vs. MegaBlo
   baseline on H100; SwiGLU MoE gets 2×–6.2× speedup, SiLU gets 1.4×–3.7×
 models_evaluated: []
 observations:
-  fuse: Conventional MoE routing materializes ~94GB permutation buffers in HBM; four
-    compact index structures replace these with index-only tensors, eliminating most
-    permutation traffic.
+  fuse: MoE dispatch writes a fully permuted copy of every token's activations to
+    HBM before the expert GEMM reads it straight back, ~94GB of traffic for a reorder
+    that indices could express.
+  recompute: SiLU activations are cheap to recompute but occupy the HBM that caps
+    MoE batch size, so storing them for the backward pass costs more than it saves.
 official_category: Research Papers
 openreview_url: https://openreview.net/forum?id=L8qKfWWkry
 optimization_type: []
 organizations:
 - Meta
 presentation_type: oral
-principles: []
-principles_review:
+principles:
 - fuse
+principles_review:
+- recompute
 problem: MoE training stores all expert weights and routing buffers in HBM even though
   only top-k experts fire per token, creating a memory wall that limits batch size.
 project_url: ''

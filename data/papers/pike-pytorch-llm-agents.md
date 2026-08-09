@@ -25,12 +25,8 @@ models_evaluated:
 - Llama-3
 - Mamba-2
 observations:
-  fuse: Agents self-discovered FP16 + fused flash attention, monolithic kernel fusion
-    eliminating HBM round-trips between ops, and operation reordering to shrink tensor
-    sizes before heavy compute.
-  search-ai: Kernel correctness and latency are objectively measurable, enabling an
-    exploit-heavy strategy that beats torch.compile by 1.85× on H100 without hand-crafted
-    heuristics.
+  search-ai: A generated kernel can be compiled, run, and diffed against the reference,
+    so a wrong candidate costs one benchmark run rather than expert review.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=MJxhiX3sSd
 optimization_type: []
@@ -39,8 +35,6 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
-principles_review:
-- fuse
 problem: Writing optimized CUDA/Triton kernels requires deep hardware expertise; no
   framework exists for AI agents to iteratively generate, test, and improve them.
 project_url: ''

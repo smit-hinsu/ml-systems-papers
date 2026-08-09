@@ -24,18 +24,11 @@ models_evaluated:
 - Qwen3-30B-A3B
 - GPT-OSS-20B
 observations:
-  fuse: Token-level chunked prefill forces expert weight reloads per chunk, inflating
-    MoE off-chip traffic by up to 39%; layer-group scheduling loads each weight exactly
-    once per request.
-  pipeline: Layered prefill assigns one layer group per iteration for both decode
-    and prefill, interleaving across model depth rather than serializing; prefill
-    latency hides behind decode.
+  batch: An expert's weights are pulled from HBM once per prefill chunk, so cutting
+    a request into more chunks multiplies the same weight read by the chunk count.
   simplify: Chunked prefill exists to keep decode stall-free, but on MoE it reloads
     every expert weight once per chunk — 39% more memory traffic than the stalls it
     was added to prevent.
-  tier: Layer-group scheduling keeps each expert's weights resident for the full layer
-    group, loading each weight exactly once per request vs. once per chunk with token-level
-    scheduling (39% more traffic).
 official_category: ''
 openreview_url: https://openreview.net/forum?id=yyDbI3HXco
 optimization_type: []
@@ -43,11 +36,8 @@ organizations:
 - Seoul National University
 presentation_type: oral
 principles:
-- fuse
-- pipeline
+- batch
 - simplify
-principles_review:
-- tier
 problem: Chunked prefill in MoE serving forces redundant expert weight reloads per
   chunk, inflating memory traffic by up to 39% and increasing TTFT.
 project_url: ''

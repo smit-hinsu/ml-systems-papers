@@ -31,9 +31,9 @@ key_results: 2–15× higher synthetic data generation throughput under identica
   across multi-agent dialogue, web reasoning, and tool-use scenarios
 models_evaluated: []
 observations:
-  simplify: Centralized orchestration for synthetic data generation serializes task
-    dispatch; a coordinator-free peer-to-peer design achieves 2–15× throughput because
-    the coordinator itself was the bottleneck.
+  simplify: The central orchestrator dispatching agent tasks becomes the bottleneck
+    at tens of thousands of concurrent workflows, serializing work the agents could
+    route between themselves.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=ok96wGyPdI
 optimization_type: []

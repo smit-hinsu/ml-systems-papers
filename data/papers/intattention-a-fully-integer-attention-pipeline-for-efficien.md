@@ -25,12 +25,9 @@ models_evaluated:
 - Transformer language models
 - Vision transformers
 observations:
-  fuse: IntAttention eliminates the dequantize-softmax-requantize detour consuming
-    65% of attention latency, keeping the attention path in integer domain and removing
-    FP type-conversion memory round-trips.
-  quantize: All attention operations — Q/K/V projection and softmax — run in INT8/INT4
-    without dequantization; the fully integer pipeline eliminates format-conversion
-    overhead at every boundary.
+  quantize: Softmax is the one attention op with no integer form, so quantizing Q,
+    K and V buys little — the exponent and normalization drag the whole path back
+    into floating point.
   simplify: The float-domain softmax detour inserted to enable INT8 attention consumes
     65% of latency — the conversion stage costs more than the quantized compute it
     enables.
@@ -43,8 +40,6 @@ presentation_type: oral
 principles:
 - quantize
 - simplify
-principles_review:
-- fuse
 problem: INT8 attention on edge hardware still requires float softmax, causing a dequantize-softmax-requantize
   detour that dominates up to 65% of attention latency.
 project_url: ''

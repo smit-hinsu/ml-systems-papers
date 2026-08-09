@@ -20,9 +20,9 @@ key_results: +55% tokens-per-second over prior SD baselines; 5.5× avg speedup o
   standard autoregressive decoding on reasoning, coding, and math benchmarks.
 models_evaluated: []
 observations:
-  speculate: SpecDiff-2 aligns the diffusion drafter to the target LLM distribution;
-    higher alignment raises acceptance rates, making the parallel diffusion pass a
-    reliable speculative proposal.
+  speculate: A diffusion drafter emits every draft token in one pass, but it is trained
+    on a different objective than the target model, so the verifier rejects most of
+    what it proposes.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=o42VU86ZsV
 optimization_type: []

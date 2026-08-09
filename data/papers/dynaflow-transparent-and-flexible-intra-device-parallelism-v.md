@@ -27,16 +27,17 @@ key_results: Up to 1.29× throughput vs. unmodified baseline across 6 ML systems
   FlashAttention and vLLM) with minimal per-system code changes
 models_evaluated: []
 observations:
-  pipeline: DynaFlow's scheduler overlaps memory-bound and compute-bound operators
-    without model-specific code, achieving up to 1.29× throughput across 6 ML systems
-    including vLLM and FlashAttention.
+  pipeline: A single device runs memory-bound and compute-bound operators back to
+    back, and overlapping them today means hand-rewriting model code per architecture
+    and per hardware target.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=i0yqC9954S
 optimization_type: []
 organizations:
 - University of Washington
 presentation_type: oral
-principles:
+principles: []
+principles_review:
 - pipeline
 problem: Adding intra-device parallelism to ML frameworks requires invasive, model-specific
   code rewrites that don't generalize across architectures or hardware.

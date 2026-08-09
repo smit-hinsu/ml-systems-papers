@@ -25,18 +25,17 @@ key_results: 400 Gbps peak on ConnectX-7 and AWS EFA; RL weight updates for tril
   models in 1.3 s; MoE decode latency matches DeepEP on ConnectX-7.
 models_evaluated: []
 observations:
-  pipeline: KvCache transfers for disaggregated inference are issued layer-by-layer
-    so RDMA operations are pipelined with computation on the GPU, hiding transfer
-    latency behind prefill processing.
+  portable: RDMA libraries are written against one NIC's ordering and completion
+    guarantees, so moving a serving stack from ConnectX to EFA means rewriting the
+    transfer path rather than relinking it.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=SjVa05wEiY
 optimization_type: []
 organizations:
 - Perplexity AI
 presentation_type: oral
-principles: []
-principles_review:
-- pipeline
+principles:
+- portable
 problem: Disaggregated inference, MoE routing, and async RL fine-tuning need flexible
   RDMA point-to-point, but existing libraries are NIC-specific and non-portable.
 project_url: ''

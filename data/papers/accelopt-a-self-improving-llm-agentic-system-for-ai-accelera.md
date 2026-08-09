@@ -28,12 +28,9 @@ key_results: Improves NKIBench kernels from 49% to 61% peak throughput on Traini
   1; matches Claude Sonnet 4 quality at 26× lower cost using open-source models
 models_evaluated: []
 observations:
-  cache: Optimization memory caches generalizable insights from prior slow-fast kernel
-    pairs, preventing the LLM planner from re-discovering the same strategies on subsequent
-    kernels.
-  search-ai: Agentic beam search explores kernel optimization space with memory of
-    slow-fast kernel pairs; each iteration distills insights into an optimization
-    memory, improving NKIBench scores across iterations.
+  search-ai: A new accelerator has no corpus of expert kernels to imitate, but its
+    profiler returns a hard throughput number, so candidates can be ranked without
+    anyone who knows the hardware.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=SBS4NJHYjZ
 optimization_type: []
@@ -43,8 +40,6 @@ organizations:
 presentation_type: oral
 principles:
 - search-ai
-principles_review:
-- cache
 problem: Emerging AI accelerators (Trainium, custom ASICs) lack expert-written optimized
   kernels; manual tuning requires deep hardware knowledge unavailable at scale.
 project_url: ''

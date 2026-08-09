@@ -33,9 +33,9 @@ key_results: DAS cuts RL rollout time by up to 50% on math and code tasks with i
 models_evaluated:
 - LLM (math/code reasoning)
 observations:
-  speculate: Suffix-tree drafter models the RL rollout long-tail token distribution;
-    high acceptance rates on rare tokens close the gap between distribution-naive
-    speculation and optimal throughput.
+  speculate: A few long rollouts set the makespan of every RL step, and those same
+    prompts emit near-identical token sequences epoch after epoch, so recent rollouts
+    are a free source of guesses.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=kMeqqPBjSl
 optimization_type: []

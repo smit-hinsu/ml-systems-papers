@@ -28,9 +28,6 @@ observations:
   balance: Dynamic sparsity gives each ring-attention worker a different count of active
     attention blocks, so the worker holding the densest slice sets the step time while
     the rest idle.
-  skip: Dynamic sparse attention skips computation for unimportant token pairs; a
-    distributed index approximation makes sparsity patterns available across ring-attention
-    workers without full synchronization.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=h6SD2zgwGq
 optimization_type: []
@@ -40,7 +37,6 @@ organizations:
 - University of Surrey
 presentation_type: oral
 principles:
-- skip
 - balance
 problem: Dynamic sparse attention for ultra-long context training causes worker- and
   step-level load imbalance in distributed settings, negating its compute savings.

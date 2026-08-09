@@ -38,9 +38,9 @@ key_results: Generated 481 unique ATen operator kernels passing all PyTorch OpIn
   tests (20,000+ tests) for MTIA silicon and simulation environments
 models_evaluated: []
 observations:
-  search-ai: LLMs generate ATen kernels via JIT compilation and OpInfo test harness;
-    passing 20,000+ correctness tests provides the verifiable signal guiding generation
-    and enabling overnight backend creation.
+  search-ai: PyTorch OpInfo already pins down what every ATen operator must return,
+    so a generated kernel is judged by 20,000+ tests that exist rather than by a
+    reviewer who knows the new silicon.
 official_category: ''
 openreview_url: https://openreview.net/forum?id=O3Bx0nNGnW
 optimization_type: []

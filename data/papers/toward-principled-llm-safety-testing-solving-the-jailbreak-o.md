@@ -20,6 +20,8 @@ key_results: BOA 2-phase search certifies LLM jailbreak absence above a user-set
   threshold more reliably than prior methods, enabling reproducible auditing
 models_evaluated: []
 observations:
+  measure: Red teaming reports the jailbreaks it happened to find, so finding none
+    proves nothing and two teams cannot compare their results on the same model.
   search-ai: BOA frames jailbreak detection as a verifiable oracle problem with a
     probability threshold, allowing AI-guided search to systematically solve a measurable
     security objective.
@@ -30,6 +32,8 @@ organizations:
 - Northeastern University
 presentation_type: oral
 principles:
+- measure
+principles_review:
 - search-ai
 problem: No systematic method exists to determine if an LLM can generate a jailbreak
   above a probability threshold, making security assessment unprincipled.
