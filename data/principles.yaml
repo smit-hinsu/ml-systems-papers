@@ -36,7 +36,8 @@ skip:
   description: >
     When inputs or intermediate values are known to be irrelevant — sparse, zero,
     pruned, or outside an attended region — the corresponding computation can be
-    skipped without affecting correctness or meaningful accuracy.
+    skipped without changing the result. The bar is strict on purpose. If the output
+    moves at all the paper is trading quality, and that is approximate.
   not: >
     Not lossy dropping — if output quality changes at all, it is approximate. Not sparsity inherited from the model architecture rather than contributed by the paper.
 
