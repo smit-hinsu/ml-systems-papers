@@ -8,3 +8,4 @@ venv/
 dist/
 data/.mlsys_auth.json
 data/.metadata_cache.json
+.claude/

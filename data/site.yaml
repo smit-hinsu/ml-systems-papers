@@ -16,4 +16,9 @@ description: >
 # Example for Plausible:
 #   analytics_html: '<script defer data-domain="mlsys26.hinsu.org" src="https://plausible.io/js/plausible.js"></script>'
 # Leave blank to disable.
-analytics_html: ""
+analytics_html: |
+  <!-- Cloudflare Web Analytics -->
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1af7b86fe76246b097cf1adda6d0c125"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+  <!-- GoatCounter (cookieless) -->
+  <script data-goatcounter="https://smithinsu.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
